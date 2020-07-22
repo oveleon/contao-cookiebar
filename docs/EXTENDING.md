@@ -10,7 +10,7 @@ All cookie types are prepared by the PHP class "CookieHandler". This class allow
 ### Functions
 
 #### `addScript(string $strScript, bool $confirmed, int $pos)`
-Fügt ein Script an gewünschter Position hinzu (Bspw. <script>console.log(1);</script>);
+Adds a script at the desired position (e.g. `<script>console.log(1);</script>`)
 
 Parameter | Description
 ---------- | -----------
@@ -19,7 +19,7 @@ Parameter | Description
 `int $pos` | Defines the position in HTML (see "Constants": Position-Constants)
 
 #### `addResource(string $strSrc, array $flags, int $mode)`
-Adds an external resource in the header area (e.g. <script src="www.vendor.com/script.js" async></script>
+Adds an external resource in the header area (e.g. `<script src="www.vendor.com/script.js" async></script>`)
 
 Parameter | Description
 ---------- | -----------
@@ -39,3 +39,10 @@ Loading-Constants | Description
 `LOAD_CONFIRMED` | Load only after confirmation
 `LOAD_UNCONFIRMED` | Load only if not confirmed
 `LOAD_ALWAYS` | Load always
+
+<br/>
+
+# Further links
+- [Install & Configuration](docs/CONFIGURATION.md)
+- [Styling & Customization](docs/CUSTOMIZATION.md)
+- [Extended usage](docs/EXTENDED_USAGE.md)

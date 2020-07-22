@@ -6,10 +6,10 @@ Template | Description
 `cookiebar_default.html5` | Returns the cookie bar directly with an overview of the different cookie groups.
 `cookiebar_simple.html5` | Returns the cookie bar without an overview of the different cookie groups and offers the possibility to display them via an additional button.
 
-<p align="center">
+<div align="center">
     <img src="https://www.oveleon.de/share/github-assets/contao-cookiebar/cookiebar.png">
-    <small><i>cookiebar_default.html5</i></small>
-</p>
+    <p><i>cookiebar_default.html5</i></p>
+</div>
 
 ### Styling
 A separate stylesheet is output for each template. These are made available via the template itself, and can be removed and or replaced by your own if required via the template editor. The `_cookiebar.scss` included in the package contains all standard stylings, responsive settings as well as animations and can be integrated into your own style sheet.
@@ -19,12 +19,19 @@ Template | Description
 ---------- | ----------
 `ccb_element_blocker.html5` | Returns the template which is output instead of blocked content elements.
 
-<p align="center">
+<div align="center">
     <img src="https://www.oveleon.de/share/github-assets/contao-cookiebar/content-element-blocked.png">
-    <small><i>Example blocked content elements</i></small>
-</p>
+    <p><i>Example blocked content elements</i></p>
+</div>
 
 # Module
 Template | Description
 ---------- | ----------
 `ccb_opener_default.html5` | Returns the template, which is responsible for the output of the cookiebar module.
+
+<br/>
+
+# Further links
+- [Install & Configuration](docs/CONFIGURATION.md)
+- [Extending your own modules](docs/EXTENDING.md)
+- [Extended usage](docs/EXTENDED_USAGE.md)

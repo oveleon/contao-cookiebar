@@ -34,3 +34,10 @@ Route | GET-Parameter | Description
 `/cookiebar/push/[id]` | `configId` | Push cookie id to current set of cookies
 `/cookiebar/isset/[id/token]` | `pageId` | Check whether a cookie was accepted based on the ID or the token
 
+<br/>
+
+# Further links
+- [Install & Configuration](docs/CONFIGURATION.md)
+- [Styling & Customization](docs/CUSTOMIZATION.md)
+- [Extending your own modules](docs/EXTENDING.md)
+

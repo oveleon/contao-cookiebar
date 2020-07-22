@@ -19,7 +19,7 @@ contao_cookiebar:
     token: ccb_contao_token
   elements:
     youtube: ce_youtube
-    vimeo: ce_youtubevimeo
+    vimeo: ce_vimeo
 ```
 
 Parameter | Description
@@ -40,7 +40,7 @@ Field | Description
 `Template` | Defines the template to be used (see [Styling & Customization](CUSTUMIZATION.md) for more information)
 `Info-Links` | Here you can select several pages from the page picker, which are displayed in the footer of the cookie bar. (e.g. imprint, privacy policy)
 
-ℹ After creating a configuration, cookie settings necessary for the system are automatically created.
+ℹ After creating a configuration, cookie settings necessary for the system are automatically created. If you do not want to display essential cookies, you can simply hide them.
 
 ### Create new cookie group
 Now you can create additional cookie groups and thus create a meaningful separation between analysis cookies and others. A special feature is that groups can also be created without cookies and thus only act as a descriptive group.
@@ -51,7 +51,7 @@ Field | Description
 `Description` | A description which provides further information about this group
 
 ### Create new cookie
-Some types for cookies are already delivered. To add your own types please see [Extending your own modules](EXTENDING.md).
+Some types for cookies are already delivered. To add your own types see [Extending your own modules](EXTENDING.md).
 
 #### Fields
 Field | Description | Type
@@ -86,3 +86,10 @@ Cookie-Type | Description
 `Matomo` | This type integrates Matomo
 `YouTube` | This type integrates the ability to block YouTube videos if the privacy policy provided has not been accepted
 `Vimeo` | This type integrates the ability to block Vimeo videos if the privacy policy provided has not been accepted
+
+<br/>
+
+# Further links
+- [Styling & Customization](docs/CUSTOMIZATION.md)
+- [Extending your own modules](docs/EXTENDING.md)
+- [Extended usage](docs/EXTENDED_USAGE.md)
