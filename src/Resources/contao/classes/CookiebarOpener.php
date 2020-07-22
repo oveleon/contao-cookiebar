@@ -12,6 +12,7 @@ namespace Oveleon\ContaoCookiebar;
 
 use Contao\Hybrid;
 use Contao\StringUtil;
+use Contao\System;
 
 class CookiebarOpener extends Hybrid
 {
@@ -26,10 +27,12 @@ class CookiebarOpener extends Hybrid
      */
     protected function compile()
     {
+        System::loadLanguageFile('tl_cookiebar');
+
         $this->Template->href = 'javascript:;';
         $this->Template->attribute = ' onclick="cookiebar.show('.$this->objParent->prefillCookies.');"';
         $this->Template->rel = ' rel="noreferrer noopener"';
-        $this->Template->link = $this->objParent->linkTitle;
+        $this->Template->link = $this->objParent->linkTitle ?: $GLOBALS['TL_LANG']['tl_cookiebar']['changePrivacyLabel'];
         $this->Template->linkTitle = '';
 
         if ($this->objParent->titleText)
