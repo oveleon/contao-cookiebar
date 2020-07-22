@@ -4,6 +4,7 @@
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 9999;
 
   font-size: 0; // Required for vertical alignment (responsive)
   text-align: center;
@@ -135,6 +136,7 @@
     position: relative;
     display: block;
     padding: 8px 13px 8px 0;
+    line-height: 1.2;
 
     &.group {
       font-weight: 600;
@@ -145,6 +147,7 @@
     position: absolute;
     width: 1px;
     height: 1px;
+    outline: 0 none;
 
     + label{
       padding: 8px 13px 8px 50px;

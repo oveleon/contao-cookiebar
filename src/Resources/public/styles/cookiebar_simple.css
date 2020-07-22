@@ -5,6 +5,7 @@
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 9999;
   font-size: 0;
   text-align: center;
   padding: 15px;
@@ -97,6 +98,7 @@
   position: relative;
   display: block;
   padding: 8px 13px 8px 0;
+  line-height: 1.2;
 }
 .contao-cookiebar label.group {
   font-weight: 600;
@@ -105,6 +107,7 @@
   position: absolute;
   width: 1px;
   height: 1px;
+  outline: 0 none;
 }
 .contao-cookiebar input + label {
   padding: 8px 13px 8px 50px;
