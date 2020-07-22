@@ -43,6 +43,6 @@ Loading-Constants | Description
 <br/>
 
 # Further links
-- [Install & Configuration](docs/CONFIGURATION.md)
-- [Styling & Customization](docs/CUSTOMIZATION.md)
-- [Extended usage](docs/EXTENDED_USAGE.md)
+- [Install & Configuration](CONFIGURATION.md)
+- [Styling & Customization](CUSTOMIZATION.md)
+- [Extended usage](EXTENDED_USAGE.md)

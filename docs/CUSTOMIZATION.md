@@ -32,6 +32,6 @@ Template | Description
 <br/>
 
 # Further links
-- [Install & Configuration](docs/CONFIGURATION.md)
-- [Extending your own modules](docs/EXTENDING.md)
-- [Extended usage](docs/EXTENDED_USAGE.md)
+- [Install & Configuration](CONFIGURATION.md)
+- [Extending your own modules](EXTENDING.md)
+- [Extended usage](EXTENDED_USAGE.md)

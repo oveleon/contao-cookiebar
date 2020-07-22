@@ -37,7 +37,7 @@ Route | GET-Parameter | Description
 <br/>
 
 # Further links
-- [Install & Configuration](docs/CONFIGURATION.md)
-- [Styling & Customization](docs/CUSTOMIZATION.md)
-- [Extending your own modules](docs/EXTENDING.md)
+- [Install & Configuration](CONFIGURATION.md)
+- [Styling & Customization](CUSTOMIZATION.md)
+- [Extending your own modules](EXTENDING.md)
 

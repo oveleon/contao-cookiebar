@@ -90,6 +90,6 @@ Cookie-Type | Description
 <br/>
 
 # Further links
-- [Styling & Customization](docs/CUSTOMIZATION.md)
-- [Extending your own modules](docs/EXTENDING.md)
-- [Extended usage](docs/EXTENDED_USAGE.md)
+- [Styling & Customization](CUSTOMIZATION.md)
+- [Extending your own modules](EXTENDING.md)
+- [Extended usage](EXTENDED_USAGE.md)
