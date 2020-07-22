@@ -295,11 +295,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
-            'sql'                     => "char(1) NOT NULL default ''",
-            'load_callback' => array
-            (
-                array('tl_cookie', 'disableLockedField')
-            )
+            'sql'                     => "char(1) NOT NULL default ''"
         )
 	)
 );
@@ -412,25 +408,6 @@ class tl_cookie extends Contao\Backend
     }
 
     /**
-     * Disable locked fields
-     *
-     * @param $varValue
-     * @param $dc
-     *
-     * @return int
-     */
-    public function disableLockedField($varValue, $dc)
-    {
-        if($dc->activeRecord->identifier === 'lock')
-        {
-            $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['disabled'] = true;
-            return 1;
-        }
-
-        return $varValue;
-    }
-
-    /**
      * List a group item
      *
      * @param array $arrRow
@@ -498,13 +475,7 @@ class tl_cookie extends Contao\Backend
             $icon = 'invisible.svg';
         }
 
-        if ($row['identifier'] === 'lock')
-        {
-            $icon  = 'unpublished.svg';
-            $title = $GLOBALS['TL_LANG']['tl_cookie']['msgUnpublished'];
-        }
-
-        return '<a href="' . ($row['identifier'] === 'lock' ? 'javascript:;' : $this->addToUrl($href)) . '" title="' . Contao\StringUtil::specialchars($title) . '" data-tid="cid"' . ($row['identifier'] !== 'lock' ? $attributes : 'onclick="return false;"') . '>' . Contao\Image::getHtml($icon, $label, 'data-state="' . (!$row['published'] ? 0 : 1) . '"') . '</a> ';
+        return '<a href="' . $this->addToUrl($href) . '" title="' . Contao\StringUtil::specialchars($title) . '" data-tid="cid"' . $attributes . '>' . Contao\Image::getHtml($icon, $label, 'data-state="' . (!$row['published'] ? 0 : 1) . '"') . '</a> ';
     }
 
     /**

@@ -220,14 +220,14 @@ class tl_cookiebar extends Contao\Backend
                 'csrf_contao_csrf_token',
                 $GLOBALS['TL_LANG']['tl_cookiebar']['noExpireTime'],
                 $GLOBALS['TL_LANG']['tl_cookiebar']['defaultCsrfDescription'],
-                ''
+                'lock'
             ],
             [
                 'Contao HTTPS CSRF Token',
                 'csrf_https-contao_csrf_token',
                 $GLOBALS['TL_LANG']['tl_cookiebar']['noExpireTime'],
                 $GLOBALS['TL_LANG']['tl_cookiebar']['defaultHttpsCsrfDescription'],
-                ''
+                'lock'
             ],
             [
                 'PHP SESSION ID',
