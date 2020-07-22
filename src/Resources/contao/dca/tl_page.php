@@ -39,7 +39,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarConfig'] = array
     {
         return Oveleon\ContaoCookiebar\Cookiebar::getConfigurationList();
     },
-    'eval'                    => array('tl_class'=>'w50'),
+    'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
     'sql'                     => "varchar(64) NOT NULL default ''"
 );
 
