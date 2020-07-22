@@ -1,0 +1,131 @@
+$cookiebar-input-checked: #399d32;
+$cookiebar-input-unchecked: #9c9b99;
+$cookiebar-input-disabled: #c8c7c5;
+$cookiebar-overlay: rgba(0,0,0,.75);
+$cookiebar-animation-duration: .5s;
+
+@import "cookiebar";
+
+.cookiebar_default{
+  color: #444444;
+
+  p{
+    color: #868686;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .cc-inner{
+    padding: 25px;
+    border-radius: 5px;
+
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.25);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.25);
+    background: #fff;
+  }
+
+  .cc-group{
+    position: relative;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+    > label{
+      margin: 5px 130px 5px 10px;
+    }
+
+    .cc-detail-btn{
+      position: absolute;
+      right: 0;
+      top: 0;
+      border: 0 none;
+      outline: 0 none;
+      background: transparent;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 13px;
+      color: #a2a2a2;
+
+      span{
+
+        &:nth-child(2){
+          display: none;
+        }
+      }
+
+      &.cc-active{
+
+        span{
+
+          &:nth-child(1){
+            display: none;
+          }
+
+          &:nth-child(2){
+            display: inline;
+          }
+        }
+      }
+
+      &:hover{
+        color: #717171;
+      }
+    }
+  }
+
+  .cc-cookies{
+    display: none;
+    background: #fbfbfb;
+
+    > p, >.cc-cookie{
+      margin: 0;
+      padding: 15px;
+      border-top: 1px solid #e6e6e6;
+    }
+
+    .cc-cookie {
+
+      .cc-cookie-info{
+        font-size: 14px;
+
+        > div + div{
+          margin-top: 5px;
+        }
+      }
+
+      label.cookie{
+        margin-bottom: 10px;
+      }
+
+      p{
+        margin: 0 0 15px;
+      }
+    }
+  }
+
+  .cc-footer,.cc-info{
+    text-align: center;
+  }
+
+  .cc-info {
+    margin-top: 15px;
+
+    a{
+      display: inline-block;
+      font-size: 13px;
+      color: #a2a2a2;
+      text-decoration: none;
+
+      &:hover{
+        color: #717171;
+      }
+
+      + a:before{
+        display: inline-block;
+        content: '·';
+        margin-right: 5px;
+      }
+    }
+  }
+}

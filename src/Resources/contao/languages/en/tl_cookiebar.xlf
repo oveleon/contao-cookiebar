@@ -1,0 +1,148 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_cookiebar.php" source-language="en">
+    <body>
+      <trans-unit id="tl_cookiebar.title_legend">
+        <source>Titel / Version</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.meta_legend">
+        <source>Meta-Information</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.expert_legend">
+        <source>Expert settings</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookiebar.defaultEssentialGroupName">
+        <source>Essential</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.noExpireTime">
+        <source>This cookie remains only for the current browser session.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.defaultCsrfDescription">
+        <source>&lt;p&gt;Protects against cross-site request forgery attacks.&lt;/p&gt;</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.defaultHttpsCsrfDescription">
+        <source>&lt;p&gt;Protects against cross-site request forgery attacks.&lt;/p&gt;</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.defaultPhpSessionDescription">
+        <source>&lt;p&gt;Saves the current PHP session.&lt;/p&gt;</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.defaultCookiebarDescription">
+        <source>&lt;p&gt;This cookie is used to restore the cookie &amp; privacy settings you used. No personal data is collected or stored..&lt;/p&gt;</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.defaultCookiebarLifetime">
+        <source>This cookie remains stored for %s days.</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookiebar.saveLabel">
+        <source>Save selection</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.acceptAllLabel">
+        <source>Accept all</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.denyAllLabel">
+        <source>Deny all</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.infoLabel">
+        <source>Privacy settings</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.acceptAndDisplayLabel">
+        <source>Accept and show</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.showDetailsLabel">
+        <source>Show details</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.hideDetailsLabel">
+        <source>Hide details</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.providerLabel">
+        <source>Provider</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.expireLabel">
+        <source>Storage duration</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookiebar.title.0">
+        <source>Titel</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.title.1">
+        <source>Enter a intern title for the cookie bar here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.version.0">
+        <source>Version</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.version.1">
+        <source>The current version of the cookie bar configuration is displayed here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.updateVersion.0">
+        <source>Update version</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.updateVersion.1">
+        <source>Update the current version to force the cookie bar to be displayed to visitors.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.description.0">
+        <source>Title &amp; Description</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.description.1">
+        <source>Describe the purpose of the cookie bar.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.infoUrls.0">
+        <source>Info links</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.infoUrls.1">
+        <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.template.0">
+        <source>Template</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.template.1">
+        <source>Choose a template.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.alignment.0">
+        <source>Alignment</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.alignment.1">
+        <source>Define here where the cookie bar should be displayed.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.blocking.0">
+        <source>Blocking</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.blocking.1">
+        <source>Blocks the use of the site until the cookie bar has been used.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.position.0">
+        <source>Position</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.position.1">
+        <source>Here you define the position of the cookie bar in HTML.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.cssID.0">
+        <source>CSS ID/class</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.cssID.1">
+        <source>Here you can set an ID and one or more classes.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.cookieLog.0">
+        <source>Log</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.cookieLog.1">
+        <source>Einwilligungen anzeigen</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookiebar.bodyAboveContent">
+        <source>Above the content in the body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.bodyBelowContent">
+        <source>Below the content in the body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.cc-top">
+        <source>Top</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.cc-middle">
+        <source>Middle</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.cc-bottom">
+        <source>Bottom</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

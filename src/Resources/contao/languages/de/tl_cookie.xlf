@@ -1,0 +1,259 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_cookie.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_cookie.msgUnpublished">
+        <source>This cookie cannot be deactivated.</source>
+        <target>Dieser Cookie kann nicht deaktiviert werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.title_legend">
+        <source>Cookie / Type</source>
+        <target>Cookie / Typ</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.script_legend">
+        <source>Script</source>
+        <target>Skript</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.description_legend">
+        <source>Description</source>
+        <target>Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.google_analytics_legend">
+        <source>Google Analytics</source>
+        <target>Google Analytics</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebook_pixel_legend">
+        <source>Facebook Pixel</source>
+        <target>Facebook Pixel</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.youtube_legend">
+        <source>YouTube</source>
+        <target>YouTube</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vimeo_legend">
+        <source>Vimeo</source>
+        <target>Vimeo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.title.0">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.title.1">
+        <source>Enter the title of the cookie here.</source>
+        <target>Geben Sie hier den Titel des Cookies ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.token.0">
+        <source>Cookie-Token</source>
+        <target>Cookie-Token</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.token.1">
+        <source>Enter the unique name(s) (token) in a comma separated list for the cookie (e.g. _ga, gid, ...).</source>
+        <target>Geben Sie hier den / die eindeutigen Namen (Token) in einer kommagetrennten Liste für den Cookie an (Bspw. _ga, gid, ...).</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.type.0">
+        <source>Cookie-Type</source>
+        <target>Cookie-Typ</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.type.1">
+        <source>Select a predefined cookie type or create your own by leaving this field blank.</source>
+        <target>Wählen Sie einen vordefinierten Cookie-Typen oder erstellen Sie einen eigenen indem Sie dieses Feld frei lassen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrl.0">
+        <source>Source URL</source>
+        <target>Quell-URL</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrl.1">
+        <source>The source URL is used to integrate scripts which must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
+        <target>Die Quell-URL dient zur Einbindung von Skripten welche expliziet im HEAD-Bereich der Website integriert werden müssen um einen externen Service bereitzustellen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceLoadingMode.0">
+        <source>Loading-Mode of Source URL</source>
+        <target>Lademodus der Quell-URL</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceLoadingMode.1">
+        <source>Define here when the source URL may be embedded.</source>
+        <target>Definieren Sie hier, wann die Quell-URL eingebettet werden darf.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrlParameter.0">
+        <source>Source URL Parameter</source>
+        <target>Quell-URL Parameter</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrlParameter.1">
+        <source>Define the load parameters of the source URL to be used.</source>
+        <target>Definieren Sie die zu verwedenden Lade-Parameter der Source URL.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfirmed.0">
+        <source>Script (confirmed)</source>
+        <target>Skript (bestätigt)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfirmed.1">
+        <source>Enter the script here (without enclosing script tag) which is to be output after confirmation of the cookie.</source>
+        <target>Tragen Sie hier das Skript ein (ohne umschließenden script-Tag), welches nach Bestätigung des Cookies ausgegeben werden soll.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptUnconfirmed.0">
+        <source>Script (unconfirmed)</source>
+        <target>Skript (nicht bestätigt)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptUnconfirmed.1">
+        <source>Enter the script here (without enclosing script tag) which should be output if this cookie is not confirmed.</source>
+        <target>Tragen Sie hier das Skript ein (ohne umschließenden script-Tag), welches ausgegeben werden soll wenn dieser Cookie nicht bestätigt wurde.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptPosition.0">
+        <source>Script position</source>
+        <target>Skript-Position</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptPosition.1">
+        <source>Specify the position where the script (both confirmed and unconfirmed) should be embedded.</source>
+        <target>Geben Sie hier die Position an, an welcher Stelle das Skript (sowohl bestätigt, als auch nicht bestätigt) eingebettet werden soll.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.expireTime.0">
+        <source>Cookie storage duration</source>
+        <target>Cookie Speicherdauer</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.expireTime.1">
+        <source>Define here how long the cookie is stored or refer to the description of the provider.</source>
+        <target>Definieren Sie hier die Dauer wie lange der Cookie gespeichert wird oder verweisen Sie auf die Beschreibung des Anbieters.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.provider.0">
+        <source>Provider</source>
+        <target>Anbieter</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.provider.1">
+        <source>Define here the provider information like company name and address which are responsible for this cookie.</source>
+        <target>Definieren Sie hier die Anbieter-Informationen wie Firmenname und Adresse welche für diesen Cookie verantwortlich sind.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.description.0">
+        <source>Description</source>
+        <target>Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.description.1">
+        <source>Describe the cookie and its purpose.</source>
+        <target>Beschreiben Sie hier den Cookie und dessen Zweck.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockDescription.0">
+        <source>Description (blocked)</source>
+        <target>Beschreibung (blockiert)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockDescription.1">
+        <source>This description appears when an content element is blocked by missing cookies.</source>
+        <target>Diese Beschreibung erscheint, wenn ein Content Element durch fehlende Cookies geblockt wird.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vendorId.0">
+        <source>ID</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vendorId.1">
+        <source>Enter your ID here.</source>
+        <target>Geben Sie hier Ihre ID ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleAnalytics_vendorId.0">
+        <source>Google Analytics ID</source>
+        <target>Google Analytics ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleAnalytics_vendorId.1">
+        <source>Enter your Google Analytics ID here.</source>
+        <target>Geben Sie hier Ihre Google Analytics ID ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
+        <source>Facebook-ID</source>
+        <target>Facebook-ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel_vendorId.1">
+        <source>Enter your Facebook ID here.</source>
+        <target>Geben Sie hier Ihre Facebbok ID ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorId.0">
+        <source>Matomo-ID</source>
+        <target>Matomo-ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorId.1">
+        <source>Enter your Matomo-ID here.</source>
+        <target>Geben Sie hier Ihre Matomo-ID ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorUrl.0">
+        <source>Matomo Server-URL</source>
+        <target>Matomo Server-URL</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorUrl.1">
+        <source>Enter the Matomo Server-URL here.</source>
+        <target>Geben Sie hier die Matomo Server-URL ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfig.0">
+        <source>Additional configuration</source>
+        <target>Zusätzliche Konfiguration</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfig.1">
+        <source>Enter further parameters here (as an JavaScript object), which should be taken into account when loading the script.</source>
+        <target>Tragen Sie hier weitere Parameter ein (als eigenständiges JavaScript-Objekt), welche beim laden des Skriptes berücksichtigt werden sollen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfig_xlabel">
+        <source>Insert default configuration</source>
+        <target>Standard-Konfiguration einfügen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.published.0">
+        <source>Publish</source>
+        <target>Veröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.published.1">
+        <source>Define here whether the cookie may be set / displayed.</source>
+        <target>Definieren Sie hier ob der Cookie gesetzt / angezeigt werden darf.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.googleAnalytics.0">
+        <source>Google Analytics</source>
+        <target>Google Analytics</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleAnalytics.1">
+        <source>Integrate Google Analytics.</source>
+        <target>Google Analytics einbinden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel.0">
+        <source>Facebook Pixel</source>
+        <target>Facebook Pixel</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel.1">
+        <source>Integrate Facebook Pixel.</source>
+        <target>Facebook Pixel einbinden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo.0">
+        <source>Matomo</source>
+        <target>Matomo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo.1">
+        <source>Integrate Matomo.</source>
+        <target>Matomo einbinden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.youtube.0">
+        <source>YouTube</source>
+        <target>YouTube</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.youtube.1">
+        <source>Integrate YouTube.</source>
+        <target>YouTube einbinden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vimeo.0">
+        <source>Vimeo</source>
+        <target>Vimeo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vimeo.1">
+        <source>Integrate Vimeo.</source>
+        <target>Vimeo einbinden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.default.0">
+        <source>Info</source>
+        <target>Hinweis</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.default.1">
+        <source>Configure a cookie info.</source>
+        <target>Hinweis zu einem Cookie konfigurieren.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.script.0">
+        <source>Custom (Script)</source>
+        <target>Benutzerdefiniert (Skript)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.script.1">
+        <source>Configure custom script.</source>
+        <target>Benutzerdefiniertes Skript konfigurieren.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

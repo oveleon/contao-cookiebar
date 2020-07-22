@@ -1,0 +1,51 @@
+<?php
+    $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_default.css|static';
+?>
+<div <?=$this->cssID ? 'id="' . $this->cssID . '"' : ''?> class="contao-cookiebar<?=$this->class ? ' ' . $this->class : ''?>">
+    <div class="cc-inner">
+        <div class="cc-head">
+            <?=$this->description?>
+        </div>
+        <div class="cc-groups">
+            <?php foreach ($this->groups as $group): ?>
+                <div class="cc-group">
+                    <?php if($group->hasCookies): ?>
+                        <input type="checkbox" name="group[]" id="g<?=$group->id?>" value="<?=$group->id?>" data-toggle-cookies<?=$group->isLocked ? ' disabled checked' : ''?>>
+                    <?php endif; ?>
+                    <label for="g<?=$group->id?>" class="group"><?=$group->title?></label>
+                    <button class="cc-detail-btn" data-toggle-group>
+                        <span><?=$this->showDetailsLabel?></span>
+                        <span><?=$this->hideDetailsLabel?></span>
+                    </button>
+                    <div class="cc-cookies toggle-group">
+                        <?=$group->description?>
+                        <?php foreach ($group->cookies as $cookie): ?>
+                            <div class="cc-cookie">
+                                <input type="checkbox" name="cookie[]" id="c<?=$cookie->id?>" value="<?=$cookie->id?>"<?=$cookie->isLocked ? ' disabled checked' : ''?>>
+                                <label for="c<?=$cookie->id?>" class="cookie"><?=$cookie->title?></label>
+                                <?=$cookie->description?>
+                                <div class="cc-cookie-info">
+                                    <?php if($cookie->provider): ?>
+                                        <div><strong><?=$this->providerLabel?>:</strong> <?=$cookie->provider?></div>
+                                    <?php endif; ?>
+                                    <?php if($cookie->expireTime): ?>
+                                        <div><strong><?=$this->expireLabel?>:</strong> <?=$cookie->expireTime?></div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="cc-footer">
+            <button class="cc-btn" data-save><?=$this->saveLabel?></button>
+            <button class="cc-btn success" data-accept-all><?=$this->acceptAllLabel?></button>
+        </div>
+        <div class="cc-info">
+            <?php foreach ($this->infoUrls as $name => $link): ?>
+                <a href="<?=$link?>"><?=$name?></a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>

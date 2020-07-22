@@ -1,0 +1,18 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/explain.php" source-language="en">
+    <body>
+      <trans-unit id="XPL.cookiebarVersion.0.0">
+        <source>Cookiebar Versions</source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarVersion.0.1">
+        <source>Versions can be stored for each cookie bar configuration. For each newly created version of a configuration, it is forced to display it to the visitor, regardless of whether and when it has already been accepted. This allows visitors to be notified of new cookies and to grant or deny their permission. The settings previously set by the visitor are applied.</source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarVersion.1.0">
+        <source>Create new version</source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarVersion.1.1">
+        <source>To create a new version, select the &lt;code&gt;checkbox&lt;/code&gt; for &lt;code&gt;Update version&lt;/code&gt; and then save the mask. The version is automatically incremented.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

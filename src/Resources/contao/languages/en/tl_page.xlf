@@ -1,0 +1,57 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_page.php" source-language="en">
+    <body>
+      <trans-unit id="tl_page.cookiebar_legend">
+        <source>Cookiebar</source>
+      </trans-unit>
+      <trans-unit id="tl_page.activateCookiebar.0">
+        <source>Activate Cookiebar</source>
+      </trans-unit>
+      <trans-unit id="tl_page.activateCookiebar.1">
+        <source>Activate the cookie bar for this and its subpages.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarConfig.0">
+        <source>Cookiebar configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarConfig.1">
+        <source>Select the cookie bar configuration to be used.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.overwriteCookiebarMeta.0">
+        <source>Overwrite metadata</source>
+      </trans-unit>
+      <trans-unit id="tl_page.overwriteCookiebarMeta.1">
+        <source>Overwrite the meta information stored in the configuration.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarDescription.0">
+        <source>Title &amp; Description</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarDescription.1">
+        <source>Describe the purpose of the cookie bar.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarAlignment.0">
+        <source>Alignment</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarAlignment.1">
+        <source>Define here where the cookie bar should be displayed.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarBlocking.0">
+        <source>Blocking</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarBlocking.1">
+        <source>Blocks the use of the site until the cookie bar has been used.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoUrls.0">
+        <source>Info links</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoUrls.1">
+        <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarTemplate.0">
+        <source>Template</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarTemplate.1">
+        <source>Choose a template.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

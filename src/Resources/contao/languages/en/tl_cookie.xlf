@@ -1,0 +1,196 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_cookie.php" source-language="en">
+    <body>
+      <trans-unit id="tl_cookie.msgUnpublished">
+        <source>This cookie cannot be deactivated.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.title_legend">
+        <source>Cookie / Type</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.script_legend">
+        <source>Script</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.description_legend">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.google_analytics_legend">
+        <source>Google Analytics</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebook_pixel_legend">
+        <source>Facebook Pixel</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.youtube_legend">
+        <source>YouTube</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vimeo_legend">
+        <source>Vimeo</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.title.0">
+        <source>Title</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.title.1">
+        <source>Enter the title of the cookie here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.token.0">
+        <source>Cookie-Token</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.token.1">
+        <source>Enter the unique name(s) (token) in a comma separated list for the cookie (e.g. _ga, gid, ...).</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.type.0">
+        <source>Cookie-Type</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.type.1">
+        <source>Select a predefined cookie type or create your own by leaving this field blank.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrl.0">
+        <source>Source URL</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrl.1">
+        <source>The source URL is used to integrate scripts which must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceLoadingMode.0">
+        <source>Loading-Mode of Source URL</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceLoadingMode.1">
+        <source>Define here when the source URL may be embedded.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrlParameter.0">
+        <source>Source URL Parameter</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceUrlParameter.1">
+        <source>Define the load parameters of the source URL to be used.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfirmed.0">
+        <source>Script (confirmed)</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfirmed.1">
+        <source>Enter the script here (without enclosing script tag) which is to be output after confirmation of the cookie.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptUnconfirmed.0">
+        <source>Script (unconfirmed)</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptUnconfirmed.1">
+        <source>Enter the script here (without enclosing script tag) which should be output if this cookie is not confirmed.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptPosition.0">
+        <source>Script position</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptPosition.1">
+        <source>Specify the position where the script (both confirmed and unconfirmed) should be embedded.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.expireTime.0">
+        <source>Cookie storage duration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.expireTime.1">
+        <source>Define here how long the cookie is stored or refer to the description of the provider.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.provider.0">
+        <source>Provider</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.provider.1">
+        <source>Define here the provider information like company name and address which are responsible for this cookie.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.description.0">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.description.1">
+        <source>Describe the cookie and its purpose.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockDescription.0">
+        <source>Description (blocked)</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockDescription.1">
+        <source>This description appears when an content element is blocked by missing cookies.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vendorId.0">
+        <source>ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vendorId.1">
+        <source>Enter your ID here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleAnalytics_vendorId.0">
+        <source>Google Analytics ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleAnalytics_vendorId.1">
+        <source>Enter your Google Analytics ID here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
+        <source>Facebook-ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel_vendorId.1">
+        <source>Enter your Facebook ID here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorId.0">
+        <source>Matomo-ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorId.1">
+        <source>Enter your Matomo-ID here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorUrl.0">
+        <source>Matomo Server-URL</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo_vendorUrl.1">
+        <source>Enter the Matomo Server-URL here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfig.0">
+        <source>Additional configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfig.1">
+        <source>Enter further parameters here (as an JavaScript object), which should be taken into account when loading the script.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptConfig_xlabel">
+        <source>Insert default configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.published.0">
+        <source>Publish</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.published.1">
+        <source>Define here whether the cookie may be set / displayed.</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.googleAnalytics.0">
+        <source>Google Analytics</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleAnalytics.1">
+        <source>Integrate Google Analytics.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel.0">
+        <source>Facebook Pixel</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.facebookPixel.1">
+        <source>Integrate Facebook Pixel.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo.0">
+        <source>Matomo</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomo.1">
+        <source>Integrate Matomo.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.youtube.0">
+        <source>YouTube</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.youtube.1">
+        <source>Integrate YouTube.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vimeo.0">
+        <source>Vimeo</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vimeo.1">
+        <source>Integrate Vimeo.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.default.0">
+        <source>Info</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.default.1">
+        <source>Configure a cookie info.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.script.0">
+        <source>Custom (Script)</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.script.1">
+        <source>Configure custom script.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

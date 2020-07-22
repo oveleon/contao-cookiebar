@@ -1,0 +1,46 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_cookie_log.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_cookie_log.id.0">
+        <source>Id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.pid.0">
+        <source>Cookiebar</source>
+        <target>Cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.version.0">
+        <source>Version</source>
+        <target>Version</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.domain.0">
+        <source>Domain</source>
+        <target>Domain</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.url.0">
+        <source>URL</source>
+        <target>URL</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.ip.0">
+        <source>IP</source>
+        <target>IP</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.config.0">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.tstamp.0">
+        <source>Date</source>
+        <target>Datum</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.export.0">
+        <source>Export log file</source>
+        <target>Log-Datei exportieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_log.export.0">
+        <source>Export log file</source>
+        <target>Log-Datei exportieren</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

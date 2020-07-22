@@ -1,0 +1,22 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/modules.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="MOD.cookiebar.0">
+        <source>Cookiebar</source>
+        <target>Cookiebar</target>
+      </trans-unit>
+      <trans-unit id="MOD.cookiebar.1">
+        <source>Manage cookiebar configurations</source>
+        <target>Cookiebar-Konfigurationen verwalten</target>
+      </trans-unit>
+      <trans-unit id="FMD.cookiebarOpener.0">
+        <source>Cookiebar</source>
+        <target>Cookiebar</target>
+      </trans-unit>
+      <trans-unit id="FMD.cookiebarOpener.1">
+        <source>Creates a link which opens the cookie bar.</source>
+        <target>Erzeugt einen Link welcher die Cookiebar öffnet.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

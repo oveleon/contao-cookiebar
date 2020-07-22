@@ -1,0 +1,349 @@
+.contao-cookiebar{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  font-size: 0; // Required for vertical alignment (responsive)
+  text-align: center;
+  padding: 15px;
+  max-height: 100vh;
+
+  box-sizing: border-box;
+  pointer-events: none;
+  overflow: hidden;
+
+  *{
+    box-sizing: border-box;
+  }
+
+  &:before{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  .cc-inner{
+    display: inline-block;
+    overflow-y: auto;
+
+    max-height: 100%;
+    max-width: 100%;
+
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  &.cc-top{
+
+    .cc-inner{
+      vertical-align: top;
+    }
+
+    &.cc-active .cc-inner{
+      animation: cookiebar-top-in $cookiebar-animation-duration ease-in-out forwards;
+    }
+
+    &.cc-saved .cc-inner{
+      animation: cookiebar-top-out $cookiebar-animation-duration ease-in-out forwards;
+    }
+  }
+
+  &.cc-bottom{
+
+    .cc-inner {
+      vertical-align: bottom;
+    }
+
+    &.cc-active .cc-inner{
+      animation: cookiebar-bottom-in $cookiebar-animation-duration ease-in-out forwards;
+    }
+
+    &.cc-saved .cc-inner{
+      animation: cookiebar-bottom-out $cookiebar-animation-duration ease-in-out forwards;
+    }
+  }
+
+  &.cc-middle{
+
+    .cc-inner {
+      vertical-align: middle;
+    }
+
+    &.cc-active .cc-inner{
+      animation: cookiebar-middle-in $cookiebar-animation-duration ease-in-out forwards;
+    }
+
+    &.cc-saved .cc-inner{
+      animation: cookiebar-middle-out $cookiebar-animation-duration ease-in-out forwards;
+    }
+  }
+
+  .cc-head{
+
+    h1, h2, h3, h4, h5, h6{
+
+      &:first-child{
+        margin-top: 0;
+      }
+    }
+  }
+
+  .cc-btn{
+    display: inline-block;
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 15px;
+    outline: 0 none;
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    color: #444;
+    background: #f5f5f5;
+
+    &:hover{
+      background: #ececec;
+    }
+
+    &.success{
+      background: #4e9e3e;
+      border-color: #3e7830;
+      color: #fff;
+
+      &:hover{
+        background: #4c933f;
+      }
+    }
+
+    &.warn{
+      background: #9e3b2d;
+      border-color: #781e1f;
+      color: #fff;
+
+      &:hover{
+        background: #873a2c;
+      }
+    }
+  }
+
+  label {
+    position: relative;
+    display: block;
+    padding: 8px 13px 8px 0;
+
+    &.group {
+      font-weight: 600;
+    }
+  }
+
+  input{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+
+    + label{
+      padding: 8px 13px 8px 50px;
+      cursor: pointer;
+
+      &:before{
+        content: '';
+        position: absolute;
+        top: 6px;
+        left: 0;
+
+        width: 35px;
+        height: 18px;
+        margin: 0;
+
+        border-radius: 10px;
+        background: #fff;
+        border: 2px solid $cookiebar-input-unchecked;
+
+        transition: border-color .2s;
+      }
+
+      &:after{
+        display: block;
+        content: '';
+
+        position: absolute;
+        top: 10px;
+        left: 4px;
+
+        width: 14px;
+        height: 14px;
+        border-radius: 10px;
+        background: $cookiebar-input-unchecked;
+
+        transition: background .2s, margin-left .2s, padding .2s;
+      }
+
+      &:active:after{
+        padding-left: 5px;
+      }
+    }
+
+    &:checked + label {
+
+      &:after {
+        background: $cookiebar-input-checked;
+        margin-left: 17px;
+      }
+
+      &:active:after{
+        margin-left: 12px;
+      }
+
+      &:before{
+        background: lighten($cookiebar-input-checked, 50%);
+        border-color: $cookiebar-input-checked;
+      }
+    }
+
+    &:disabled + label {
+      pointer-events: none;
+
+      &:after {
+        background: $cookiebar-input-disabled;
+      }
+
+      &:before{
+        background: lighten($cookiebar-input-unchecked, 35%);
+        border-color: $cookiebar-input-disabled;
+      }
+    }
+  }
+
+  &.cc-active{
+
+    .cc-inner{
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    &.cc-blocked{
+      pointer-events: auto;
+      animation: cookiebar-overlay-in $cookiebar-animation-duration ease-in-out forwards;
+    }
+  }
+
+  &.cc-saved {
+
+    &.cc-inner{
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    &.cc-blocked{
+      pointer-events: none;
+      animation: cookiebar-overlay-out $cookiebar-animation-duration ease-in-out forwards;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .contao-cookiebar{
+
+    .cc-inner {
+      max-width: 750px;
+    }
+  }
+}
+
+@keyframes cookiebar-overlay-in {
+  0% {
+    background: rgba(0,0,0,0);
+  }
+  100% {
+    background: $cookiebar-overlay;
+  }
+}
+
+@keyframes cookiebar-overlay-out {
+  0% {
+    background: $cookiebar-overlay;
+  }
+  100% {
+    background: rgba(0,0,0,0);
+    visibility: hidden;
+  }
+}
+
+@keyframes cookiebar-top-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cookiebar-top-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes cookiebar-middle-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cookiebar-middle-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+  }
+}
+
+@keyframes cookiebar-bottom-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cookiebar-bottom-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+  }
+}

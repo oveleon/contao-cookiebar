@@ -1,0 +1,54 @@
+<style>
+    .ccb-element-blocker {
+        font-size: 14px;
+        font-family: sans-serif;
+        text-align: center;
+        color: #6f6f6f;
+    }
+    .ccb-element-blocker .cc-icon {
+        position: relative;
+        width: 220px;
+        height: 110px;
+        margin: 0 auto;
+    }
+    .ccb-element-blocker .cc-icon:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .ccb-element-blocker .cc-icon.vimeo:after {
+        background-image: url("/bundles/contaocookiebar/images/vimeo.png");
+    }
+    .ccb-element-blocker .cc-icon.youtube:after {
+        background-image: url("/bundles/contaocookiebar/images/youtube.png");
+    }
+    .ccb-element-blocker .cc-title{
+        font-weight: bold;
+    }
+    .ccb-element-blocker .cc-btn{
+        display: inline-block;
+        cursor: pointer;
+        padding: 8px 14px;
+        font-size: 15px;
+        outline: 0 none;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        color: #444;
+        background: #f5f5f5;
+    }
+    .ccb-element-blocker .cc-btn:hover{
+        background: #ececec;
+    }
+</style>
+<div class="ccb-element-blocker">
+    <div class="cc-icon <?=$this->type?>"></div>
+    <div class="cc-title"><?=$this->title?></div>
+    <div class="cc-description"><?=$this->description?></div>
+    <button class="cc-btn" onclick="parent.cookiebar.unblock(window.frames.frameElement, <?=$this->id?>, '<?=$this->redirect?>')"><?=$this->acceptAndDisplayLabel?></button>
+</div>

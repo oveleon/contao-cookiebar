@@ -1,0 +1,340 @@
+@charset "UTF-8";
+.contao-cookiebar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 0;
+  text-align: center;
+  padding: 15px;
+  max-height: 100vh;
+  box-sizing: border-box;
+  pointer-events: none;
+  overflow: hidden;
+}
+.contao-cookiebar * {
+  box-sizing: border-box;
+}
+.contao-cookiebar:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.contao-cookiebar .cc-inner {
+  display: inline-block;
+  overflow-y: auto;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  font-size: 1rem;
+  text-align: left;
+}
+.contao-cookiebar.cc-top .cc-inner {
+  vertical-align: top;
+}
+.contao-cookiebar.cc-top.cc-active .cc-inner {
+  animation: cookiebar-top-in 0.5s ease-in-out forwards;
+}
+.contao-cookiebar.cc-top.cc-saved .cc-inner {
+  animation: cookiebar-top-out 0.5s ease-in-out forwards;
+}
+.contao-cookiebar.cc-bottom .cc-inner {
+  vertical-align: bottom;
+}
+.contao-cookiebar.cc-bottom.cc-active .cc-inner {
+  animation: cookiebar-bottom-in 0.5s ease-in-out forwards;
+}
+.contao-cookiebar.cc-bottom.cc-saved .cc-inner {
+  animation: cookiebar-bottom-out 0.5s ease-in-out forwards;
+}
+.contao-cookiebar.cc-middle .cc-inner {
+  vertical-align: middle;
+}
+.contao-cookiebar.cc-middle.cc-active .cc-inner {
+  animation: cookiebar-middle-in 0.5s ease-in-out forwards;
+}
+.contao-cookiebar.cc-middle.cc-saved .cc-inner {
+  animation: cookiebar-middle-out 0.5s ease-in-out forwards;
+}
+.contao-cookiebar .cc-head h1:first-child, .contao-cookiebar .cc-head h2:first-child, .contao-cookiebar .cc-head h3:first-child, .contao-cookiebar .cc-head h4:first-child, .contao-cookiebar .cc-head h5:first-child, .contao-cookiebar .cc-head h6:first-child {
+  margin-top: 0;
+}
+.contao-cookiebar .cc-btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 8px 14px;
+  font-size: 15px;
+  outline: 0 none;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+  color: #444;
+  background: #f5f5f5;
+}
+.contao-cookiebar .cc-btn:hover {
+  background: #ececec;
+}
+.contao-cookiebar .cc-btn.success {
+  background: #4e9e3e;
+  border-color: #3e7830;
+  color: #fff;
+}
+.contao-cookiebar .cc-btn.success:hover {
+  background: #4c933f;
+}
+.contao-cookiebar .cc-btn.warn {
+  background: #9e3b2d;
+  border-color: #781e1f;
+  color: #fff;
+}
+.contao-cookiebar .cc-btn.warn:hover {
+  background: #873a2c;
+}
+.contao-cookiebar label {
+  position: relative;
+  display: block;
+  padding: 8px 13px 8px 0;
+}
+.contao-cookiebar label.group {
+  font-weight: 600;
+}
+.contao-cookiebar input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+.contao-cookiebar input + label {
+  padding: 8px 13px 8px 50px;
+  cursor: pointer;
+}
+.contao-cookiebar input + label:before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 35px;
+  height: 18px;
+  margin: 0;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid #9c9b99;
+  transition: border-color 0.2s;
+}
+.contao-cookiebar input + label:after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 10px;
+  background: #9c9b99;
+  transition: background 0.2s, margin-left 0.2s, padding 0.2s;
+}
+.contao-cookiebar input + label:active:after {
+  padding-left: 5px;
+}
+.contao-cookiebar input:checked + label:after {
+  background: #399d32;
+  margin-left: 17px;
+}
+.contao-cookiebar input:checked + label:active:after {
+  margin-left: 12px;
+}
+.contao-cookiebar input:checked + label:before {
+  background: #dcf3db;
+  border-color: #399d32;
+}
+.contao-cookiebar input:disabled + label {
+  pointer-events: none;
+}
+.contao-cookiebar input:disabled + label:after {
+  background: #c8c7c5;
+}
+.contao-cookiebar input:disabled + label:before {
+  background: #f4f4f4;
+  border-color: #c8c7c5;
+}
+.contao-cookiebar.cc-active .cc-inner {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+.contao-cookiebar.cc-active.cc-blocked {
+  pointer-events: auto;
+  animation: cookiebar-overlay-in 0.5s ease-in-out forwards;
+}
+.contao-cookiebar.cc-saved.cc-inner {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.contao-cookiebar.cc-saved.cc-blocked {
+  pointer-events: none;
+  animation: cookiebar-overlay-out 0.5s ease-in-out forwards;
+}
+
+@media (min-width: 768px) {
+  .contao-cookiebar .cc-inner {
+    max-width: 750px;
+  }
+}
+@keyframes cookiebar-overlay-in {
+  0% {
+    background: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
+@keyframes cookiebar-overlay-out {
+  0% {
+    background: rgba(0, 0, 0, 0.75);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0);
+    visibility: hidden;
+  }
+}
+@keyframes cookiebar-top-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes cookiebar-top-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+}
+@keyframes cookiebar-middle-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes cookiebar-middle-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+  }
+}
+@keyframes cookiebar-bottom-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes cookiebar-bottom-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+  }
+}
+.cookiebar_simple {
+  color: #444444;
+}
+.cookiebar_simple p {
+  color: #868686;
+  font-style: italic;
+  line-height: 1.4;
+}
+.cookiebar_simple .cc-inner {
+  padding: 25px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  background: #fff;
+}
+.cookiebar_simple .cc-groups {
+  display: none;
+  padding-top: 15px;
+}
+.cookiebar_simple .cc-groups .cc-group {
+  position: relative;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-align: left;
+}
+.cookiebar_simple .cc-groups .cc-group > label {
+  margin: 5px 130px 5px 10px;
+}
+.cookiebar_simple .cc-cookies {
+  background: #fbfbfb;
+}
+.cookiebar_simple .cc-cookies > p, .cookiebar_simple .cc-cookies > .cc-cookie {
+  margin: 0;
+  padding: 15px;
+  border-top: 1px solid #e6e6e6;
+}
+.cookiebar_simple .cc-cookies .cc-cookie .cc-cookie-info {
+  font-size: 14px;
+}
+.cookiebar_simple .cc-cookies .cc-cookie .cc-cookie-info > div + div {
+  margin-top: 5px;
+}
+.cookiebar_simple .cc-cookies .cc-cookie label.cookie {
+  margin-bottom: 10px;
+}
+.cookiebar_simple .cc-cookies .cc-cookie p {
+  margin: 0 0 15px;
+}
+.cookiebar_simple .cc-footer, .cookiebar_simple .cc-info {
+  text-align: center;
+}
+.cookiebar_simple .cc-info {
+  margin-top: 15px;
+}
+.cookiebar_simple .cc-info a {
+  display: inline-block;
+  font-size: 13px;
+  color: #a2a2a2;
+  text-decoration: none;
+}
+.cookiebar_simple .cc-info a:hover {
+  color: #717171;
+}
+.cookiebar_simple .cc-info a + a:before {
+  display: inline-block;
+  content: "·";
+  margin-right: 5px;
+}
+
+/*# sourceMappingURL=cookiebar_simple.css.map */
