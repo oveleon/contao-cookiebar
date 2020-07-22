@@ -40,5 +40,10 @@
   },
   "extra":{
     "contao-manager-plugin": "Oveleon\\ContaoCookiebar\\ContaoManager\\Plugin"
+  },
+  "support": {
+    "issues": "https://github.com/oveleon/contao-cookiebar/issues",
+    "source": "https://github.com/oveleon/contao-cookiebar",
+    "docs": "https://github.com/oveleon/contao-cookiebar"
   }
 }
