@@ -74,20 +74,22 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             'copy' => array
             (
                 'href'                => 'act=paste&amp;mode=copy',
-                'icon'                => 'copy.svg'
+                'icon'                => 'copy.svg',
+                'button_callback'     => array('tl_cookie_group', 'disableAction')
             ),
             'cut' => array
             (
                 'href'                => 'act=paste&amp;mode=cut',
                 'icon'                => 'cut.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset()"'
+                'attributes'          => 'onclick="Backend.getScrollOffset()"',
+                'button_callback'     => array('tl_cookie_group', 'disableAction')
             ),
             'delete' => array
             (
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
-                'button_callback'     => array('tl_cookie_group', 'deleteGroup')
+                'button_callback'     => array('tl_cookie_group', 'disableAction')
             ),
             'toggle' => array
             (
@@ -129,8 +131,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
         ),
         'identifier' => array
         (
-            'sql'                     => "varchar(255) NOT NULL default ''",
-            'eval'                    => array('doNotCopy'=>true),
+            'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'tstamp' => array
         (
@@ -183,19 +184,29 @@ class tl_cookie_group extends Contao\Backend
      */
     public function checkPermission()
     {
-        if(Contao\Input::get('act') == 'deleteAll')
+        $strAct = Contao\Input::get('act');
+
+        if($strAct == 'deleteAll' || $strAct == 'copyAll' || $strAct == 'cutAll')
         {
             /** @var Symfony\Component\HttpFoundation\Session\SessionInterface $objSession */
             $objSession = Contao\System::getContainer()->get('session');
-
             $session = $objSession->all();
 
-            // Set allowed cookie group IDs (delete multiple)
-            if (is_array($session['CURRENT']['IDS']))
+            if($strAct == 'deleteAll')
             {
-                $delete_all = array();
+                $currentIds = $session['CURRENT']['IDS'];
+            }
+            else
+            {
+                $currentIds = $session['CLIPBOARD']['tl_cookie_group']['id'];
+            }
 
-                foreach ($session['CURRENT']['IDS'] as $id)
+            // Set allowed cookie group IDs (delete multiple)
+            if (is_array($currentIds))
+            {
+                $arrIds = array();
+
+                foreach ($currentIds as $id)
                 {
                     $objGroup = $this->Database->prepare("SELECT id, pid, identifier FROM tl_cookie_group WHERE id=?")
                         ->limit(1)
@@ -209,11 +220,25 @@ class tl_cookie_group extends Contao\Backend
                     // Locked groups cannot be deleted
                     if ($objGroup->identifier !== 'lock')
                     {
-                        $delete_all[] = $id;
+                        $arrIds[] = $id;
                     }
                 }
 
-                $session['CURRENT']['IDS'] = $delete_all;
+                if($strAct == 'deleteAll')
+                {
+                    $session['CURRENT']['IDS'] = $arrIds;
+                }
+                else
+                {
+                    if(empty($arrIds))
+                    {
+                        $session['CLIPBOARD']['tl_cookie_group'] = $arrIds;
+                    }
+                    else
+                    {
+                        $session['CLIPBOARD']['tl_cookie_group']['id'] = $arrIds;
+                    }
+                }
             }
 
             // Overwrite session
@@ -245,7 +270,7 @@ class tl_cookie_group extends Contao\Backend
      *
      * @return string
      */
-    public function deleteGroup($row, $href, $label, $title, $icon, $attributes)
+    public function disableAction($row, $href, $label, $title, $icon, $attributes)
     {
         // Disable the button if the element is locked
         if ($row['identifier'] === 'lock')
