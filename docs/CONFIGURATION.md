@@ -43,7 +43,7 @@ Field | Description
 `Title & Description` | A title and description which is displayed in the header of the cookie bar
 `Alignment` | Defines the orientation of the cookie bar (top, middle, bottom)
 `Blocking` | Defines whether the cookie bar should block the use of the page
-`Template` | Defines the template to be used (see [Styling & Customization](CUSTUMIZATION.md) for more information)
+`Template` | Defines the template to be used (see [Styling & Customization](CUSTOMIZATION.md) for more information)
 `Info-Links` | Here you can select several pages from the page picker, which are displayed in the footer of the cookie bar. (e.g. imprint, privacy policy)
 
 ℹ After creating a configuration, cookie settings necessary for the system are automatically created. If you do not want to display essential cookies, you can simply hide them.
