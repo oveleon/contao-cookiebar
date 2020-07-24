@@ -139,6 +139,12 @@
       <trans-unit id="tl_cookie.scriptConfig.1">
         <source>Enter further parameters here (as an JavaScript object), which should be taken into account when loading the script.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.tokenConfig_xlabel">
+        <source>Insert default token</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.tokenConfig_googleAnalytics_error">
+        <source>Google Analytics ID need to be set.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig_xlabel">
         <source>Insert default configuration</source>
       </trans-unit>
