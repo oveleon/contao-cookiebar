@@ -25,13 +25,9 @@
         <source>Facebook Pixel</source>
         <target>Facebook Pixel</target>
       </trans-unit>
-      <trans-unit id="tl_cookie.youtube_legend">
-        <source>YouTube</source>
-        <target>YouTube</target>
-      </trans-unit>
-      <trans-unit id="tl_cookie.vimeo_legend">
-        <source>Vimeo</source>
-        <target>Vimeo</target>
+      <trans-unit id="tl_cookie.iframe_legend">
+        <source>iFrame</source>
+        <target>iFrame</target>
       </trans-unit>
       <trans-unit id="tl_cookie.title.0">
         <source>Title</source>
@@ -54,8 +50,16 @@
         <target>Cookie-Typ</target>
       </trans-unit>
       <trans-unit id="tl_cookie.type.1">
-        <source>Select a predefined cookie type or create your own by leaving this field blank.</source>
-        <target>Wählen Sie einen vordefinierten Cookie-Typen oder erstellen Sie einen eigenen indem Sie dieses Feld frei lassen.</target>
+        <source>Select a predefined cookie type.</source>
+        <target>Wählen Sie einen vordefinierten Cookie-Typen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.iframeType.0">
+        <source>iFrame-Type</source>
+        <target>iFrame-Typ</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.iframeType.1">
+        <source>Select a iframe type.</source>
+        <target>Wählen Sie einen iFrame-Typen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.0">
         <source>Source URL</source>
@@ -134,8 +138,8 @@
         <target>Beschreibung (blockiert)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.1">
-        <source>This description appears when an content element is blocked by missing cookies.</source>
-        <target>Diese Beschreibung erscheint, wenn ein Content Element durch fehlende Cookies geblockt wird.</target>
+        <source>This description appears when an iFrame is blocked by missing cookie confirmation.</source>
+        <target>Diese Beschreibung erscheint, wenn ein iFrame durch fehlende Cookie-Bestätigung geblockt wird.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vendorId.0">
         <source>ID</source>
@@ -189,6 +193,14 @@
         <source>Insert default configuration</source>
         <target>Standard-Konfiguration einfügen</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.disabled.0">
+        <source>Prevent deactivation</source>
+        <target>Deaktivierung unterbinden</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.disabled.1">
+        <source>Define whether this cookie can be deactivated by the visitor.</source>
+        <target>Definieren Sie ob dieser Cookie durch den Besucher deaktiviert werden kann.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
         <target>Veröffentlichen</target>
@@ -230,6 +242,14 @@
         <source>Integrate YouTube.</source>
         <target>YouTube einbinden.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.googlemaps.0">
+        <source>Google Maps</source>
+        <target>Google Maps</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googlemaps.1">
+        <source>Google Maps YouTube.</source>
+        <target>Google Maps einbinden.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.vimeo.0">
         <source>Vimeo</source>
         <target>Vimeo</target>
@@ -253,6 +273,40 @@
       <trans-unit id="tl_cookie.script.1">
         <source>Configure custom script.</source>
         <target>Benutzerdefiniertes Skript konfigurieren.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.iframe.0">
+        <source>iFrame</source>
+        <target>iFrame</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.iframe.1">
+        <source>Configure iFrame for e.g. YouTube, Vimeo or Google Maps.</source>
+        <target>iFrame für bspw. YouTube, Vimeo oder Google Maps konfigurieren.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.confirmed">
+        <source>Only load if cookie was accepted</source>
+        <target>Nur laden wenn Cookie akzeptiert wurde</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.unconfirmed">
+        <source>Only load if cookie was not accepted</source>
+        <target>Nur laden wenn Cookie nicht akzeptiert wurde</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.always">
+        <source>Load always</source>
+        <target>Immer laden</target>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.bodyBelowContent">
+        <source>Below the content in the body tag</source>
+        <target>Unterhalb des Inhalts im Body-Tag</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.bodyAboveContent">
+        <source>Above the content in the body tag</source>
+        <target>Oberhalb des Inhalts im Body-Tag</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.head">
+        <source>Head tag</source>
+        <target>Head-Tag</target>
       </trans-unit>
     </body>
   </file>

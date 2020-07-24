@@ -17,9 +17,13 @@ contao_cookiebar:
   cookie:
     lifetime: 60*60*24*365
     token: ccb_contao_token
-  elements:
-    youtube: ce_youtube
-    vimeo: ce_vimeo
+  iframe_types:
+    youtube: 
+      - ce_youtube
+    vimeo: 
+      - ce_vimeo
+    googlemaps:
+      - ce_html_googlemaps
 ```
 
 Parameter | Description
@@ -27,7 +31,9 @@ Parameter | Description
 `consider_dnt` | Consider "Do not Track" browser setting.
 `cookie.lifetime` | The lifetime of the system cookie of the cookie bar settings
 `cookie.token` | The technical name / Token
-`elements.*` | An array containing the "`cookie-type`:`content element`" to be blocked
+`iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
+
+ℹ __Google Maps:__ To block Google Maps iFrames within an HTML content element, the template `ce_html_googlemaps` must be selected.
 
 ### Create new configuration
 

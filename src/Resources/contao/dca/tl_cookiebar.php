@@ -107,6 +107,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'title' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['title'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -115,6 +116,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'description' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['description'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
@@ -124,6 +126,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'version' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['version'],
             'inputType'               => 'text',
             'explanation'             => 'cookiebarVersion',
             'eval'                    => array('readonly'=>true, 'maxlength'=>255, 'tl_class'=>'w50', 'helpwizard'=>true),
@@ -131,6 +134,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'updateVersion' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['updateVersion'],
             'inputType'               => 'checkbox',
             'eval'                    => array('tl_class'=>'w50 m12'),
             'save_callback'           => array(
@@ -139,6 +143,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'infoUrls' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['infoUrls'],
             'exclude'                 => true,
             'inputType'               => 'pageTree',
             'foreignKey'              => 'tl_page.title',
@@ -148,6 +153,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'template' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['template'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'select',
@@ -160,6 +166,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'alignment' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['alignment'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array('cc-top', 'cc-middle', 'cc-bottom'),
@@ -169,12 +176,14 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'blocking' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['blocking'],
             'inputType'               => 'checkbox',
             'eval'                    => array('tl_class'=>'w50 m12'),
             'sql'                     => "char(1) NOT NULL default ''"
         ),
         'position' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['position'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array('bodyBelowContent', 'bodyAboveContent'),
@@ -184,6 +193,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'cssID' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['cssID'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => array('multiple'=>true, 'size'=>2, 'tl_class'=>'w50 clr'),

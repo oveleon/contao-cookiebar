@@ -93,6 +93,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
         ),
         'domain' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['domain'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -100,6 +101,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
         ),
         'url' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['url'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -107,6 +109,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
         ),
         'ip' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['ip'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -114,6 +117,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
         ),
         'config' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['config'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',

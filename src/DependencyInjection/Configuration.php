@@ -45,13 +45,10 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->arrayNode('elements')
-                    ->info('Content elements whose content is to be blocked by the cookie bar')
-                    ->prototype('scalar')->end()
-                    ->defaultValue([
-                        'youtube' => 'ce_youtube',
-                        'vimeo'   => 'ce_vimeo'
-                    ])
+                ->arrayNode('iframe_types')
+                    ->arrayPrototype()
+                        ->prototype('scalar')->end()
+                    ->end()
                 ->end()
             ->end()
         ;

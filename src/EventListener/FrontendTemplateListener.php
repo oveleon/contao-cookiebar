@@ -83,46 +83,50 @@ class FrontendTemplateListener
      */
     public function onParseFrontendTemplate(string $buffer, string $template): string
     {
-        $ceBlocked = System::getContainer()->getParameter('contao_cookiebar.block_elements');
+        $arrTypes = Cookiebar::getIframeTypes();
 
-        if(in_array($template, $ceBlocked))
+        foreach ($arrTypes as $strType => $arrTemplates)
         {
-            global $objPage;
-
-            $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
-            $arrCookies = Cookiebar::validateCookies($objConfig, null, true);
-            $strType = array_search($template, $ceBlocked);
-
-            foreach ($arrCookies as $cookie)
+            if(in_array($template, $arrTemplates))
             {
-                if($cookie['type'] === $strType && !$cookie['confirmed'])
+                global $objPage;
+
+                $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
+                $arrCookies = Cookiebar::validateCookies($objConfig);
+
+                foreach ($arrCookies as $cookie)
                 {
-                    $strBlockUrl = '/cookiebar/block/'.$cookie['id'].'?redirect=';
-
-                    // Check if the element is delivered with a preview image
-                    if(strpos($buffer, 'id="splashImage') !== false)
+                    if(isset($cookie['iframeType']) && $cookie['iframeType'] === $strType && !$cookie['confirmed'])
                     {
-                        // Regex: Modify href attribute for splash images
-                        $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
+                        $strBlockUrl = '/cookiebar/block/'.$cookie['id'].'?redirect=';
 
-                        // Get current href attribute
-                        preg_match($atagRegex, $buffer, $matches);
+                        // Check if the element is delivered with a preview image
+                        if(strpos($buffer, 'id="splashImage') !== false)
+                        {
+                            // Regex: Modify href attribute for splash images
+                            $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
 
-                        // Overwrite href attribute
-                        $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="'.$strBlockUrl.$matches[2].'"', $buffer);
-                    }
-                    else
-                    {
-                        // Regex: Modify src attribute for iframes
-                        $frameRegex = "/<iframe([^>]*)src=\"([^>]*)\"/is";
+                            // Get current href attribute
+                            preg_match($atagRegex, $buffer, $matches);
 
-                        // Get current src attribute
-                        preg_match($frameRegex, $buffer, $matches);
+                            // Overwrite href attribute
+                            $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="'.$strBlockUrl.$matches[2].'"', $buffer);
+                        }
+                        else
+                        {
+                            // Regex: Modify src attribute for iframes
+                            $frameRegex = "/<iframe([^>]*)src=\"([^>]*)\"/is";
 
-                        // Overwrite src attribute
-                        $buffer = preg_replace($frameRegex, '<iframe$1src="'.$strBlockUrl.$matches[2].'"', $buffer);
+                            // Get current src attribute
+                            preg_match($frameRegex, $buffer, $matches);
+
+                            // Overwrite src attribute
+                            $buffer = preg_replace($frameRegex, '<iframe$1src="'.$strBlockUrl.$matches[2].'"', $buffer);
+                        }
                     }
                 }
+
+                break;
             }
         }
 

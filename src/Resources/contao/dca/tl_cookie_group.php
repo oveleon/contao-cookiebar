@@ -139,6 +139,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
         ),
         'title' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_group']['title'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -147,6 +148,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
         ),
         'description' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_group']['description'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
@@ -156,6 +158,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
         ),
         'published' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_group']['published'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',

@@ -120,6 +120,7 @@ class CookiebarController extends AbstractController
         $objTemplate->id = $objCookie->id;
         $objTemplate->title = $objCookie->title;
         $objTemplate->type = $objCookie->type;
+        $objTemplate->iframeType = $objCookie->iframeType;
         $objTemplate->description = $objCookie->blockDescription;
         $objTemplate->redirect = $request->get('redirect');
 

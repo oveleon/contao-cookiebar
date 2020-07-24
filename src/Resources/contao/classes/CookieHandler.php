@@ -89,6 +89,12 @@ class CookieHandler extends System
     protected $isLocked = false;
 
     /**
+     * Disabled state
+     * @var boolean
+     */
+    protected $isDisabled = false;
+
+    /**
      * Resource scripts
      * @var array
      */
@@ -112,6 +118,11 @@ class CookieHandler extends System
         if($objCookie->identifier === 'lock')
         {
             $this->isLocked = true;
+        }
+
+        if(!!$objCookie->disabled)
+        {
+            $this->isDisabled = true;
         }
 
         switch($objCookie->type)

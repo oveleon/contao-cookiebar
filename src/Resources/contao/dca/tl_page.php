@@ -20,6 +20,7 @@ $GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookie
 // Fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['activateCookiebar'],
     'inputType'               => 'checkbox',
     'eval'                    => array('tl_class'=>'w50', 'submitOnChange'=>true),
     'sql'                     => "char(1) NOT NULL default ''"
@@ -27,6 +28,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['overwriteCookiebarMeta'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['overwriteCookiebarMeta'],
     'inputType'               => 'checkbox',
     'eval'                    => array('tl_class'=>'w50 m12', 'submitOnChange'=>true),
     'sql'                     => "char(1) NOT NULL default ''"
@@ -34,6 +36,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['overwriteCookiebarMeta'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarConfig'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarConfig'],
     'inputType'               => 'select',
     'options_callback' => static function ()
     {
@@ -45,6 +48,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarConfig'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarDescription'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarDescription'],
     'inputType'               => 'textarea',
     'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true),
     'explanation'             => 'insertTags',
@@ -53,6 +57,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarDescription'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarInfoUrls'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarInfoUrls'],
     'inputType'               => 'pageTree',
     'foreignKey'              => 'tl_page.title',
     'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50 clr'),
@@ -62,6 +67,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarInfoUrls'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarTemplate'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarTemplate'],
     'inputType'               => 'select',
     'options_callback' => static function ()
     {
@@ -73,6 +79,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarTemplate'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarAlignment'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarAlignment'],
     'inputType'               => 'select',
     'options'                 => array('cc-top', 'cc-middle', 'cc-bottom'),
     'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
@@ -82,6 +89,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarAlignment'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarBlocking'] = array
 (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarBlocking'],
     'inputType'               => 'checkbox',
     'eval'                    => array('tl_class'=>'w50 m12'),
     'sql'                     => "char(1) NOT NULL default ''"

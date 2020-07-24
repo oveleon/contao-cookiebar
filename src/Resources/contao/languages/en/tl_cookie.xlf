@@ -191,6 +191,26 @@
       <trans-unit id="tl_cookie.script.1">
         <source>Configure custom script.</source>
       </trans-unit>
+
+      <trans-unit id="tl_cookie.confirmed">
+        <source>Only load if cookie was accepted</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.unconfirmed">
+        <source>Only load if cookie was not accepted</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.always">
+        <source>Load always</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.bodyBelowContent">
+        <source>Below the content in the body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.bodyAboveContent">
+        <source>Above the content in the body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.head">
+        <source>Head tag</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -21,7 +21,7 @@
                         <?=$group->description?>
                         <?php foreach ($group->cookies as $cookie): ?>
                             <div class="cc-cookie">
-                                <input type="checkbox" name="cookie[]" id="c<?=$cookie->id?>" value="<?=$cookie->id?>"<?=$cookie->isLocked ? ' disabled checked' : ''?>>
+                                <input type="checkbox" name="cookie[]" id="c<?=$cookie->id?>" value="<?=$cookie->id?>"<?=$cookie->isLocked || $cookie->isDisabled ? ' disabled checked' : ''?>>
                                 <label for="c<?=$cookie->id?>" class="cookie"><?=$cookie->title?></label>
                                 <?=$cookie->description?>
                                 <div class="cc-cookie-info">

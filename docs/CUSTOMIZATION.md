@@ -20,7 +20,7 @@ Template | Description
 `ccb_element_blocker.html5` | Returns the template which is output instead of blocked content elements.
 
 <div align="center">
-    <img src="https://www.oveleon.de/share/github-assets/contao-cookiebar/content-element-blocked.png">
+    <img src="https://www.oveleon.de/share/github-assets/contao-cookiebar/content-element-blocked-1.png">
     <p><i>Example blocked content elements</i></p>
 </div>
 

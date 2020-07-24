@@ -9,7 +9,7 @@
         position: relative;
         width: 220px;
         height: 110px;
-        margin: 0 auto;
+        margin: 0 auto 8px;
     }
     .ccb-element-blocker .cc-icon:after {
         content: "";
@@ -21,12 +21,16 @@
         background-position: center center;
         background-size: contain;
         background-repeat: no-repeat;
+        background-image: url("/bundles/contaocookiebar/images/default.png");
     }
     .ccb-element-blocker .cc-icon.vimeo:after {
         background-image: url("/bundles/contaocookiebar/images/vimeo.png");
     }
     .ccb-element-blocker .cc-icon.youtube:after {
         background-image: url("/bundles/contaocookiebar/images/youtube.png");
+    }
+    .ccb-element-blocker .cc-icon.googlemaps:after {
+        background-image: url("/bundles/contaocookiebar/images/googlemaps.png");
     }
     .ccb-element-blocker .cc-title{
         font-weight: bold;
@@ -46,8 +50,8 @@
         background: #ececec;
     }
 </style>
-<div class="ccb-element-blocker">
-    <div class="cc-icon <?=$this->type?>"></div>
+<div class="ccb-element-blocker <?=$this->type?>">
+    <div class="cc-icon <?=$this->iframeType?>"></div>
     <div class="cc-title"><?=$this->title?></div>
     <div class="cc-description"><?=$this->description?></div>
     <button class="cc-btn" onclick="parent.cookiebar.unblock(window.frames.frameElement, <?=$this->id?>, '<?=$this->redirect?>')"><?=$this->acceptAndDisplayLabel?></button>

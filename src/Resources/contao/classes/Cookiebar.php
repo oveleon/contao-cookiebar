@@ -67,6 +67,14 @@ class Cookiebar
             {
                 while($objCookies->next())
                 {
+                    if(
+                        ($objCookies->token === 'csrf_contao_csrf_token' && Environment::get('ssl')) ||
+                        ($objCookies->token === 'csrf_https-contao_csrf_token' && !Environment::get('ssl'))
+                    )
+                    {
+                        continue;
+                    }
+
                     $arrCookies[] = new CookieHandler($objCookies->current());
                 }
             }
@@ -127,6 +135,16 @@ class Cookiebar
         }
 
         return $arrCookiebars;
+    }
+
+    /**
+     * Return all iFrame-Types
+     *
+     * @return array|null
+     */
+    public static function getIframeTypes(): ?array
+    {
+        return System::getContainer()->getParameter('contao_cookiebar.iframe_types');
     }
 
     /**
@@ -235,6 +253,11 @@ class Cookiebar
                     'resources' => $cookie->resources,
                     'scripts'   => $cookie->scripts
                 ];
+
+                if($cookie->type === 'iframe')
+                {
+                    $arrCookie['iframeType'] = $cookie->iframeType;
+                }
 
                 if($includeObject)
                 {
