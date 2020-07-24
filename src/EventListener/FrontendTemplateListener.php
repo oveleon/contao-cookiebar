@@ -83,17 +83,21 @@ class FrontendTemplateListener
      */
     public function onParseFrontendTemplate(string $buffer, string $template): string
     {
+        global $objPage;
+
+        if (TL_MODE == 'BE' || null === $objPage)
+        {
+            return $buffer;
+        }
+
         $arrTypes = Cookiebar::getIframeTypes();
+        $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
+        $arrCookies = Cookiebar::validateCookies($objConfig);
 
         foreach ($arrTypes as $strType => $arrTemplates)
         {
             if(in_array($template, $arrTemplates))
             {
-                global $objPage;
-
-                $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
-                $arrCookies = Cookiebar::validateCookies($objConfig);
-
                 foreach ($arrCookies as $cookie)
                 {
                     if(isset($cookie['iframeType']) && $cookie['iframeType'] === $strType && !$cookie['confirmed'])
