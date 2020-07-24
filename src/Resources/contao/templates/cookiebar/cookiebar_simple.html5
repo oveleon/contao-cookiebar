@@ -48,11 +48,3 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
         </div>
     </div>
 </div>
-<script>
-    let cookiebar = new ContaoCookiebar({
-        configId: <?=$this->configId?>,
-        pageId: <?=$this->pageId?>,
-        version: <?=$this->version?>,
-        cookies: <?=$this->cookies?>
-    });
-</script>

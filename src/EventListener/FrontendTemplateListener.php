@@ -114,18 +114,18 @@ class FrontendTemplateListener
                             preg_match($atagRegex, $buffer, $matches);
 
                             // Overwrite href attribute
-                            $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="'.$strBlockUrl.$matches[2].'"', $buffer);
+                            $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="'.$strBlockUrl.urlencode($matches[2]).'"', $buffer);
                         }
                         else
                         {
                             // Regex: Modify src attribute for iframes
-                            $frameRegex = "/<iframe([^>]*)src=\"([^>]*)\"/is";
+                            $frameRegex = "/<iframe(.*?s*)src=\"(.*?)\"/is";
 
                             // Get current src attribute
                             preg_match($frameRegex, $buffer, $matches);
 
                             // Overwrite src attribute
-                            $buffer = preg_replace($frameRegex, '<iframe$1src="'.$strBlockUrl.$matches[2].'"', $buffer);
+                            $buffer = preg_replace($frameRegex, '<iframe$1src="'.$strBlockUrl.urlencode($matches[2]).'"', $buffer);
                         }
                     }
                 }
