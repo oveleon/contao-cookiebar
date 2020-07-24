@@ -156,6 +156,10 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'sql'                     => "varchar(255) NOT NULL default ''",
             'load_callback'           => array(
                 array('tl_cookie', 'disableLockedField')
+            ),
+            'xlabel'                  => array
+            (
+                array('tl_cookie', 'selectTokenPreset')
             )
         ),
         'expireTime' => array
@@ -465,7 +469,20 @@ class tl_cookie extends Contao\Backend
     }
 
     /**
-     * Add button for adding default configurations
+     * Add button for adding default token configurations
+     *
+     * @param $dc
+     *
+     * @return mixed
+     */
+    public function selectTokenPreset($dc)
+    {
+        $id = 'token' . $dc->activeRecord->type;
+        return ' <a href="javascript:;" id="'.$id.'" title="' . $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel'] . '" onclick="Backend.getScrollOffset();var token=Cookiebar.getToken(\''.$dc->activeRecord->type.'\',\''.$GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_'.$dc->activeRecord->type.'_error'].'\');if(token)document.getElementById(\'ctrl_'.$dc->field.'\').value=token">' . Contao\Image::getHtml('theme_import.svg', $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel']) . '</a><script>Cookiebar.issetToken(\''.$dc->activeRecord->type.'\',document.getElementById(\''.$id.'\'));</script>';
+    }
+
+    /**
+     * Add button for adding default script configurations
      *
      * @param $dc
      *
@@ -474,7 +491,7 @@ class tl_cookie extends Contao\Backend
     public function selectScriptPreset($dc)
     {
         $id = 'script' . $dc->activeRecord->type;
-        return ' <a href="javascript:;" id="'.$id.'" title="' . $GLOBALS['TL_LANG']['tl_cookie']['scriptConfig_xlabel'] . '" onclick="Backend.getScrollOffset();ace.edit(\'ctrl_' . $dc->field . '_div\').setValue(Cookiebar.get(\''.$dc->activeRecord->type.'\'))">' . Contao\Image::getHtml('theme_import.svg', $GLOBALS['TL_LANG']['tl_cookie']['scriptConfig_xlabel']) . '</a><script>Cookiebar.isset(\''.$dc->activeRecord->type.'\',document.getElementById(\''.$id.'\'));</script>';
+        return ' <a href="javascript:;" id="'.$id.'" title="' . $GLOBALS['TL_LANG']['tl_cookie']['scriptConfig_xlabel'] . '" onclick="Backend.getScrollOffset();ace.edit(\'ctrl_' . $dc->field . '_div\').setValue(Cookiebar.getConfig(\''.$dc->activeRecord->type.'\'))">' . Contao\Image::getHtml('theme_import.svg', $GLOBALS['TL_LANG']['tl_cookie']['scriptConfig_xlabel']) . '</a><script>Cookiebar.issetConfig(\''.$dc->activeRecord->type.'\',document.getElementById(\''.$id.'\'));</script>';
     }
 
     /**

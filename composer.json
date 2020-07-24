@@ -40,6 +40,9 @@
     ]
   },
   "extra":{
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    },
     "contao-manager-plugin": "Oveleon\\ContaoCookiebar\\ContaoManager\\Plugin"
   },
   "support": {

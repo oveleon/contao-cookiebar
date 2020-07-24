@@ -189,6 +189,14 @@
         <source>Enter further parameters here (as an JavaScript object), which should be taken into account when loading the script.</source>
         <target>Tragen Sie hier weitere Parameter ein (als eigenständiges JavaScript-Objekt), welche beim laden des Skriptes berücksichtigt werden sollen.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.tokenConfig_xlabel">
+        <source>Insert default token</source>
+        <target>Standard-Token einfügen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.tokenConfig_googleAnalytics_error">
+        <source>Google Analytics ID need to be set.</source>
+        <target>Google Analytics ID muss gesetzt sein.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig_xlabel">
         <source>Insert default configuration</source>
         <target>Standard-Konfiguration einfügen</target>
