@@ -29,6 +29,71 @@
         <source>Define here whether the cookie group may be set / displayed.</source>
         <target>Definieren Sie hier ob die Cookiegruppe verwendet werden darf.</target>
       </trans-unit>
+
+      <trans-unit id="tl_cookie_group.new.0">
+        <source>New</source>
+        <target>Neu</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.new.1">
+        <source>Create a new Groupe</source>
+        <target>Eine neue Gruppe erstellen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.0">
+        <source>Show details</source>
+        <target>Details anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.1">
+        <source>Show the details of group ID %s</source>
+        <target>Details der Gruppe ID %s anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.0">
+        <source>Edit cookies</source>
+        <target>Cookies bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.1">
+        <source>Edit cookies of group ID %s</source>
+        <target>Cookies der Gruppe ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.0">
+        <source>Edit group</source>
+        <target>Gruppe bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.1">
+        <source>Edit group ID %s</source>
+        <target>Gruppe ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.0">
+        <source>Duplicate group</source>
+        <target>Gruppe ID %s duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.1">
+        <source>Duplicate group ID %s</source>
+        <target>Gruppe ID %s duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.0">
+        <source>Move group</source>
+        <target>Gruppe verschieben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.1">
+        <source>Move group ID %s</source>
+        <target>Gruppe ID %s verschieben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.0">
+        <source>Delete group</source>
+        <target>Gruppe löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.1">
+        <source>Delete group ID %s</source>
+        <target>Gruppe ID %s löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.0">
+        <source>Publish/unpublish group</source>
+        <target>Gruppe veröffentlichen/unveröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.1">
+        <source>Publish/unpublish group ID %s</source>
+        <target>Gruppe ID %s veröffentlichen/unveröffentlichen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

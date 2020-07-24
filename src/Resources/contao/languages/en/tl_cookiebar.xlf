@@ -146,6 +146,43 @@
       <trans-unit id="tl_cookiebar.cc-bottom">
         <source>Bottom</source>
       </trans-unit>
+
+      <trans-unit id="tl_cookiebar.new.0">
+        <source>New</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.new.1">
+        <source>Create a new cookiebar configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.show.0">
+        <source>Show details</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.show.1">
+        <source>Show the details of configuration ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.edit.0">
+        <source>Edit groups</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.edit.1">
+        <source>Edit groups of configuration ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.editheader.0">
+        <source>Edit configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.editheader.1">
+        <source>Edit configuration ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.copy.0">
+        <source>Duplicate configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.copy.1">
+        <source>Duplicate configuration ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.delete.0">
+        <source>Delete configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.delete.1">
+        <source>Delete configuration ID %s</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

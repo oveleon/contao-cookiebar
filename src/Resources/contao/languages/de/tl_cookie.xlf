@@ -316,6 +316,71 @@
         <source>Head tag</source>
         <target>Head-Tag</target>
       </trans-unit>
+
+      <trans-unit id="tl_cookie.new.0">
+        <source>New</source>
+        <target>Neu</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.new.1">
+        <source>Create a new cookie</source>
+        <target>Einen neuen Cookie erstellen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.show.0">
+        <source>Show details</source>
+        <target>Details anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.show.1">
+        <source>Show the details of cookie ID %s</source>
+        <target>Details der Cookie ID %s anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.edit.0">
+        <source>Edit cookie</source>
+        <target>Cookie bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.edit.1">
+        <source>Edit cookie ID %s</source>
+        <target>Cookie ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.editheader.0">
+        <source>Edit group</source>
+        <target>Gruppe bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.editheader.1">
+        <source>Edit group</source>
+        <target>Gruppe bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.copy.0">
+        <source>Duplicate cookie</source>
+        <target>Cookie ID %s duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.copy.1">
+        <source>Duplicate cookie ID %s</source>
+        <target>Cookie ID %s duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.cut.0">
+        <source>Move cookie</source>
+        <target>Cookie verschieben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.cut.1">
+        <source>Move cookie ID %s</source>
+        <target>Cookie ID %s verschieben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.delete.0">
+        <source>Delete cookie</source>
+        <target>Cookie löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.delete.1">
+        <source>Delete cookie ID %s</source>
+        <target>Cookie ID %s löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.toggle.0">
+        <source>Publish/unpublish cookie</source>
+        <target>Cookie veröffentlichen/unveröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.toggle.1">
+        <source>Publish/unpublish cookie ID %s</source>
+        <target>Cookie ID %s veröffentlichen/unveröffentlichen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

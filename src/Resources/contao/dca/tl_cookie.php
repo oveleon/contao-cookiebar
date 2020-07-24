@@ -54,6 +54,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 		(
 			'all' => array
 			(
+                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
 				'href'                => 'act=select',
 				'class'               => 'header_edit_all',
 				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
@@ -63,17 +64,20 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 		(
             'edit' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie']['edit'],
                 'href'                => 'act=edit',
                 'icon'                => 'edit.svg'
             ),
             'copy' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie']['copy'],
                 'href'                => 'act=paste&amp;mode=copy',
                 'icon'                => 'copy.svg',
                 'button_callback'     => array('tl_cookie', 'disableAction')
             ),
             'cut' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie']['cut'],
                 'href'                => 'act=paste&amp;mode=cut',
                 'icon'                => 'cut.svg',
                 'attributes'          => 'onclick="Backend.getScrollOffset()"',
@@ -81,6 +85,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             ),
             'delete' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
@@ -88,12 +93,14 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             ),
             'toggle' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie']['toggle'],
                 'icon'                => 'visible.svg',
                 'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
                 'button_callback'     => array('tl_cookie', 'toggleIcon')
             ),
             'show' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             )

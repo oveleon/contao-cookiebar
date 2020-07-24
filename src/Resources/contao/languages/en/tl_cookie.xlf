@@ -217,6 +217,55 @@
       <trans-unit id="tl_cookie.head">
         <source>Head tag</source>
       </trans-unit>
+
+      <trans-unit id="tl_cookie.new.0">
+        <source>New</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.new.1">
+        <source>Create a new cookie</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.show.0">
+        <source>Show details</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.show.1">
+        <source>Show the details of cookie ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.edit.0">
+        <source>Edit cookie</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.edit.1">
+        <source>Edit cookie ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.editheader.0">
+        <source>Edit group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.editheader.1">
+        <source>Edit group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.copy.0">
+        <source>Duplicate cookie</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.copy.1">
+        <source>Duplicate cookie ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.cut.0">
+        <source>Move cookie</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.cut.1">
+        <source>Move cookie ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.delete.0">
+        <source>Delete cookie</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.delete.1">
+        <source>Delete cookie ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.toggle.0">
+        <source>Publish/unpublish cookie</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.toggle.1">
+        <source>Publish/unpublish cookie ID %s</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

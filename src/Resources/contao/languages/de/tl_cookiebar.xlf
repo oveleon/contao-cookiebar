@@ -193,6 +193,55 @@
         <source>Bottom</source>
         <target>Unten</target>
       </trans-unit>
+
+      <trans-unit id="tl_cookiebar.new.0">
+        <source>New</source>
+        <target>Neu</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.new.1">
+        <source>Create a new cookiebar configuration</source>
+        <target>Eine neue Cookiebar-Konfiguration erstellen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.show.0">
+        <source>Show details</source>
+        <target>Cookiebar-Konfiguration Details anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.show.1">
+        <source>Show the details of configuration ID %s</source>
+        <target>Details der Cookiebar-Konfiguration ID %s anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.edit.0">
+        <source>Edit groups</source>
+        <target>Gruppen bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.edit.1">
+        <source>Edit groups of configuration ID %s</source>
+        <target>Cookiebar-Gruppen der Konfiguration ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.editheader.0">
+        <source>Edit configuration</source>
+        <target>Cookiebar-Konfiguration bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.editheader.1">
+        <source>Edit configuration ID %s</source>
+        <target>Cookiebar-Konfiguration ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.copy.0">
+        <source>Duplicate configuration</source>
+        <target>Cookiebar-Konfiguration duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.copy.1">
+        <source>Duplicate configuration ID %s</source>
+        <target>Cookiebar-Konfiguration ID %s duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.delete.0">
+        <source>Delete configuration</source>
+        <target>Cookiebar-Konfiguration löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.delete.1">
+        <source>Delete configuration ID %s</source>
+        <target>Cookiebar-Konfiguration ID %s löschen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

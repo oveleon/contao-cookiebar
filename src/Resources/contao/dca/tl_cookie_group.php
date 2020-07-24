@@ -54,6 +54,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
 		(
 			'all' => array
 			(
+                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
 				'href'                => 'act=select',
 				'class'               => 'header_edit_all',
 				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
@@ -63,22 +64,26 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
 		(
             'edit' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['edit'],
                 'href'                => 'table=tl_cookie',
                 'icon'                => 'edit.svg'
             ),
             'editheader' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['editheader'],
                 'href'                => 'act=edit',
                 'icon'                => 'header.svg'
             ),
             'copy' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['copy'],
                 'href'                => 'act=paste&amp;mode=copy',
                 'icon'                => 'copy.svg',
                 'button_callback'     => array('tl_cookie_group', 'disableAction')
             ),
             'cut' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['cut'],
                 'href'                => 'act=paste&amp;mode=cut',
                 'icon'                => 'cut.svg',
                 'attributes'          => 'onclick="Backend.getScrollOffset()"',
@@ -86,6 +91,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             ),
             'delete' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
@@ -93,6 +99,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             ),
             'toggle' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['toggle'],
                 'icon'                => 'visible.svg',
                 'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
                 'button_callback'     => array('tl_cookie_group', 'toggleGroupIcon'),
@@ -100,6 +107,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             ),
             'show' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             )

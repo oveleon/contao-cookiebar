@@ -47,11 +47,13 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 		(
             'cookieLog' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['cookieLog'],
                 'href'                => 'table=tl_cookie_log',
                 'icon'                => 'diff.svg'
             ),
 			'all' => array
 			(
+			    'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
 				'href'                => 'act=select',
 				'class'               => 'header_edit_all',
 				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
@@ -61,27 +63,32 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 		(
             'edit' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['edit'],
                 'href'                => 'table=tl_cookie_group',
                 'icon'                => 'edit.svg'
             ),
             'editheader' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['editheader'],
                 'href'                => 'act=edit',
                 'icon'                => 'header.svg'
             ),
             'copy' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['copy'],
                 'href'                => 'act=copy',
                 'icon'                => 'copy.svg'
             ),
             'delete' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
             ),
             'show' => array
             (
+                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             )
