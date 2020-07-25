@@ -24,7 +24,7 @@ Template | Description
     <p><i>Example blocked content elements</i></p>
 </div>
 
-> ℹ Further iFrame-Types can be added dynamically, see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
+ℹ Further iFrame-Types can be added dynamically, see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
 
 # Module
 Template | Description

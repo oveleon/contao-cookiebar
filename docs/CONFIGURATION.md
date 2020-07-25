@@ -4,7 +4,7 @@ $ composer require oveleon/contao-cookiebar
 ```
 
 The cookie bar can also be installed via the Contao Manager. Just find the package and click on add. For more information, see [Contao Manager](https://docs.contao.org/manual/de/installation/erweiterungen-installieren/).
-
+ 
 # Configuration
 Once the package is installed, the Cookiebar menu item appears in the system palette in the main navigation of the backend. Here you can create and manage multiple configurations of a cookie bar. Afterwards it can be assigned to a ROOT page.
 
@@ -87,11 +87,10 @@ Cookie-Type | Description
 ---------- | -----------
 `Info` | Defines a simple information about an externally set cookie. This type cannot integrate its own scripts
 `Custom (Script)` | This type allows you to integrate your own scripts. A special feature is that a script can also be included if the cookie was not accepted
-`Google Analytics` | This type integrates Google Analytics via the Tag Manager
+`Google Analytics` | This type integrates Google Analytics via the Tag Manager. Using Contao's own `analytic_google.html5` __is no longer necessary__! The integration takes place directly through this cookie type.
 `Facebook Pixel` | This type integrates a Facebook pixel
-`Matomo` | This type integrates Matomo
-`YouTube` | This type integrates the ability to block YouTube videos if the privacy policy provided has not been accepted
-`Vimeo` | This type integrates the ability to block Vimeo videos if the privacy policy provided has not been accepted
+`Matomo` | This type integrates Matomo. Using Contao's own `analytic_matomo.html5` __is no longer necessary__! The integration takes place directly through this cookie type.
+`iFrame` | This type offers the possibility to block different sources which are embedded via iFrames. For default, the integration of `Youtube`, `Vimeo` and `Google Maps` is already available. See also [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
 
 <br/>
 
