@@ -99,11 +99,16 @@
   .cc-btn{
     display: inline-block;
     cursor: pointer;
+
+    width: 100%;
     padding: 8px 14px;
+    margin-bottom: 8px;
     font-size: 15px;
+
     outline: 0 none;
     border: 1px solid #cfcfcf;
     border-radius: 4px;
+
     color: #444;
     background: #f5f5f5;
 
@@ -130,6 +135,10 @@
         background: #873a2c;
       }
     }
+
+    &:last-child{
+      margin-bottom: 0;
+    }
   }
 
   label {
@@ -148,6 +157,7 @@
     width: 1px;
     height: 1px;
     outline: 0 none;
+    opacity: 0;
 
     + label{
       padding: 8px 13px 8px 50px;
@@ -163,6 +173,7 @@
         height: 18px;
         margin: 0;
 
+        box-sizing: content-box;
         border-radius: 10px;
         background: #fff;
         border: 2px solid $cookiebar-input-unchecked;
@@ -253,6 +264,11 @@
 
 @media (min-width: 768px) {
   .contao-cookiebar{
+
+    .cc-btn{
+      width: auto;
+      margin-bottom: 0;
+    }
 
     .cc-inner {
       max-width: 750px;
