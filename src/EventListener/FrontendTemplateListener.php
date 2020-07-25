@@ -90,8 +90,14 @@ class FrontendTemplateListener
             return $buffer;
         }
 
-        $arrTypes = Cookiebar::getIframeTypes();
         $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
+
+        if(null === $objConfig)
+        {
+            return $buffer;
+        }
+
+        $arrTypes = Cookiebar::getIframeTypes();
         $arrCookies = Cookiebar::validateCookies($objConfig);
 
         foreach ($arrTypes as $strType => $arrTemplates)
