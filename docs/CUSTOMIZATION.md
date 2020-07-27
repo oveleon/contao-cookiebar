@@ -16,7 +16,7 @@ A separate stylesheet is output for each template. These are made available via 
 
 <br/>
 
-# Blocked Content Element
+# Blocked Content Elements
 Template | Description
 ---------- | ----------
 `ccb_element_blocker.html5` | Returns the template which is output instead of blocked content elements.
@@ -27,13 +27,6 @@ Template | Description
 </div>
 
 ℹ Further iFrame-Types can be added dynamically, see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
-
-<br/>
-
-# Module
-Template | Description
----------- | ----------
-`ccb_opener_default.html5` | Returns the template, which is responsible for the output of the cookiebar module.
 
 <br/>
 
