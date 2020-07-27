@@ -31,7 +31,7 @@ class ContaoCookiebarExtension extends Extension
         $arrIframeTypes = [
             'youtube'    => ['ce_youtube'],
             'vimeo'      => ['ce_vimeo'],
-            'googlemaps' => ['ce_html_googlemaps'],
+            'googlemaps' => ['ce_html_googlemaps', 'mod_html_googlemaps'],
         ];
 
         if(!empty($config['iframe_types']))

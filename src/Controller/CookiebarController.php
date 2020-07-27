@@ -45,6 +45,12 @@ class CookiebarController extends AbstractController
                 }
 
                 $objConfig = Cookiebar::getConfigByPage($request->get('pageId'));
+
+                if(null === $objConfig)
+                {
+                    return $this->error('No configuration could be found using page ID ' . $request->get('pageId') . '.');
+                }
+
                 $arrResponse = Cookiebar::validateCookies($objConfig, $request->get('cookies') ?: []);
 
                 Cookiebar::setCookie(json_encode([

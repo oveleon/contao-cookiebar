@@ -2,6 +2,6 @@
 
 <?php $this->block('content'); ?>
 
-<a href="javascript:;" title="<?= $this->linkTitle ?>"<?= $this->attribute ?><?= $this->rel ?>><?= $this->link ?></a>
+<a href="<?= $this->href ?>" title="<?= $this->linkTitle ?>"<?= $this->attribute ?><?= $this->rel ?>><?= $this->link ?></a>
 
 <?php $this->endblock(); ?>

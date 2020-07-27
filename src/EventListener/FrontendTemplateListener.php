@@ -25,11 +25,16 @@ class FrontendTemplateListener
      */
     public function onOutputFrontendTemplate(string $buffer, string $template): string
     {
-        if ('fe_page' === $template && Cookiebar::cookiesAllowed())
+        if ('fe_page' === $template)
         {
             global $objPage;
 
             $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
+
+            if(null === $objConfig)
+            {
+                return $buffer;
+            }
 
             if(!Cookiebar::getCookie())
             {
@@ -40,20 +45,16 @@ class FrontendTemplateListener
                 ]));
             }
 
-            if(null === $objConfig)
-            {
-                return $buffer;
-            }
-
             $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
             $arrCookies = Cookiebar::validateCookies($objConfig);
 
             // Add cookiebar script
-            $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,token:'%s',cookies:%s});</script>",
+            $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,token:'%s',doNotTrack:%s,cookies:%s});</script>",
                 $objConfig->id,
                 $objConfig->pageId,
                 $objConfig->version,
                 System::getContainer()->getParameter('contao_cookiebar.cookie_token'),
+                Cookiebar::cookiesAllowed() ? 0 : 1,
                 json_encode($arrCookies)
             );
 

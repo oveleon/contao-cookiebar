@@ -33,8 +33,6 @@ Parameter | Description
 `cookie.token` | The technical name / Token
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
 
-ℹ __Google Maps:__ To block Google Maps iFrames within an HTML content element, the template `ce_html_googlemaps` must be selected.
-
 ### Create new configuration
 
 Field | Description
@@ -46,7 +44,7 @@ Field | Description
 `Template` | Defines the template to be used (see [Styling & Customization](CUSTOMIZATION.md) for more information)
 `Info-Links` | Here you can select several pages from the page picker, which are displayed in the footer of the cookie bar. (e.g. imprint, privacy policy)
 
-ℹ After creating a configuration, cookie settings necessary for the system are automatically created. If you do not want to display essential cookies, you can simply hide them.
+ℹ After creating a configuration, cookie settings necessary for the system are automatically created. If you do not want to display system cookies, you can simply hide them.
 
 ### Create new cookie group
 Now you can create additional cookie groups and thus create a meaningful separation between analysis cookies and others. A special feature is that groups can also be created without cookies and thus only act as a descriptive group.
@@ -63,7 +61,7 @@ Some types for cookies are already delivered. To add your own types see [Extendi
 Field | Description | Type
 ---------- | ----------- | -----------
 `Title` | The title of the cookie | All
-`Cookie-Token` | The technical name / token of the cookie | All
+`Cookie-Token` | The technical name / token of the cookie (see all [Types](CONFIGURATION.md#types)) | All
 `Cookie storage duration` | Define how long the cookie is stored or refer to the description of the provider. | All
 `Provider` | The provider from whom the cookie is set | All
 `Description` | The description / purpose of the cookie | All
@@ -91,6 +89,13 @@ Cookie-Type | Description
 `Facebook Pixel` | This type integrates a Facebook pixel
 `Matomo` | This type integrates Matomo. Using Contao's own `analytic_matomo.html5` __is no longer necessary__! The integration takes place directly through this cookie type.
 `iFrame` | This type offers the possibility to block different sources which are embedded via iFrames. For default, the integration of `Youtube`, `Vimeo` and `Google Maps` is already available. See also [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
+
+#### iFrame-Types
+Cookie-Type | Description
+---------- | -----------
+`YouTube` | Blocks YouTube videos that have been embedded using the YouTube content element
+`Vimeo` | Blocks Vimeo videos that have been embedded using the Vimeo content element
+`Google Maps` | Blocks all Google Maps, which was integrated via a HTML content element or module. The template `ce_html_googlemaps` or `mod_html_googlemaps` must be selected.
 
 <br/>
 

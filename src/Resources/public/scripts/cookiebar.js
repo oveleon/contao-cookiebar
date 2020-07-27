@@ -13,6 +13,7 @@ let ContaoCookiebar = (function () {
             pageId: null,
             version: null,
             cookies: null,
+            doNotTrack: false,
             showAlways: false,
             classes: {
                 'onSave': 'cc-saved',
@@ -33,8 +34,10 @@ let ContaoCookiebar = (function () {
 
             // Set visibility
             if(
-                parseInt(cookiebar.storage.version) !== parseInt(cookiebar.settings.version) ||
+                (parseInt(cookiebar.storage.version) !== parseInt(cookiebar.settings.version) ||
                 parseInt(cookiebar.storage.configId) !== parseInt(cookiebar.settings.configId) ||
+                cookiebar.settings.showAlways) &&
+                !cookiebar.settings.doNotTrack ||
                 cookiebar.settings.showAlways){
                 cookiebar.show = true;
             }
