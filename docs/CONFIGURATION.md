@@ -5,10 +5,12 @@ $ composer require oveleon/contao-cookiebar
 
 The cookie bar can also be installed via the Contao Manager. Just find the package and click on add. For more information, see [Contao Manager](https://docs.contao.org/manual/de/installation/erweiterungen-installieren/).
  
+<br/>
+ 
 # Configuration
 Once the package is installed, the Cookiebar menu item appears in the system palette in the main navigation of the backend. Here you can create and manage multiple configurations of a cookie bar. Afterwards it can be assigned to a ROOT page.
 
-### Basic configuration
+## Basic configuration
 Basic settings must be maintained via the `config/config.yml` file.
 
 ```yaml
@@ -34,7 +36,7 @@ Parameter | Description
 `cookie.token` | The technical name / Token
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
 
-### Create new configuration
+## Create new configuration
 
 Field | Description
 ---------- | -----------
@@ -47,7 +49,7 @@ Field | Description
 
 ℹ After creating a configuration, cookie settings necessary for the system are automatically created. If you do not want to display system cookies, you can simply hide them.
 
-### Create new cookie group
+## Create new cookie group
 Now you can create additional cookie groups and thus create a meaningful separation between analysis cookies and others. A special feature is that groups can also be created without cookies and thus only act as a descriptive group.
 
 Field | Description
@@ -55,10 +57,10 @@ Field | Description
 `Group title` | A meaningful group title which describes the cookies in this group
 `Description` | A description which provides further information about this group
 
-### Create new cookie
+## Create new cookie
 Some types for cookies are already delivered. To add your own types see [Extending your own modules](EXTENDING.md).
 
-#### Fields
+### Fields
 Field | Description | Type
 ---------- | ----------- | -----------
 `Title` | The title of the cookie | All
@@ -81,7 +83,7 @@ Field | Description | Type
 `Matomo Server-URL` | Matomo Server-URL | Matomo
 `Description (blocked)` | This description appears instead of the content element if it is blocked by missing cookies. | YouTube, Vimeo
  
-#### Types
+### Types
 Cookie-Type | Description
 ---------- | -----------
 `Info` | Defines a simple information about an externally set cookie. This type cannot integrate its own scripts
@@ -91,17 +93,19 @@ Cookie-Type | Description
 `Matomo` | This type integrates Matomo. Using Contao's own `analytic_matomo.html5` __is no longer necessary__! The integration takes place directly through this cookie type.
 `iFrame` | This type offers the possibility to block different sources which are embedded via iFrames. For default, the integration of `Youtube`, `Vimeo` and `Google Maps` is already available. See also [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
 
-#### iFrame-Types
+### iFrame-Types
 Cookie-Type | Description
 ---------- | -----------
 `YouTube` | Blocks YouTube videos that have been embedded using the YouTube content element
 `Vimeo` | Blocks Vimeo videos that have been embedded using the Vimeo content element
 `Google Maps` | Blocks all Google Maps, which was integrated via a HTML content element or module. The template `ce_html_googlemaps` or `mod_html_googlemaps` must be selected.
 
+<br/>
+
 # Module
 In order to be able to open the cookie bar from all sides again and to give the visitor the possibility to change his settings, the module "Cookiebar" is provided.
 
-#### Fields
+### Fields
 Field | Description
 ---------- | -----------
 `Link text` | The link text will be displayed instead of the target URL
