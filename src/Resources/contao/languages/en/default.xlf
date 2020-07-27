@@ -2,7 +2,7 @@
   <file datatype="php" original="src/Resources/contao/languages/en/default.php" source-language="en">
     <body>
       <trans-unit id="CTE.cookiebarOpener.0">
-        <source>Open cookie bar</source>
+        <source>Cookiebar</source>
       </trans-unit>
       <trans-unit id="CTE.cookiebarOpener.1">
         <source>Creates a link which opens the cookie bar.</source>

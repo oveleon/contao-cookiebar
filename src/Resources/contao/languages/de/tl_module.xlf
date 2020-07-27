@@ -26,7 +26,7 @@
         <target>Einstellungen vorbefüllen</target>
       </trans-unit>
       <trans-unit id="tl_module.prefillCookies.1">
-        <source>Activates the already selected cookies when opening the cookie bar..</source>
+        <source>Activates the already selected cookies when opening the cookie bar.</source>
         <target>Aktiviert beim öffnen der Cookiebar die bereits gewählten Cookies.</target>
       </trans-unit>
     </body>

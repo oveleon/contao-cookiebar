@@ -24,6 +24,7 @@ contao_cookiebar:
       - ce_vimeo
     googlemaps:
       - ce_html_googlemaps
+      - mod_html_googlemaps
 ```
 
 Parameter | Description
@@ -96,6 +97,16 @@ Cookie-Type | Description
 `YouTube` | Blocks YouTube videos that have been embedded using the YouTube content element
 `Vimeo` | Blocks Vimeo videos that have been embedded using the Vimeo content element
 `Google Maps` | Blocks all Google Maps, which was integrated via a HTML content element or module. The template `ce_html_googlemaps` or `mod_html_googlemaps` must be selected.
+
+# Module
+In order to be able to open the cookie bar from all sides again and to give the visitor the possibility to change his settings, the module "Cookiebar" is provided.
+
+#### Fields
+Field | Description
+---------- | -----------
+`Link text` | The link text will be displayed instead of the target URL
+`Link title` | The link title is added as &lt;em&gt;title&lt;/em&gt; attribute in the HTML markup
+`Prefill settings` | Activates the already selected cookies when opening the cookie bar
 
 <br/>
 
