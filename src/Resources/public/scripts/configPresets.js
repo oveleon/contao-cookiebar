@@ -37,7 +37,7 @@ var Cookiebar = {
                     alert(m);
                     return false;
                 }
-                t[1] = t[1] + '_gtag_' + document.getElementById('ctrl_vendorId').value;
+                t[1] = t[1] + '_gtag_' + document.getElementById('ctrl_vendorId').value.replace('-','_');
                 break;
             default:
                 const regex = /\[\w*\]/g;

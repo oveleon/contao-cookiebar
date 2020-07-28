@@ -283,12 +283,40 @@ class Cookiebar
               $varToken = explode(",", $varToken);
         }else $varToken = [$varToken];
 
+        $arrDomains = static::getDomainCollection($_SERVER['HTTP_HOST']);
+
         foreach ($varToken as $token)
         {
             setcookie(trim($token), "", time() - 3600, '/');
-            setcookie(trim($token), "", time() - 3600, '/', $_SERVER['HTTP_HOST']);
-            setcookie(trim($token), "", time() - 3600, '/', '.' . $_SERVER['HTTP_HOST']);
+
+            foreach ($arrDomains as $domain)
+            {
+                setcookie(trim($token), "", time() - 3600, '/', $domain);
+            }
         }
+    }
+
+    /**
+     * Return a collection of possible domains
+     *
+     * @param $domain
+     *
+     * @return array|null
+     */
+    private static function getDomainCollection($domain): ?array
+    {
+        $arrCollection = [$domain, '.' . $domain];
+
+        preg_match("/[^\.\/]+\.[^\.\/]+$/", $domain, $matches);
+        $strDomain = $matches[0];
+
+        // Add domain without subdomains
+        $arrCollection[] = $strDomain;
+
+        // Add domain without subdomains and starting dot
+        $arrCollection[] = '.' . $strDomain;
+
+        return array_unique($arrCollection);
     }
 
     /**
