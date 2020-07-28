@@ -18,10 +18,10 @@ $GLOBALS['TL_MODELS']['tl_cookie_group']  = 'Oveleon\ContaoCookiebar\CookieGroup
 $GLOBALS['TL_MODELS']['tl_cookie']        = 'Oveleon\ContaoCookiebar\CookieModel';
 
 // Front end modules
-$GLOBALS['FE_MOD']['application']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\CookiebarOpener';
+$GLOBALS['FE_MOD']['application']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\ModuleCookiebar';
 
 // Content elements
-$GLOBALS['TL_CTE']['links']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\CookiebarOpener';
+$GLOBALS['TL_CTE']['links']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\ContentCookiebar';
 
 // Hooks
 $GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('Oveleon\ContaoCookiebar\EventListener\FrontendTemplateListener', 'onOutputFrontendTemplate');

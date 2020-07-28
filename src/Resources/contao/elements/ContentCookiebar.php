@@ -10,11 +10,11 @@
 
 namespace Oveleon\ContaoCookiebar;
 
-use Contao\Hybrid;
+use Contao\ContentElement;
 use Contao\StringUtil;
 use Contao\System;
 
-class CookiebarOpener extends Hybrid
+class ContentCookiebar extends ContentElement
 {
     /**
      * Template
