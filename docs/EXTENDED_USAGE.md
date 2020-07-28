@@ -20,6 +20,9 @@ cookiebar.get();
 // Return current cookie information
 cookiebar.getCookie();
 
+// Check if a cookie was accepted by id
+cookiebar.issetCookie(1);
+
 // Displays the cookie bar (Prefill: Activates the already confirmed cookies)
 cookiebar.show(prefill: false);
 

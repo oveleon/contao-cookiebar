@@ -376,6 +376,16 @@ let ContaoCookiebar = (function () {
             return getCookie();
         };
 
+        p.issetCookie = function(id){
+            let arrCookies = getCookie();
+
+            if(!arrCookies.cookies){
+                return false;
+            }
+
+            return arrCookies.cookies.indexOf(id.toString()) !== -1;
+        };
+
         p.unblock = function(element, id, url){
             if(element.tagName.toLowerCase() === 'iframe'){
                 element.src = url;
