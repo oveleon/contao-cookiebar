@@ -30,14 +30,14 @@ class ContentCookiebar extends ContentElement
         System::loadLanguageFile('tl_cookiebar');
 
         $this->Template->href = 'javascript:;';
-        $this->Template->attribute = ' onclick="cookiebar.show('.$this->objParent->prefillCookies.');"';
+        $this->Template->attribute = ' onclick="cookiebar.show('.$this->prefillCookies.');"';
         $this->Template->rel = ' rel="noreferrer noopener"';
-        $this->Template->link = $this->objParent->linkTitle ?: $GLOBALS['TL_LANG']['tl_cookiebar']['changePrivacyLabel'];
+        $this->Template->link = $this->linkTitle ?: $GLOBALS['TL_LANG']['tl_cookiebar']['changePrivacyLabel'];
         $this->Template->linkTitle = '';
 
-        if ($this->objParent->titleText)
+        if ($this->titleText)
         {
-            $this->Template->linkTitle = StringUtil::specialchars($this->objParent->titleText);
+            $this->Template->linkTitle = StringUtil::specialchars($this->titleText);
         }
 
         // Unset the title attributes in the back end (see #6258)
