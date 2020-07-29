@@ -257,6 +257,30 @@ let ContaoCookiebar = (function () {
                     input.checked = true;
                 }
             });
+
+            let arrGroupInputs = cookiebar.dom.querySelectorAll('input[name="group[]"]');
+
+            if(!!arrGroupInputs){
+                arrGroupInputs.forEach(function(groupInput){
+                    if(groupInput.disabled){
+                        return;
+                    }
+
+                    let inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
+                    let arrGroup = [];
+
+                    if(!!inputs) {
+                        inputs.forEach(function(input){
+                            arrGroup.push(!!input.checked);
+                        });
+                    }
+
+                    if(arrGroup.indexOf(false) === -1)
+                    {
+                        groupInput.checked = true;
+                    }
+                });
+            }
         };
 
         const checkVisibility = function(){
