@@ -26,7 +26,7 @@ class ContaoCookiebarExtension extends Extension
             new FileLocator(__DIR__ . '/../Resources/config')
         );
 
-        $loader->load('services.yml');
+        $loader->load('migrations.yml');
 
         $arrIframeTypes = [
             'youtube'    => ['ce_youtube'],
@@ -44,8 +44,7 @@ class ContaoCookiebarExtension extends Extension
         }
 
         $container->setParameter('contao_cookiebar.consider_dnt', $config['consider_dnt']);
-        $container->setParameter('contao_cookiebar.cookie_lifetime', $config['cookie']['lifetime']);
-        $container->setParameter('contao_cookiebar.cookie_token', $config['cookie']['token']);
+        $container->setParameter('contao_cookiebar.storage_key', $config['storage_key']);
         $container->setParameter('contao_cookiebar.iframe_types', $config['iframe_types']);
     }
 }

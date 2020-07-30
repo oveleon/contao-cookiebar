@@ -30,10 +30,10 @@ $GLOBALS['TL_HOOKS']['parseFrontendTemplate'][] = array('Oveleon\ContaoCookiebar
 // Scripts
 if (defined('TL_MODE') && TL_MODE == 'FE')
 {
-    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.js';
+    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
 }
 
 if (defined('TL_MODE') && TL_MODE == 'BE')
 {
-    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/configPresets.js';
+    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/configPresets.min.js';
 }

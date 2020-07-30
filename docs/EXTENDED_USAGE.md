@@ -1,41 +1,35 @@
-# PHP
-```php
-// Check if a cookie was accepted by token or id
-if(Cookiebar::issetCookie('_ga')) {...}
-if(Cookiebar::issetCookie(1))  {...}
-
-// Read current cookie information
-Cookiebar::getCookie();
-
-// Returns the complete configuration of a cookie bar
-Cookiebar::getConfig(int $configId, $objMeta=null);
-Cookiebar::getConfigByPage(PageModel|int $varPage);
-```
-
 # JavaScript
 ```javascript
 // Return instance of cookiebar
 cookiebar.get();
 
 // Return current cookie information
-cookiebar.getCookie();
+cookiebar.getStorage();
 
-// Check if a cookie was accepted by id
+// Check if a cookie was accepted by id or token
 cookiebar.issetCookie(1);
+cookiebar.issetCookie('ga');
 
-// Displays the cookie bar (Prefill: Activates the already confirmed cookies)
-cookiebar.show(prefill: false);
+// Displays the cookie bar (restore: Activates the already confirmed cookie checkboxes)
+cookiebar.show(restore: false);
 
 // Hide the cookie bar
 cookiebar.hide();
 ```
 
+# PHP
+```php
+// Returns the complete configuration of a cookie bar
+Cookiebar::getConfig(int $configId, $objMeta=null);
+Cookiebar::getConfigByPage(PageModel|int $varPage);
+```
+
 # Controller
 Route | GET-Parameter | Description
 ---------- | ----------- | -----------
-`/cookiebar/save` | `configId`, `pageId`, `version`, `cookies` | Save a full set of cookies
-`/cookiebar/push/[id]` | `configId` | Push cookie id to current set of cookies
-`/cookiebar/isset/[id/token]` | `pageId` | Check whether a cookie was accepted based on the ID or the token
+`/cookiebar/delete` | `tokens` | Deletes all given cookies based on their token
+`/cookiebar/log` | `configId`,`version` | Creates a new log entry
+`/cookiebar/block/[id]` | `redirect` | Block-Page for iFrames
 
 <br/>
 

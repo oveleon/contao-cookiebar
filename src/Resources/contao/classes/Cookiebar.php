@@ -211,26 +211,15 @@ class Cookiebar
     }
 
     /**
-     * Collects scripts and deletes unused cookies
+     * Collect cookie scripts
      *
-     * @param object     $objConfig
-     * @param array|null $arrCookies A collection of Cookie-IDs
-     * @param bool       $includeObject Also returns the cookie object
+     * @param object $objConfig
      *
      * @return array
      */
-    public static function validateCookies($objConfig, ?array $arrCookies=null, bool $includeObject=false): array
+    public static function validateCookies($objConfig): array
     {
-        $arrStorage = static::getCookie();
         $arrResponse = [];
-        $arrCurrentCookies = [];
-
-        if(isset($arrStorage['cookies']))
-        {
-            $arrCurrentCookies = $arrStorage['cookies'];
-        }
-
-        $arrCookies = $arrCookies === null ? $arrCurrentCookies : $arrCookies;
 
         foreach ($objConfig->groups as $group)
         {
@@ -241,15 +230,10 @@ class Cookiebar
                     continue;
                 }
 
-                if(!\in_array($cookie->id, $arrCookies) && \in_array($cookie->id, $arrCurrentCookies))
-                {
-                    static::deleteCookieByToken($cookie->token);
-                }
-
                 $arrCookie = [
                     'id'        => $cookie->id,
                     'type'      => $cookie->type,
-                    'confirmed' => \in_array($cookie->id, $arrCookies),
+                    'token'     => static::parseToken($cookie->token),
                     'resources' => $cookie->resources,
                     'scripts'   => $cookie->scripts
                 ];
@@ -259,16 +243,36 @@ class Cookiebar
                     $arrCookie['iframeType'] = $cookie->iframeType;
                 }
 
-                if($includeObject)
-                {
-                    $arrCookie['object'] = $cookie;
-                }
-
-                $arrResponse[] = $arrCookie;
+                $arrResponse[ $cookie->id ] = $arrCookie;
             }
         }
 
         return $arrResponse;
+    }
+
+    /**
+     * Parse token string and return their as array
+     *
+     * @param $varToken
+     *
+     * @return array|null
+     */
+    public static function parseToken($varToken): ?array
+    {
+        if(is_array($varToken)){
+            return $varToken;
+        }
+
+        if($varToken === ''){
+            return null;
+        }
+
+        if(strpos($varToken, ',') !== false)
+        {
+              $varToken = explode(",", $varToken);
+        }else $varToken = [$varToken];
+
+        return $varToken;
     }
 
     /**
@@ -278,10 +282,11 @@ class Cookiebar
      */
     public static function deleteCookieByToken($varToken): void
     {
-        if(strpos($varToken, ',') !== false)
-        {
-              $varToken = explode(",", $varToken);
-        }else $varToken = [$varToken];
+        $varToken = static::parseToken($varToken);
+
+        if(null === $varToken){
+            return;
+        }
 
         $arrDomains = static::getDomainCollection($_SERVER['HTTP_HOST']);
 
@@ -301,9 +306,9 @@ class Cookiebar
      *
      * @param $domain
      *
-     * @return array|null
+     * @return array
      */
-    private static function getDomainCollection($domain): ?array
+    private static function getDomainCollection($domain): array
     {
         $arrCollection = [$domain, '.' . $domain];
 
@@ -320,78 +325,16 @@ class Cookiebar
     }
 
     /**
-     * Set Cookiebar-Cookie
+     * Deletes the cookie from old versions
      *
-     * @param $varValue
+     * @deprecated Deprecated since CCB 1.2.0 to be removed in 2.0. Provided for backward compatibility.
      */
-    public static function setCookie($varValue): void
+    public static function checkCookie(): void
     {
-        setcookie(
-            System::getContainer()->getParameter('contao_cookiebar.cookie_token'),
-            $varValue,
-            time() + System::getContainer()->getParameter('contao_cookiebar.cookie_lifetime'),
-            '/'
-        );
-    }
-
-    /**
-     * Returns the currently stored cookie
-     *
-     * @param bool $decodeJson
-     * @param bool $assoc
-     *
-     * @return string|array|null
-     */
-    public static function getCookie($decodeJson=true, $assoc=true)
-    {
-        $strCookie = Input::cookie(System::getContainer()->getParameter('contao_cookiebar.cookie_token'));
-
-        if($decodeJson && $strCookie)
+        if(Input::cookie(System::getContainer()->getParameter('contao_cookiebar.storage_key')))
         {
-            return json_decode($strCookie, $assoc);
+            setcookie(System::getContainer()->getParameter('contao_cookiebar.storage_key'),"",time() - 3600,'/');
         }
-
-        return $strCookie;
-    }
-
-    /**
-     * Check whether a cookie was accepted based on the ID or the token
-     *
-     * @param $varValue Cookie-ID or Token
-     * @param null $pageRootId
-     *
-     * @return bool
-     */
-    public static function issetCookie($varValue, $pageRootId=null): bool
-    {
-        // Get cookie by id
-        if(is_numeric($varValue))
-        {
-            $objCookie = CookieModel::findById($varValue);
-        }
-        // Get cookie by token
-        else
-        {
-            if(null === $pageRootId)
-            {
-                global $objPage;
-                $pageRootId = $objPage->rootId;
-            }
-
-            $objCookie = CookieModel::findByToken($varValue, $pageRootId);
-        }
-
-        if(null !== $objCookie)
-        {
-            $arrStorage = static::getCookie();
-
-            if($arrStorage && $arrStorage['cookies'] && in_array($objCookie->id, $arrStorage['cookies']))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**
@@ -412,22 +355,24 @@ class Cookiebar
     /**
      * Create and save new log entry
      *
-     * @param $objConfig
+     * @param $configId
+     * @param $version
      * @param null|string $domain
      * @param null|string $url
      * @param null|string $ip
+     * @param null $data
      */
-    public static function log($objConfig, $domain=null, $url=null, $ip=null): void
+    public static function log($configId, $version, $domain=null, $url=null, $ip=null, $data=null): void
     {
         $objLog = new CookieLogModel();
 
-        $objLog->pid = $objConfig->id;
-        $objLog->version = $objConfig->version;
+        $objLog->pid = $configId;
+        $objLog->version = $version;
         $objLog->domain = $domain ?? Environment::get('url');
         $objLog->url = $url ?? Environment::get('requestUri');
         $objLog->ip = $ip ?? Environment::get('ip');
         $objLog->tstamp = time();
-        $objLog->config = serialize(static::validateCookies($objConfig));
+        $objLog->config = serialize($data);
 
         $objLog->save();
     }

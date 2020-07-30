@@ -10,6 +10,7 @@
 ### Features
 - Flexible script integration
 - Vanilla JS / No jQuery needed
+- No `analytics_*`-Templates required
 - Expandable
 - Consent Log
 - Free & Open Source

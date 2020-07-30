@@ -36,26 +36,20 @@ class FrontendTemplateListener
                 return $buffer;
             }
 
-            if(!Cookiebar::getCookie())
-            {
-                Cookiebar::setCookie(json_encode([
-                    'configId' => $objConfig->id,
-                    'pageId'   => $objPage->rootId,
-                    'version'  => -1
-                ]));
-            }
+            // If a cookie is still set by an older version, it must be deleted
+            Cookiebar::checkCookie();
 
+            // Parse template
             $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
-            $arrCookies = Cookiebar::validateCookies($objConfig);
 
-            // Add cookiebar script
+            // Add cookiebar script initialization
             $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,token:'%s',doNotTrack:%s,cookies:%s});</script>",
                 $objConfig->id,
                 $objConfig->pageId,
                 $objConfig->version,
-                System::getContainer()->getParameter('contao_cookiebar.cookie_token'),
+                System::getContainer()->getParameter('contao_cookiebar.storage_key'),
                 Cookiebar::cookiesAllowed() ? 0 : 1,
-                json_encode($arrCookies)
+                json_encode(Cookiebar::validateCookies($objConfig))
             );
 
             if(null !== $objConfig)
@@ -107,7 +101,7 @@ class FrontendTemplateListener
             {
                 foreach ($arrCookies as $cookie)
                 {
-                    if(isset($cookie['iframeType']) && $cookie['iframeType'] === $strType && !$cookie['confirmed'])
+                    if(isset($cookie['iframeType']) && $cookie['iframeType'] === $strType)
                     {
                         $strBlockUrl = '/cookiebar/block/'.$cookie['id'].'?redirect=';
 
@@ -132,7 +126,7 @@ class FrontendTemplateListener
                             preg_match($frameRegex, $buffer, $matches);
 
                             // Overwrite src attribute
-                            $buffer = preg_replace($frameRegex, '<iframe$1src="'.$strBlockUrl.urlencode($matches[2]).'"', $buffer);
+                            $buffer = preg_replace($frameRegex, '<iframe$1data-ccb-id="'.$cookie['id'].'" src="'.$strBlockUrl.urlencode($matches[2]).'"', $buffer);
                         }
                     }
                 }

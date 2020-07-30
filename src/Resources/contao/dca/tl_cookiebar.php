@@ -252,13 +252,6 @@ class tl_cookiebar extends Contao\Backend
                 $GLOBALS['TL_LANG']['tl_cookiebar']['noExpireTime'],
                 $GLOBALS['TL_LANG']['tl_cookiebar']['defaultPhpSessionDescription'],
                 'lock'
-            ],
-            [
-                'Contao Cookiebar',
-                Contao\System::getContainer()->getParameter('contao_cookiebar.cookie_token'),
-                sprintf($GLOBALS['TL_LANG']['tl_cookiebar']['defaultCookiebarLifetime'], Contao\System::getContainer()->getParameter('contao_cookiebar.cookie_lifetime') / 24 / 60 / 60),
-                $GLOBALS['TL_LANG']['tl_cookiebar']['defaultCookiebarDescription'],
-                'lock'
             ]
         ];
 

@@ -148,6 +148,9 @@
 .contao-cookiebar input + label:active:after {
   padding-left: 5px;
 }
+.contao-cookiebar input.cc-group-half + label:after {
+  background: linear-gradient(to right, #9c9b99 0%, #9c9b99 50%, #399d32 50%, #399d32 100%);
+}
 .contao-cookiebar input:checked + label:after {
   background: #399d32;
   margin-left: 17px;

@@ -34,14 +34,6 @@
         <source>&lt;p&gt;Saves the current PHP session.&lt;/p&gt;</source>
         <target>&lt;p&gt;Speichert die aktuelle PHP-Session.&lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.defaultCookiebarDescription">
-        <source>&lt;p&gt;This cookie is used to restore the cookie &amp; privacy settings you used. No personal data is collected or stored..&lt;/p&gt;</source>
-        <target>&lt;p&gt;Dieses Cookie wird dafür verwendet, um die von Ihnen genutzten Cookie- &amp; Datenschutzeinstellungen wiederherzustellen. Es werden keine personenbezogenen Daten erfasst oder gespeichert.&lt;/p&gt;</target>
-      </trans-unit>
-      <trans-unit id="tl_cookiebar.defaultCookiebarLifetime">
-        <source>This cookie remains stored for %s days.</source>
-        <target>Dieses Cookie bleibt für %s Tage gespeichert.</target>
-      </trans-unit>
 
       <trans-unit id="tl_cookiebar.saveLabel">
         <source>Save selection</source>

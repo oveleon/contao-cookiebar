@@ -16,9 +16,7 @@ Basic settings must be maintained via the `config/config.yml` file.
 ```yaml
 contao_cookiebar:
   consider_dnt: true
-  cookie:
-    lifetime: 60*60*24*365
-    token: ccb_contao_token
+  storage_key: ccb_contao_token
   iframe_types:
     youtube: 
       - ce_youtube
@@ -32,8 +30,7 @@ contao_cookiebar:
 Parameter | Description
 ---------- | -----------
 `consider_dnt` | Consider "Do not Track" browser setting.
-`cookie.lifetime` | The lifetime of the system cookie of the cookie bar settings
-`cookie.token` | The technical name / Token
+`storage_key` | The key used for localStorage
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
 
 ## Create new configuration
@@ -109,7 +106,7 @@ In order to be able to open the cookie bar from all sides again and to give the 
 Field | Description
 ---------- | -----------
 `Link text` | The link text will be displayed instead of the target URL
-`Link title` | The link title is added as &lt;em&gt;title&lt;/em&gt; attribute in the HTML markup
+`Link title` | The link title is added as `title` attribute in the HTML markup
 `Prefill settings` | Activates the already selected cookies when opening the cookie bar
 
 ### Template

@@ -33,72 +33,31 @@ class CookiebarController extends AbstractController
     public function prepareAction(Request $request, $module, $id)
     {
         $this->container->get('contao.framework')->initialize();
-        $arrResponse = [];
 
         switch($module)
         {
-            // Save a full set of cookies
-            case 'save':
-                if($error = $this->errorMissingParameters($request, ['configId','pageId']))
+            // Delete cookies by their tokens
+            case 'delete':
+                if($error = $this->errorMissingParameter($request, ['tokens']))
                 {
                     return $error;
                 }
 
-                $objConfig = Cookiebar::getConfigByPage($request->get('pageId'));
-
-                if(null === $objConfig)
-                {
-                    return $this->error('No configuration could be found using page ID ' . $request->get('pageId') . '.');
-                }
-
-                $arrResponse = Cookiebar::validateCookies($objConfig, $request->get('cookies') ?: []);
-
-                Cookiebar::setCookie(json_encode([
-                    'configId' => $request->get('configId'),
-                    'pageId'   => $request->get('pageId'),
-                    'version'  => $request->get('version') ?: $objConfig->version,
-                    'cookies'  => $request->get('cookies')
-                ]));
-
-                Cookiebar::log($objConfig, null, $request->get('referrer'));
+                Cookiebar::deleteCookieByToken($request->get('tokens'));
                 break;
 
-            // Push cookie id to current set of cookies
-            case 'push':
-                if($error = $this->errorMissingParameters($request, ['configId']))
+            // Add new log entry
+            case 'log':
+                if($error = $this->errorMissingParameter($request, ['configId','version']))
                 {
                     return $error;
                 }
 
-                if(!$id)
-                {
-                    $this->error('This route can only be called up with an ID');
-                }
-
-                $objCookie = Cookiebar::getCookie();
-                $objCookie['cookies'][] = $id;
-
-                Cookiebar::setCookie(json_encode($objCookie));
-                Cookiebar::log(Cookiebar::getConfig($request->get('configId')), null, $request->get('referrer'));
-                break;
-
-            // Check whether a cookie was accepted based on the ID or the token
-            case 'isset':
-                if($error = $this->errorMissingParameters($request, ['pageId']))
-                {
-                    return $error;
-                }
-
-                if(!$id)
-                {
-                    $this->error('This route can only be called up with an ID');
-                }
-
-                $arrResponse[ $id ] = Cookiebar::issetCookie($id, $request->get('pageId'));
+                Cookiebar::log($request->get('configId'), $request->get('version'), null, $request->get('referrer'),null, $request->get('cookies'));
                 break;
         }
 
-        return new JsonResponse($arrResponse);
+        return new JsonResponse(['type' => $module, 'status' => 'OK']);
     }
 
     /**
@@ -123,6 +82,7 @@ class CookiebarController extends AbstractController
         /** @var FrontendTemplate $objTemplate */
         $objTemplate = new FrontendTemplate('ccb_element_blocker');
 
+        $objTemplate->language = $GLOBALS['TL_LANGUAGE'];
         $objTemplate->id = $objCookie->id;
         $objTemplate->title = $objCookie->title;
         $objTemplate->type = $objCookie->type;
@@ -151,13 +111,13 @@ class CookiebarController extends AbstractController
      * Return error if the given parameters are not set
      *
      * @param Request $request
-     * @param array $arrParameters
+     * @param array $arrParameter
      *
      * @return JsonResponse
      */
-    private function errorMissingParameters(Request $request, array $arrParameters)
+    private function errorMissingParameter(Request $request, array $arrParameter)
     {
-        foreach ($arrParameters as $parameter)
+        foreach ($arrParameter as $parameter)
         {
             if(!$request->get($parameter))
             {

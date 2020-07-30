@@ -6,7 +6,7 @@ use Contao\CoreBundle\Migration\AbstractMigration;
 use Contao\CoreBundle\Migration\MigrationResult;
 use Doctrine\DBAL\Connection;
 
-class ContaoCookiebarMigration extends AbstractMigration
+class ContaoCookiebarCookieMigration extends AbstractMigration
 {
     /**
      * @var Connection
@@ -27,21 +27,19 @@ class ContaoCookiebarMigration extends AbstractMigration
             return false;
         }
 
-        $columns  = $schemaManager->listTableColumns('tl_cookie');
+        $oldCookies = $this->connection->query("SELECT id FROM tl_cookie WHERE token = 'ccb_contao_token'");
 
-        $oldTypes = $this->connection->query("SELECT id FROM tl_cookie WHERE type IN('youtube', 'vimeo')");
-
-        return $oldTypes->rowCount() > 0 && (isset($columns['iframetype']) || isset($columns['iframeType']));
+        return $oldCookies->rowCount() > 0;
     }
 
     public function run(): MigrationResult
     {
-        // Overwrite the cookie types Youtube and Vimeo to iFrame and set the iFrame type dynamically
-        $this->connection->prepare("UPDATE tl_cookie SET iframeType = type, type = 'iframe' WHERE type = 'youtube' OR type = 'vimeo'")->execute();
+        // Delete old cookies
+        $this->connection->prepare("DELETE FROM tl_cookie WHERE token = 'ccb_contao_token'")->execute();
 
         return new MigrationResult(
             true,
-            'Cookie types YouTube and Vimeo were successfully mapped as type iFrame.'
+            'Contao Cookiebar cookie token was successfully removed from the configurations.'
         );
     }
 }

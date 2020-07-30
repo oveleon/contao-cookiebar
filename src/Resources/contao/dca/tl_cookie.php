@@ -162,7 +162,11 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''",
             'load_callback'           => array(
-                array('tl_cookie', 'disableLockedField')
+                array('tl_cookie', 'disableLockedField'),
+                array('tl_cookie', 'requireField')
+            ),
+            'save_callback'           => array(
+                array('tl_cookie', 'cleanupToken')
             ),
             'xlabel'                  => array
             (
@@ -560,6 +564,39 @@ class tl_cookie extends Contao\Backend
         if($dc->activeRecord->identifier === 'lock')
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['disabled'] = true;
+        }
+
+        return $varValue;
+    }
+
+    /**
+     * Clean Up Token
+     *
+     * @param $varValue
+     * @param $dc
+     *
+     * @return int
+     */
+    public function cleanupToken($varValue, $dc)
+    {
+        return str_replace(" ", "", $varValue);
+    }
+
+    /**
+     * Require fields
+     *
+     * @param $varValue
+     * @param $dc
+     *
+     * @return int
+     */
+    public function requireField($varValue, $dc)
+    {
+        $disableRequire = ['default', 'script', 'iframe'];
+
+        if(in_array($dc->activeRecord->type, $disableRequire))
+        {
+            $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['mandatory'] = false;
         }
 
         return $varValue;
