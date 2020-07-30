@@ -20,6 +20,12 @@ use Contao\System;
 class Cookiebar
 {
     /**
+     * Config cache
+     * @var null
+     */
+    static private $configCache = null;
+
+    /**
      * Create and return config object
      *
      * @param integer $configId
@@ -29,6 +35,11 @@ class Cookiebar
      */
     public static function getConfig(int $configId, $objMeta=null)
     {
+        if(null !== static::$configCache)
+        {
+            return static::$configCache;
+        }
+
         $objCookiebar = CookiebarModel::findById($configId);
 
         if(null === $objCookiebar)
@@ -90,6 +101,9 @@ class Cookiebar
 
         $objConfig->groups = $arrGroups;
         $objConfig->pageId = $objPage->rootId;
+
+        // Cache config
+        static::$configCache = $objConfig;
 
         return $objConfig;
     }
