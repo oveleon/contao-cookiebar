@@ -38,7 +38,7 @@ use Contao\System;
  * @property string  $scriptConfig
  * @property boolean $published
  */
-class CookieHandler extends System
+class CookieHandler
 {
     /**
      * Position flag: Below the content within the body tag
@@ -145,13 +145,10 @@ class CookieHandler extends System
                 {
                     foreach ($GLOBALS['TL_HOOKS']['compileCookieType'] as $callback)
                     {
-                        $this->import($callback[0]);
-                        $this->{$callback[0]}->{$callback[1]}($objCookie->type, $this);
+                        System::importStatic($callback[0])->{$callback[1]}($objCookie->type, $this);
                     }
                 }
         }
-
-        parent::__construct();
     }
 
     /**
@@ -168,7 +165,7 @@ class CookieHandler extends System
             return $this->{$strKey};
         }
 
-        return $this->objModel->{$strKey} ?? parent::__get($strKey);
+        return $this->objModel->{$strKey} ?? null;
     }
 
     /**
