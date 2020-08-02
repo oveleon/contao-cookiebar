@@ -168,7 +168,7 @@ class CookieHandler extends System
             return $this->{$strKey};
         }
 
-        return $this->objModel->{$strKey} ?? null;
+        return $this->objModel->{$strKey} ?? parent::__get($strKey);
     }
 
     /**
