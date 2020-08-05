@@ -96,8 +96,12 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarBlocking'] = array
 );
 
 // Extend the default palettes
-Contao\CoreBundle\DataContainer\PaletteManipulator::create()
+$objPaletteManipulator = Contao\CoreBundle\DataContainer\PaletteManipulator::create()
     ->addLegend('cookiebar_legend', 'global_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
     ->addField(array('activateCookiebar'), 'cookiebar_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
-    ->applyToPalette(array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes']) ? 'rootfallback' : 'root', 'tl_page')
+    ->applyToPalette('root', 'tl_page')
 ;
+
+if (array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes'])) {
+    $objPaletteManipulator->applyToPalette('rootfallback', 'tl_page');
+}

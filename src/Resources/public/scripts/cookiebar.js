@@ -500,11 +500,11 @@ let ContaoCookiebar = (function () {
         };
 
         const setStorage = function(objStorage){
-            localStorage.setItem(cookiebar.settings.token, JSON.stringify(objStorage));
+            localStorage.setItem(generateToken(), JSON.stringify(objStorage));
         };
 
         const getStorage = function() {
-            let objStorage = localStorage.getItem(cookiebar.settings.token);
+            let objStorage = localStorage.getItem(generateToken());
 
             if(null === objStorage){
                 objStorage = {
@@ -514,12 +514,16 @@ let ContaoCookiebar = (function () {
                     cookies: []
                 };
 
-                localStorage.setItem(cookiebar.settings.token, JSON.stringify(objStorage));
+                localStorage.setItem(generateToken(), JSON.stringify(objStorage));
             }else{
                 objStorage = JSON.parse(objStorage);
             }
 
             return objStorage;
+        };
+
+        const generateToken = function(){
+            return cookiebar.settings.token + '_' + cookiebar.settings.configId;
         };
 
         /** Public methods */
