@@ -64,6 +64,9 @@
 .contao-cookiebar .cc-head h1:first-child, .contao-cookiebar .cc-head h2:first-child, .contao-cookiebar .cc-head h3:first-child, .contao-cookiebar .cc-head h4:first-child, .contao-cookiebar .cc-head h5:first-child, .contao-cookiebar .cc-head h6:first-child {
   margin-top: 0;
 }
+.contao-cookiebar .cc-head p {
+  margin-bottom: 15px;
+}
 .contao-cookiebar .cc-btn {
   display: inline-block;
   cursor: pointer;

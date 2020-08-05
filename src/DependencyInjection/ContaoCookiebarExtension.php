@@ -34,6 +34,8 @@ class ContaoCookiebarExtension extends Extension
             'googlemaps' => ['ce_html_googlemaps', 'mod_html_googlemaps'],
         ];
 
+        $arrPageTemplates = ['fe_page'];
+
         if(!empty($config['iframe_types']))
         {
             $config['iframe_types'] = array_merge_recursive($arrIframeTypes, $config['iframe_types']);
@@ -43,8 +45,18 @@ class ContaoCookiebarExtension extends Extension
             $config['iframe_types'] = $arrIframeTypes;
         }
 
+        if(!empty($config['page_templates']))
+        {
+            $config['page_templates'] = array_merge($arrPageTemplates, $config['page_templates']);
+        }
+        else
+        {
+            $config['page_templates'] = $arrPageTemplates;
+        }
+
         $container->setParameter('contao_cookiebar.consider_dnt', $config['consider_dnt']);
         $container->setParameter('contao_cookiebar.storage_key', $config['storage_key']);
         $container->setParameter('contao_cookiebar.iframe_types', $config['iframe_types']);
+        $container->setParameter('contao_cookiebar.page_templates', $config['page_templates']);
     }
 }

@@ -25,7 +25,9 @@ class FrontendTemplateListener
      */
     public function onOutputFrontendTemplate(string $buffer, string $template): string
     {
-        if ('fe_page' === $template)
+        $arrPageTemplates = System::getContainer()->getParameter('contao_cookiebar.page_templates') ?? ['fe_page'];
+
+        if (in_array($template, $arrPageTemplates))
         {
             global $objPage;
 

@@ -382,6 +382,66 @@ let ContaoCookiebar = (function () {
             request.send();
         };
 
+        const polyfill = function(){
+            // execute only for ie
+            if(!window.document.documentMode)
+            {
+                return;
+            }
+
+            if (window.NodeList && !NodeList.prototype.forEach) {
+                NodeList.prototype.forEach = Array.prototype.forEach;
+            }
+
+            (function (arr) {
+                arr.forEach(function (item) {
+                    if (item.hasOwnProperty('append')) {
+                        return;
+                    }
+                    Object.defineProperty(item, 'append', {
+                        configurable: true,
+                        enumerable: true,
+                        writable: true,
+                        value: function append() {
+                            var argArr = Array.prototype.slice.call(arguments),
+                                docFrag = document.createDocumentFragment();
+
+                            argArr.forEach(function (argItem) {
+                                var isNode = argItem instanceof Node;
+                                docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+                            });
+
+                            this.appendChild(docFrag);
+                        }
+                    });
+                });
+            })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+
+            (function (arr) {
+                arr.forEach(function (item) {
+                    if (item.hasOwnProperty('prepend')) {
+                        return;
+                    }
+                    Object.defineProperty(item, 'prepend', {
+                        configurable: true,
+                        enumerable: true,
+                        writable: true,
+                        value: function prepend() {
+                            var argArr = Array.prototype.slice.call(arguments),
+                                docFrag = document.createDocumentFragment();
+
+                            argArr.forEach(function (argItem) {
+                                var isNode = argItem instanceof Node;
+                                docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+                            });
+
+                            this.insertBefore(docFrag, this.firstChild);
+                        }
+                    });
+                });
+            })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+        };
+
         /** Helper methods */
 
         const serialize = function (obj, prefix) {
@@ -517,6 +577,7 @@ let ContaoCookiebar = (function () {
             checkVisibility();
         };
 
+        polyfill();
         init();
 
         return p;
