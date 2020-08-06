@@ -141,6 +141,11 @@ let ContaoCookiebar = (function () {
             let id, arrDelete = [];
             for(id in cookiebar.settings.cookies){
                 let cookieId = parseInt(id);
+
+                if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)){
+                    continue;
+                }
+
                 let previousState = !!cookiebar.settings.cookies[cookieId].confirmed;
                 let currentState = arrCookies.indexOf(cookieId) !== -1;
                 let deleteCookie = previousState !== currentState && !currentState;
@@ -168,6 +173,11 @@ let ContaoCookiebar = (function () {
         const setScripts = function(){
             let cookieId;
             for(cookieId in cookiebar.settings.cookies){
+
+                if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)){
+                    continue;
+                }
+
                 let cookie = cookiebar.settings.cookies[ cookieId ];
 
                 if(null !== cookie.resources){
