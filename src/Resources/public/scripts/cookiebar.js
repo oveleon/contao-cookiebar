@@ -104,7 +104,7 @@ let ContaoCookiebar = (function () {
             // Show iframes
             if(arrCookies.length){
                 arrCookies.forEach(function(cookieId){
-                    if(cookiebar.settings.cookies[cookieId].type === 'iframe'){
+                    if(cookiebar.settings.cookies.hasOwnProperty(cookieId) && cookiebar.settings.cookies[cookieId].type === 'iframe'){
                         let iframes = document.querySelectorAll('[data-ccb-id="' + cookieId + '"]');
 
                         if(iframes.length){
