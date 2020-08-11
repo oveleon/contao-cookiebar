@@ -15,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'activateCookiebar
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'overwriteCookiebarMeta';
 
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['activateCookiebar'] = 'cookiebarConfig,overwriteCookiebarMeta';
-$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarAlignment,cookiebarBlocking,cookiebarTemplate,cookiebarInfoUrls';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarTemplate,cookiebarInfoUrls';
 
 // Fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = array
@@ -50,7 +50,16 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarDescription'] = array
 (
     'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarDescription'],
     'inputType'               => 'textarea',
-    'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true),
+    'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50'),
+    'explanation'             => 'insertTags',
+    'sql'                     => "mediumtext NULL"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarInfoDescription'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarInfoDescription'],
+    'inputType'               => 'textarea',
+    'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50'),
     'explanation'             => 'insertTags',
     'sql'                     => "mediumtext NULL"
 );
@@ -83,7 +92,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarAlignment'] = array
     'inputType'               => 'select',
     'options'                 => array('cc-top', 'cc-middle', 'cc-bottom'),
     'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
-    'eval'                    => array('tl_class'=>'w50'),
+    'eval'                    => array('tl_class'=>'w50 clr'),
     'sql'                     => "varchar(32) NOT NULL default ''"
 );
 

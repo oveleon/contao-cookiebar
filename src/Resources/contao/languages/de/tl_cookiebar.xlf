@@ -108,6 +108,14 @@
         <source>Describe the purpose of the cookie bar.</source>
         <target>Beschreiben Sie hier den Zweck der Cookiebar.</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.infoDescription.0">
+        <source>Info-Description</source>
+        <target>Info-Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.infoDescription.1">
+        <source>Here you can define further information which is displayed below the buttons.</source>
+        <target>Definieren Sie hier weitere Informationen, welche unterhalb der Buttons ausgegeben werden.</target>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.0">
         <source>Info links</source>
         <target>Info-Links</target>
@@ -148,6 +156,14 @@
         <source>Here you define the position of the cookie bar in HTML.</source>
         <target>Definieren Sie hier die Position der Cookiebar in HTML.</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.scriptPosition.0">
+        <source>Script-Position</source>
+        <target>Skript-Position</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.scriptPosition.1">
+        <source>Here you define the position of the cookie bar scripts in HTML.</source>
+        <target>Definieren Sie hier die Position der Cookiebar-Skripte in HTML.</target>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.0">
         <source>CSS ID/class</source>
         <target>CSS-ID/Klasse</target>
@@ -172,6 +188,14 @@
       <trans-unit id="tl_cookiebar.bodyBelowContent">
         <source>Below the content in the body tag</source>
         <target>Unter dem Inhalt im Body-Tag</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.body">
+        <source>Body tag</source>
+        <target>Body-Tag</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.head">
+        <source>Head tag</source>
+        <target>Head-Tag</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cc-top">
         <source>Top</source>

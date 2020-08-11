@@ -60,11 +60,12 @@ class Cookiebar
         // Overwrite metadata
         if(null !== $objMeta)
         {
-            $objConfig->description = $objMeta->cookiebarDescription;
-            $objConfig->infoUrls    = $objMeta->cookiebarInfoUrls;
-            $objConfig->template    = $objMeta->cookiebarTemplate;
-            $objConfig->alignment   = $objMeta->cookiebarAlignment;
-            $objConfig->blocking    = $objMeta->cookiebarBlocking;
+            $objConfig->description     = $objMeta->cookiebarDescription;
+            $objConfig->infoDescription = $objMeta->cookiebarInfoDescription;
+            $objConfig->infoUrls        = $objMeta->cookiebarInfoUrls;
+            $objConfig->template        = $objMeta->cookiebarTemplate;
+            $objConfig->alignment       = $objMeta->cookiebarAlignment;
+            $objConfig->blocking        = $objMeta->cookiebarBlocking;
         }
 
         while($objCookieGroups->next())
@@ -184,6 +185,7 @@ class Cookiebar
         }
 
         $objTemplate->description = $objConfig->description;
+        $objTemplate->infoDescription = $objConfig->infoDescription;
         $objTemplate->groups = $objConfig->groups;
 
         $objTemplate->saveLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['saveLabel'];

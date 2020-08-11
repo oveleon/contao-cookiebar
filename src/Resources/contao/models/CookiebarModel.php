@@ -19,12 +19,14 @@ use Contao\Model;
  * @property integer $tstamp
  * @property string  $title
  * @property string  $description
+ * @property string  $infoDescription
  * @property integer $version
  * @property boolean $updateVersion
  * @property string  $infoUrls
  * @property string  $template
  * @property string  $alignment
  * @property string  $blocking
+ * @property integer $scriptPosition
  * @property integer $position
  * @property boolean $cssID
  *

@@ -98,7 +98,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{title_legend},title;{meta_legend},description,alignment,blocking,template,infoUrls;{expert_legend:hide},cssID,position,version,updateVersion'
+        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,template,infoUrls;{expert_legend:hide},cssID,position,scriptPosition,version,updateVersion'
 	),
 
     // Fields
@@ -127,7 +127,17 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
-            'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true),
+            'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50'),
+            'explanation'             => 'insertTags',
+            'sql'                     => "mediumtext NULL"
+        ),
+        'infoDescription' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['infoDescription'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'textarea',
+            'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50'),
             'explanation'             => 'insertTags',
             'sql'                     => "mediumtext NULL"
         ),
@@ -136,7 +146,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['version'],
             'inputType'               => 'text',
             'explanation'             => 'cookiebarVersion',
-            'eval'                    => array('readonly'=>true, 'maxlength'=>255, 'tl_class'=>'w50', 'helpwizard'=>true),
+            'eval'                    => array('readonly'=>true, 'maxlength'=>255, 'tl_class'=>'w50 clr', 'helpwizard'=>true),
             'sql'                     => "int(10) unsigned NOT NULL default 1"
         ),
         'updateVersion' => array
@@ -178,7 +188,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'inputType'               => 'select',
             'options'                 => array('cc-top', 'cc-middle', 'cc-bottom'),
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
-            'eval'                    => array('tl_class'=>'w50'),
+            'eval'                    => array('tl_class'=>'w50 clr'),
             'sql'                     => "varchar(32) NOT NULL default ''"
         ),
         'blocking' => array
@@ -188,6 +198,16 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'eval'                    => array('tl_class'=>'w50 m12'),
             'sql'                     => "char(1) NOT NULL default ''"
         ),
+        'scriptPosition' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['scriptPosition'],
+            'exclude'                 => true,
+            'inputType'               => 'select',
+            'options'                 => array('head', 'body'),
+            'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "varchar(32) NOT NULL default ''"
+        ),
         'position' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['position'],
@@ -195,7 +215,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'inputType'               => 'select',
             'options'                 => array('bodyBelowContent', 'bodyAboveContent'),
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
-            'eval'                    => array('tl_class'=>'w50'),
+            'eval'                    => array('tl_class'=>'w50 clr'),
             'sql'                     => "varchar(32) NOT NULL default ''"
         ),
         'cssID' => array

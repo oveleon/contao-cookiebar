@@ -28,6 +28,12 @@
       <trans-unit id="tl_page.cookiebarDescription.1">
         <source>Describe the purpose of the cookie bar.</source>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.0">
+        <source>Info-Description</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.1">
+        <source>Here you can define further information which is displayed below the buttons.</source>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarAlignment.0">
         <source>Alignment</source>
       </trans-unit>

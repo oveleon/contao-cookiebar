@@ -42,6 +42,7 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
             </div>
         </div>
         <div class="cc-info">
+            <?=$this->infoDescription?>
             <?php foreach ($this->infoUrls as $name => $link): ?>
                 <a href="<?=$link?>"><?=$name?></a>
             <?php endforeach; ?>

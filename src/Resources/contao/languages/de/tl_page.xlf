@@ -37,6 +37,14 @@
         <source>Describe the purpose of the cookie bar.</source>
         <target>Beschreiben Sie hier den Zweck der Cookiebar.</target>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.0">
+        <source>Info-Description</source>
+        <target>Info-Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.1">
+        <source>Here you can define further information which is displayed below the buttons.</source>
+        <target>Definieren Sie hier weitere Informationen, welche unterhalb der Buttons ausgegeben werden.</target>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarAlignment.0">
         <source>Alignment</source>
         <target>Ausrichtung</target>

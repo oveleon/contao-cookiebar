@@ -44,6 +44,16 @@ class FrontendTemplateListener
             // Parse template
             $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
 
+            // Load cookie bar scripts
+            if($objConfig->scriptPosition === 'body')
+            {
+                $strHtml .= '<script src="bundles/contaocookiebar/scripts/cookiebar.min.js"></script>';
+            }
+            else
+            {
+                $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
+            }
+
             // Add cookiebar script initialization
             $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,token:'%s',doNotTrack:%s,cookies:%s});</script>",
                 $objConfig->id,

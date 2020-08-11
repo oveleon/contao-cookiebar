@@ -18,6 +18,7 @@ Field | Description
 ---------- | -----------
 `Title` | The internal title
 `Title & Description` | A title and description which is displayed in the header of the cookie bar
+`Info-Description` | Another way to provide information. Is displayed below the buttons
 `Alignment` | Defines the orientation of the cookie bar (top, middle, bottom)
 `Blocking` | Defines whether the cookie bar should block the use of the page
 `Template` | Defines the template to be used (see [Styling & Customization](CUSTOMIZATION.md) for more information)

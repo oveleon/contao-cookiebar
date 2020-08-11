@@ -43,6 +43,7 @@
             <button class="cc-btn success" data-accept-all><?=$this->acceptAllLabel?></button>
         </div>
         <div class="cc-info">
+            <?=$this->infoDescription?>
             <?php foreach ($this->infoUrls as $name => $link): ?>
                 <a href="<?=$link?>"><?=$name?></a>
             <?php endforeach; ?>

@@ -82,6 +82,12 @@
       <trans-unit id="tl_cookiebar.description.1">
         <source>Describe the purpose of the cookie bar.</source>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.infoDescription.0">
+        <source>Info-Description</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.infoDescription.1">
+        <source>Here you can define further information which is displayed below the buttons.</source>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.0">
         <source>Info links</source>
       </trans-unit>
@@ -112,6 +118,12 @@
       <trans-unit id="tl_cookiebar.position.1">
         <source>Here you define the position of the cookie bar in HTML.</source>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.scriptPosition.0">
+        <source>Script-Position</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.scriptPosition.1">
+        <source>Here you define the position of the cookie bar scripts in HTML.</source>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.0">
         <source>CSS ID/class</source>
       </trans-unit>
@@ -130,6 +142,12 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.bodyBelowContent">
         <source>Below the content in the body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.body">
+        <source>Body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.head">
+        <source>Head tag</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cc-top">
         <source>Top</source>
