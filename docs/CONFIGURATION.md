@@ -10,31 +10,7 @@ The cookie bar can also be installed via the Contao Manager. Just find the packa
 # Configuration
 Once the package is installed, the Cookiebar menu item appears in the system palette in the main navigation of the backend. Here you can create and manage multiple configurations of a cookie bar. Afterwards it can be assigned to a ROOT page.
 
-## Basic configuration
-Basic settings must be maintained via the `config/config.yml` file.
-
-```yaml
-contao_cookiebar:
-  consider_dnt: true
-  storage_key: ccb_contao_token
-  page_templates:
-    - fe_page
-  iframe_types:
-    youtube: 
-      - ce_youtube
-    vimeo: 
-      - ce_vimeo
-    googlemaps:
-      - ce_html_googlemaps
-      - mod_html_googlemaps
-```
-
-Parameter | Description
----------- | -----------
-`consider_dnt` | Consider "Do not Track" browser setting.
-`storage_key` | The key used for localStorage
-`page_templates` | An array with page templates which should be considered.
-`iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
+ℹ If you have already used a Contao `analytic_*` template, please make sure that you do not use it anymore!
 
 ## Create new configuration
 
@@ -118,6 +94,32 @@ Template | Description
 `ccb_opener_default.html5` | Returns the template, which is responsible for the output of the Cookiebar module / content element.
 
 <br/>
+
+# Basic configuration
+Basic settings must be maintained via the `config/config.yml` file. The following values are set by default, they do not need to be added to the yml file again. 
+
+```yaml
+contao_cookiebar:
+  consider_dnt: true
+  storage_key: ccb_contao_token
+  page_templates:
+    - fe_page
+  iframe_types:
+    youtube: 
+      - ce_youtube
+    vimeo: 
+      - ce_vimeo
+    googlemaps:
+      - ce_html_googlemaps
+      - mod_html_googlemaps
+```
+
+Parameter | Description
+---------- | -----------
+`consider_dnt` | Consider "Do not Track" browser setting.
+`storage_key` | The key used for localStorage
+`page_templates` | An array with page templates which should be considered.
+`iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
 
 # Further links
 - [Styling & Customization](CUSTOMIZATION.md)

@@ -5,6 +5,16 @@ All cookie types are prepared by the PHP class `CookieHandler`. This class allow
 
 ### `addScript(string $strScript, bool $confirmed, int $pos)`
 Adds a script at the desired position (e.g. `<script>console.log(1);</script>`)
+```php
+public function addScript(string $strScript, bool $confirmed = true, int $pos = self::POS_BELOW): void
+{
+    $this->scripts[] = [
+        'script'    => $strScript,
+        'position'  => $pos,
+        'confirmed' => $confirmed
+    ];
+}
+```
 
 Parameter | Description
 ---------- | -----------
@@ -14,6 +24,16 @@ Parameter | Description
 
 ### `addResource(string $strSrc, array $flags, int $mode)`
 Adds an external resource in the header area (e.g. `<script src="www.vendor.com/script.js" async></script>`)
+```php
+public function addResource(string $strSrc, array $flags=null, int $mode = self::LOAD_CONFIRMED): void
+    {
+        $this->resources[] = [
+            'src'   => $strSrc,
+            'flags' => $flags,
+            'mode'  => $mode
+        ];
+    }
+```
 
 Parameter | Description
 ---------- | -----------
@@ -39,7 +59,7 @@ Loading-Constants | Description
 # Create own iFrame-Types
 By expanding the `config/config.yml` file, you can add as many iFrame types as you want to respond to different vendors. Types for blocking Youtube, Vimeo and Google Maps iFrames are already delivered by default. 
 
-## Example of new types
+### Example of new types
 Add a new module and the template to which you have to react:
 ```yaml
 contao_cookiebar:
@@ -49,7 +69,7 @@ contao_cookiebar:
 ```
 Now another option "vendortype" appears in the cookie type "iFrame" for the select field "iFrame types". Select this to block all iFrames with the template `ce_html_vendortype` until the cookie is accepted.
 
-## Example of additional templates
+### Example of additional templates
 If you want to supplement your own templates with an already existing iFrame type, these can also be considered.
 ```yaml
 contao_cookiebar:
