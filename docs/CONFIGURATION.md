@@ -12,7 +12,7 @@ Once the package is installed, the Cookiebar menu item appears in the system pal
 
 ℹ If you have already used a Contao `analytic_*` template, please make sure that you do not use it anymore!
 
-## 1️⃣Create new configuration
+## 1️⃣ Create new configuration
 
 Field | Description
 ---------- | -----------
@@ -25,7 +25,7 @@ Field | Description
 
 ℹ After creating a configuration, cookie settings necessary for the system are automatically created. If you do not want to display system cookies, you can simply hide them.
 
-## 2️⃣Create new cookie group
+## 2️⃣ Create new cookie group
 Now you can create additional cookie groups and thus create a meaningful separation between analysis cookies and others. A special feature is that groups can also be created without cookies and thus only act as a descriptive group.
 
 Field | Description
@@ -33,7 +33,7 @@ Field | Description
 `Group title` | A meaningful group title which describes the cookies in this group
 `Description` | A description which provides further information about this group
 
-## 3️⃣Create new cookie
+## 3️⃣ Create new cookie
 Some types for cookies are already delivered. To add your own types see [Extending your own modules](EXTENDING.md).
 
 ### Fields
