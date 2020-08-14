@@ -128,17 +128,21 @@ class FrontendTemplateListener
 
                             // Overwrite href attribute
                             $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="'.$strBlockUrl.urlencode($matches[2]).'"', $buffer);
+                            $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "'.$cookie['id'].'"); iframe.src', $buffer);
                         }
                         else
                         {
                             // Regex: Modify src attribute for iframes
-                            $frameRegex = "/<iframe(.*?s*)src=\"(.*?)\"/is";
+                            $frameRegex = "/<iframe(.*?s*) src=\"(.*?)\"/i";
 
                             // Get current src attribute
-                            preg_match($frameRegex, $buffer, $matches);
+                            preg_match_all($frameRegex, $buffer, $matches);
 
-                            // Overwrite src attribute
-                            $buffer = preg_replace($frameRegex, '<iframe$1data-ccb-id="'.$cookie['id'].'" src="'.$strBlockUrl.urlencode($matches[2]).'"', $buffer);
+                            for ($i=0; $i < count($matches[0]); $i++)
+                            {
+                                $iframe = str_replace('src="', 'data-ccb-id="'.$cookie['id'].'"  src="'.$strBlockUrl.urlencode($matches[2][$i]).'" data-src="', $matches[0][$i]);
+                                $buffer = str_replace($matches[0][$i], $iframe, $buffer);
+                            }
                         }
                     }
                 }

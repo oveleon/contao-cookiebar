@@ -10,10 +10,10 @@
 
 $GLOBALS['TL_DCA']['tl_cookie_group'] = array
 (
-	// Config
-	'config' => array
-	(
-		'dataContainer'               => 'Table',
+    // Config
+    'config' => array
+    (
+        'dataContainer'               => 'Table',
         'ptable'                      => 'tl_cookiebar',
         'ctable'                      => array('tl_cookie'),
         'switchToEdit'                => true,
@@ -23,19 +23,19 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
         (
             array('tl_cookie_group', 'checkPermission')
         ),
-		'sql' => array
-		(
-			'keys' => array
-			(
-				'id' => 'primary',
+        'sql' => array
+        (
+            'keys' => array
+            (
+                'id' => 'primary',
                 'pid,published' => 'index'
-			)
-		)
-	),
+            )
+        )
+    ),
 
-	// List
-	'list' => array
-	(
+    // List
+    'list' => array
+    (
         'sorting' => array
         (
             'mode'                    => 4,
@@ -50,18 +50,18 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             'fields'                  => array('title'),
             'format'                  => '%s'
         ),
-		'global_operations' => array
-		(
-			'all' => array
-			(
+        'global_operations' => array
+        (
+            'all' => array
+            (
                 'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-				'href'                => 'act=select',
-				'class'               => 'header_edit_all',
-				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-			)
-		),
-		'operations' => array
-		(
+                'href'                => 'act=select',
+                'class'               => 'header_edit_all',
+                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+            )
+        ),
+        'operations' => array
+        (
             'edit' => array
             (
                 'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['edit'],
@@ -111,18 +111,18 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             )
-		)
-	),
+        )
+    ),
 
-	// Palettes
-	'palettes' => array
-	(
+    // Palettes
+    'palettes' => array
+    (
         'default'                     => '{title_legend},title,published;description'
-	),
+    ),
 
     // Fields
-	'fields' => array
-	(
+    'fields' => array
+    (
         'id' => array
         (
             'sql'                     => "int(10) unsigned NOT NULL auto_increment"
@@ -173,7 +173,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
             'sql'                     => "char(1) NOT NULL default ''"
         )
-	)
+    )
 );
 
 /**
