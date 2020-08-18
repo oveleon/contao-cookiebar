@@ -60,7 +60,7 @@ class FrontendTemplateListener
                 $objConfig->pageId,
                 $objConfig->version,
                 System::getContainer()->getParameter('contao_cookiebar.storage_key'),
-                Cookiebar::cookiesAllowed() ? 0 : 1,
+                System::getContainer()->getParameter('contao_cookiebar.consider_dnt') ? 1 : 0,
                 json_encode(Cookiebar::validateCookies($objConfig))
             );
 

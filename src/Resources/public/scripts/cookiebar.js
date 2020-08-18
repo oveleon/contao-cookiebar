@@ -38,7 +38,7 @@ let ContaoCookiebar = (function () {
                 (parseInt(storage.version) !== parseInt(cookiebar.settings.version) ||
                 parseInt(storage.configId) !== parseInt(cookiebar.settings.configId) ||
                 cookiebar.settings.showAlways) &&
-                !cookiebar.settings.doNotTrack ||
+                isTrackingAllowed() ||
                 cookiebar.settings.showAlways){
                 cookiebar.show = true;
             }
@@ -551,6 +551,18 @@ let ContaoCookiebar = (function () {
         const getHostname = function(url){
             let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
             return matches && matches[1];
+        };
+
+        const isTrackingAllowed = function(){
+            if(!cookiebar.settings.doNotTrack){
+                return true;
+            }
+
+            if (window.doNotTrack || navigator.doNotTrack || navigator.msDoNotTrack || 'msTrackingProtectionEnabled' in window.external) {
+                return !(window.doNotTrack == "1" || navigator.doNotTrack == "yes" || navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1" || window.external.msTrackingProtectionEnabled());
+            }
+
+            return true;
         };
 
         /** Public methods */

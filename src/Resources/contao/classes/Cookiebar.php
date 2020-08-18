@@ -355,21 +355,6 @@ class Cookiebar
     }
 
     /**
-     * Check the browser setting whether cookies are allowed
-     *
-     * @return bool
-     */
-    public static function cookiesAllowed(): bool
-    {
-        if(!System::getContainer()->getParameter('contao_cookiebar.consider_dnt'))
-        {
-            return true;
-        }
-
-        return !(isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1);
-    }
-
-    /**
      * Create and save new log entry
      *
      * @param $configId
