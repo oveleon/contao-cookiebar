@@ -382,7 +382,6 @@ class Cookiebar
     public static function log($configId, $version, $domain=null, $url=null, $ip=null, $data=null): void
     {
         $objLog = new CookieLogModel();
-        $objResult = Database::getInstance()->prepare("SELECT id, title, token FROM tl_cookie WHERE id IN (" . implode(",", $data) . ")")->execute();
 
         $objLog->pid = $configId;
         $objLog->version = $version;
@@ -390,7 +389,12 @@ class Cookiebar
         $objLog->url = $url ?? Environment::get('requestUri');
         $objLog->ip = $ip ?? Environment::get('ip');
         $objLog->tstamp = time();
-        $objLog->config = serialize($objResult->fetchAllAssoc());
+
+        if(null !== $data)
+        {
+            $objResult = Database::getInstance()->prepare("SELECT id, title, token FROM tl_cookie WHERE id IN (" . implode(",", $data) . ")")->execute();
+            $objLog->config = serialize($objResult->fetchAllAssoc());
+        }
 
         $objLog->save();
     }
