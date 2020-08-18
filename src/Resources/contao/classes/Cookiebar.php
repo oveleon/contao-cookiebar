@@ -10,6 +10,7 @@
 
 namespace Oveleon\ContaoCookiebar;
 
+use Contao\Database;
 use Contao\Environment;
 use Contao\FrontendTemplate;
 use Contao\Input;
@@ -381,6 +382,7 @@ class Cookiebar
     public static function log($configId, $version, $domain=null, $url=null, $ip=null, $data=null): void
     {
         $objLog = new CookieLogModel();
+        $objResult = Database::getInstance()->prepare("SELECT id, title, token FROM tl_cookie WHERE id IN (" . implode(",", $data) . ")")->execute();
 
         $objLog->pid = $configId;
         $objLog->version = $version;
@@ -388,7 +390,7 @@ class Cookiebar
         $objLog->url = $url ?? Environment::get('requestUri');
         $objLog->ip = $ip ?? Environment::get('ip');
         $objLog->tstamp = time();
-        $objLog->config = serialize($data);
+        $objLog->config = serialize($objResult->fetchAllAssoc());
 
         $objLog->save();
     }
