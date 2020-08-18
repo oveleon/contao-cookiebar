@@ -238,6 +238,18 @@ let ContaoCookiebar = (function () {
         };
 
         const addResource = function(resource){
+            // Skip resources that are already available
+            try{
+                let scripts = document.querySelectorAll('script[src]');
+                let host = getHostname(resource.src);
+                for (let i = scripts.length; i--;) {
+                    if (scripts[i].src.indexOf(host) !== -1){
+                        return false;
+                    }
+                }
+            }catch (e) {}
+
+            // Load resource
             let script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.src = resource.src;
@@ -534,6 +546,11 @@ let ContaoCookiebar = (function () {
 
         const generateToken = function(){
             return cookiebar.settings.token + '_' + cookiebar.settings.configId;
+        };
+
+        const getHostname = function(url){
+            let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+            return matches && matches[1];
         };
 
         /** Public methods */
