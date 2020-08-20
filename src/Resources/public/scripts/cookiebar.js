@@ -16,11 +16,14 @@ let ContaoCookiebar = (function () {
             doNotTrack: false,
             currentPageId: 0,
             excludedPageIds: null,
+            texts: {
+                acceptAndDisplay: 'Accept'
+            },
             classes: {
-                'onSave': 'cc-saved',
-                'onShow': 'cc-active',
-                'onGroupToggle': 'cc-active',
-                'onGroupSplitSelection': 'cc-group-half'
+                onSave: 'cc-saved',
+                onShow: 'cc-active',
+                onGroupToggle: 'cc-active',
+                onGroupSplitSelection: 'cc-group-half'
             }
         };
 
@@ -30,6 +33,7 @@ let ContaoCookiebar = (function () {
             cookiebar.dom = document.querySelector(cookiebar.settings.selector);
             cookiebar.scriptCache = [];
             cookiebar.resourceCache = [];
+            cookiebar.modules = {};
             cookiebar.show = false;
 
             let storage = getStorage();
@@ -102,17 +106,24 @@ let ContaoCookiebar = (function () {
             // Add new log entry
             log();
 
-            // Show iframes
+            // Show iframes and call modules
             if(arrCookies.length){
                 arrCookies.forEach(function(cookieId){
+                    // Iframes
                     if(cookiebar.settings.cookies.hasOwnProperty(cookieId) && cookiebar.settings.cookies[cookieId].type === 'iframe'){
-                        let iframes = document.querySelectorAll('[data-ccb-id="' + cookieId + '"]');
+                        let iframes = document.querySelectorAll('iframe[data-ccb-id="' + cookieId + '"]');
 
                         if(iframes.length){
                             iframes.forEach(function(iframe){
                                 iframe.src = iframe.src;
+                                iframe.removeAttribute('data-ccb-id');
                             });
                         }
+                    }
+
+                    // Modules
+                    if(cookiebar.modules.hasOwnProperty(cookieId)){
+                        callModule(cookieId);
                     }
                 });
             }
@@ -307,6 +318,21 @@ let ContaoCookiebar = (function () {
                     btn.addEventListener('click', toggleGroup);
                 });
             }
+        };
+
+        const registerModule = function(cookieId, callback){
+            cookiebar.modules[cookieId] = callback;
+        };
+
+        const callModule = function(cookieId){
+            let module = document.querySelector('.cc-module[data-ccb-id="' + cookieId + '"]');
+
+            if(!!module){
+                module.parentNode.removeChild(module);
+            }
+
+            cookiebar.modules[cookieId]();
+            delete cookiebar.modules[cookieId];
         };
 
         const restoreCookieStatus = function(){
@@ -609,6 +635,44 @@ let ContaoCookiebar = (function () {
             }
 
             push(cookieId);
+        };
+
+        p.addModule = function(cookieId, callback, objContent){
+            registerModule(cookieId, callback);
+
+            if(p.issetCookie(cookieId)){
+                callModule(cookieId);
+                return false;
+            }
+
+            if(objContent && typeof objContent === 'object' && objContent.selector){
+                let container = document.querySelector(objContent.selector);
+
+                if(!!container){
+                    let html = document.createElement("div");
+                        html.setAttribute('data-ccb-id', cookieId);
+                        html.classList.add('cc-module');
+                        html.innerHTML = '<p>' + objContent.message + '</p>';
+
+                    if(typeof objContent.button === 'object' && true === objContent.button.show){
+                        var btn = document.createElement("button");
+                            btn.innerHTML = objContent.button.text || cookiebar.settings.texts.acceptAndDisplay;
+
+                        if(objContent.button.classes){
+                            btn.className = objContent.button.classes;
+                        }
+
+                        btn.addEventListener('click', function(){
+                            push(cookieId);
+                            callModule(cookieId);
+                        });
+
+                        html.append(btn);
+                    }
+
+                    container.appendChild(html);
+                }
+            }
         };
 
         p.show = function(restore){
