@@ -15,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'activateCookiebar
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'overwriteCookiebarMeta';
 
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['activateCookiebar'] = 'cookiebarConfig,overwriteCookiebarMeta';
-$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarTemplate,cookiebarInfoUrls';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarTemplate,cookiebarInfoUrls,cookiebarExcludePages';
 
 // Fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = array
@@ -70,6 +70,16 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarInfoUrls'] = array
     'inputType'               => 'pageTree',
     'foreignKey'              => 'tl_page.title',
     'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50 clr'),
+    'sql'                     => "blob NULL",
+    'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarExcludePages'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarExcludePages'],
+    'inputType'               => 'pageTree',
+    'foreignKey'              => 'tl_page.title',
+    'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50'),
     'sql'                     => "blob NULL",
     'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
 );

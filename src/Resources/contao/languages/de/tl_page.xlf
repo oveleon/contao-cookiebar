@@ -69,6 +69,14 @@
         <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
         <target>Geben Sie hier weitere Links an, z.B. zur Datenschutzerklärung, Impressum oder rechtlichen Hinweisen.</target>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.0">
+        <source>Exclude Pages</source>
+        <target>Seiten ausschließen</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.1">
+        <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
+        <target>Definieren Sie hier die Seiten, in denen die Cookiebar nicht automatisch geöffnet werden soll.</target>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.0">
         <source>Template</source>
         <target>Template</target>

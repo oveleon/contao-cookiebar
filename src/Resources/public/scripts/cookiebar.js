@@ -14,12 +14,13 @@ let ContaoCookiebar = (function () {
             version: null,
             cookies: null,
             doNotTrack: false,
-            showAlways: false,
+            currentPageId: 0,
+            excludedPageIds: null,
             classes: {
                 'onSave': 'cc-saved',
                 'onShow': 'cc-active',
                 'onGroupToggle': 'cc-active',
-                'onGroupSplitSelection': 'cc-group-half',
+                'onGroupSplitSelection': 'cc-group-half'
             }
         };
 
@@ -36,10 +37,10 @@ let ContaoCookiebar = (function () {
             // Set visibility
             if(
                 (parseInt(storage.version) !== parseInt(cookiebar.settings.version) ||
-                parseInt(storage.configId) !== parseInt(cookiebar.settings.configId) ||
-                cookiebar.settings.showAlways) &&
-                isTrackingAllowed() ||
-                cookiebar.settings.showAlways){
+                 parseInt(storage.configId) !== parseInt(cookiebar.settings.configId)) &&
+                isTrackingAllowed() &&
+                isPageAllowed()
+            ){
                 cookiebar.show = true;
             }
 
@@ -513,6 +514,10 @@ let ContaoCookiebar = (function () {
             return extended;
         };
 
+        const generateToken = function(){
+            return cookiebar.settings.token + '_' + cookiebar.settings.configId;
+        };
+
         const createScript = function(html) {
             let script = document.createElement('script');
                 script.type = 'text/javascript';
@@ -544,13 +549,13 @@ let ContaoCookiebar = (function () {
             return objStorage;
         };
 
-        const generateToken = function(){
-            return cookiebar.settings.token + '_' + cookiebar.settings.configId;
-        };
-
         const getHostname = function(url){
             let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
             return matches && matches[1];
+        };
+
+        const isPageAllowed = function(){
+            return !(cookiebar.settings.currentPageId && cookiebar.settings.excludedPageIds && cookiebar.settings.excludedPageIds.indexOf(cookiebar.settings.currentPageId) !== -1);
         };
 
         const isTrackingAllowed = function(){

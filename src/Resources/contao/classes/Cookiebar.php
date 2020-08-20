@@ -64,6 +64,7 @@ class Cookiebar
             $objConfig->description     = $objMeta->cookiebarDescription;
             $objConfig->infoDescription = $objMeta->cookiebarInfoDescription;
             $objConfig->infoUrls        = $objMeta->cookiebarInfoUrls;
+            $objConfig->excludePages    = $objMeta->cookiebarExcludePages;
             $objConfig->template        = $objMeta->cookiebarTemplate;
             $objConfig->alignment       = $objMeta->cookiebarAlignment;
             $objConfig->blocking        = $objMeta->cookiebarBlocking;

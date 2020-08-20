@@ -98,7 +98,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,template,infoUrls;{expert_legend:hide},cssID,position,scriptPosition,version,updateVersion'
+        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,template,infoUrls,excludePages;{expert_legend:hide},cssID,position,scriptPosition,version,updateVersion'
 	),
 
     // Fields
@@ -165,6 +165,16 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'inputType'               => 'pageTree',
             'foreignKey'              => 'tl_page.title',
             'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50 clr'),
+            'sql'                     => "blob NULL",
+            'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
+        ),
+        'excludePages' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['excludePages'],
+            'exclude'                 => true,
+            'inputType'               => 'pageTree',
+            'foreignKey'              => 'tl_page.title',
+            'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50'),
             'sql'                     => "blob NULL",
             'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
         ),

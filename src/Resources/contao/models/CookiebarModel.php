@@ -23,6 +23,7 @@ use Contao\Model;
  * @property integer $version
  * @property boolean $updateVersion
  * @property string  $infoUrls
+ * @property string  $excludePages
  * @property string  $template
  * @property string  $alignment
  * @property string  $blocking

@@ -52,6 +52,12 @@
       <trans-unit id="tl_page.cookiebarInfoUrls.1">
         <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.0">
+        <source>Exclude Pages</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.1">
+        <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.0">
         <source>Template</source>
       </trans-unit>
