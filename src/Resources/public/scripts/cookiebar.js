@@ -589,8 +589,8 @@ let ContaoCookiebar = (function () {
                 return true;
             }
 
-            if (window.doNotTrack || navigator.doNotTrack || navigator.msDoNotTrack || 'msTrackingProtectionEnabled' in window.external) {
-                return !(window.doNotTrack == "1" || navigator.doNotTrack == "yes" || navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1" || window.external.msTrackingProtectionEnabled());
+            if (window.doNotTrack || navigator.doNotTrack || navigator.msDoNotTrack) {
+                return !(window.doNotTrack == "1" || navigator.doNotTrack == "yes" || navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1");
             }
 
             return true;
