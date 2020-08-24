@@ -361,7 +361,6 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 	)
 );
 
-
 /**
  * Provide miscellaneous methods that are used by the data configuration array.
  */
@@ -616,26 +615,33 @@ class tl_cookie extends Contao\Backend
      */
     public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
     {
-        if (Contao\Input::get('cid'))
+        $token = 'cid';
+        $packages = Contao\System::getContainer()->getParameter('kernel.packages');
+
+        if(floatval($packages['contao/core-bundle']) < 4.8){
+            $token = 'tid';
+        }
+
+        if (strlen(Input::get($token)))
         {
-            $this->toggleVisibility(Contao\Input::get('cid'), (Contao\Input::get('state') == 1), (@func_get_arg(12) ?: null));
+            $this->toggleVisibility(Input::get($token), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
             $this->redirect($this->getReferer());
         }
 
-        // Check permissions AFTER checking the cid, so hacking attempts are logged
+        // Check permissions AFTER checking the tid, so hacking attempts are logged
         if (!$this->User->hasAccess('tl_cookie::published', 'alexf'))
         {
             return '';
         }
 
-        $href .= '&amp;id=' . Contao\Input::get('id') . '&amp;cid=' . $row['id'] . '&amp;state=' . $row['published'];
+        $href .= '&amp;id=' . Input::get('id') . '&amp;'.$token.'=' . $row['id'] . '&amp;state=' . $row['published'];
 
         if (!$row['published'])
         {
             $icon = 'invisible.svg';
         }
 
-        return '<a href="' . $this->addToUrl($href) . '" title="' . Contao\StringUtil::specialchars($title) . '" data-tid="cid"' . $attributes . '>' . Contao\Image::getHtml($icon, $label, 'data-state="' . (!$row['published'] ? 0 : 1) . '"') . '</a> ';
+        return '<a href="' . $this->addToUrl($href) . '" title="' . StringUtil::specialchars($title) . '" data-tid="cid"' . $attributes . '>' . Image::getHtml($icon, $label, 'data-state="' . ($row['published'] ? 1 : 0) . '"') . '</a> ';
     }
 
     /**
