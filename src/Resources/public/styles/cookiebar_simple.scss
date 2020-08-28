@@ -11,7 +11,6 @@ $cookiebar-animation-duration: .5s;
 
   p{
     color: #868686;
-    font-style: italic;
     line-height: 1.4;
   }
 
@@ -45,6 +44,10 @@ $cookiebar-animation-duration: .5s;
   .cc-cookies{
     background: #fbfbfb;
 
+    > p {
+      font-size: 0.875rem;
+    }
+
     > p, >.cc-cookie{
       margin: 0;
       padding: 15px;
@@ -54,7 +57,6 @@ $cookiebar-animation-duration: .5s;
     .cc-cookie {
 
       .cc-cookie-info{
-        font-size: 14px;
 
         > div + div{
           margin-top: 5px;
@@ -67,6 +69,7 @@ $cookiebar-animation-duration: .5s;
 
       p{
         margin: 0 0 15px;
+        font-size: 0.875rem;
       }
     }
   }
@@ -78,9 +81,13 @@ $cookiebar-animation-duration: .5s;
   .cc-info {
     margin-top: 15px;
 
-    a{
+    > p{
+      font-size: 0.875rem;
+    }
+
+    > a{
       display: inline-block;
-      font-size: 13px;
+      font-size: 0.813rem;
       color: #a2a2a2;
       text-decoration: none;
 

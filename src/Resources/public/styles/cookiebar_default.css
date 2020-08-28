@@ -91,14 +91,6 @@
 .contao-cookiebar .cc-btn.success:hover {
   background: #4c933f;
 }
-.contao-cookiebar .cc-btn.warn {
-  background: #9e3b2d;
-  border-color: #781e1f;
-  color: #fff;
-}
-.contao-cookiebar .cc-btn.warn:hover {
-  background: #873a2c;
-}
 .contao-cookiebar .cc-btn:last-child {
   margin-bottom: 0;
 }
@@ -291,7 +283,6 @@
 }
 .cookiebar_default p {
   color: #868686;
-  font-style: italic;
   line-height: 1.4;
 }
 .cookiebar_default .cc-inner {
@@ -341,13 +332,13 @@
   display: none;
   background: #fbfbfb;
 }
+.cookiebar_default .cc-cookies > p {
+  font-size: 0.875rem;
+}
 .cookiebar_default .cc-cookies > p, .cookiebar_default .cc-cookies > .cc-cookie {
   margin: 0;
   padding: 15px;
   border-top: 1px solid #e6e6e6;
-}
-.cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info {
-  font-size: 14px;
 }
 .cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info > div + div {
   margin-top: 5px;
@@ -357,6 +348,7 @@
 }
 .cookiebar_default .cc-cookies .cc-cookie p {
   margin: 0 0 15px;
+  font-size: 0.875rem;
 }
 .cookiebar_default .cc-footer, .cookiebar_default .cc-info {
   text-align: center;
@@ -364,16 +356,19 @@
 .cookiebar_default .cc-info {
   margin-top: 15px;
 }
-.cookiebar_default .cc-info a {
+.cookiebar_default .cc-info > p {
+  font-size: 0.875rem;
+}
+.cookiebar_default .cc-info > a {
   display: inline-block;
-  font-size: 13px;
+  font-size: 0.813rem;
   color: #a2a2a2;
   text-decoration: none;
 }
-.cookiebar_default .cc-info a:hover {
+.cookiebar_default .cc-info > a:hover {
   color: #717171;
 }
-.cookiebar_default .cc-info a + a:before {
+.cookiebar_default .cc-info > a + a:before {
   display: inline-block;
   content: "·";
   margin-right: 5px;
