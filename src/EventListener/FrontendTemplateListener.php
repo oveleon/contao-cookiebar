@@ -52,7 +52,7 @@ class FrontendTemplateListener
             }
             else
             {
-                $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
+                $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js|static';
             }
 
             // Add cookiebar script initialization
