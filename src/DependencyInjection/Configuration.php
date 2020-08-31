@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->booleanNode('consider_dnt')
-                    ->defaultTrue()
+                    ->defaultFalse()
                 ->end()
                 ->scalarNode('storage_key')
                     ->info('Cookie bar localStorage key')
