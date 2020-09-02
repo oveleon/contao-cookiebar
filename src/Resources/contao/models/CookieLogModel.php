@@ -16,7 +16,7 @@ use Contao\Model;
  * Reads and writes cookie logs
  *
  * @property integer $id
- * @property integer $pid
+ * @property integer $cid
  * @property integer $version
  * @property integer $tstamp
  * @property string  $domain
@@ -32,8 +32,7 @@ use Contao\Model;
  * @method static CookieLogModel|null findOneByUrl($val, array $opt=array())
  * @method static CookieLogModel|null findOneByIp($val, array $opt=array())
  *
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByPid($val, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByPtable($val, array $opt=array())
+ * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByCid($val, array $opt=array())
  * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByTstamp($val, array $opt=array())
  * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByDomain($val, array $opt=array())
  * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByUrl($val, array $opt=array())

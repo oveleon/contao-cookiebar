@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
 			'keys' => array
 			(
 				'id' => 'primary',
-                'pid' => 'index'
+                'cid' => 'index'
 			)
 		)
 	),
@@ -32,18 +32,24 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
 	(
         'sorting' => array
         (
-            'mode'                    => 1,
-            'fields'                  => array('id','pid','version','domain','url', 'ip','tstamp'),
-            'flag'                    => 1,
-            'panelLayout'             => 'search,limit'
+            'mode'                    => 2,
+            'fields'                  => array('tstamp'),
+            'flag'                    => 2,
+            'panelLayout'             => 'filter;sort,search,limit'
         ),
         'label' => array
         (
-            'fields'                  => array('id','pid','version','domain','url', 'ip','tstamp'),
+            'fields'                  => array('id','cid','version','domain','url', 'ip','tstamp'),
             'showColumns'             => true,
         ),
 		'global_operations' => array
 		(
+            'all' => array
+            (
+                'href'                => 'act=select',
+                'class'               => 'header_edit_all',
+                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+            )
 			/*'export' => array
 			(
                 'href'                => 'key=exportConfigLog',
@@ -56,7 +62,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
             (
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
+                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
             ),
             'show' => array
             (
@@ -69,7 +75,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{log_legend},pid,version,tstamp,domain,url,ip,config'
+        'default'                     => '{log_legend},cid,version,tstamp,domain,url,ip,config'
 	),
 
     // Fields
@@ -77,18 +83,23 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
 	(
         'id' => array
         (
+            'sorting'                 => true,
             'sql'                     => "int(10) unsigned NOT NULL auto_increment"
         ),
-        'pid' => array
+        'cid' => array
         (
             'sql'                     => "int(10) unsigned NOT NULL default 0"
         ),
         'version' => array
         (
+            'sorting'                 => true,
             'sql'                     => "int(10) unsigned NOT NULL default 0"
         ),
         'tstamp' => array
         (
+            'filter'                  => true,
+            'sorting'                 => true,
+            'flag'                    => 6,
             'sql'                     => "int(10) unsigned NOT NULL default 0"
         ),
         'domain' => array

@@ -369,7 +369,7 @@ class Cookiebar
     {
         $objLog = new CookieLogModel();
 
-        $objLog->pid = $configId;
+        $objLog->cid = $configId;
         $objLog->version = $version;
         $objLog->domain = $domain ?? Environment::get('url');
         $objLog->url = $url ?? Environment::get('requestUri');

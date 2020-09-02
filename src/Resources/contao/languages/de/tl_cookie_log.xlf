@@ -5,7 +5,7 @@
         <source>Id</source>
         <target>Id</target>
       </trans-unit>
-      <trans-unit id="tl_cookie_log.pid.0">
+      <trans-unit id="tl_cookie_log.cid.0">
         <source>Cookiebar</source>
         <target>Cookiebar</target>
       </trans-unit>
