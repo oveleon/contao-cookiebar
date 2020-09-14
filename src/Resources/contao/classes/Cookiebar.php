@@ -17,6 +17,7 @@ use Contao\Input;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
+use Oveleon\ContaoCookiebar\Exception\NoCookiebarSpecifiedException;
 
 class Cookiebar
 {
@@ -34,7 +35,7 @@ class Cookiebar
      *
      * @return object
      */
-    public static function getConfig(int $configId, $objMeta=null)
+    public static function getConfig($configId, $objMeta=null)
     {
         if(null !== static::$configCache)
         {
@@ -45,7 +46,7 @@ class Cookiebar
 
         if(null === $objCookiebar)
         {
-            return null;
+            throw new NoCookiebarSpecifiedException('No cookiebar specified');
         }
 
         $objCookieGroups = CookieGroupModel::findPublishedByPid($objCookiebar->id);
