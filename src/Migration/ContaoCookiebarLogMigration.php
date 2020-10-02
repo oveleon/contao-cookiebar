@@ -18,6 +18,11 @@ class ContaoCookiebarLogMigration extends AbstractMigration
         $this->connection = $connection;
     }
 
+    public function getName(): string
+    {
+        return 'Rename field pid for Contao Cookiebar';
+    }
+
     public function shouldRun(): bool
     {
         $schemaManager = $this->connection->getSchemaManager();

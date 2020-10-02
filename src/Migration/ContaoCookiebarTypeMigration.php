@@ -18,6 +18,11 @@ class ContaoCookiebarTypeMigration extends AbstractMigration
         $this->connection = $connection;
     }
 
+    public function getName(): string
+    {
+        return 'Change types for Cookies from youtube and vimeo for Contao Cookiebar';
+    }
+
     public function shouldRun(): bool
     {
         $schemaManager = $this->connection->getSchemaManager();

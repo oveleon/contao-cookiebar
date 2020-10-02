@@ -18,6 +18,11 @@ class ContaoCookiebarCookieMigration extends AbstractMigration
         $this->connection = $connection;
     }
 
+    public function getName(): string
+    {
+        return 'Remove old Cookie for Contao Cookiebar';
+    }
+
     public function shouldRun(): bool
     {
         $schemaManager = $this->connection->getSchemaManager();
@@ -39,7 +44,7 @@ class ContaoCookiebarCookieMigration extends AbstractMigration
 
         return new MigrationResult(
             true,
-            'Contao Cookiebar cookie token was successfully removed from the configurations.'
+            'Contao Cookiebar cookie was successfully removed from the configurations.'
         );
     }
 }
