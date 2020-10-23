@@ -111,22 +111,12 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 	'palettes' => array
 	(
 	    '__selector__'                => array('type'),
-<<<<<<< HEAD
         'default'                     => '{title_legend},title,token,showTokens,expireTime,provider,type;{description_legend:hide},description,detailDescription;published,disabled;',
         'script'                      => '{title_legend},title,token,showTokens,expireTime,provider,type;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published;',
         'googleAnalytics'             => '{title_legend},title,token,showTokens,expireTime,provider,type;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;published;',
         'facebookPixel'               => '{title_legend},title,token,showTokens,expireTime,provider,type;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;published;',
         'matomo'                      => '{title_legend},title,token,showTokens,expireTime,provider,type;{matomo_legend},vendorId,vendorUrl;{description_legend:hide},description,detailDescription;published;',
         'iframe'                      => '{title_legend},title,token,showTokens,expireTime,provider,type;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description,detailDescription;published;',
-        
-=======
-        'default'                     => '{title_legend},title,token,expireTime,provider,type;{description_legend:hide},description;published,disabled;',
-        'script'                      => '{title_legend},title,token,expireTime,provider,type;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description;published;',
-        'googleAnalytics'             => '{title_legend},title,token,expireTime,provider,type;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description;published;',
-        'facebookPixel'               => '{title_legend},title,token,expireTime,provider,type;{facebook_pixel_legend},vendorId;{description_legend:hide},description;published;',
-        'matomo'                      => '{title_legend},title,token,expireTime,provider,type;{matomo_legend},vendorId,vendorUrl;{description_legend:hide},description;published;',
-        'iframe'                      => '{title_legend},title,token,expireTime,provider,type;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description;published;',
->>>>>>> f900f0e528b21d570ad49533fd6ce1a58c36cb68
 	),
 
     // Fields
