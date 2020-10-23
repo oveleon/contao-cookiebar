@@ -72,6 +72,45 @@ $cookiebar-animation-duration: .5s;
         color: #717171;
       }
     }
+
+    .cc-detail-btn-details{
+      border: 0 none;
+      outline: 0 none;
+      background: transparent;
+      font-size: 13px;
+      letter-spacing: 0;
+      text-transform: initial;
+      cursor: pointer;
+      color: #a2a2a2;
+      text-decoration: underline;
+      padding: 0;
+      margin: 15px 0;
+
+      span{
+
+        &:nth-child(2){
+          display: none;
+        }
+      }
+
+      &.cc-active{
+
+        span{
+
+          &:nth-child(1){
+            display: none;
+          }
+
+          &:nth-child(2){
+            display: inline;
+          }
+        }
+      }
+
+      &:hover{
+        color: #717171;
+      }
+    }
   }
 
   .cc-cookies{
