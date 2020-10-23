@@ -80,7 +80,7 @@ class CookiebarController extends AbstractController
         }
 
         /** @var FrontendTemplate $objTemplate */
-        $objTemplate = new FrontendTemplate('ccb_element_blocker');
+        $objTemplate = new FrontendTemplate($objCookie->blockTemplate ?: 'ccb_element_blocker');
 
         $objTemplate->language = $GLOBALS['TL_LANGUAGE'];
         $objTemplate->id = $objCookie->id;

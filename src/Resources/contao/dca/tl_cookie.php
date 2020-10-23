@@ -116,7 +116,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         'googleAnalytics'             => '{title_legend},title,token,expireTime,provider,type;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description;published;',
         'facebookPixel'               => '{title_legend},title,token,expireTime,provider,type;{facebook_pixel_legend},vendorId;{description_legend:hide},description;published;',
         'matomo'                      => '{title_legend},title,token,expireTime,provider,type;{matomo_legend},vendorId,vendorUrl;{description_legend:hide},description;published;',
-        'iframe'                      => '{title_legend},title,token,expireTime,provider,type;{iframe_legend},iframeType,blockDescription;{description_legend:hide},description;published;',
+        'iframe'                      => '{title_legend},title,token,expireTime,provider,type;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description;published;',
 	),
 
     // Fields
@@ -213,6 +213,20 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => array('tl_class'=>'w50'),
             'sql'                     => array('name'=>'iframeType', 'type'=>'string', 'length'=>64, 'default'=>'')
+        ),
+        'blockTemplate' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['blockTemplate'],
+            'default'                 => 'ccb_element_blocker',
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'select',
+            'options_callback' => static function ()
+            {
+                return Contao\Controller::getTemplateGroup('ccb_element_');
+            },
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "varchar(64) NOT NULL default ''"
         ),
         'vendorId' => array
         (

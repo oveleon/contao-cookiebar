@@ -61,6 +61,14 @@
         <source>Select a iframe type.</source>
         <target>Wählen Sie einen iFrame-Typen.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.blockTemplate.0">
+        <source>Template (blocked)</source>
+        <target>Template (blockiert)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockTemplate.1">
+        <source>Choose a template which will be used when the content is blocked.</source>
+        <target>Wählen Sie ein Template, welches verwendet wird, wenn der Inhalt blockiert wird.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.0">
         <source>Source URL</source>
         <target>Quell-URL</target>

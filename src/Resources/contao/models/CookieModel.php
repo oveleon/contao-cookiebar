@@ -27,6 +27,8 @@ use Contao\Model;
  * @property string  $type
  * @property string  $vendorId
  * @property string  $vendorUrl
+ * @property string  $iframeType
+ * @property string  $blockTemplate
  * @property string  $description
  * @property string  $sourceUrl
  * @property integer $sourceLoadingMode

@@ -43,6 +43,18 @@
       <trans-unit id="tl_cookie.type.1">
         <source>Select a predefined cookie type or create your own by leaving this field blank.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.iframeType.0">
+        <source>iFrame-Type</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.iframeType.1">
+        <source>Select a iframe type.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockTemplate.0">
+        <source>Template (blocked)</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockTemplate.1">
+        <source>Choose a template which will be used when the content is blocked.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.0">
         <source>Source URL</source>
       </trans-unit>
