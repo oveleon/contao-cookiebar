@@ -15,7 +15,8 @@
   "require":{
     "php":">=7.2",
     "ext-json": "*",
-    "contao/core-bundle":"^4.4"
+    "contao/core-bundle":"^4.4",
+    "contao-community-alliance/contao-polyfill-bundle": "^1.1"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0"
