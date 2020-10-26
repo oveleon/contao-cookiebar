@@ -328,6 +328,7 @@
   color: #717171;
 }
 .cookiebar_default .cc-group .cc-detail-btn-details {
+  display: inline-block;
   border: 0 none;
   outline: 0 none;
   background: transparent;
@@ -338,7 +339,7 @@
   color: #a2a2a2;
   text-decoration: underline;
   padding: 0;
-  margin: 15px 0;
+  margin: 0 0 10px;
 }
 .cookiebar_default .cc-group .cc-detail-btn-details span:nth-child(2) {
   display: none;
@@ -364,11 +365,24 @@
   padding: 15px;
   border-top: 1px solid #e6e6e6;
 }
+.cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info {
+  font-size: 0.875rem;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #efefef;
+}
 .cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info > div + div {
   margin-top: 5px;
 }
-.cookiebar_default .cc-cookies .cc-cookie label.cookie {
-  margin-bottom: 10px;
+.cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info + button.cc-detail-btn-details {
+  margin-top: 15px;
+}
+.cookiebar_default .cc-cookies .cc-cookie .cc-cookie-desc > p {
+  margin-bottom: 0;
+}
+.cookiebar_default .cc-cookies .cc-cookie label.cookie + p, .cookiebar_default .cc-cookies .cc-cookie label.cookie + .cc-cookie-info, .cookiebar_default .cc-cookies .cc-cookie label.cookie + button.cc-detail-btn-details {
+  margin-top: 10px;
 }
 .cookiebar_default .cc-cookies .cc-cookie p {
   margin: 0 0 15px;

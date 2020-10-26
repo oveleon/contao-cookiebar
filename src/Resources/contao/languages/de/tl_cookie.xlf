@@ -50,12 +50,28 @@
         <target>Geben Sie den/die eindeutigen Namen (Token) in einer durch Komma getrennten Liste für das Cookie ein (z.B. _ga, gid, ...). Diese sind zwingend erforderlich, um bereits gesetzte Cookies wieder löschen zu können.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showTokens.0">
-        <source>Show Cookie-Token names</source>
-        <target>Cookie-Token Namen anzeigen</target>
+        <source>Show Cookie-Token</source>
+        <target>Cookie-Token anzeigen</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showTokens.1">
-        <source>Defines if the Cookie-Token names should be visible in the info section.</source>
-        <target>Gibt an ob die Cookie-Token Namen im Infobereich angezeigt werden sollen.</target>
+        <source>Defines if the Cookie-Token should be visible in the info section.</source>
+        <target>Definiert, ob die Cookie-Token im Infobereich angezeigt werden sollen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showExpireTime.0">
+        <source>Show expire time</source>
+        <target>Cookie Speicherdauer anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showExpireTime.1">
+        <source>Defines whether the expire time should be visible in the info section.</source>
+        <target>Definiert, ob die Speicherdauer im Info-Abschnitt angezeigt werden soll.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showProvider.0">
+        <source>Show provider</source>
+        <target>Anbieter anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showProvider.1">
+        <source>Defines whether the provider should be visible in the info section.</source>
+        <target>Definiert, ob der Anbieter im Info-Abschnitt angezeigt werden soll.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.type.0">
         <source>Cookie-Type</source>
