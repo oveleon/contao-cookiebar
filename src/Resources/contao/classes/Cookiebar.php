@@ -201,7 +201,7 @@ class Cookiebar
         $objTemplate->hideMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideMoreDetailsLabel'];
         $objTemplate->providerLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['providerLabel'];
         $objTemplate->expireLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['expireLabel'];
-        $objTemplate->showTokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showTokenLabel'];
+        $objTemplate->tokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['tokenLabel'];
 
         // Collect info links
         $arrLinks = [];

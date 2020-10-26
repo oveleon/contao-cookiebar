@@ -60,8 +60,8 @@
       <trans-unit id="tl_cookiebar.expireLabel">
         <source>Storage duration</source>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.showTokenLabel">
-        <source>Tokens</source>
+      <trans-unit id="tl_cookiebar.tokenLabel">
+        <source>Technical name</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.changePrivacyLabel">
         <source>Change privacy settings</source>

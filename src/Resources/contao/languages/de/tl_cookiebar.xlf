@@ -79,9 +79,9 @@
         <source>Storage duration</source>
         <target>Speicherdauer</target>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.showTokenLabel">
-        <source>Tokens</source>
-        <target>Tokens</target>
+      <trans-unit id="tl_cookiebar.tokenLabel">
+        <source>Technical name</source>
+        <target>Technischer Name</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.changePrivacyLabel">
         <source>Change privacy settings</source>

@@ -327,7 +327,6 @@
 .cookiebar_default .cc-group .cc-detail-btn:hover {
   color: #717171;
 }
-
 .cookiebar_default .cc-group .cc-detail-btn-details {
   border: 0 none;
   outline: 0 none;
@@ -353,8 +352,6 @@
 .cookiebar_default .cc-group .cc-detail-btn-details:hover {
   color: #717171;
 }
-
-
 .cookiebar_default .cc-cookies {
   display: none;
   background: #fbfbfb;
