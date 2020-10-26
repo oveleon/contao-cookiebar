@@ -31,8 +31,20 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
                                         <?php if($cookie->expireTime): ?>
                                             <div><strong><?=$this->expireLabel?>:</strong> <?=$cookie->expireTime?></div>
                                         <?php endif; ?>
+                                        <?php if($cookie->showTokens): ?>
+                                            <div><strong><?=$this->showTokenLabel?>:</strong> <?=$cookie->token?></div>
+                                        <?php endif; ?>
                                     </div>
-                                </div>
+                                    <?php if($cookie->detailDescription): ?>
+                                    <button class="cc-detail-btn-details" data-toggle-group>
+                                        <span><?=$this->showMoreDetailsLabel?></span>
+                                        <span><?=$this->hideMoreDetailsLabel?></span>
+                                    </button>
+                                    <div class="cc-cookie toggle-group" style="display: none">
+                                    <?=$cookie->detailDescription?>
+                                    </div>
+                                    <?php endif; ?>
+                                    </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
