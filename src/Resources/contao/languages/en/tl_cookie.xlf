@@ -13,6 +13,9 @@
       <trans-unit id="tl_cookie.description_legend">
         <source>Description</source>
       </trans-unit>
+       <trans-unit id="tl_cookie.detailDescription_legend">
+        <source>Detail Description</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.google_analytics_legend">
         <source>Google Analytics</source>
       </trans-unit>
@@ -36,6 +39,24 @@
       </trans-unit>
       <trans-unit id="tl_cookie.token.1">
         <source>Enter the unique name(s) (token) in a comma-separated list for the cookie (e.g. _ga, gid, ...). These are mandatory to be able to delete cookies that have already been set.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showTokens.0">
+        <source>Show Cookie-Token</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showTokens.1">
+        <source>Defines if the Cookie-Token should be visible in the info section.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showExpireTime.0">
+        <source>Show expire time</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showExpireTime.1">
+        <source>Defines whether the expire time should be visible in the info section.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showProvider.0">
+        <source>Show provider</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showProvider.1">
+        <source>Defines whether the provider should be visible in the info section.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.type.0">
         <source>Cookie-Type</source>
@@ -108,6 +129,12 @@
       </trans-unit>
       <trans-unit id="tl_cookie.description.1">
         <source>Describe the cookie and its purpose.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.detailDescription.0">
+        <source>Detail Description</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.detailDescription.1">
+        <source>Describe the cookie and its purpose with more details.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.0">
         <source>Description (blocked)</source>

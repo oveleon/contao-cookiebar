@@ -17,6 +17,10 @@
         <source>Description</source>
         <target>Beschreibung</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.detailDescription_legend">
+        <source>Detail Description</source>
+        <target>Detailierte Beschreibung</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.google_analytics_legend">
         <source>Google Analytics</source>
         <target>Google Analytics</target>
@@ -44,6 +48,30 @@
       <trans-unit id="tl_cookie.token.1">
         <source>Enter the unique name(s) (token) in a comma-separated list for the cookie (e.g. _ga, gid, ...). These are mandatory to be able to delete cookies that have already been set.</source>
         <target>Geben Sie den/die eindeutigen Namen (Token) in einer durch Komma getrennten Liste für das Cookie ein (z.B. _ga, gid, ...). Diese sind zwingend erforderlich, um bereits gesetzte Cookies wieder löschen zu können.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showTokens.0">
+        <source>Show Cookie-Token</source>
+        <target>Cookie-Token anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showTokens.1">
+        <source>Defines if the Cookie-Token should be visible in the info section.</source>
+        <target>Definiert, ob die Cookie-Token im Infobereich angezeigt werden sollen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showExpireTime.0">
+        <source>Show expire time</source>
+        <target>Cookie Speicherdauer anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showExpireTime.1">
+        <source>Defines whether the expire time should be visible in the info section.</source>
+        <target>Definiert, ob die Speicherdauer im Info-Abschnitt angezeigt werden soll.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showProvider.0">
+        <source>Show provider</source>
+        <target>Anbieter anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.showProvider.1">
+        <source>Defines whether the provider should be visible in the info section.</source>
+        <target>Definiert, ob der Anbieter im Info-Abschnitt angezeigt werden soll.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.type.0">
         <source>Cookie-Type</source>
@@ -140,6 +168,14 @@
       <trans-unit id="tl_cookie.description.1">
         <source>Describe the cookie and its purpose.</source>
         <target>Beschreiben Sie hier den Cookie und dessen Zweck.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.detailDescription.0">
+        <source>Detail Description</source>
+        <target>Detailierte Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.detailDescription.1">
+        <source>Describe the cookie and its purpose with more details.</source>
+        <target>Beschreiben Sie hier den Cookie und dessen Zweck genauer.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.0">
         <source>Description (blocked)</source>

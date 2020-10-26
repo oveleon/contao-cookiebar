@@ -63,6 +63,14 @@
         <source>Hide details</source>
         <target>Details ausblenden</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.showMoreDetailsLabel">
+        <source>Show more details</source>
+        <target>Mehr Details einblenden</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.hideMoreDetailsLabel">
+        <source>Hide more details</source>
+        <target>Mehr Details ausblenden</target>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.providerLabel">
         <source>Provider</source>
         <target>Anbieter</target>
@@ -70,6 +78,10 @@
       <trans-unit id="tl_cookiebar.expireLabel">
         <source>Storage duration</source>
         <target>Speicherdauer</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.tokenLabel">
+        <source>Technical name</source>
+        <target>Technischer Name</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.changePrivacyLabel">
         <source>Change privacy settings</source>

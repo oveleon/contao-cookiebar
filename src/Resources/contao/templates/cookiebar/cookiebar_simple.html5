@@ -24,14 +24,28 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
                                     <input type="checkbox" name="cookie[]" id="c<?=$cookie->id?>" value="<?=$cookie->id?>"<?=$cookie->isLocked || $cookie->isDisabled ? ' disabled checked' : ''?>>
                                     <label for="c<?=$cookie->id?>" class="cookie"><?=$cookie->title?></label>
                                     <?=$cookie->description?>
-                                    <div class="cc-cookie-info">
-                                        <?php if($cookie->provider): ?>
-                                            <div><strong><?=$this->providerLabel?>:</strong> <?=$cookie->provider?></div>
-                                        <?php endif; ?>
-                                        <?php if($cookie->expireTime): ?>
-                                            <div><strong><?=$this->expireLabel?>:</strong> <?=$cookie->expireTime?></div>
-                                        <?php endif; ?>
-                                    </div>
+                                    <?php if(($cookie->provider && $cookie->showProvider) || ($cookie->expireTime && $cookie->showExpireTime) || ($cookie->token && $cookie->showTokens)): ?>
+                                        <div class="cc-cookie-info">
+                                            <?php if($cookie->provider && $cookie->showProvider): ?>
+                                                <div><strong><?=$this->providerLabel?>:</strong> <?=$cookie->provider?></div>
+                                            <?php endif; ?>
+                                            <?php if($cookie->expireTime && $cookie->showExpireTime): ?>
+                                                <div><strong><?=$this->expireLabel?>:</strong> <?=$cookie->expireTime?></div>
+                                            <?php endif; ?>
+                                            <?php if($cookie->token && $cookie->showTokens): ?>
+                                                <div><strong><?=$this->tokenLabel?>:</strong> <?=$cookie->token?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if($cookie->detailDescription): ?>
+                                        <button class="cc-detail-btn-details" data-toggle-group>
+                                            <span><?=$this->showMoreDetailsLabel?></span>
+                                            <span><?=$this->hideMoreDetailsLabel?></span>
+                                        </button>
+                                        <div class="cc-cookie-desc toggle-group" style="display: none">
+                                            <?=$cookie->detailDescription?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>

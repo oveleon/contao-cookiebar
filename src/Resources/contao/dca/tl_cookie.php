@@ -111,12 +111,12 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 	'palettes' => array
 	(
 	    '__selector__'                => array('type'),
-        'default'                     => '{title_legend},title,token,expireTime,provider,type;{description_legend:hide},description;published,disabled;',
-        'script'                      => '{title_legend},title,token,expireTime,provider,type;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description;published;',
-        'googleAnalytics'             => '{title_legend},title,token,expireTime,provider,type;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description;published;',
-        'facebookPixel'               => '{title_legend},title,token,expireTime,provider,type;{facebook_pixel_legend},vendorId;{description_legend:hide},description;published;',
-        'matomo'                      => '{title_legend},title,token,expireTime,provider,type;{matomo_legend},vendorId,vendorUrl;{description_legend:hide},description;published;',
-        'iframe'                      => '{title_legend},title,token,expireTime,provider,type;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description;published;',
+        'default'                     => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{description_legend:hide},description,detailDescription;published,disabled;',
+        'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published;',
+        'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;published;',
+        'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;published;',
+        'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl;{description_legend:hide},description,detailDescription;published;',
+        'iframe'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description,detailDescription;published;',
 	),
 
     // Fields
@@ -159,7 +159,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+            'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'clr w50'),
             'sql'                     => "varchar(255) NOT NULL default ''",
             'load_callback'           => array(
                 array('tl_cookie', 'disableLockedField'),
@@ -173,6 +173,15 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
                 array('tl_cookie', 'selectTokenPreset')
             )
         ),
+        'showTokens' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['showTokens'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
         'expireTime' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['expireTime'],
@@ -182,6 +191,15 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
+        'showExpireTime' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['showExpireTime'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
+            'sql'                     => "char(1) NOT NULL default '1'"
+        ),
         'provider' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['provider'],
@@ -190,6 +208,15 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'inputType'               => 'text',
             'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'showProvider' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['showProvider'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
+            'sql'                     => "char(1) NOT NULL default '1'"
         ),
         'type' => array
         (
@@ -258,7 +285,17 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
-            'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true),
+            'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class'=>'w50'),
+            'explanation'             => 'insertTags',
+            'sql'                     => "mediumtext NULL"
+        ),
+        'detailDescription' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['detailDescription'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'textarea',
+            'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class'=>'w50'),
             'explanation'             => 'insertTags',
             'sql'                     => "mediumtext NULL"
         ),

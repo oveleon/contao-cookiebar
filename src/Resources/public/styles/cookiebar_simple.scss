@@ -42,6 +42,7 @@ $cookiebar-animation-duration: .5s;
 
   .cc-cookies{
     background: #fbfbfb;
+    border-radius: 0 0 5px 5px;
 
     > p {
       font-size: 0.875rem;
@@ -56,14 +57,27 @@ $cookiebar-animation-duration: .5s;
     .cc-cookie {
 
       .cc-cookie-info{
+        font-size: 0.875rem;
+        background: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #efefef;
 
         > div + div{
           margin-top: 5px;
         }
+
+        + button.cc-detail-btn-details{
+          margin-top: 15px;
+        }
       }
 
-      label.cookie{
-        margin-bottom: 10px;
+      .cc-cookie-desc p {
+        margin-bottom: 0;
+      }
+
+      label.cookie + p, label.cookie + .cc-cookie-info, label.cookie + button.cc-detail-btn-details{
+        margin-top: 10px;
       }
 
       p{
@@ -75,6 +89,45 @@ $cookiebar-animation-duration: .5s;
 
   .cc-footer,.cc-info{
     text-align: center;
+  }
+
+  .cc-detail-btn-details{
+    border: 0 none;
+    outline: 0 none;
+    background: transparent;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: initial;
+    cursor: pointer;
+    color: #a2a2a2;
+    text-decoration: underline;
+    padding: 0;
+    margin: 0 0 10px;
+
+    span{
+
+      &:nth-child(2){
+        display: none;
+      }
+    }
+
+    &.cc-active{
+
+      span{
+
+        &:nth-child(1){
+          display: none;
+        }
+
+        &:nth-child(2){
+          display: inline;
+        }
+      }
+    }
+
+    &:hover{
+      color: #717171;
+    }
   }
 
   .cc-info {

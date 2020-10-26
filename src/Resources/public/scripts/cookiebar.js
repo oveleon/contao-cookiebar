@@ -405,7 +405,7 @@ let ContaoCookiebar = (function () {
 
         const toggleGroup = function(){
             let state = !this.classList.contains(cookiebar.settings.classes.onGroupToggle);
-            let groups = this.parentElement.querySelectorAll('.toggle-group');
+            let groups = this.parentElement.querySelectorAll(':scope > .toggle-group');
 
             if(groups){
                 groups.forEach(function(group, index){
