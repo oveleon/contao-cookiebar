@@ -308,6 +308,7 @@
 }
 .cookiebar_simple .cc-cookies {
   background: #fbfbfb;
+  border-radius: 0 0 5px 5px;
 }
 .cookiebar_simple .cc-cookies > p {
   font-size: 0.875rem;
