@@ -10,6 +10,9 @@
       <trans-unit id="tl_cookie.script_legend">
         <source>Script</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.template_legend">
+        <source>Template</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.description_legend">
         <source>Description</source>
       </trans-unit>
@@ -72,6 +75,12 @@
       </trans-unit>
       <trans-unit id="tl_cookie.iframeType.1">
         <source>Select a iframe type.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptTemplate.0">
+        <source>Script template</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptTemplate.1">
+        <source>Select a template that contains the custom script.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.blockTemplate.0">
         <source>Template (blocked)</source>
@@ -238,6 +247,12 @@
       </trans-unit>
       <trans-unit id="tl_cookie.script.1">
         <source>Configure custom script.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.template.0">
+        <source>Custom (Template)</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.template.1">
+        <source>Include user-defined script via a template. Please note that only the script tag contained in the template will be considered during processing.</source>
       </trans-unit>
 
       <trans-unit id="tl_cookie.confirmed">

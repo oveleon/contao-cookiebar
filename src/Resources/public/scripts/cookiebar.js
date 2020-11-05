@@ -231,22 +231,11 @@ let ContaoCookiebar = (function () {
         };
 
         const addScript = function(script){
+            // Create script tag
             script.script = createScript(script.script);
 
-            switch(script.position){
-                case 1:
-                    // below content body
-                    document.body.append(script.script);
-                    break;
-                case 2:
-                    // above content body
-                    document.body.prepend(script.script);
-                    break;
-                case 3:
-                    // head
-                    document.head.append(script.script);
-                    break;
-            }
+            // Insert at defined position
+            insertAtPosition(script.script, script.position);
         };
 
         const addResource = function(resource){
@@ -273,6 +262,23 @@ let ContaoCookiebar = (function () {
             }
 
             document.head.append(script);
+        };
+
+        const insertAtPosition = function(strContent, pos){
+            switch(pos){
+                case 1:
+                    // below content body
+                    document.body.append(strContent);
+                    break;
+                case 2:
+                    // above content body
+                    document.body.prepend(strContent);
+                    break;
+                case 3:
+                    // head
+                    document.head.append(strContent);
+                    break;
+            }
         };
 
         const cacheCookie = function(cookie, type){

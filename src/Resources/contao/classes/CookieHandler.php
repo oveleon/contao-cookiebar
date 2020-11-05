@@ -10,6 +10,7 @@
 
 namespace Oveleon\ContaoCookiebar;
 
+use Contao\BackendTemplate;
 use Contao\StringUtil;
 use Contao\System;
 
@@ -36,6 +37,8 @@ use Contao\System;
  * @property string  $scriptUnconfirmed
  * @property string  $scriptPosition
  * @property string  $scriptConfig
+ * @property string  $scriptTemplate
+ * @property string  $blockTemplate
  * @property boolean $published
  */
 class CookieHandler
@@ -130,6 +133,9 @@ class CookieHandler
             case 'script':
                 $this->compileScript();
                 break;
+            case 'template':
+                $this->compileTemplate();
+                break;
             case 'googleAnalytics':
                 $this->compileGoogleAnalytics();
                 break;
@@ -222,6 +228,25 @@ class CookieHandler
         if($src = $this->scriptUnconfirmed)
         {
             $this->addScript($src, false, $this->scriptPosition);
+        }
+    }
+
+    /**
+     * Compile cookie of type "template"
+     */
+    private function compileTemplate()
+    {
+        /** @var BackendTemplate $objTemplate */
+        $objTemplate = new BackendTemplate($this->scriptTemplate);
+        $strTemplate = $objTemplate->parse();
+
+        // Regex: Get content from script tag
+        $scriptRegex = "/<script.*>([\s\S]*)<\/script>/ms";
+        preg_match($scriptRegex, $strTemplate, $matches);
+
+        if(isset($matches[1]))
+        {
+            $this->addScript($matches[1], true, $this->scriptPosition);
         }
     }
 

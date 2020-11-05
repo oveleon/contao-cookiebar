@@ -13,6 +13,10 @@
         <source>Script</source>
         <target>Skript</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.template_legend">
+        <source>Template</source>
+        <target>Template</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.description_legend">
         <source>Description</source>
         <target>Beschreibung</target>
@@ -100,6 +104,14 @@
       <trans-unit id="tl_cookie.blockTemplate.1">
         <source>Choose a template which will be used when the content is blocked.</source>
         <target>Wählen Sie ein Template, welches verwendet wird, wenn der Inhalt blockiert wird.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptTemplate.0">
+        <source>Script template</source>
+        <target>Skript-Template</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.scriptTemplate.1">
+        <source>Select a template that contains the custom script.</source>
+        <target>Wählen Sie ein Template, in dem das benutzerdefinierte Skript liegt.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.0">
         <source>Source URL</source>
@@ -329,6 +341,14 @@
       <trans-unit id="tl_cookie.script.1">
         <source>Configure custom script.</source>
         <target>Benutzerdefiniertes Skript konfigurieren.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.template.0">
+        <source>Custom (Template)</source>
+        <target>Benutzerdefiniert (Template)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.template.1">
+        <source>Include user-defined script via a template. Please note that only the script tag contained in the template will be considered during processing.</source>
+        <target>Benutzerdefiniertes Skript über ein Template einbinden. Bitte beachte, dass ausschließlich das sich darin befindliche script-Tag bei der Verarbeitung berücksichtigt wird.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.0">
         <source>iFrame</source>

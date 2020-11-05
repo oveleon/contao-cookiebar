@@ -113,6 +113,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 	    '__selector__'                => array('type'),
         'default'                     => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{description_legend:hide},description,detailDescription;published,disabled;',
         'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published;',
+        'template'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{template_legend},scriptTemplate,scriptPosition;{description_legend:hide},description,detailDescription;published;',
         'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;published;',
         'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;published;',
         'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;published;',
@@ -225,7 +226,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'filter'                  => true,
             'default'                 => 'default',
             'inputType'               => 'select',
-            'options'                 => array('default','script','googleAnalytics','facebookPixel','matomo','iframe'),
+            'options'                 => array('default','script','template','googleAnalytics','facebookPixel','matomo','iframe'),
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => array('helpwizard'=>true, 'submitOnChange'=>true, 'tl_class'=>'w50'),
             'sql'                     => array('name'=>'type', 'type'=>'string', 'length'=>64, 'default'=>'text')
@@ -253,6 +254,19 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
                 return Contao\Controller::getTemplateGroup('ccb_element_');
             },
             'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "varchar(64) NOT NULL default ''"
+        ),
+        'scriptTemplate' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['scriptTemplate'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'select',
+            'options_callback' => static function ()
+            {
+                return Contao\Controller::getTemplateGroup('analytics_');
+            },
+            'eval'                    => array('tl_class'=>'w50', 'mandatory'=>true),
             'sql'                     => "varchar(64) NOT NULL default ''"
         ),
         'vendorId' => array
@@ -372,7 +386,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
                 3 => 'head'
             ),
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
-            'eval'                    => array('tl_class'=>'w50 clr'),
+            'eval'                    => array('tl_class'=>'w50'),
             'sql'                     => "varchar(32) NOT NULL default ''"
         ),
         'scriptConfig' => array
@@ -643,7 +657,7 @@ class tl_cookie extends Contao\Backend
      */
     public function requireField($varValue, $dc)
     {
-        $disableRequire = ['default', 'script', 'iframe', 'matomo'];
+        $disableRequire = ['default', 'script', 'template', 'iframe', 'matomo'];
 
         if(in_array($dc->activeRecord->type, $disableRequire))
         {
