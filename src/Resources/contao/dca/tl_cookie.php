@@ -244,7 +244,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         ),
         'blockTemplate' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['blockTemplate'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['blockTemplate'],
             'default'                 => 'ccb_element_blocker',
             'exclude'                 => true,
             'search'                  => true,
@@ -258,7 +258,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         ),
         'scriptTemplate' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['scriptTemplate'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['scriptTemplate'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'select',
