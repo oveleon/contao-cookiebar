@@ -19,6 +19,9 @@
       <trans-unit id="tl_cookie.google_analytics_legend">
         <source>Google Analytics</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.matomo_legend">
+        <source>Matomo</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.facebook_pixel_legend">
         <source>Facebook Pixel</source>
       </trans-unit>
@@ -98,7 +101,7 @@
         <source>Script (confirmed)</source>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.1">
-        <source>Enter the script here (without enclosing script tag) which is to be output after confirmation of the cookie.</source>
+        <source>Enter additional parameters to be considered when loading the script or click on the icon next to the field description to load a default configuration.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptUnconfirmed.0">
         <source>Script (unconfirmed)</source>

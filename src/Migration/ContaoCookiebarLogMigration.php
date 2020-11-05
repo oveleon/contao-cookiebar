@@ -20,7 +20,7 @@ class ContaoCookiebarLogMigration extends AbstractMigration
 
     public function getName(): string
     {
-        return 'Rename field pid for Contao Cookiebar';
+        return 'Contao Cookiebar: Rename field pid';
     }
 
     public function shouldRun(): bool

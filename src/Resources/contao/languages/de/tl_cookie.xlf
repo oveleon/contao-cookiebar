@@ -25,6 +25,10 @@
         <source>Google Analytics</source>
         <target>Google Analytics</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.matomo_legend">
+        <source>Matomo</source>
+        <target>Matomo</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.facebook_pixel_legend">
         <source>Facebook Pixel</source>
         <target>Facebook Pixel</target>
@@ -230,8 +234,8 @@
         <target>Zusätzliche Konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.1">
-        <source>Enter further parameters here (as an JavaScript object), which should be taken into account when loading the script.</source>
-        <target>Tragen Sie hier weitere Parameter ein (als eigenständiges JavaScript-Objekt), welche beim laden des Skriptes berücksichtigt werden sollen.</target>
+        <source>Enter further parameters here, which should be taken into account when loading the script.</source>
+        <target>Tragen Sie hier weitere Parameter ein, welche beim laden des Skriptes berücksichtigt werden sollen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
@@ -332,7 +336,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.1">
         <source>Configure iFrame for e.g. YouTube, Vimeo or Google Maps.</source>
-        <target>iFrame für bspw. YouTube, Vimeo oder Google Maps konfigurieren.</target>
+        <target>iFrame für bspw. YouTube, Vimeo oder Google Maps.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.confirmed">

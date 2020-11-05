@@ -115,7 +115,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published;',
         'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;published;',
         'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;published;',
-        'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl;{description_legend:hide},description,detailDescription;published;',
+        'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;published;',
         'iframe'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description,detailDescription;published;',
 	),
 
@@ -381,8 +381,9 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
-            'eval'                    => array('preserveTags'=>true, 'decodeEntities'=>true, 'class'=>'monospace', 'rte'=>'ace|javascript', 'tl_class'=>'clr'),
+            'eval'                    => array('preserveTags'=>true, 'decodeEntities'=>true, 'helpwizard'=>true, 'class'=>'monospace', 'rte'=>'ace|javascript', 'tl_class'=>'clr'),
             'sql'                     => "text NULL",
+            'explanation'             => 'cookiebarScriptConfig',
             'xlabel' => array
             (
                 array('tl_cookie', 'selectScriptPreset')
@@ -642,7 +643,7 @@ class tl_cookie extends Contao\Backend
      */
     public function requireField($varValue, $dc)
     {
-        $disableRequire = ['default', 'script', 'iframe'];
+        $disableRequire = ['default', 'script', 'iframe', 'matomo'];
 
         if(in_array($dc->activeRecord->type, $disableRequire))
         {

@@ -20,7 +20,7 @@ class ContaoCookiebarCookieMigration extends AbstractMigration
 
     public function getName(): string
     {
-        return 'Remove old Cookie for Contao Cookiebar';
+        return 'Contao Cookiebar: Remove Cookie for Contao Cookiebar';
     }
 
     public function shouldRun(): bool

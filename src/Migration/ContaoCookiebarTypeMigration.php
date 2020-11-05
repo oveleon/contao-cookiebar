@@ -20,7 +20,7 @@ class ContaoCookiebarTypeMigration extends AbstractMigration
 
     public function getName(): string
     {
-        return 'Change types for Cookies from youtube and vimeo for Contao Cookiebar';
+        return 'Contao Cookiebar: Change types for Cookies from youtube and vimeo';
     }
 
     public function shouldRun(): bool

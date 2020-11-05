@@ -11,7 +11,10 @@ var Cookiebar = {
                 cookie_prefix: 'example',
                 cookie_update: false,
                 cookie_flags: "SameSite=None;Secure"
-            }
+            },
+            matomo: "_paq.push(['disableCookies']);\n" +
+                    "_paq.push(['trackPageView']);\n" +
+                    "_paq.push(['enableLinkTracking']);"
         }
     },
     issetConfig: function(s, e){
@@ -27,7 +30,11 @@ var Cookiebar = {
         }
     },
     getConfig: function(s){
-        return JSON.stringify(Cookiebar.presets.scripts[s], null, "\t");
+        if(typeof Cookiebar.presets.scripts[s] === "object"){
+            return JSON.stringify(Cookiebar.presets.scripts[s], null, "\t");
+        }
+
+        return Cookiebar.presets.scripts[s];
     },
     getToken: function(s, m){
         var t = Cookiebar.presets.token[s].slice();
