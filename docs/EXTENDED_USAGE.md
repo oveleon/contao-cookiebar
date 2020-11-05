@@ -7,18 +7,22 @@ cookiebar.get();
 cookiebar.getStorage();
 
 // Check if a cookie was accepted by id or token
+// - [int|string] cookieTypeIdOrToken: The ID of the cookie type or cookie token to be queried
 cookiebar.issetCookie(1);
 cookiebar.issetCookie('ga');
 
-// Displays the cookie bar. 
-// Parameter: [restore] default: false / Activates the already confirmed cookie checkboxes
+// Displays the cookie bar
+// - [bool] restore (default: false): Activates the already confirmed cookie checkboxes
 cookiebar.show(true);
 
 // Hide the cookie bar
 cookiebar.hide();
 
 // Consider own scripts via CookieId and callback method
-cookiebar.addModule(1, callbackMethod [, objContent]);
+// - [int] cookieTypeId: The cookie type ID to be listened to
+// - [function] callbackMethod: The function to be executed once the cookie type is accepted
+// - [object] placeholderOptions (optional): Placeholder options for displaying own content
+cookiebar.addModule(1, callbackMethod [, placeholderOptions]);
 ```
 
 ### Example of the `addModule` method
