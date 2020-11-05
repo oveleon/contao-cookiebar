@@ -13,6 +13,39 @@
       <trans-unit id="XPL.cookiebarVersion.1.1">
         <source>To create a new version, select the &lt;code&gt;checkbox&lt;/code&gt; for &lt;code&gt;Update version&lt;/code&gt; and then save the mask. The version is automatically incremented.</source>
       </trans-unit>
+
+      <trans-unit id="XPL.cookiebarScriptConfig.0.0">
+        <source>Google Analytics</source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.0.1">
+        <source>Extend the standard configuration of Google Analytics: &lt;pre&gt;
+
+         window.dataLayer=window.dataLayer||[];
+         function gtag(){dataLayer.push(arguments)}
+         gtag('js',new Date());
+         gtag('config','XXXXXX' &lt;code class="tl_red"&gt;[, Parameters are placed here]&lt;/code&gt;)&lt;/pre&gt;</source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.1.0">
+        <source>Matomo</source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.1.1">
+        <source>Extend the standard configuration of Matomo: &lt;pre&gt;
+
+        var _paq = window._paq = window._paq || [];
+
+        (function() { var u='XXX/';
+          &lt;code class="tl_red"&gt;Parameters are placed here&lt;/code&gt;
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript';
+          g.async=true;
+          g.src=u+'matomo.js';
+          s.parentNode.insertBefore(g,s);})();
+          &lt;/pre&gt;
+          If no own parameters are defined, the following lines are added automatically:
+          &lt;pre&gt;
+          &lt;code class="tl_red"&gt;_paq.push(['trackPageView']);&lt;/code&gt;
+          &lt;code class="tl_red"&gt;_paq.push(['enableLinkTracking']);&lt;/code&gt;&lt;pre&gt;</source>
+    </trans-unit>
     </body>
   </file>
 </xliff>

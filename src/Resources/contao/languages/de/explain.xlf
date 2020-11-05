@@ -73,7 +73,7 @@
           &lt;pre&gt;
           &lt;code class="tl_red"&gt;_paq.push(['trackPageView']);&lt;/code&gt;
           &lt;code class="tl_red"&gt;_paq.push(['enableLinkTracking']);&lt;/code&gt;&lt;pre&gt;</target>
-    </trans-unit>
+      </trans-unit>
     </body>
   </file>
 </xliff>
