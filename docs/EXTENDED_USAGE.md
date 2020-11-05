@@ -11,7 +11,7 @@ cookiebar.issetCookie(1);
 cookiebar.issetCookie('ga');
 
 // Displays the cookie bar (restore: Activates the already confirmed cookie checkboxes)
-cookiebar.show(restore: false);
+cookiebar.show({restore: false});
 
 // Hide the cookie bar
 cookiebar.hide();
