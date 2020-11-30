@@ -3,7 +3,7 @@
   "type":"contao-bundle",
   "description":"Contao Cookiebar",
   "keywords":["contao","cookie","consent","opt in"],
-  "homepage":"https://oveleon.de/",
+  "homepage":"https://www.oveleon.de/cookiebar.html",
   "license":"MIT",
   "authors":[
     {
