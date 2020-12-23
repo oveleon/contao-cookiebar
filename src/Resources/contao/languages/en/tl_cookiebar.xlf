@@ -164,14 +164,26 @@
       <trans-unit id="tl_cookiebar.head">
         <source>Head tag</source>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.cc-top">
-        <source>Top</source>
+      <trans-unit id="tl_cookiebar.align-top">
+        <source>Center | Top</source>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.cc-middle">
-        <source>Middle</source>
+      <trans-unit id="tl_cookiebar.align-top-left">
+        <source>Left | Top</source>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.cc-bottom">
-        <source>Bottom</source>
+      <trans-unit id="tl_cookiebar.align-top-right">
+        <source>Right | Top</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-middle">
+        <source>Center | Center</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-bottom">
+        <source>Center | Bottom</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-bottom-left">
+        <source>Left | Bottom</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-bottom-right">
+        <source>Right | Bottom</source>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.new.0">

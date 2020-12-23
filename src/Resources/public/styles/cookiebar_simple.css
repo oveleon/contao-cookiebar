@@ -61,6 +61,12 @@
 .contao-cookiebar.cc-middle.cc-saved .cc-inner {
   animation: cookiebar-middle-out 0.5s ease-in-out forwards;
 }
+.contao-cookiebar.cc-left {
+  text-align: left;
+}
+.contao-cookiebar.cc-right {
+  text-align: right;
+}
 .contao-cookiebar .cc-head h1:first-child, .contao-cookiebar .cc-head h2:first-child, .contao-cookiebar .cc-head h3:first-child, .contao-cookiebar .cc-head h4:first-child, .contao-cookiebar .cc-head h5:first-child, .contao-cookiebar .cc-head h6:first-child {
   margin-top: 0;
 }

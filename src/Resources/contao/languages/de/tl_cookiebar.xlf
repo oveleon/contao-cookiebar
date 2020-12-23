@@ -217,17 +217,33 @@
         <source>Head tag</source>
         <target>Head-Tag</target>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.cc-top">
-        <source>Top</source>
-        <target>Oben</target>
+      <trans-unit id="tl_cookiebar.align-top">
+        <source>Center | Top</source>
+        <target>Mitte | Oben</target>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.cc-middle">
-        <source>Middle</source>
-        <target>Mitte</target>
+      <trans-unit id="tl_cookiebar.align-top-left">
+        <source>Left | Top</source>
+        <target>Links | Oben</target>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.cc-bottom">
-        <source>Bottom</source>
-        <target>Unten</target>
+      <trans-unit id="tl_cookiebar.align-top-right">
+        <source>Right | Top</source>
+        <target>Rechts | Oben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-middle">
+        <source>Center | Center</source>
+        <target>Mitte | Mitte</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-bottom">
+        <source>Center | Bottom</source>
+        <target>Mitte | Unten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-bottom-left">
+        <source>Left | Bottom</source>
+        <target>Links | Unten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.align-bottom-right">
+        <source>Right | Bottom</source>
+        <target>Rechts | Unten</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.new.0">
