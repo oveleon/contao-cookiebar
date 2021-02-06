@@ -663,6 +663,7 @@ let ContaoCookiebar = (function () {
                     if(typeof objContent.button === 'object' && true === objContent.button.show){
                         var btn = document.createElement("button");
                             btn.innerHTML = objContent.button.text || cookiebar.settings.texts.acceptAndDisplay;
+                            btn.type = objContent.button.type || 'button';
 
                         if(objContent.button.classes){
                             btn.className = objContent.button.classes;

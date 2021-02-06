@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
         button: {                       
             show: true,                 // Extends the output by a confirmation button,
             text: 'Custom button text', // Button text
+            type: 'button',             // Button type
             classes: 'first second'     // Own CSS classes for the button separated by spaces
         }
     });
