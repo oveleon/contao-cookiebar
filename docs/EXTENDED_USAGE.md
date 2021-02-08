@@ -1,3 +1,10 @@
+- [Install & Configuration](CONFIGURATION.md)
+- [Styling & Customization](CUSTOMIZATION.md)
+- [Extending your own modules](EXTENDING.md)
+- [**Extended usage**](EXTENDED_USAGE.md)
+
+---
+
 # JavaScript
 ```javascript
 // Return instance of cookiebar
@@ -73,11 +80,3 @@ Route | GET-Parameter | Description
 `/cookiebar/delete` | `tokens` | Deletes all given cookies based on their token
 `/cookiebar/log` | `configId`,`version` | Creates a new log entry
 `/cookiebar/block/[id]` | `redirect` | Block-Page for iFrames
-
-<br/>
-
-# Further links
-- [Install & Configuration](CONFIGURATION.md)
-- [Styling & Customization](CUSTOMIZATION.md)
-- [Extending your own modules](EXTENDING.md)
-

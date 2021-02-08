@@ -1,5 +1,12 @@
+- [Install & Configuration](CONFIGURATION.md)
+- [**Styling & Customization**](CUSTOMIZATION.md)
+- [Extending your own modules](EXTENDING.md)
+- [Extended usage](EXTENDED_USAGE.md)
+
+---
+
 # Cookiebar Templates
-There are already two templates for a different presentation of the cookibar. 
+There are already two templates for a different presentation of the cookibar.
 
 Template | Description
 ---------- | ----------
@@ -12,7 +19,7 @@ Template | Description
 </div>
 
 ### Styling
-A separate stylesheet is output for each template. These are made available via the template itself, and can be removed and or replaced by your own if required via the template editor. The `_cookiebar.scss` included in the package contains all standard stylings, responsive settings as well as animations can be integrated into your own style sheet.
+A separate stylesheet is output for each template. These are made available via the template itself, and can be removed and or replaced by your own if required via the template editor. The `_cookiebar.scss` included in the package contains all default stylings, responsive settings as well as animations can be integrated into your own style sheet.
 
 <br/>
 
@@ -27,10 +34,3 @@ Template | Description
 </div>
 
 ℹ Further iFrame-Types can be added dynamically, see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
-
-<br/>
-
-# Further links
-- [Install & Configuration](CONFIGURATION.md)
-- [Extending your own modules](EXTENDING.md)
-- [Extended usage](EXTENDED_USAGE.md)
