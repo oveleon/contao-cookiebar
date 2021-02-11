@@ -23,7 +23,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription_legend">
         <source>Detail Description</source>
-        <target>Detailierte Beschreibung</target>
+        <target>Detaillierte Beschreibung</target>
       </trans-unit>
       <trans-unit id="tl_cookie.google_analytics_legend">
         <source>Google Analytics</source>
@@ -187,7 +187,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.0">
         <source>Detail Description</source>
-        <target>Detailierte Beschreibung</target>
+        <target>Detaillierte Beschreibung</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.1">
         <source>Describe the cookie and its purpose with more details.</source>

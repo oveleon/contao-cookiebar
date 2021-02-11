@@ -104,7 +104,7 @@
   position: relative;
   display: block;
   padding: 8px 13px 8px 0;
-  line-height: 1.2;
+  line-height: 1.2rem;
 }
 .contao-cookiebar label.group {
   font-weight: 600;
@@ -318,8 +318,10 @@
   letter-spacing: 0;
   text-transform: initial;
   cursor: pointer;
-  padding: 13px;
   color: #a2a2a2;
+  padding: 8px 13px 8px 13px;
+  line-height: 1.2rem;
+  margin: 5px 5px 5px 0;
 }
 .cookiebar_default .cc-group .cc-detail-btn span:nth-child(2) {
   display: none;
