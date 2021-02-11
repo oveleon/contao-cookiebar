@@ -48,7 +48,7 @@ Some types for cookies are already delivered:
 - Custom (Script)
 - Custom (Template)
 - Google Analytics
-- Google Consent Mode
+- Google Consent Mode (`>=1.8.0`)
 - Facebook Pixel
 - Matomo
 - iFrame
