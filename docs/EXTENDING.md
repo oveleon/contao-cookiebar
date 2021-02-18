@@ -24,7 +24,7 @@ If you want to supplement your own templates with an already existing iFrame typ
 contao_cookiebar:
   iframe_types:
     googlemaps: 
-      - ce_my_google_template
+      - ce_my_additional_google_template
 ```
 
 <br/>
@@ -34,7 +34,7 @@ All cookie types are prepared by the PHP class `CookieHandler`. This class allow
 
 ## Functions
 
-### `addScript(string $strScript, bool $confirmed, int $pos)`
+### `addScript(string $strScript, int $mode, int $pos)`
 Adds a script at the desired position (e.g. `<script>console.log(1);</script>`)
 ```php
 public function addScript(string $strScript, int $mode = self::LOAD_CONFIRMED, int $pos = self::POS_BELOW): void

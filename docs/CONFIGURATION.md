@@ -129,7 +129,7 @@ Basic settings must be maintained via the `config/config.yml` file.
 
 ```yaml
 contao_cookiebar:
-  consider_dnt: true
+  consider_dnt: false
   storage_key: ccb_contao_token
   page_templates:
     - fe_page
@@ -145,7 +145,7 @@ contao_cookiebar:
 
 Parameter | Description
 ---------- | -----------
-`consider_dnt` | Consider "Do not Track" browser setting.
+`consider_dnt` | Consider "Do not Track" browser setting
 `storage_key` | The key used for localStorage
-`page_templates` | An array with page templates which should be considered.
+`page_templates` | An array with page templates which should be considered
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
