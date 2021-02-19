@@ -125,11 +125,12 @@ Template | Description
 # Basic configuration
 Basic settings must be maintained via the `config/config.yml` file. 
 
-ℹ The following values are set by default, they do not need to be added to the yml file again.
+ℹ The following values are set by default, they do not need to be added to the YML file again.
 
 ```yaml
 contao_cookiebar:
   consider_dnt: false
+  anonymize_ip: true
   storage_key: ccb_contao_token
   page_templates:
     - fe_page
@@ -146,6 +147,13 @@ contao_cookiebar:
 Parameter | Description
 ---------- | -----------
 `consider_dnt` | Consider "Do not Track" browser setting
+`anonymize_ip` | Anonymizes the visitor's IP address for each log entry using [Symfony IP Address Anonymizer](https://symfony.com/blog/new-in-symfony-4-4-ip-address-anonymizer).
 `storage_key` | The key used for localStorage
 `page_templates` | An array with page templates which should be considered
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
+
+# Console Commands
+Die nachträgliche Anonymisierung jedes Eintrags kann wie folgt über die Konsole angestoßen werden:
+```
+vendor/bin/contao-console cookiebar:anonymizeip
+```

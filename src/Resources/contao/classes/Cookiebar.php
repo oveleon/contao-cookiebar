@@ -17,6 +17,7 @@ use Contao\Input;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
+use Symfony\Component\HttpFoundation\IpUtils;
 use Oveleon\ContaoCookiebar\Exception\NoCookiebarSpecifiedException;
 
 class Cookiebar
@@ -372,12 +373,18 @@ class Cookiebar
     public static function log($configId, $version, $domain=null, $url=null, $ip=null, $data=null): void
     {
         $objLog = new CookieLogModel();
+        $strIp = $ip ?? Environment::get('ip');
+
+        if(System::getContainer()->getParameter('contao_cookiebar.anonymize_ip'))
+        {
+            $strIp = IPUtils::anonymize($strIp);
+        }
 
         $objLog->cid = $configId;
         $objLog->version = $version;
         $objLog->domain = $domain ?? Environment::get('url');
         $objLog->url = $url ?? Environment::get('requestUri');
-        $objLog->ip = $ip ?? Environment::get('ip');
+        $objLog->ip = $strIp;
         $objLog->tstamp = time();
 
         if(null !== $data)
