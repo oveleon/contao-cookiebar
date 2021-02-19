@@ -153,7 +153,7 @@ Parameter | Description
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
 
 # Console Commands
-Die nachträgliche Anonymisierung jedes Eintrags kann wie folgt über die Konsole angestoßen werden:
+The anonymization of all entries can be triggered via the console as follows:
 ```
 vendor/bin/contao-console cookiebar:anonymizeip
 ```
