@@ -12,7 +12,7 @@
 ---
 
 # Create own Cookie-Types
-All cookie types are prepared by the PHP class `CookieHandler`. This class allows you to prepare the scripts to be processed by the JS plugin. See [Hooks](EXTENDING.md#hooks) for integration.
+All cookie types are prepared by the PHP class `CookieHandler`. This class allows you to prepare the scripts to be processed by the JS plugin. See [Hooks](EXTEND_TYPE.md#hooks) for integration.
 
 ## Functions
 
