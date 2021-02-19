@@ -15,10 +15,33 @@
 - Consent Log
 - Free & Open Source
 
+### Services
+- Custom (Script)
+- Custom (Template)
+- Google Analytics
+- Google Consent Mode [`BETA`](#beta)
+- Facebook Pixel
+- Matomo
+- iFrame
+  - YouTube
+  - Vimeo
+  - Google Maps
+  - [add more...](docs/EXTEND_IFRAME.md)
+- [add more...](docs/EXTEND_TYPE.md)
+
+###### BETA
+> ℹ You are welcome to help us test the Google Consent Mode, just install the `feature/google-consent-mode` branch. We are grateful for any feedback!
+
 ### Documentation
-- [Install & Configuration](docs/CONFIGURATION.md)
+- [Install](docs/INSTALL.md)
+- [Configuration (Basics)](docs/BASICS.md)
+  - [Create Configuration](docs/CONFIGURATION.md)
+  - [Create Group](docs/GROUP.md)
+  - [Create Cookie (Type)](docs/COOKIE.md)
+- [Module & Content-Element](docs/MOD_CE.md)
 - [Styling & Customization](docs/CUSTOMIZATION.md)
-- [Extending your own modules](docs/EXTENDING.md)
+- [Extend iFrame-Types](docs/EXTEND_IFRAME.md)
+- [Extend Cookie-Types](docs/EXTEND_TYPE.md)
 - [Extended usage](docs/EXTENDED_USAGE.md)
 
 ### Upcoming features

@@ -1,33 +1,15 @@
-- [Install & Configuration](CONFIGURATION.md)
+- [Install](INSTALL.md)
+- [Configuration (Basics)](BASICS.md)
+    - [Create Configuration](CONFIGURATION.md)
+    - [Create Group](GROUP.md)
+    - [Create Cookie (Type)](COOKIE.md)
+- [Module & Content-Element](MOD_CE.md)
 - [Styling & Customization](CUSTOMIZATION.md)
-- [**Extending your own modules**](EXTENDING.md)
+- [Extend iFrame-Types](EXTEND_IFRAME.md)
+- [**Extend Cookie-Types**](EXTEND_TYPE.md)
 - [Extended usage](EXTENDED_USAGE.md)
 
 ---
-
-# Create own iFrame-Types
-By expanding the `config/config.yml` file, you can add as many iFrame types as you want to respond to different vendors. Types for blocking Youtube, Vimeo and Google Maps iFrames are already delivered by default.
-
-### Example of new types
-Add a new module and the template to which you have to react:
-```yaml
-contao_cookiebar:
-  iframe_types:
-    vendortype: 
-      - ce_html_vendortype
-```
-Now another option "vendortype" appears in the cookie type "iFrame" for the select field "iFrame types". Select this to block all iFrames with the template `ce_html_vendortype` until the cookie is accepted.
-
-### Example of additional templates
-If you want to supplement your own templates with an already existing iFrame type, these can also be considered.
-```yaml
-contao_cookiebar:
-  iframe_types:
-    googlemaps: 
-      - ce_my_additional_google_template
-```
-
-<br/>
 
 # Create own Cookie-Types
 All cookie types are prepared by the PHP class `CookieHandler`. This class allows you to prepare the scripts to be processed by the JS plugin. See [Hooks](EXTENDING.md#hooks) for integration.
@@ -46,6 +28,8 @@ public function addScript(string $strScript, int $mode = self::LOAD_CONFIRMED, i
     ];
 }
 ```
+
+> The `$mode` parameter of the `addScript` function must be passed as a boolean value before version 1.8.0. If true, the script is loaded only if the cookie is accepted.
 
 Parameter | Description
 ---------- | -----------

@@ -1,6 +1,12 @@
-- [Install & Configuration](CONFIGURATION.md)
+- [Install](INSTALL.md)
+- [Configuration (Basics)](BASICS.md)
+    - [Create Configuration](CONFIGURATION.md)
+    - [Create Group](GROUP.md)
+    - [Create Cookie (Type)](COOKIE.md)
+- [Module & Content-Element](MOD_CE.md)
 - [Styling & Customization](CUSTOMIZATION.md)
-- [Extending your own modules](EXTENDING.md)
+- [Extend iFrame-Types](EXTEND_IFRAME.md)
+- [Extend Cookie-Types](EXTEND_TYPE.md)
 - [**Extended usage**](EXTENDED_USAGE.md)
 
 ---
