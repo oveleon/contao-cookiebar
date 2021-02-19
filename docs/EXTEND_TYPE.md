@@ -29,13 +29,15 @@ public function addScript(string $strScript, int $mode = self::LOAD_CONFIRMED, i
 }
 ```
 
-> The `$mode` parameter of the `addScript` function must be passed as a boolean value before version 1.8.0. If true, the script is loaded only if the cookie is accepted.
+> **Attention:** The `$mode` parameter of the `addScript` function must be passed as a boolean value before version `1.8.0`. If true, the script is loaded only if the cookie is accepted.
 
 Parameter | Description
 ---------- | -----------
 `string $strScript` | Enables the integration of your own cookie types. (see Create own Cookie-Types)
 `int $mode` | Defines the loading mode (see "Constants": Loading-Constants)
 `int $pos` | Defines the position in HTML (see "Constants": Position-Constants)
+
+<br/>
 
 ### `addResource(string $strSrc, array $flags, int $mode)`
 Adds an external resource in the header area (e.g. `<script src="www.vendor.com/script.js" async></script>`)
@@ -55,6 +57,8 @@ Parameter | Description
 `string $strSrc` | The external URL
 `array $flags` | Defines further tag attributes (e.g. `['async', 'defer']`)
 `int $mode` | Defines the loading mode (see "Constants": Loading-Constants)
+
+<br/>
 
 ## Constants
 Position-Constants | Description

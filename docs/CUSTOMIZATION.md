@@ -26,7 +26,7 @@ A separate stylesheet is output for each template. These are made available via 
 
 The `_cookiebar.scss` included in the package contains all default stylings, responsive settings as well as animations can be integrated into your own style sheet.
 
-> However, we recommend here to override style adjustments only in a separate CSS file or to take the _cookiebar.scss file as a basis.
+> However, we recommend here to override style adjustments only in a separate CSS file or to take the `_cookiebar.scss` file as a basis.
 
 # Blocked Content Elements
 Template | Description
@@ -38,4 +38,4 @@ Template | Description
     <p><i>Example blocked content elements</i></p>
 </div>
 
-ℹ Further iFrame-Types can be added dynamically, see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
+ℹ Further iFrame-Types can be added dynamically, see [Create own iFrame-Types](EXTEND_IFRAME.md).

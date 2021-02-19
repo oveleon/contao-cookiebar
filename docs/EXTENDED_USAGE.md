@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 # PHP
 ```php
-// Returns the complete configuration of a cookie bar
+// Returns the configuration instance of a cookie bar
 Cookiebar::getConfig(int $configId, $objMeta=null);
 Cookiebar::getConfigByPage(PageModel|int $varPage);
 ```

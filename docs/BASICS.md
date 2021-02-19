@@ -39,7 +39,7 @@ Parameter | Description
 `anonymize_ip` | Anonymizes the visitor's IP address for each log entry using [Symfony IP Address Anonymizer](https://symfony.com/blog/new-in-symfony-4-4-ip-address-anonymizer).
 `storage_key` | The key used for localStorage
 `page_templates` | An array with page templates which should be considered
-`iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types))
+`iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTEND_IFRAME.md))
 
 # Console Commands
 The anonymization of all entries can be triggered via the console as follows:
