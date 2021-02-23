@@ -30,7 +30,7 @@
 - [add more...](docs/EXTEND_TYPE.md)
 
 ###### BETA
-> ℹ You are welcome to help us test the Google Consent Mode, just install the `feature/google-consent-mode` branch. We are grateful for any feedback!
+> You are welcome to help us test the Google Consent Mode, just install the `feature/google-consent-mode` branch. We are grateful for any feedback!
 > ```
 > "oveleon/contao-cookiebar": "dev-feature/google-consent-mode"
 > ```
