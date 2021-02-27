@@ -11,7 +11,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie_group.title.1">
         <source>Enter a group name here.</source>
-        <target>Geben Sie hier einen Gruppenname an.</target>
+        <target>Geben Sie hier einen Gruppennamen an.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.description.0">
         <source>Description</source>
@@ -19,7 +19,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie_group.description.1">
         <source>Describe the cookie group and its purpose.</source>
-        <target>Beschreiben Sie hier die Cookie-Gruppe und dessen Zweck.</target>
+        <target>Beschreiben Sie hier die Cookie-Gruppe und deren Zweck.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.published.0">
         <source>Publish</source>
