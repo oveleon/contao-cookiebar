@@ -15,7 +15,7 @@
       </trans-unit>
       <trans-unit id="XPL.cookiebarVersion.1.1">
         <source>To create a new version, select the &lt;code&gt;checkbox&lt;/code&gt; for &lt;code&gt;Update version&lt;/code&gt; and then save the mask. The version is automatically incremented.</source>
-        <target>Um eine neue Version zu erstellen, wählen Sie die &lt;code&gt;Checkbox&lt;/code&gt; bei &lt;code&gt;Version aktualisieren&lt;/code&gt; und speichern Sie anschließend die Maske. Die Version wird austomatisch hochgezählt.</target>
+        <target>Um eine neue Version zu erstellen, wählen Sie die &lt;code&gt;Checkbox&lt;/code&gt; bei &lt;code&gt;Version aktualisieren&lt;/code&gt; und speichern Sie anschließend die Maske. Die Version wird automatisch hochgezählt.</target>
       </trans-unit>
 
       <trans-unit id="XPL.cookiebarScriptConfig.0.0">

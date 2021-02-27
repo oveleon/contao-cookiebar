@@ -135,7 +135,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrlParameter.1">
         <source>Define the load parameters of the source URL to be used.</source>
-        <target>Definieren Sie die zu verwedenden Lade-Parameter der Source URL.</target>
+        <target>Definieren Sie die zu verwendenden Lade-Parameter der Source URL.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.0">
         <source>Script (confirmed)</source>
@@ -247,7 +247,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.1">
         <source>Enter further parameters here, which should be taken into account when loading the script.</source>
-        <target>Tragen Sie hier weitere Parameter ein, welche beim laden des Skriptes berücksichtigt werden sollen.</target>
+        <target>Tragen Sie hier weitere Parameter ein, welche beim Laden des Skriptes berücksichtigt werden sollen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
