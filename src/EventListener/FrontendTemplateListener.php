@@ -28,56 +28,57 @@ class FrontendTemplateListener
     {
         $arrPageTemplates = System::getContainer()->getParameter('contao_cookiebar.page_templates') ?? ['fe_page'];
 
-        if (in_array($template, $arrPageTemplates))
+        if (!in_array($template, $arrPageTemplates) && 0 !== strpos($template, 'fe_page_')) {
+            return $buffer;
+        }
+
+        global $objPage;
+
+        $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
+
+        if(null === $objConfig)
         {
-            global $objPage;
+            return $buffer;
+        }
 
-            $objConfig = Cookiebar::getConfigByPage($objPage->rootId);
+        // If a cookie is still set by an older version, it must be deleted
+        Cookiebar::checkCookie();
 
-            if(null === $objConfig)
+        // Parse template
+        $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
+
+        // Load cookie bar scripts
+        if($objConfig->scriptPosition === 'body')
+        {
+            $strHtml .= '<script src="bundles/contaocookiebar/scripts/cookiebar.min.js"></script>';
+        }
+        else
+        {
+            $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js|static';
+        }
+
+        // Add cookiebar script initialization
+        $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,texts:{acceptAndDisplay:'%s'}});</script>",
+            $objConfig->id,
+            $objConfig->pageId,
+            $objConfig->version,
+            System::getContainer()->getParameter('contao_cookiebar.storage_key'),
+            System::getContainer()->getParameter('contao_cookiebar.consider_dnt') ? 1 : 0,
+            $objPage->id,
+            json_encode(StringUtil::deserialize($objConfig->excludePages)),
+            json_encode(Cookiebar::validateCookies($objConfig)),
+            $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAndDisplayLabel']
+        );
+
+        if(null !== $objConfig)
+        {
+            switch($objConfig->position)
             {
-                return $buffer;
-            }
-
-            // If a cookie is still set by an older version, it must be deleted
-            Cookiebar::checkCookie();
-
-            // Parse template
-            $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
-
-            // Load cookie bar scripts
-            if($objConfig->scriptPosition === 'body')
-            {
-                $strHtml .= '<script src="bundles/contaocookiebar/scripts/cookiebar.min.js"></script>';
-            }
-            else
-            {
-                $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js|static';
-            }
-
-            // Add cookiebar script initialization
-            $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,texts:{acceptAndDisplay:'%s'}});</script>",
-                $objConfig->id,
-                $objConfig->pageId,
-                $objConfig->version,
-                System::getContainer()->getParameter('contao_cookiebar.storage_key'),
-                System::getContainer()->getParameter('contao_cookiebar.consider_dnt') ? 1 : 0,
-                $objPage->id,
-                json_encode(StringUtil::deserialize($objConfig->excludePages)),
-                json_encode(Cookiebar::validateCookies($objConfig)),
-                $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAndDisplayLabel']
-            );
-
-            if(null !== $objConfig)
-            {
-                switch($objConfig->position)
-                {
-                    case 'bodyAboveContent':
-                        $buffer = preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$strHtml$2</body>", $buffer);
-                        break;
-                    default:
-                        $buffer = str_replace("</body>", "$strHtml</body>", $buffer);
-                }
+                case 'bodyAboveContent':
+                    $buffer = preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$strHtml$2</body>", $buffer);
+                    break;
+                default:
+                    $buffer = str_replace("</body>", "$strHtml</body>", $buffer);
             }
         }
 

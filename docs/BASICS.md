@@ -38,7 +38,7 @@ Parameter | Description
 `consider_dnt` | Consider "Do not Track" browser setting
 `anonymize_ip` | Anonymizes the visitor's IP address for each log entry using [Symfony IP Address Anonymizer](https://symfony.com/blog/new-in-symfony-4-4-ip-address-anonymizer).
 `storage_key` | The key used for localStorage
-`page_templates` | An array with page templates which should be considered
+`page_templates` | An array with page templates which should be considered. Since version `1.8.2` all templates which start with `fe_page_` are considered by default.
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTEND_IFRAME.md))
 
 # Console Commands
