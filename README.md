@@ -47,9 +47,6 @@
 - [Extend Cookie-Types](docs/EXTEND_TYPE.md)
 - [Extended usage](docs/EXTENDED_USAGE.md)
 
-### Upcoming features
-- Export Log-File
-
 <br>
 
 ---
