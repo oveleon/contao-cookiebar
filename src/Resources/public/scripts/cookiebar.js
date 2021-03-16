@@ -111,14 +111,7 @@ let ContaoCookiebar = (function () {
                 arrCookies.forEach(function(cookieId){
                     // Iframes
                     if(cookiebar.settings.cookies.hasOwnProperty(cookieId) && cookiebar.settings.cookies[cookieId].type === 'iframe'){
-                        let iframes = document.querySelectorAll('iframe[data-ccb-id="' + cookieId + '"]');
-
-                        if(iframes.length){
-                            iframes.forEach(function(iframe){
-                                iframe.src = iframe.src;
-                                iframe.removeAttribute('data-ccb-id');
-                            });
-                        }
+                        unblockIframe(cookieId);
                     }
 
                     // Modules
@@ -340,6 +333,18 @@ let ContaoCookiebar = (function () {
             cookiebar.modules[cookieId]();
             delete cookiebar.modules[cookieId];
         };
+
+        const unblockIframe = function(cookieId){
+            let iframes = document.querySelectorAll('iframe[data-ccb-id="' + cookieId + '"]');
+
+            if(iframes.length){
+                iframes.forEach(function(iframe){
+                    iframe.src = iframe.src;
+                    iframe.removeAttribute('data-ccb-id');
+                });
+            }
+        };
+
 
         const restoreCookieStatus = function(){
             let arrCookies = getStorage();
@@ -640,6 +645,7 @@ let ContaoCookiebar = (function () {
                 window.location.href = url;
             }
 
+            unblockIframe(cookieId);
             push(cookieId);
         };
 
