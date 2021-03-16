@@ -12,7 +12,7 @@
                     <?php if($group->hasCookies): ?>
                         <input type="checkbox" name="group[]" id="g<?=$group->id?>" value="<?=$group->id?>" data-toggle-cookies<?=$group->isLocked ? ' disabled checked' : ''?>>
                     <?php endif; ?>
-                    <label for="g<?=$group->id?>" class="group"><?=$group->title?></label>
+                    <label <?php if($group->hasCookies): ?>for="g<?=$group->id?>"<?php endif; ?> class="group"><?=$group->title?></label>
                     <button class="cc-detail-btn" data-toggle-group>
                         <span><?=$this->showDetailsLabel?></span>
                         <span><?=$this->hideDetailsLabel?></span>

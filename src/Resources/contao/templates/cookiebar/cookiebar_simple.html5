@@ -16,7 +16,7 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
                         <?php if($group->hasCookies): ?>
                             <input type="checkbox" name="group[]" id="g<?=$group->id?>" value="<?=$group->id?>" data-toggle-cookies<?=$group->isLocked ? ' disabled checked' : ''?>>
                         <?php endif; ?>
-                        <label for="g<?=$group->id?>" class="group"><?=$group->title?></label>
+                        <label <?php if($group->hasCookies): ?>for="g<?=$group->id?>"<?php endif; ?> class="group"><?=$group->title?></label>
                         <div class="cc-cookies">
                             <?=$group->description?>
                             <?php foreach ($group->cookies as $cookie): ?>
