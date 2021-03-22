@@ -320,17 +320,26 @@ let ContaoCookiebar = (function () {
         };
 
         const registerModule = function(cookieId, callback){
-            cookiebar.modules[cookieId] = callback;
+            if(cookiebar.modules.hasOwnProperty(cookieId)){
+                cookiebar.modules[cookieId].push(callback);
+            }else{
+                cookiebar.modules[cookieId] = [callback];
+            }
         };
 
         const callModule = function(cookieId){
-            let module = document.querySelector('.cc-module[data-ccb-id="' + cookieId + '"]');
+            let modules = document.querySelectorAll('.cc-module[data-ccb-id="' + cookieId + '"]');
 
-            if(!!module){
-                module.parentNode.removeChild(module);
+            if(!!modules){
+                modules.forEach(function(module){
+                    module.parentNode.removeChild(module);
+                });
             }
 
-            cookiebar.modules[cookieId]();
+            for(let callback of cookiebar.modules[cookieId]){
+                callback();
+            }
+
             delete cookiebar.modules[cookieId];
         };
 
@@ -344,7 +353,6 @@ let ContaoCookiebar = (function () {
                 });
             }
         };
-
 
         const restoreCookieStatus = function(){
             let arrCookies = getStorage();
