@@ -100,7 +100,15 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarAlignment'] = array
 (
     'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarAlignment'],
     'inputType'               => 'select',
-    'options'                 => array('cc-top', 'cc-middle', 'cc-bottom'),
+    'options'                 => array(
+        'cc-top'             => 'align-top',
+        'cc-top cc-left'     => 'align-top-left',
+        'cc-top cc-right'    => 'align-top-right',
+        'cc-middle'          => 'align-middle',
+        'cc-bottom'          => 'align-bottom',
+        'cc-bottom cc-left'  => 'align-bottom-left',
+        'cc-bottom cc-right' => 'align-bottom-right'
+    ),
     'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
     'eval'                    => array('tl_class'=>'w50 clr'),
     'sql'                     => "varchar(32) NOT NULL default ''"
