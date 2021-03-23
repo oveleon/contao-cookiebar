@@ -166,7 +166,7 @@ class CookieHandler
      */
     public function __get($strKey)
     {
-        if($this->{$strKey})
+        if(isset($this->{$strKey}))
         {
             return $this->{$strKey};
         }
