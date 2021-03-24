@@ -4,7 +4,7 @@
   "description":"Contao Cookiebar",
   "keywords":["contao","cookie","consent","opt in"],
   "homepage":"https://www.oveleon.de/cookiebar.html",
-  "license":"MIT",
+  "license":"AGPL-3.0-or-later",
   "authors":[
     {
       "name":"Oveleon",
