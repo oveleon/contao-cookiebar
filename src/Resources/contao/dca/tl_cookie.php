@@ -682,11 +682,6 @@ class tl_cookie extends Contao\Backend
     public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
     {
         $token = 'cid';
-        $packages = Contao\System::getContainer()->getParameter('kernel.packages');
-
-        if(floatval($packages['contao/core-bundle']) < 4.8){
-            $token = 'tid';
-        }
 
         if (strlen(Input::get($token)))
         {
