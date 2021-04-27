@@ -1,6 +1,7 @@
 <?php
     $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_default.css|static';
 ?>
+<!-- indexer::stop -->
 <div <?=$this->cssID ? 'id="' . $this->cssID . '"' : ''?> class="contao-cookiebar<?=$this->class ? ' ' . $this->class : ''?>" role="complementary" aria-describedby="cookiebar-desc">
     <div class="cc-inner" aria-live="assertive" role="alert">
         <div id="cookiebar-desc" class="cc-head">
@@ -64,3 +65,4 @@
         </div>
     </div>
 </div>
+<!-- indexer::continue -->

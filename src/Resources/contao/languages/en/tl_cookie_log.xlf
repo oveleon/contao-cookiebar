@@ -28,9 +28,6 @@
       <trans-unit id="tl_cookie_log.export.0">
         <source>Export log file</source>
       </trans-unit>
-      <trans-unit id="tl_cookie_log.export.0">
-        <source>Export log file</source>
-      </trans-unit>
     </body>
   </file>
 </xliff>

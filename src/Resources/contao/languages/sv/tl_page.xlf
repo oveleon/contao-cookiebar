@@ -1,0 +1,90 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_page.php" source-language="en" target-language="sv">
+    <body>
+      <trans-unit id="tl_page.cookiebar_legend">
+        <source>Cookiebar</source>
+        <target>Cookiebox</target>
+      </trans-unit>
+      <trans-unit id="tl_page.activateCookiebar.0">
+        <source>Activate Cookiebar</source>
+        <target>Aktivera cookiebox</target>
+      </trans-unit>
+      <trans-unit id="tl_page.activateCookiebar.1">
+        <source>Activate the cookie bar for this and its subpages.</source>
+        <target>Aktivera cookieboxen för denna och dess undersidor.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarConfig.0">
+        <source>Cookiebar configuration</source>
+        <target>Cookiebox-konfiguration</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarConfig.1">
+        <source>Select the cookie bar configuration to be used.</source>
+        <target>Välj den cookiebox-konfiguration som ska användas.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.overwriteCookiebarMeta.0">
+        <source>Overwrite metadata</source>
+        <target>Skriv över metadata</target>
+      </trans-unit>
+      <trans-unit id="tl_page.overwriteCookiebarMeta.1">
+        <source>Overwrite the meta information stored in the configuration.</source>
+        <target>Skriv över metainformationen som är lagrad i konfigurationen.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarDescription.0">
+        <source>Title &amp; Description</source>
+        <target>Titel &amp; beskrivning</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarDescription.1">
+        <source>Describe the purpose of the cookie bar.</source>
+        <target>Beskriv syftet med cookieboxen här.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.0">
+        <source>Info-Description</source>
+        <target>Info beskrivning</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.1">
+        <source>Here you can define further information which is displayed below the buttons.</source>
+        <target>Definiera ytterligare information här, som matas ut under knapparna.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarAlignment.0">
+        <source>Alignment</source>
+        <target>Justering</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarAlignment.1">
+        <source>Define here where the cookie bar should be displayed.</source>
+        <target>Definiera här var cookieboxen ska visas.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarBlocking.0">
+        <source>Blocking</source>
+        <target>Blockering</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarBlocking.1">
+        <source>Blocks the use of the site until the cookie bar has been used.</source>
+        <target>Blockerar användningen av webbplatsen tills cookiesboxen har använts.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoUrls.0">
+        <source>Info links</source>
+        <target>Info-Länkar</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoUrls.1">
+        <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
+        <target>Ange ytterligare länkar här, t.ex. till dataskyddsdeklarationen, avtryck eller juridisk information.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.0">
+        <source>Exclude Pages</source>
+        <target>Uteslut sidor</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.1">
+        <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
+        <target>Definiera de sidor där cookieboxen inte ska öppnas automatiskt.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarTemplate.0">
+        <source>Template</source>
+        <target>Template</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarTemplate.1">
+        <source>Choose a template.</source>
+        <target>Välj en template.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
