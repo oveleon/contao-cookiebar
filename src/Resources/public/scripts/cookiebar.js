@@ -336,9 +336,9 @@ let ContaoCookiebar = (function () {
                 });
             }
 
-            for(let callback of cookiebar.modules[cookieId]){
+            cookiebar.modules[cookieId].forEach(function(callback){
                 callback();
-            }
+            });
 
             delete cookiebar.modules[cookieId];
         };
@@ -424,12 +424,19 @@ let ContaoCookiebar = (function () {
 
         const toggleGroup = function(){
             let state = !this.classList.contains(cookiebar.settings.classes.onGroupToggle);
-            let groups = this.parentElement.querySelectorAll(':scope > .toggle-group');
 
-            if(groups){
-                groups.forEach(function(group, index){
-                    group.style.display = state ? 'block' : 'none';
-                });
+            try{
+                let groups = this.parentElement.querySelectorAll(':scope > .toggle-group');
+
+                if(groups){
+                    groups.forEach(function(group, index){
+                        group.style.display = state ? 'block' : 'none';
+                    });
+                }
+            }catch(err){
+                // IE11 Fallback
+                let group = this.parentElement.querySelector('[data-toggle-group] ~ .toggle-group');
+                group.style.display = state ? 'block' : 'none';
             }
 
             this.classList.toggle(cookiebar.settings.classes.onGroupToggle);
