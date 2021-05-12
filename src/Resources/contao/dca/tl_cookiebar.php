@@ -323,6 +323,10 @@ class tl_cookiebar extends Contao\Backend
             // Update the database
             $this->Database->prepare("UPDATE tl_cookiebar SET version=$newVersion WHERE id=?")
                 ->execute($dc->activeRecord->id);
+
+            /** @var FOS\HttpCacheBundle\CacheManager $cacheManager */
+            $cacheManager = Contao\System::getContainer()->get('fos_http_cache.cache_manager');
+            $cacheManager->invalidateTags(array('oveleon.cookiebar.' . $dc->activeRecord->id));
         }
     }
 }
