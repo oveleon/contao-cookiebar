@@ -17,6 +17,7 @@ use Contao\Input;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
+use FOS\HttpCache\ResponseTagger;
 use Symfony\Component\HttpFoundation\IpUtils;
 use Oveleon\ContaoCookiebar\Exception\NoCookiebarSpecifiedException;
 
@@ -228,6 +229,14 @@ class Cookiebar
             {
                 System::importStatic($callback[0])->{$callback[1]}($objTemplate, $objConfig);
             }
+        }
+
+        // Tag the response
+        if (System::getContainer()->has('fos_http_cache.http.symfony_response_tagger'))
+        {
+            /** @var ResponseTagger $responseTagger */
+            $responseTagger = System::getContainer()->get('fos_http_cache.http.symfony_response_tagger');
+            $responseTagger->addTags(array('oveleon.cookiebar.' . $objConfig->id));
         }
 
         return $objTemplate->parse();
