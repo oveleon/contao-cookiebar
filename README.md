@@ -30,7 +30,7 @@
 - [add more...](docs/EXTEND_TYPE.md)
 
 ###### BETA
-> You are welcome to help us test the Google Consent Mode, just install the `feature/google-consent-mode` branch. We are grateful for any feedback!
+> You are welcome to help us test the Google Consent Mode, just install the `feature/google-consent-mode` branch.
 > ```
 > "oveleon/contao-cookiebar": "dev-feature/google-consent-mode"
 > ```
@@ -51,4 +51,5 @@
 
 ---
 
-> ℹ We cannot guarantee complete legal security. Use this extension at your own risk or contact a lawyer if you are not sure about your configuration.
+> ⚖️\
+> We cannot guarantee complete legal security. Use this extension at your own risk or contact a lawyer if you are not sure about the configuration. Please understand that we cannot answer any legal questions. For questions of technical nature, feel free to contact us.
