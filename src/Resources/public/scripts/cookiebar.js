@@ -341,6 +341,8 @@ let ContaoCookiebar = (function () {
             });
 
             delete cookiebar.modules[cookieId];
+
+            restoreCookieStatus();
         };
 
         const unblockIframe = function(cookieId){
@@ -352,12 +354,14 @@ let ContaoCookiebar = (function () {
                     iframe.removeAttribute('data-ccb-id');
                 });
             }
+
+            restoreCookieStatus();
         };
 
         const restoreCookieStatus = function(){
             let arrCookies = getStorage();
 
-            if(!arrCookies.cookies){
+            if(!cookiebar.show || !arrCookies.cookies){
                 return;
             }
 
