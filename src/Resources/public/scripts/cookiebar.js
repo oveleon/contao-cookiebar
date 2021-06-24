@@ -664,8 +664,8 @@ let ContaoCookiebar = (function () {
                 window.location.href = url;
             }
 
-            unblockIframe(cookieId);
             push(cookieId);
+            unblockIframe(cookieId);
         };
 
         p.addModule = function(cookieId, callback, objContent){
