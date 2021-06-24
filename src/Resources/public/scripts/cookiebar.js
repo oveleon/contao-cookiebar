@@ -67,6 +67,9 @@ let ContaoCookiebar = (function () {
 
             // Load scripts
             setScripts();
+
+            // Restore temporary status
+            restoreCookieStatus();
         };
 
         const save = function(e){
