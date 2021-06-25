@@ -138,14 +138,18 @@ class FrontendTemplateListener
                         else
                         {
                             // Regex: Modify src attribute for iframes
-                            $frameRegex = "/<iframe([\s\S]*?)src=\"(.*?)\"/i";
+                            $frameRegex = "/<iframe([\s\S]*?)src=([\"'])(.*?)[\"']/i";
 
                             // Get current src attribute
                             preg_match_all($frameRegex, $buffer, $matches);
 
                             for ($i=0; $i < count($matches[0]); $i++)
                             {
-                                $iframe = str_replace('src="', 'data-ccb-id="'.$cookie['id'].'"  src="'.$strBlockUrl.urlencode($matches[2][$i]).'" data-src="', $matches[0][$i]);
+                                $quote   = $matches[2][$i];
+                                $search  = 'src=' . $quote;
+                                $replace = 'data-ccb-id=' . $quote . $cookie['id'] . $quote . '  src='. $quote . $strBlockUrl . urlencode($matches[3][$i]) . $quote . ' data-src=' . $quote;
+
+                                $iframe = str_replace($search, $replace, $matches[0][$i]);
                                 $buffer = str_replace($matches[0][$i], $iframe, $buffer);
                             }
                         }
