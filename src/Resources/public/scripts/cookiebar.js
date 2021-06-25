@@ -12,6 +12,7 @@ let ContaoCookiebar = (function () {
             configId: null,
             pageId: null,
             version: null,
+            lifetime: 63072000,
             cookies: null,
             doNotTrack: false,
             currentPageId: 0,
@@ -41,7 +42,8 @@ let ContaoCookiebar = (function () {
             // Set visibility
             if(
                 (parseInt(storage.version) !== parseInt(cookiebar.settings.version) ||
-                 parseInt(storage.configId) !== parseInt(cookiebar.settings.configId)) &&
+                 parseInt(storage.configId) !== parseInt(cookiebar.settings.configId) ||
+                 isExpired(storage.saved)) &&
                 isTrackingAllowed() &&
                 isPageAllowed()
             ){
@@ -97,6 +99,7 @@ let ContaoCookiebar = (function () {
                 configId: cookiebar.settings.configId,
                 pageId: cookiebar.settings.pageId,
                 version: cookiebar.settings.version,
+                saved: getTime(),
                 cookies: arrCookies
             });
 
@@ -597,6 +600,7 @@ let ContaoCookiebar = (function () {
                     configId: cookiebar.settings.configId,
                     pageId: cookiebar.settings.pageId,
                     version: -1,
+                    saved: -1,
                     cookies: []
                 };
 
@@ -611,6 +615,10 @@ let ContaoCookiebar = (function () {
         const getHostname = function(url){
             let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
             return matches && matches[1];
+        };
+
+        const getTime = function(){
+            return Math.floor(+new Date()/1000);
         };
 
         const isPageAllowed = function(){
@@ -628,6 +636,17 @@ let ContaoCookiebar = (function () {
 
             return true;
         };
+
+        const isExpired = function(time){
+            let st = parseInt(time);
+            let lt = parseInt(cookiebar.settings.lifetime);
+
+            if(isNaN(st) || st === -1 || lt === 0){
+                return false;
+            }
+
+            return st + lt < getTime();
+        }
 
         /** Public methods */
 

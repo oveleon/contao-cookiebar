@@ -58,6 +58,7 @@ class ContaoCookiebarExtension extends Extension
 
         $container->setParameter('contao_cookiebar.consider_dnt', $config['consider_dnt']);
         $container->setParameter('contao_cookiebar.anonymize_ip', $config['anonymize_ip']);
+        $container->setParameter('contao_cookiebar.lifetime', $config['lifetime']);
         $container->setParameter('contao_cookiebar.storage_key', $config['storage_key']);
         $container->setParameter('contao_cookiebar.iframe_types', $config['iframe_types']);
         $container->setParameter('contao_cookiebar.page_templates', $config['page_templates']);

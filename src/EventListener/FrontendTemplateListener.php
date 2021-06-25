@@ -58,10 +58,11 @@ class FrontendTemplateListener
         }
 
         // Add cookiebar script initialization
-        $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,texts:{acceptAndDisplay:'%s'}});</script>",
+        $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,texts:{acceptAndDisplay:'%s'}});</script>",
             $objConfig->id,
             $objConfig->pageId,
             $objConfig->version,
+            System::getContainer()->getParameter('contao_cookiebar.lifetime'),
             System::getContainer()->getParameter('contao_cookiebar.storage_key'),
             System::getContainer()->getParameter('contao_cookiebar.consider_dnt') ? 1 : 0,
             $objPage->id,
