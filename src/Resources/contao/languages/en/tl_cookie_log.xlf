@@ -26,7 +26,7 @@
         <source>Date</source>
       </trans-unit>
       <trans-unit id="tl_cookie_log.export.0">
-        <source>Export log file</source>
+        <source>Export log (CSV)</source>
       </trans-unit>
     </body>
   </file>

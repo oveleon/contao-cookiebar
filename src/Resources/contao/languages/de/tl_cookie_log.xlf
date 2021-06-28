@@ -34,8 +34,8 @@
         <target>Datum</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.export.0">
-        <source>Export log file</source>
-        <target>Log-Datei exportieren</target>
+        <source>Export log (CSV)</source>
+        <target>Log exportieren (CSV)</target>
       </trans-unit>
     </body>
   </file>

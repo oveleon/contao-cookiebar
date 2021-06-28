@@ -49,12 +49,12 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
                 'href'                => 'act=select',
                 'class'               => 'header_edit_all',
                 'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-            )
-			/*'export' => array
+            ),
+			'export' => array
 			(
-                'href'                => 'key=exportConfigLog',
+                'href'                => 'key=export',
 				'icon'                => 'theme_export.svg'
-			)*/
+			)
 		),
 		'operations' => array
 		(
