@@ -52,7 +52,6 @@ class CookiebarController extends AbstractController
     {
         $this->framework->initialize();
 
-        $locale = $locale ?? $GLOBALS['TL_LANGUAGE'];
         System::loadLanguageFile('tl_cookiebar', $locale);
 
         $objCookie = CookieModel::findById($id);
