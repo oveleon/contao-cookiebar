@@ -24,19 +24,21 @@ $cookiebar-animation-duration: .5s;
   }
 
   .cc-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+
     position: relative;
     border: 1px solid #d0d0d0;
     border-radius: 5px;
     margin-bottom: 10px;
 
     > label{
-      margin: 5px 130px 5px 10px;
+      margin: 5px 0 5px 10px;
     }
 
     .cc-detail-btn{
-      position: absolute;
-      right: 0;
-      top: 0;
       border: 0 none;
       outline: 0 none;
       background: transparent;
@@ -45,9 +47,8 @@ $cookiebar-animation-duration: .5s;
       text-transform: initial;
       cursor: pointer;
       color: #a2a2a2;
-      padding: 8px 13px 8px 13px;
+      padding: 8px 10px;
       line-height: 1.2rem;
-      margin: 5px 5px 5px 0;
 
       span{
 
@@ -118,6 +119,7 @@ $cookiebar-animation-duration: .5s;
 
   .cc-cookies{
     display: none;
+    width: 100%;
     background: #fbfbfb;
     border-radius: 0 0 5px 5px;
 
