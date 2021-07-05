@@ -41,18 +41,19 @@ class CookiebarController extends AbstractController
     /**
      * Runs the command scheduler. (block)
      *
-     * @Route("/cookiebar/block/{id}", name="cookiebar_block")
+     * @Route("/cookiebar/block/{locale}/{id}", name="cookiebar_block")
      *
      * @param Request $request
      * @param $id
      *
      * @return Response
      */
-    public function blockAction(Request $request, $id)
+    public function blockAction(Request $request, $locale, $id)
     {
         $this->framework->initialize();
 
-        System::loadLanguageFile('tl_cookiebar');
+        $locale = $locale ?? $GLOBALS['TL_LANGUAGE'];
+        System::loadLanguageFile('tl_cookiebar', $locale);
 
         $objCookie = CookieModel::findById($id);
 
@@ -64,7 +65,7 @@ class CookiebarController extends AbstractController
         /** @var FrontendTemplate $objTemplate */
         $objTemplate = new FrontendTemplate($objCookie->blockTemplate ?: 'ccb_element_blocker');
 
-        $objTemplate->language = $GLOBALS['TL_LANGUAGE'];
+        $objTemplate->language = $locale;
         $objTemplate->id = $objCookie->id;
         $objTemplate->title = $objCookie->title;
         $objTemplate->type = $objCookie->type;
