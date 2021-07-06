@@ -72,6 +72,16 @@ let ContaoCookiebar = (function () {
 
             // Restore temporary status
             restoreCookieStatus();
+
+            // Custom event (init)
+            let event = new CustomEvent("cookiebar_init", {
+                detail: {
+                    visibility: cookiebar.show,
+                    cookiebar: cookiebar
+                }
+            });
+
+            window.dispatchEvent(event);
         };
 
         const save = function(e){
@@ -129,6 +139,15 @@ let ContaoCookiebar = (function () {
 
             // Add CSS class
             cookiebar.dom.classList.add(cookiebar.settings.classes.onSave);
+
+            // Custom event (save)
+            let event = new CustomEvent("cookiebar_save", {
+                detail: {
+                    cookiebar: cookiebar
+                }
+            });
+
+            window.dispatchEvent(event);
         };
 
         const push = function(cookieId){
@@ -525,6 +544,20 @@ let ContaoCookiebar = (function () {
                     });
                 });
             })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+
+            (function () {
+                if ( typeof window.CustomEvent === "function" ) return false;
+
+                function CustomEvent ( event, params ) {
+                    params = params || { bubbles: false, cancelable: false, detail: undefined };
+                    var evt = document.createEvent('CustomEvent');
+                    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+                    return evt;
+                }
+
+                CustomEvent.prototype = window.Event.prototype;
+                window.CustomEvent = CustomEvent;
+            })();
         };
 
         /** Helper methods */

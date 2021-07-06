@@ -248,6 +248,7 @@
     border-radius: 5px;
     margin-bottom: 10px; }
     .cookiebar_default .cc-group > label {
+      flex-grow: 1;
       margin: 5px 0 5px 10px; }
     .cookiebar_default .cc-group .cc-detail-btn {
       border: 0 none;
@@ -258,7 +259,7 @@
       text-transform: initial;
       cursor: pointer;
       color: #a2a2a2;
-      padding: 8px 13px;
+      padding: 8px 10px;
       line-height: 1.2rem; }
       .cookiebar_default .cc-group .cc-detail-btn span:nth-child(2) {
         display: none; }

@@ -36,6 +36,15 @@ cookiebar.hide();
 // - [function] callbackMethod: The function to be executed once the cookie type is accepted
 // - [object] placeholderOptions (optional): Placeholder options for displaying own content
 cookiebar.addModule(1, callbackMethod [, placeholderOptions]);
+
+// Custom Events
+window.addEventListener('cookiebar_init', function (e) {
+  console.log('on init', e.detail);
+}, false);
+
+window.addEventListener('cookiebar_save', function (e) {
+  console.log('on save', e.detail);
+}, false);
 ```
 
 ### Example of the `addModule` method
