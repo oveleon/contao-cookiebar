@@ -51,5 +51,10 @@
 
 ---
 
-> ⚖️\
+> ### 🚫
+> This Consent Tool does **not** need its own cookies. Please **do not refer to Oveleon** within your website, no data will be passed to Oveleon!
+
+---
+
+> ### ⚖️
 > We cannot guarantee complete legal security. Use this extension at your own risk or contact a lawyer if you are not sure about the configuration. Please understand that we cannot answer any legal questions. For questions of technical nature, feel free to contact us.
