@@ -32,7 +32,6 @@ Cookie-Type | Description
 `YouTube` | Blocks YouTube videos that have been embedded using the YouTube content element.
 `Vimeo` | Blocks Vimeo videos that have been embedded using the Vimeo content element.
 `Google Maps` | Blocks all Google Maps, which was integrated via a HTML content element or module. The template `ce_html_googlemaps` or `mod_html_googlemaps` must be selected.
-`Google Maps` | Blocks all Google Maps, which was integrated via a HTML content element or module. The template `ce_html_googlemaps` or `mod_html_googlemaps` must be selected.
 
 ### Fields
 Field | Description | Type
