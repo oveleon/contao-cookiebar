@@ -23,7 +23,10 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 				'id' => 'primary'
 			)
 		),
-        'oncreate_callback'          => array(
+        'onload_callback'          => array(
+            array('tl_cookiebar', 'checkEssentialGroup')
+        ),
+        'onsubmit_callback'          => array(
             array('tl_cookiebar', 'createEssentialGroupAndCookies')
         )
 	),
@@ -98,7 +101,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,template,infoUrls,excludePages;{expert_legend:hide},cssID,position,scriptPosition,version,updateVersion'
+        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,template,infoUrls,excludePages;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion'
 	),
 
     // Fields
@@ -216,6 +219,17 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'eval'                    => array('tl_class'=>'w50 m12'),
             'sql'                     => "char(1) NOT NULL default ''"
         ),
+        'essentialCookieLanguage' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['essentialCookieLanguage'],
+            'default'                 => $GLOBALS['TL_LANGUAGE'] ?? 'en',
+            'exclude'                 => true,
+            'inputType'               => 'select',
+            'options_callback'        => array('tl_cookiebar', 'loadAvailableLanguages'),
+            'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "varchar(2) NOT NULL default ''"
+        ),
         'scriptPosition' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['scriptPosition'],
@@ -241,7 +255,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['cssID'],
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => array('multiple'=>true, 'size'=>2, 'tl_class'=>'w50 clr'),
+            'eval'                    => array('multiple'=>true, 'size'=>2, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         )
 	)
@@ -253,18 +267,69 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 class tl_cookiebar extends Contao\Backend
 {
     /**
-     * Create essential group an cookies
+     * Return available languages
      *
-     * @param $table
-     * @param $insertId
-     * @param $rows
+     * @return array
+     */
+    public function loadAvailableLanguages(): array
+    {
+        $this->loadLanguageFile('languages');
+
+        $arrLanguages = ['en', 'de', 'sv'];
+        $arrReturn = [];
+
+        foreach ($arrLanguages as $strLanguage) {
+            $arrReturn[ $strLanguage ] = $GLOBALS['TL_LANG']['LNG'][ $strLanguage ];
+        }
+
+        return $arrReturn;
+    }
+
+    /**
+     * Check if an essential group exists
+     *
+     * @param \Contao\DataContainer $dc
+     * @return bool
+     */
+    public function hasEssentialGroup(Contao\DataContainer $dc): bool
+    {
+        $countEssentialGroup = Oveleon\ContaoCookiebar\CookieGroupModel::countBy(['pid=?', 'identifier=?'], [$dc->id, 'lock']);
+        return null !== $countEssentialGroup && $countEssentialGroup >= 1;
+    }
+
+    /**
+     * Check if essential groups are allowed to be created
+     *
      * @param Contao\DataContainer $dc
      */
-    public function createEssentialGroupAndCookies($table, $insertId, $rows, Contao\DataContainer $dc)
+    public function checkEssentialGroup(Contao\DataContainer $dc)
     {
+        if($this->hasEssentialGroup($dc))
+        {
+            $GLOBALS['TL_DCA']['tl_cookiebar']['fields']['essentialCookieLanguage']['eval']['disabled'] = true;
+        }
+    }
+
+    /**
+     * Create essential group an cookies
+     *
+     * @param Contao\DataContainer $dc
+     */
+    public function createEssentialGroupAndCookies(Contao\DataContainer $dc)
+    {
+        $strLang = $dc->activeRecord->essentialCookieLanguage;
+
+        if(!$strLang || $this->hasEssentialGroup($dc))
+        {
+            return;
+        }
+
+        $translator = System::getContainer()->get('translator');
+        $translator->setLocale($strLang);
+
         $essentialGroup = new Oveleon\ContaoCookiebar\CookieGroupModel();
-        $essentialGroup->title = $GLOBALS['TL_LANG']['tl_cookiebar']['defaultEssentialGroupName'];
-        $essentialGroup->pid = $insertId;
+        $essentialGroup->title = $translator->trans('tl_cookiebar.defaultEssentialGroupName', [], 'contao_tl_cookiebar');
+        $essentialGroup->pid = $dc->id;
         $essentialGroup->identifier = 'lock';
         $essentialGroup->published = 1;
         $essentialGroup->save();
@@ -273,22 +338,22 @@ class tl_cookiebar extends Contao\Backend
             [
                 'Contao CSRF Token',
                 'csrf_contao_csrf_token',
-                $GLOBALS['TL_LANG']['tl_cookiebar']['noExpireTime'],
-                $GLOBALS['TL_LANG']['tl_cookiebar']['defaultCsrfDescription'],
+                $translator->trans('tl_cookiebar.noExpireTime', [], 'contao_tl_cookiebar'),
+                $translator->trans('tl_cookiebar.defaultCsrfDescription', [], 'contao_tl_cookiebar'),
                 'lock'
             ],
             [
                 'Contao HTTPS CSRF Token',
                 'csrf_https-contao_csrf_token',
-                $GLOBALS['TL_LANG']['tl_cookiebar']['noExpireTime'],
-                $GLOBALS['TL_LANG']['tl_cookiebar']['defaultHttpsCsrfDescription'],
+                $translator->trans('tl_cookiebar.noExpireTime', [], 'contao_tl_cookiebar'),
+                $translator->trans('tl_cookiebar.defaultHttpsCsrfDescription', [], 'contao_tl_cookiebar'),
                 'lock'
             ],
             [
                 'PHP SESSION ID',
                 'PHPSESSID',
-                $GLOBALS['TL_LANG']['tl_cookiebar']['noExpireTime'],
-                $GLOBALS['TL_LANG']['tl_cookiebar']['defaultPhpSessionDescription'],
+                $translator->trans('tl_cookiebar.noExpireTime', [], 'contao_tl_cookiebar'),
+                $translator->trans('tl_cookiebar.defaultPhpSessionDescription', [], 'contao_tl_cookiebar'),
                 'lock'
             ]
         ];
@@ -306,6 +371,8 @@ class tl_cookiebar extends Contao\Backend
             $newCookie->published = 1;
             $newCookie->save();
         }
+
+        $translator->setLocale($GLOBALS['TL_LANGUAGE']);
     }
 
     /**

@@ -554,7 +554,9 @@ class tl_cookie extends Contao\Backend
     public function selectTokenPreset($dc)
     {
         $id = 'token' . $dc->activeRecord->type;
-        return ' <a href="javascript:;" id="'.$id.'" title="' . $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel'] . '" onclick="Backend.getScrollOffset();var token=Cookiebar.getToken(\''.$dc->activeRecord->type.'\',\''.$GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_'.$dc->activeRecord->type.'_error'].'\');if(token)document.getElementById(\'ctrl_'.$dc->field.'\').value=token">' . Contao\Image::getHtml('theme_import.svg', $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel']) . '</a><script>Cookiebar.issetToken(\''.$dc->activeRecord->type.'\',document.getElementById(\''.$id.'\'));</script>';
+        $strLangError = $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_'.$dc->activeRecord->type.'_error'] ?? '';
+
+        return ' <a href="javascript:;" id="'.$id.'" title="' . $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel'] . '" onclick="Backend.getScrollOffset();var token=Cookiebar.getToken(\''.$dc->activeRecord->type.'\',\''.$strLangError.'\');if(token)document.getElementById(\'ctrl_'.$dc->field.'\').value=token">' . Contao\Image::getHtml('theme_import.svg', $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel']) . '</a><script>Cookiebar.issetToken(\''.$dc->activeRecord->type.'\',document.getElementById(\''.$id.'\'));</script>';
     }
 
     /**

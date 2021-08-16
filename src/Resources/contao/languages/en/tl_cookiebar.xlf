@@ -151,6 +151,12 @@
       <trans-unit id="tl_cookiebar.cookieLog.1">
         <source>Einwilligungen anzeigen</source>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.essentialCookieLanguage.0">
+        <source>Create essential cooking group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.essentialCookieLanguage.1">
+        <source>Specify in which language the descriptions of the essential cookies should be created.</source>
+      </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
         <source>Above the content in the body tag</source>

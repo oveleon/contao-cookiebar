@@ -200,6 +200,14 @@
         <source>Einwilligungen anzeigen</source>
         <target>Visa samtycke</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.essentialCookieLanguage.0">
+        <source>Create essential cooking group</source>
+        <target>Skapa en viktig matlagningsgrupp</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.essentialCookieLanguage.1">
+        <source>Specify in which language the descriptions of the essential cookies should be created.</source>
+        <target>Ange på vilket språk beskrivningarna av de väsentliga kakorna ska skapas.</target>
+      </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
         <source>Above the content in the body tag</source>

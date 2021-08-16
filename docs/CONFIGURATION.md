@@ -23,6 +23,7 @@ Field | Description
 `Template` | Defines the template to be used (see [Styling & Customization](CUSTOMIZATION.md) for more information)
 `Info-Links` | Here you can select several pages from the page picker, which are displayed in the footer of the cookie bar. (e.g. imprint, privacy policy)
 `Exclude Pages` | Here you can select pages in which the cookie bar should not be displayed.
+`Create essential cooking group` | Defines the language in which the essential cookies are created.
 `Position` | Defines the position in the body tag
 `Script position` | Defines where the Cookiebar scripts will be embedded
 `Version` | Allows to call the cookie bar again, even if the visitor has already accepted it
