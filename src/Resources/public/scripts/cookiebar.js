@@ -160,7 +160,11 @@ let ContaoCookiebar = (function () {
                 setStorage(storage);
 
                 // Set new status
-                cookiebar.settings.cookies[cookieId].confirmed = true;
+                if (typeof cookiebar.settings.cookies[cookieId] === 'object') {
+                    cookiebar.settings.cookies[cookieId].confirmed = true;
+                } else {
+                    cookiebar.settings.cookies[cookieId] = {confirmed: true};
+                }
 
                 // Add new log entry
                 log();
@@ -738,7 +742,10 @@ let ContaoCookiebar = (function () {
                     let html = document.createElement("div");
                         html.setAttribute('data-ccb-id', cookieId);
                         html.classList.add('cc-module');
-                        html.innerHTML = '<p>' + objContent.message + '</p>';
+
+                        if (!!objContent.message) {
+                            html.innerHTML = '<p>' + objContent.message + '</p>';
+                        }
 
                     if(typeof objContent.button === 'object' && true === objContent.button.show){
                         var btn = document.createElement("button");
