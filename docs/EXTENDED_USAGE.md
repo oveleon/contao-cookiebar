@@ -69,7 +69,7 @@ Furthermore, it is also possible to output a message for these scripts if the co
 document.addEventListener("DOMContentLoaded", function() {
     cookiebar.addModule(cookieIdOfGoogleMaps, myCallbackMethodWithInitialization, {
         selector: '#element',           // [required] Defines the element selector in which the message is output
-        message: 'Your text',           // [required] The text to be displayed
+        message: 'Your text',           // [optional] The text to be displayed
         button: {                       
             show: true,                 // Extends the output by a confirmation button,
             text: 'Custom button text', // Button text
@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 ```
 
-ℹ Attention: Cookies of the type "Info" are not considered!
 
 # PHP
 ```php
