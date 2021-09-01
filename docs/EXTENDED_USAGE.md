@@ -68,19 +68,18 @@ Furthermore, it is also possible to output a message for these scripts if the co
 ```javascript
 document.addEventListener("DOMContentLoaded", function() {
     cookiebar.addModule(cookieIdOfGoogleMaps, myCallbackMethodWithInitialization, {
-        selector: '#element',           // [required] Defines the element selector in which the message is output
-        message: 'Your text',           // [required] The text to be displayed
-        button: {                       
-            show: true,                 // Extends the output by a confirmation button,
-            text: 'Custom button text', // Button text
-            type: 'button',             // Button type
-            classes: 'first second'     // Own CSS classes for the button separated by spaces
+        selector: '#element',           // [required: string, HTMLElement] Defines the element in which the message is output
+        message: 'Your text',           // [optional: string] The text to be displayed
+        button: {                       // [optional: object]
+            show: true,                 // [required: bool]   Extends the output by a confirmation button,
+            text: 'Custom button text', // [optional: string] Button text
+            type: 'button',             // [optional: string] Button type
+            classes: 'first second'     // [optional: string] Own CSS classes for the button separated by spaces
         }
     });
 });
 ```
 
-ℹ Attention: Cookies of the type "Info" are not considered!
 
 # PHP
 ```php

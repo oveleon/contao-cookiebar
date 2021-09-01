@@ -257,7 +257,7 @@ class Cookiebar
         {
             foreach ($group->cookies as $cookie)
             {
-                if($cookie->isLocked || $cookie->type === 'default')
+                if($cookie->isLocked)
                 {
                     continue;
                 }

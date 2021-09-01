@@ -732,13 +732,22 @@ let ContaoCookiebar = (function () {
             }
 
             if(objContent && typeof objContent === 'object' && objContent.selector){
-                let container = document.querySelector(objContent.selector);
+                let container = null;
+
+                if(typeof objContent.selector === 'string'){
+                    container = document.querySelector(objContent.selector);
+                }else{
+                    container = objContent.selector;
+                }
 
                 if(!!container){
                     let html = document.createElement("div");
                         html.setAttribute('data-ccb-id', cookieId);
                         html.classList.add('cc-module');
-                        html.innerHTML = '<p>' + objContent.message + '</p>';
+
+                        if (!!objContent.message) {
+                            html.innerHTML = '<p>' + objContent.message + '</p>';
+                        }
 
                     if(typeof objContent.button === 'object' && true === objContent.button.show){
                         var btn = document.createElement("button");
