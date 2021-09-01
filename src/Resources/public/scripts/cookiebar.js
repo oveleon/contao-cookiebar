@@ -160,11 +160,7 @@ let ContaoCookiebar = (function () {
                 setStorage(storage);
 
                 // Set new status
-                if (typeof cookiebar.settings.cookies[cookieId] === 'object') {
-                    cookiebar.settings.cookies[cookieId].confirmed = true;
-                } else {
-                    cookiebar.settings.cookies[cookieId] = {confirmed: true};
-                }
+                cookiebar.settings.cookies[cookieId].confirmed = true;
 
                 // Add new log entry
                 log();
