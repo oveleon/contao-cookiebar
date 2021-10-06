@@ -25,3 +25,16 @@ Field | Description
 Template | Description
 ---------- | ----------
 `ccb_opener_default.html5` | Returns the template, which is responsible for the output of the Cookiebar module / content element.
+
+## Create your own links to open the cookie bar 
+The following script can be used to reopen the cookie bar:
+```js
+cookiebar.show(true); // true = Activates the already confirmed cookie checkboxes
+```
+
+The link could look like this:
+```html
+<a href="javascript:cookiebar.show(true);">Privacy settings</a>
+```
+
+See also "[Extended usage](https://github.com/oveleon/contao-cookiebar/blob/master/docs/EXTENDED_USAGE.md)".
