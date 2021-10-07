@@ -199,6 +199,18 @@
       <trans-unit id="tl_cookie.scriptConfig_xlabel">
         <source>Insert default configuration</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.disabled.0">
+        <source>Prevent deactivation</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.disabled.1">
+        <source>Define whether this cookie can be deactivated by the visitor.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.checked.0">
+        <source>Preselect</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.checked.1">
+        <source>Activates the checkbox when opening the cookie bar for the first time.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
       </trans-unit>

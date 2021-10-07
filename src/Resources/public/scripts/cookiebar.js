@@ -385,12 +385,23 @@ let ContaoCookiebar = (function () {
 
         const restoreCookieStatus = function(){
             let arrCookies = getStorage();
+            let cookies = [];
 
-            if(!cookiebar.show || !arrCookies.cookies){
+            if(!cookiebar.show){
                 return;
             }
 
-            arrCookies.cookies.forEach(function(cookieId, index){
+            if(arrCookies.cookies && arrCookies.cookies.length){
+                cookies = arrCookies.cookies;
+            }else{
+                for(const cid in cookiebar.settings.cookies){
+                    if(cookiebar.settings.cookies[cid].checked){
+                        cookies.push(cid)
+                    }
+                }
+            }
+
+            cookies.forEach(function(cookieId, index){
                 let input = cookiebar.dom.querySelector('[id="c' + cookieId + '"]');
 
                 if(!!input) {

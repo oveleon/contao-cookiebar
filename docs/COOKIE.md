@@ -42,6 +42,7 @@ Field | Description | Type
 `Cookie storage duration` | Define how long the cookie is stored or refer to the description of the provider. | All
 `Provider` | The provider from whom the cookie is set. | All
 `Description` | The description / purpose of the cookie. | All
+`Preselect` | Activates the checkbox when opening the cookie bar for the first time. | All
 `Published` | Defines whether the cookie is in active use. | All
 `Source URL` | Allows the inclusion of external scripts in the HEAD-Tag. | Custom (Script)
 `Loading-Mode of Source URL` | Defines when the source URL may be loaded. | Custom (Script)

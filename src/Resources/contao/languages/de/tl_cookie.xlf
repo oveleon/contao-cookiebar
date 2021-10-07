@@ -269,6 +269,14 @@
         <source>Define whether this cookie can be deactivated by the visitor.</source>
         <target>Definieren Sie ob dieser Cookie durch den Besucher deaktiviert werden kann.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.checked.0">
+        <source>Preselect</source>
+        <target>Vorauswählen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.checked.1">
+        <source>Activates the checkbox when opening the cookie bar for the first time.</source>
+        <target>Aktiviert die Checkbox beim erstmaligen öffnen der Cookiebar.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
         <target>Veröffentlichen</target>

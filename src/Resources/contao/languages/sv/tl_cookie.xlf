@@ -269,6 +269,14 @@
         <source>Define whether this cookie can be deactivated by the visitor.</source>
         <target>Definiera om denna cookie kan inaktiveras av besökaren.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.checked.0">
+        <source>Preselect</source>
+        <target>Förhandsval</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.checked.1">
+        <source>Activates the checkbox when opening the cookie bar for the first time.</source>
+        <target>Aktiverar kryssrutan när kakfältet öppnas för första gången.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
         <target>Publicera</target>

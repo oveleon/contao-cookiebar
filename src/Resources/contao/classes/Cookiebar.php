@@ -265,6 +265,7 @@ class Cookiebar
                 $arrCookie = [
                     'id'        => $cookie->id,
                     'type'      => $cookie->type,
+                    'checked'   => !!$cookie->checked,
                     'token'     => static::parseToken($cookie->token),
                     'resources' => $cookie->resources,
                     'scripts'   => $cookie->scripts

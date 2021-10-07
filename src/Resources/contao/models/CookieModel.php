@@ -37,6 +37,7 @@ use Contao\Model;
  * @property string  $scriptUnconfirmed
  * @property string  $scriptPosition
  * @property string  $scriptConfig
+ * @property boolean $checked
  * @property boolean $published
  *
  * @method static CookieModel|null findById($id, array $opt=array())
