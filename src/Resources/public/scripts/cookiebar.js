@@ -148,6 +148,8 @@ let ContaoCookiebar = (function () {
             });
 
             window.dispatchEvent(event);
+
+            restoreCookieStatus(true);
         };
 
         const push = function(cookieId){
@@ -383,17 +385,17 @@ let ContaoCookiebar = (function () {
             restoreCookieStatus();
         };
 
-        const restoreCookieStatus = function(){
-            let arrCookies = getStorage();
+        const restoreCookieStatus = function(force){
+            let objStorage = getStorage();
             let cookies = [];
 
-            if(!cookiebar.show){
+            if(!cookiebar.show && force !== true){
                 return;
             }
 
-            if(arrCookies.cookies && arrCookies.cookies.length){
-                cookies = arrCookies.cookies;
-            }else{
+            if(objStorage.cookies && objStorage.cookies.length){
+                cookies = objStorage.cookies;
+            }else if(objStorage.version === -1){
                 for(const cid in cookiebar.settings.cookies){
                     if(cookiebar.settings.cookies[cid].checked){
                         cookies.push(cid)
@@ -401,13 +403,15 @@ let ContaoCookiebar = (function () {
                 }
             }
 
-            cookies.forEach(function(cookieId, index){
-                let input = cookiebar.dom.querySelector('[id="c' + cookieId + '"]');
+            if(cookies.length){
+                cookies.forEach(function(cookieId, index){
+                    let input = cookiebar.dom.querySelector('[id="c' + cookieId + '"]');
 
-                if(!!input) {
-                    input.checked = true;
-                }
-            });
+                    if(!!input) {
+                        input.checked = true;
+                    }
+                });
+            }
 
             let arrGroupInputs = cookiebar.dom.querySelectorAll('input[name="group[]"]');
 
@@ -416,6 +420,9 @@ let ContaoCookiebar = (function () {
                     if(groupInput.disabled){
                         return;
                     }
+
+                    groupInput.checked = false;
+                    groupInput.classList.remove(cookiebar.settings.classes.onGroupSplitSelection);
 
                     let inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
                     let arrGroup = [];

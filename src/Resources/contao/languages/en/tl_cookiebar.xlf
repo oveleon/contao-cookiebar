@@ -115,11 +115,17 @@
       <trans-unit id="tl_cookiebar.template.1">
         <source>Choose a template.</source>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.buttonColorScheme.0">
+        <source>Button color scheme</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.buttonColorScheme.1">
+        <source>Defines the color scheme of the available buttons.</source>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.0">
         <source>Alignment</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.1">
-        <source>Define here where the cookie bar should be displayed.</source>
+        <source>Define here the position / alignment of the cookie bar.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.0">
         <source>Blocking</source>
@@ -190,6 +196,15 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-bottom-right">
         <source>Right | Bottom</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.neutral">
+        <source>Neutral</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.grayscale">
+        <source>Grayscale</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.highlight">
+        <source>Highlight</source>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.new.0">

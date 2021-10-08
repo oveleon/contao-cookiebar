@@ -53,8 +53,8 @@
                 </div>
             <?php endforeach; ?>
         </div>
-        <div class="cc-footer">
-            <button class="cc-btn" data-save><?=$this->saveLabel?></button>
+        <div class="cc-footer <?=$this->buttonColorScheme?>">
+            <button class="cc-btn save" data-save><?=$this->saveLabel?></button>
             <button class="cc-btn success" data-accept-all><?=$this->acceptAllLabel?></button>
         </div>
         <div class="cc-info">

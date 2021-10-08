@@ -7,10 +7,10 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
         <div id="cookiebar-desc" class="cc-head">
             <?=$this->description?>
         </div>
-        <div class="cc-footer">
+        <div class="cc-footer <?=$this->buttonColorScheme?>">
             <button class="cc-btn success" data-accept-all><?=$this->acceptAllLabel?></button>
-            <button class="cc-btn warn" data-deny-all><?=$this->denyAllLabel?></button>
-            <button class="cc-btn" data-toggle-group><?=$this->infoLabel?></button>
+            <button class="cc-btn deny" data-deny-all><?=$this->denyAllLabel?></button>
+            <button class="cc-btn info" data-toggle-group><?=$this->infoLabel?></button>
             <div class="cc-groups toggle-group">
                 <?php foreach ($this->groups as $group): ?>
                     <div class="cc-group">
@@ -53,7 +53,7 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
                     </div>
                 <?php endforeach; ?>
 
-                <button class="cc-btn" data-save><?=$this->saveLabel?></button>
+                <button class="cc-btn save" data-save><?=$this->saveLabel?></button>
             </div>
         </div>
         <div class="cc-info">

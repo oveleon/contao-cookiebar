@@ -24,6 +24,7 @@ use Contao\Model;
  * @property boolean $updateVersion
  * @property string  $infoUrls
  * @property string  $excludePages
+ * @property string  $buttonColorScheme
  * @property string  $template
  * @property string  $alignment
  * @property string  $blocking

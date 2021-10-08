@@ -129,18 +129,43 @@
       background: #ececec;
     }
 
-    &.success{
-      background: #4e9e3e;
-      border-color: #3e7830;
-      color: #fff;
-
-      &:hover{
-        background: #4c933f;
-      }
-    }
-
     &:last-child{
       margin-bottom: 0;
+    }
+  }
+
+  .grayscale {
+
+    .cc-btn{
+      background: #f1efef;
+
+      &:hover{
+        background: #ececec;
+      }
+
+      &.success{
+        background: #fbfbfb;
+
+        &:hover{
+          background: #f7f7f7;
+        }
+      }
+    }
+  }
+
+  .highlight {
+
+    .cc-btn{
+
+      &.success{
+        background: #4e9e3e;
+        border-color: #3e7830;
+        color: #fff;
+
+        &:hover{
+          background: #4c933f;
+        }
+      }
     }
   }
 

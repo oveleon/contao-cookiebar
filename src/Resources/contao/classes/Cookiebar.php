@@ -64,13 +64,14 @@ class Cookiebar
         // Overwrite metadata
         if(null !== $objMeta)
         {
-            $objConfig->description     = $objMeta->cookiebarDescription;
-            $objConfig->infoDescription = $objMeta->cookiebarInfoDescription;
-            $objConfig->infoUrls        = $objMeta->cookiebarInfoUrls;
-            $objConfig->excludePages    = $objMeta->cookiebarExcludePages;
-            $objConfig->template        = $objMeta->cookiebarTemplate;
-            $objConfig->alignment       = $objMeta->cookiebarAlignment;
-            $objConfig->blocking        = $objMeta->cookiebarBlocking;
+            $objConfig->description       = $objMeta->cookiebarDescription;
+            $objConfig->infoDescription   = $objMeta->cookiebarInfoDescription;
+            $objConfig->infoUrls          = $objMeta->cookiebarInfoUrls;
+            $objConfig->excludePages      = $objMeta->cookiebarExcludePages;
+            $objConfig->buttonColorScheme = $objMeta->cookiebarButtonColorScheme;
+            $objConfig->template          = $objMeta->cookiebarTemplate;
+            $objConfig->alignment         = $objMeta->cookiebarAlignment;
+            $objConfig->blocking          = $objMeta->cookiebarBlocking;
         }
 
         while($objCookieGroups->next())
@@ -190,6 +191,7 @@ class Cookiebar
         }
 
         $objTemplate->description = $objConfig->description;
+        $objTemplate->buttonColorScheme = $objConfig->buttonColorScheme;
         $objTemplate->infoDescription = $objConfig->infoDescription;
         $objTemplate->groups = $objConfig->groups;
 

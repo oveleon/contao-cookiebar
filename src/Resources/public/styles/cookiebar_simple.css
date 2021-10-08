@@ -71,14 +71,22 @@
     background: #f5f5f5; }
     .contao-cookiebar .cc-btn:hover {
       background: #ececec; }
-    .contao-cookiebar .cc-btn.success {
-      background: #4e9e3e;
-      border-color: #3e7830;
-      color: #fff; }
-      .contao-cookiebar .cc-btn.success:hover {
-        background: #4c933f; }
     .contao-cookiebar .cc-btn:last-child {
       margin-bottom: 0; }
+  .contao-cookiebar .grayscale .cc-btn {
+    background: #f1efef; }
+    .contao-cookiebar .grayscale .cc-btn:hover {
+      background: #ececec; }
+    .contao-cookiebar .grayscale .cc-btn.success {
+      background: #fbfbfb; }
+      .contao-cookiebar .grayscale .cc-btn.success:hover {
+        background: #f7f7f7; }
+  .contao-cookiebar .highlight .cc-btn.success {
+    background: #4e9e3e;
+    border-color: #3e7830;
+    color: #fff; }
+    .contao-cookiebar .highlight .cc-btn.success:hover {
+      background: #4c933f; }
   .contao-cookiebar label {
     position: relative;
     display: block;

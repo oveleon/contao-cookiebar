@@ -157,8 +157,8 @@
         <target>Justering</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.1">
-        <source>Define here where the cookie bar should be displayed.</source>
-        <target>Definiera här var cookieboxen ska visas.</target>
+        <source>Define here the position / alignment of the cookie bar.</source>
+        <target>Här kan du definiera kaklistans position och inriktning.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.0">
         <source>Blocking</source>
@@ -252,6 +252,18 @@
       <trans-unit id="tl_cookiebar.align-bottom-right">
         <source>Right | Bottom</source>
         <target>Höger | Nedan</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.neutral">
+        <source>Neutral</source>
+        <target>Neutral</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.grayscale">
+        <source>Grayscale</source>
+        <target>Gråskala</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.highlight">
+        <source>Highlight</source>
+        <target>Markera</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.new.0">

@@ -77,6 +77,14 @@
         <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
         <target>Definieren Sie hier die Seiten, in denen die Cookiebar nicht automatisch geöffnet werden soll.</target>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.0">
+        <source>Button color scheme</source>
+        <target>Button-Farbschema</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.1">
+        <source>Defines the color scheme of the available buttons.</source>
+        <target>Definiert das Farbschema der verfügbaren Button.</target>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.0">
         <source>Template</source>
         <target>Template</target>

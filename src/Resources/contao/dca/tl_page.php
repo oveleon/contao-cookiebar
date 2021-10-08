@@ -15,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'activateCookiebar
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'overwriteCookiebarMeta';
 
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['activateCookiebar'] = 'cookiebarConfig,overwriteCookiebarMeta';
-$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarTemplate,cookiebarInfoUrls,cookiebarExcludePages';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarButtonColorScheme,cookiebarTemplate,cookiebarInfoUrls,cookiebarExcludePages';
 
 // Fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = array
@@ -94,6 +94,17 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarTemplate'] = array
     },
     'eval'                    => array('tl_class'=>'w50'),
     'sql'                     => "varchar(64) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarButtonColorScheme'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarButtonColorScheme'],
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options'                 => ['grayscale', 'highlight'],
+    'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
+    'eval'                    => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50 clr'),
+    'sql'                     => "varchar(32) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarAlignment'] = array

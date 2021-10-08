@@ -8,6 +8,8 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
+\Contao\System::loadLanguageFile('tl_cookiebar');
+
 $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 (
 	// Config
@@ -101,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,template,infoUrls,excludePages;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion'
+        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,buttonColorScheme,template,infoUrls,excludePages;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion'
 	),
 
     // Fields
@@ -210,6 +212,16 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             ),
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
             'eval'                    => array('tl_class'=>'w50 clr'),
+            'sql'                     => "varchar(32) NOT NULL default ''"
+        ),
+        'buttonColorScheme' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['buttonColorScheme'],
+            'exclude'                 => true,
+            'inputType'               => 'select',
+            'options'                 => ['grayscale', 'highlight'],
+            'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
+            'eval'                    => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50 clr'),
             'sql'                     => "varchar(32) NOT NULL default ''"
         ),
         'blocking' => array
