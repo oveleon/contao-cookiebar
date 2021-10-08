@@ -222,7 +222,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'options'                 => ['grayscale', 'highlight'],
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
             'eval'                    => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50 clr'),
-            'sql'                     => "varchar(32) NOT NULL default ''"
+            'sql'                     => "varchar(32) NOT NULL default 'highlight'"
         ),
         'blocking' => array
         (
