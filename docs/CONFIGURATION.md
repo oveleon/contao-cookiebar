@@ -20,6 +20,7 @@ Field | Description
 `Info-Description` | Another way to provide information. Is displayed below the buttons
 `Alignment` | Defines the orientation of the cookie bar
 `Blocking` | Defines whether the cookie bar should block the use of the page
+`Button color scheme` | Defines the color scheme of the buttons
 `Template` | Defines the template to be used (see [Styling & Customization](CUSTOMIZATION.md) for more information)
 `Info-Links` | Here you can select several pages from the page picker, which are displayed in the footer of the cookie bar. (e.g. imprint, privacy policy)
 `Exclude Pages` | Here you can select pages in which the cookie bar should not be displayed.
