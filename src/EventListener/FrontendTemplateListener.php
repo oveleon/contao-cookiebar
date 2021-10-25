@@ -139,7 +139,7 @@ class FrontendTemplateListener
                         else
                         {
                             // Regex: Modify src attribute for iframes
-                            $frameRegex = "/<iframe([\s\S]*?)src=([\"'])(.*?)[\"']/i";
+                            $frameRegex = "/<iframe([\s\S]*?)src=([\\\\\"\']+)(.*?)[\\\\\"\']+/i";
 
                             // Get current src attribute
                             preg_match_all($frameRegex, $buffer, $matches);
