@@ -141,7 +141,7 @@ class CookieModel extends Model
 
         $arrColumns = array(
             "$t.token LIKE ?",
-            "$t.pid IN (" . implode(",", $arrGroupIds) . ")"
+            "$t.pid IN (" . implode(",", array_map('intval', $arrGroupIds)) . ")"
         );
 
         return static::findOneBy($arrColumns, '%' . $strToken . '%', $arrOptions);
