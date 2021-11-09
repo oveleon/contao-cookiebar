@@ -10,7 +10,6 @@
 
 namespace Oveleon\ContaoCookiebar;
 
-use Contao\Database;
 use Contao\Environment;
 use Contao\FrontendTemplate;
 use Contao\Input;
