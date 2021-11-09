@@ -10,16 +10,16 @@
 
 namespace Oveleon\ContaoCookiebar;
 
-use Contao\Database;
 use Contao\Environment;
 use Contao\FrontendTemplate;
 use Contao\Input;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
+use Doctrine\DBAL\Connection;
 use FOS\HttpCache\ResponseTagger;
-use Symfony\Component\HttpFoundation\IpUtils;
 use Oveleon\ContaoCookiebar\Exception\NoCookiebarSpecifiedException;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class Cookiebar
 {
@@ -401,8 +401,10 @@ class Cookiebar
 
         if(null !== $data)
         {
-            $objResult = Database::getInstance()->prepare("SELECT id, title, token FROM tl_cookie WHERE id IN (" . implode(",", $data) . ")")->execute();
-            $objLog->config = serialize($objResult->fetchAllAssoc());
+            /** @var Connection $db */
+            $db = System::getContainer()->get('database_connection');
+            $result = $db->fetchAllAssociative("SELECT id, title, token FROM tl_cookie WHERE id IN (?)", [$data], [Connection::PARAM_INT_ARRAY]);
+            $objLog->config = serialize($result);
         }
 
         $objLog->save();
