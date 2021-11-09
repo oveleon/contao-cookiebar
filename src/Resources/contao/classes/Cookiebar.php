@@ -389,7 +389,7 @@ class Cookiebar
 
         if(System::getContainer()->getParameter('contao_cookiebar.anonymize_ip'))
         {
-            $strIp = IPUtils::anonymize($strIp);
+            $strIp = IpUtils::anonymize($strIp);
         }
 
         $objLog->cid = $configId;
