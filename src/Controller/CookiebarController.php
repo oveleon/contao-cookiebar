@@ -12,6 +12,7 @@ namespace Oveleon\ContaoCookiebar\Controller;
 
 use Contao\FrontendTemplate;
 use Contao\System;
+use Contao\Validator;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\CookieModel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,9 +45,10 @@ class CookiebarController extends AbstractController
      * @Route("/cookiebar/block/{locale}/{id}", name="cookiebar_block")
      *
      * @param Request $request
-     * @param $id
+     * @param         $id
      *
      * @return Response
+     * @throws \Exception
      */
     public function blockAction(Request $request, $locale, $id)
     {
@@ -61,6 +63,14 @@ class CookiebarController extends AbstractController
             return new Response('');
         }
 
+        $strUrl = $request->get('redirect');
+
+        // Protect against XSS attacks
+        if(!Validator::isUrl($strUrl))
+        {
+            throw new \Exception('The redirect destination must be a valid URL.');
+        }
+
         /** @var FrontendTemplate $objTemplate */
         $objTemplate = new FrontendTemplate($objCookie->blockTemplate ?: 'ccb_element_blocker');
 
@@ -71,7 +81,6 @@ class CookiebarController extends AbstractController
         $objTemplate->iframeType = $objCookie->iframeType;
         $objTemplate->description = $objCookie->blockDescription;
         $objTemplate->redirect = $request->get('redirect');
-
         $objTemplate->acceptAndDisplayLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAndDisplayLabel'];
 
         return $objTemplate->getResponse();
