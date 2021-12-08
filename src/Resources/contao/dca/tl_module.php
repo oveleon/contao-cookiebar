@@ -9,7 +9,7 @@
  */
 
 // Palette
-$GLOBALS['TL_DCA']['tl_module']['palettes']['cookiebarOpener'] = '{title_legend},name,headline,type;{link_legend},linkTitle,titleText,prefillCookies;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['cookiebarOpener'] = '{title_legend},name,headline,type;{link_legend},linkTitle,titleText,prefillCookies;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 
 // Fields
 $GLOBALS['TL_DCA']['tl_module']['fields']['titleText'] = array
