@@ -273,6 +273,8 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	)
 );
 
+
+
 /**
  * Provide miscellaneous methods that are used by the data configuration array.
  */
@@ -285,13 +287,12 @@ class tl_cookiebar extends Contao\Backend
      */
     public function loadAvailableLanguages(): array
     {
-        $this->loadLanguageFile('languages');
-
+        $validLanguages = $this->getLanguages();
         $arrLanguages = ['en', 'de', 'sv'];
         $arrReturn = [];
 
         foreach ($arrLanguages as $strLanguage) {
-            $arrReturn[ $strLanguage ] = $GLOBALS['TL_LANG']['LNG'][ $strLanguage ];
+            $arrReturn[ $strLanguage ] = $validLanguages[ $strLanguage ] ?? $strLanguage;
         }
 
         return $arrReturn;
