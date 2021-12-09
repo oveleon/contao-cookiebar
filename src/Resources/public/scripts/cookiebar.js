@@ -14,6 +14,7 @@ let ContaoCookiebar = (function () {
             version: null,
             lifetime: 63072000,
             cookies: null,
+            configs: null,
             doNotTrack: false,
             currentPageId: 0,
             excludedPageIds: null,
@@ -32,8 +33,7 @@ let ContaoCookiebar = (function () {
             // Defaults
             cookiebar.settings = extend(true, defaults, settings);
             cookiebar.dom = document.querySelector(cookiebar.settings.selector);
-            cookiebar.scriptCache = [];
-            cookiebar.resourceCache = [];
+            cookiebar.cache = {};
             cookiebar.modules = {};
             cookiebar.show = false;
 
@@ -66,6 +66,9 @@ let ContaoCookiebar = (function () {
 
             // Check visibility
             checkVisibility();
+
+            // Load global config
+            setConfigs();
 
             // Load scripts
             setScripts();
@@ -115,6 +118,9 @@ let ContaoCookiebar = (function () {
 
             // Validate new set of cookies
             validateCookies(arrCookies, true);
+
+            // Set configs
+            setConfigs();
 
             // Set scripts
             setScripts();
@@ -202,6 +208,57 @@ let ContaoCookiebar = (function () {
             }
         };
 
+        const setConfigs = function(){
+            let configId;
+            for(configId in cookiebar.settings.configs){
+
+                if(!cookiebar.settings.configs.hasOwnProperty(configId)){
+                    continue;
+                }
+
+                let config = cookiebar.settings.configs[ configId ];
+                let confirmed = checkCookieConfirmation(config.cookies);
+
+                if(null !== config.resources){
+                    config.resources.forEach(function(resource){
+                        // 1. load script only if one of the cookies was confirmed
+                        // 2. load script only if one of the cookies was not confirmed
+                        // 3. load script always
+                        if(
+                            (resource.mode === 1 && confirmed) ||
+                            (resource.mode === 2 && !confirmed) ||
+                            (resource.mode === 3)
+                        ){
+                            if(cache(config, 'config_resource')){
+                                return;
+                            }
+
+                            addResource(resource);
+                        }
+                    });
+                }
+
+                if(null !== config.scripts){
+                    config.scripts.forEach(function(script){
+                        // 1. load script only if one of the cookies was confirmed
+                        // 2. load script only if one of the cookies was not confirmed
+                        // 3. load script always
+                        if(
+                            (script.mode === 1 === confirmed) ||
+                            (script.mode === 2 === !confirmed) ||
+                            (script.mode === 3)
+                        ){
+                            if(cache(config, 'config_script')){
+                                return;
+                            }
+
+                            addScript(script);
+                        }
+                    });
+                }
+            }
+        };
+
         const setScripts = function(){
             let cookieId;
             for(cookieId in cookiebar.settings.cookies){
@@ -222,7 +279,7 @@ let ContaoCookiebar = (function () {
                             (resource.mode === 2 && !cookie.confirmed) ||
                             (resource.mode === 3)
                         ){
-                            if(cacheCookie(cookie, 'resource')){
+                            if(cache(cookie, 'resource')){
                                 return;
                             }
 
@@ -235,11 +292,13 @@ let ContaoCookiebar = (function () {
                     cookie.scripts.forEach(function(script){
                         // 1. load script if cookie confirmed
                         // 2. load script if cookie not confirmed
+                        // 3. load script always
                         if(
-                            (script.confirmed === cookie.confirmed) ||
-                            (!script.confirmed === !cookie.confirmed)
+                            (script.mode === 1 === cookie.confirmed) ||
+                            (script.mode === 2 === !cookie.confirmed) ||
+                            (script.mode === 3)
                         ){
-                            if(cacheCookie(cookie, 'script')){
+                            if(cache(cookie, 'script')){
                                 return;
                             }
 
@@ -301,24 +360,38 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        const cacheCookie = function(cookie, type){
-            switch(type){
-                case 'resource':
-                    if(cookiebar.resourceCache.indexOf(cookie.id) !== -1){
-                        return true;
-                    }
+        const checkCookieConfirmation = function(cookies){
+            let confirmed = false;
+            let cookieId;
 
-                    cookiebar.resourceCache.push(cookie.id);
-                    break;
-                case 'script':
-                    if(cookiebar.scriptCache.indexOf(cookie.id) !== -1){
-                        return true;
-                    }
+            for(cookieId in cookies){
 
-                    cookiebar.scriptCache.push(cookie.id);
+                if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)){
+                    continue;
+                }
+
+                let cookie = cookiebar.settings.cookies[ cookieId ];
+
+                if(cookie.confirmed){
+                    confirmed = true;
                     break;
+                }
             }
 
+            return confirmed;
+        };
+
+        const cache = function(obj, type){
+            // Create new cache bag
+            if(!cookiebar.cache[type]){
+                cookiebar.cache[ type ] = [];
+            }
+
+            if(cookiebar.cache[ type ].indexOf(obj.id) !== -1){
+                return true;
+            }
+
+            cookiebar.cache[ type ].push(obj.id);
             return false;
         };
 

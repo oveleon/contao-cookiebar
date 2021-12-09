@@ -26,9 +26,27 @@
          gtag('config','XXXXXX' &lt;code class="tl_red"&gt;[, Parameters are placed here]&lt;/code&gt;)&lt;/pre&gt;</source>
       </trans-unit>
       <trans-unit id="XPL.cookiebarScriptConfig.1.0">
-        <source>Matomo</source>
+        <source>Google Consent Mode</source>
       </trans-unit>
       <trans-unit id="XPL.cookiebarScriptConfig.1.1">
+        <source>&lt;b&gt;Replace&lt;/b&gt; the default configuration of Google Consent Mode. If you do not enter your own configuration, the following code will be generated automatically: &lt;pre&gt;
+
+          gtag('consent', 'default', {
+          '&lt;code class="tl_red"&gt;consent mode&lt;/code&gt;': 'granted'
+          });
+          &lt;/pre&gt;
+
+          If own code is provided for the configuration, the above code must be integrated independently! This can be modified if necessary.
+          &lt;br&gt;&lt;br&gt;
+          Further information:&lt;br&gt;
+          https://developers.google.com/gtagjs/devguide/consent&lt;br&gt;&lt;br&gt;
+          &lt;i&gt;This cookie type also requires a global configuration of the type "Google Tag Manager" with "Google Consent Mode" activated therein.&lt;/i&gt;
+        </source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.2.0">
+        <source>Matomo</source>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.2.1">
         <source>Extend the standard configuration of Matomo: &lt;pre&gt;
 
         var _paq = window._paq = window._paq || [];
@@ -45,7 +63,35 @@
           &lt;pre&gt;
           &lt;code class="tl_red"&gt;_paq.push(['trackPageView']);&lt;/code&gt;
           &lt;code class="tl_red"&gt;_paq.push(['enableLinkTracking']);&lt;/code&gt;&lt;pre&gt;</source>
-    </trans-unit>
+      </trans-unit>
+
+      <trans-unit id="XPL.configurationScriptConfig.1.0">
+        <source>Google Tag Manager</source>
+      </trans-unit>
+      <trans-unit id="XPL.configurationScriptConfig.1.1">
+        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note, these settings are already implemented without confirmation of the cookie bar in the HEAD of the website.</source>
+      </trans-unit>
+      <trans-unit id="XPL.configurationScriptConfig.2.0">
+        <source>Tag Manager + Google Consent Mode</source>
+      </trans-unit>
+      <trans-unit id="XPL.configurationScriptConfig.2.1">
+        <source>If you do not define your own configuration for Google Consent Mode, the following settings are set automatically: &lt;pre&gt;
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+
+          gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'analytics_storage': 'denied',
+          'wait_for_update': 500
+          });
+
+          gtag('js', new Date());
+          gtag('config', '&lt;code class="tl_red"&gt;YOUR CONTAINER ID&lt;/code&gt;');
+          &lt;/pre&gt;
+
+          Please note that you have to enter this code yourself if you want to create your own configuration.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

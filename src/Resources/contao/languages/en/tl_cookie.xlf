@@ -13,6 +13,9 @@
       <trans-unit id="tl_cookie.template_legend">
         <source>Template</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.global_config_legend">
+        <source>Global config</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.description_legend">
         <source>Description</source>
       </trans-unit>
@@ -21,6 +24,9 @@
       </trans-unit>
       <trans-unit id="tl_cookie.google_analytics_legend">
         <source>Google Analytics</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.google_consent_mode_legend">
+        <source>Google Consent Mode</source>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_legend">
         <source>Matomo</source>
@@ -166,6 +172,12 @@
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.1">
         <source>Enter your Google Analytics ID here.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
+        <source>Google Tag Manager ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
+        <source>Enter your Google Tag Manager ID here.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
       </trans-unit>
@@ -189,6 +201,18 @@
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.1">
         <source>Enter further parameters here (as an JavaScript object), which should be taken into account when loading the script.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.globalConfig.0">
+        <source>Global Config</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.globalConfig.1">
+        <source>Please select a global configuration.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.gcmMode.0">
+        <source>Consent mode</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.gcmMode.1">
+        <source>Define the consent mode here.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
@@ -222,7 +246,7 @@
         <source>Google Analytics</source>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics.1">
-        <source>Integrate Google Analytics.</source>
+        <source>Integrate Google Analytics via Google Tag Manager.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.0">
         <source>Facebook Pixel</source>
@@ -334,6 +358,10 @@
       </trans-unit>
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.msgGoogleConsentMode">
+        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
       </trans-unit>
     </body>
   </file>

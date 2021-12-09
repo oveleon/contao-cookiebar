@@ -217,6 +217,14 @@
         <source>Enter your Google Analytics ID here.</source>
         <target>Geben Sie hier Ihre Google Analytics ID ein.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
+        <source>Google Tag Manager ID</source>
+        <target>Google Tag Manager ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
+        <source>Enter your Google Tag Manager ID here.</source>
+        <target>Geben Sie hier Ihre Google Tag Manager ID ein.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
         <target>Facebook-ID</target>
@@ -248,6 +256,22 @@
       <trans-unit id="tl_cookie.scriptConfig.1">
         <source>Enter further parameters here, which should be taken into account when loading the script.</source>
         <target>Tragen Sie hier weitere Parameter ein, welche beim Laden des Skriptes berücksichtigt werden sollen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.globalConfig.0">
+        <source>Global Config</source>
+        <target>Globale Konfiguration</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.globalConfig.1">
+        <source>Please select a global configuration.</source>
+        <target>Bitte wählen Sie eine globale Konfiguration aus.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.gcmMode.0">
+        <source>Consent mode</source>
+        <target>Einwilligungsmodus</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.gcmMode.1">
+        <source>Define the consent mode here. If you want to request multiple consents via Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
+        <target>Definieren Sie hier den Einwilligungsmodus. Sollten Sie mehrere Einwilligungen über den Google Consent Mode abfragen wollen, legen Sie bitte einen weiteren Cookie-Typen vom Typ Google Consent Mode an.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
@@ -291,8 +315,16 @@
         <target>Google Analytics</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics.1">
-        <source>Integrate Google Analytics.</source>
-        <target>Google Analytics einbinden.</target>
+        <source>Integrate Google Analytics via Google Tag Manager.</source>
+        <target>Google Analytics über den Google Tag Manager einbinden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode.0">
+        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode.1">
+        <source>Integrate Google Consent Mode via Google Tag Manager.</source>
+        <target>Google Consent Mode über den Google Tag Manager einbinden.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.0">
         <source>Facebook Pixel</source>
@@ -393,6 +425,15 @@
         <target>Head-Tag</target>
       </trans-unit>
 
+      <trans-unit id="tl_cookie.ad_storage">
+        <source>ad_storage</source>
+        <target>ad_storage</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.analytics_storage">
+        <source>analytics_storage</source>
+        <target>analytics_storage</target>
+      </trans-unit>
+
       <trans-unit id="tl_cookie.new.0">
         <source>New</source>
         <target>Neu</target>
@@ -456,6 +497,15 @@
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
         <target>Cookie ID %s veröffentlichen/unveröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.editGlobalConfig">
+        <source>Edit Global Configs</source>
+        <target>Globale Konfiguration bearbeiten</target>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.msgGoogleConsentMode">
+        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
+        <target>Cookies vom Typ "Google Consent Mode" können abhängig vom Einwilligungsmodus mehrfach angelegt werden.</target>
       </trans-unit>
     </body>
   </file>

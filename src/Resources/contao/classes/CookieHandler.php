@@ -39,46 +39,13 @@ use Contao\System;
  * @property string  $scriptConfig
  * @property string  $scriptTemplate
  * @property string  $blockTemplate
+ * @property string  $gcmMode
+ * @property integer $globalConfig
+ * @property boolean $disabled
  * @property boolean $published
  */
-class CookieHandler
+class CookieHandler extends AbstractCookie
 {
-    /**
-     * Position flag: Below the content within the body tag
-     * @var integer
-     */
-    const POS_BELOW = 1;
-
-    /**
-     * Position flag: Above the content within the body tag
-     * @var integer
-     */
-    const POS_ABOVE = 2;
-
-    /**
-     * Position flag: Within the head tag
-     * @var integer
-     */
-    const POS_HEAD = 3;
-
-    /**
-     * Loading flag: Load only after confirmation
-     * @var integer
-     */
-    const LOAD_CONFIRMED = 1;
-
-    /**
-     * Loading flag: Load only if not confirmed
-     * @var integer
-     */
-    const LOAD_UNCONFIRMED = 2;
-
-    /**
-     * Loading flag: Load always
-     * @var integer
-     */
-    const LOAD_ALWAYS = 3;
-
     /**
      * Model
      * @var CookieModel
@@ -96,18 +63,6 @@ class CookieHandler
      * @var boolean
      */
     protected $isDisabled = false;
-
-    /**
-     * Resource scripts
-     * @var array
-     */
-    protected $resources = [];
-
-    /**
-     * Plain scripts
-     * @var array
-     */
-    protected $scripts = [];
 
     /**
      * Initialize the object
@@ -138,6 +93,9 @@ class CookieHandler
                 break;
             case 'googleAnalytics':
                 $this->compileGoogleAnalytics();
+                break;
+            case 'googleConsentMode':
+                $this->compileGoogleConsentMode();
                 break;
             case 'facebookPixel':
                 $this->compileFacebookPixel();
@@ -175,38 +133,6 @@ class CookieHandler
     }
 
     /**
-     * Add a script
-     *
-     * @param string $strScript
-     * @param bool $confirmed
-     * @param int $pos
-     */
-    public function addScript(string $strScript, bool $confirmed = true, int $pos = self::POS_BELOW): void
-    {
-        $this->scripts[] = [
-            'script'    => $strScript,
-            'position'  => $pos,
-            'confirmed' => $confirmed
-        ];
-    }
-
-    /**
-     * Add a resource
-     *
-     * @param string $strSrc
-     * @param array|null $flags
-     * @param int $mode
-     */
-    public function addResource(string $strSrc, array $flags=null, int $mode = self::LOAD_CONFIRMED): void
-    {
-        $this->resources[] = [
-            'src'   => $strSrc,
-            'flags' => $flags,
-            'mode'  => $mode
-        ];
-    }
-
-    /**
      * Compile cookie of type "script"
      */
     private function compileScript()
@@ -222,12 +148,12 @@ class CookieHandler
 
         if($src = $this->scriptConfirmed)
         {
-            $this->addScript($src, true, $this->scriptPosition);
+            $this->addScript($src, self::LOAD_CONFIRMED, $this->scriptPosition);
         }
 
         if($src = $this->scriptUnconfirmed)
         {
-            $this->addScript($src, false, $this->scriptPosition);
+            $this->addScript($src, self::LOAD_UNCONFIRMED, $this->scriptPosition);
         }
     }
 
@@ -246,7 +172,7 @@ class CookieHandler
 
         if(isset($matches[1]))
         {
-            $this->addScript($matches[1], true, $this->scriptPosition);
+            $this->addScript($matches[1], self::LOAD_CONFIRMED, $this->scriptPosition);
         }
     }
 
@@ -258,14 +184,29 @@ class CookieHandler
         $this->addResource(
             'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
             null,
-            1
+            self::LOAD_CONFIRMED
         );
 
         $this->addScript(
             "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('js',new Date());gtag('config','" . $this->vendorId . "'" . ($this->scriptConfig ? ' ,' . $this->scriptConfig : '') . ")",
-            true,
-            3
+            self::LOAD_CONFIRMED,
+            self::POS_HEAD
         );
+    }
+
+    /**
+     * Compile cookie of type "googleConsentMode"
+     */
+    private function compileGoogleConsentMode()
+    {
+        if($src = $this->scriptConfig)
+        {
+            $this->addScript($src, self::LOAD_CONFIRMED, self::POS_HEAD);
+        }
+        else
+        {
+            $this->addScript("gtag('consent', 'update', { '" . $this->gcmMode . "': 'granted' });", self::LOAD_CONFIRMED, self::POS_HEAD);
+        }
     }
 
     /**
@@ -275,8 +216,8 @@ class CookieHandler
     {
         $this->addScript(
             "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '" . $this->vendorId . "');fbq('track', 'PageView');",
-            true,
-            3
+            self::LOAD_CONFIRMED,
+            self::POS_HEAD
         );
     }
 
@@ -289,8 +230,8 @@ class CookieHandler
 
         $this->addScript(
             "var _paq = window._paq = window._paq || []; " . ($this->scriptConfig ?: "_paq.push(['trackPageView']); _paq.push(['enableLinkTracking']);") . " (function() { var u='" . $url . "'; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', " . $this->vendorId . "]); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);})();",
-            true,
-            3
+            self::LOAD_CONFIRMED,
+            self::POS_HEAD
         );
     }
 }

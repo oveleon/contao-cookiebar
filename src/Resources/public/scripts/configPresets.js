@@ -12,9 +12,35 @@ var Cookiebar = {
                 cookie_update: false,
                 cookie_flags: "SameSite=None;Secure"
             },
+
+            googleConsentMode: "gtag('consent', 'update', {\n" +
+                               "  'Insert consent mode here': 'granted',\n" +
+                               "});",
+
+            tagManager_gcm: "window.dataLayer = window.dataLayer || [];\n" +
+                            "function gtag(){dataLayer.push(arguments);}\n\n" +
+                            "// Define only global settings here.\n" +
+                            "// The \"granted\" values should be set in the cookie itself.\n" +
+                            "gtag('consent', 'default', {\n" +
+                            "   'ad_storage': 'denied',\n" +
+                            "   'analytics_storage': 'denied',\n" +
+                            "   'wait_for_update': 500\n" +
+                            "});\n\n" +
+                            "//gtag('set', 'ads_data_redaction', true);\n" +
+                            "//gtag('set', 'url_passthrough', true);\n\n" +
+                            "gtag('js', new Date());\n" +
+                            "gtag('config', 'Insert container id here');",
+
             matomo: "_paq.push(['disableCookies']);\n" +
                     "_paq.push(['trackPageView']);\n" +
                     "_paq.push(['enableLinkTracking']);"
+        },
+        docs: {
+            googleAnalytics:   "https://developers.google.com/analytics/devguides/collection/ga4/cookies-user-id",
+            googleConsentMode: "https://developers.google.com/gtagjs/devguide/consent",
+            tagManager:        "https://support.google.com/tagmanager/answer/6102821",
+            tagManager_gcm:    "https://developers.google.com/gtagjs/devguide/consent#implementation_example",
+            matomo:            "https://developer.matomo.org/guides/tracking-javascript-guide"
         }
     },
     issetConfig: function(s, e){
@@ -25,6 +51,12 @@ var Cookiebar = {
     },
     issetToken: function(s, e){
         if(!Cookiebar.presets.token[s]){
+            e.style.display = 'none';
+            return false;
+        }
+    },
+    issetDocs: function(s, e){
+        if(!Cookiebar.presets.docs[s]){
             e.style.display = 'none';
             return false;
         }
@@ -67,5 +99,8 @@ var Cookiebar = {
                 break;
         }
         return t.join(',');
+    },
+    getDocs: function(s){
+        return Cookiebar.presets.docs[s];
     }
 };

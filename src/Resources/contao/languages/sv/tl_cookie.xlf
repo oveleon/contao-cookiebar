@@ -217,6 +217,14 @@
         <source>Enter your Google Analytics ID here.</source>
         <target>Ange ditt Google Analytics-ID här.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
+        <source>Google Tag Manager ID</source>
+        <target>Google Tag Manager ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
+        <source>Enter your Google Tag Manager ID here.</source>
+        <target>Ange ditt ID för Google Tag Manager här.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
         <target>Facebook-ID</target>
@@ -249,6 +257,24 @@
         <source>Enter further parameters here, which should be taken into account when loading the script.</source>
         <target>Ange ytterligare parametrar här som bör beaktas när man laddar skriptet.</target>
       </trans-unit>
+
+      <trans-unit id="tl_cookie.globalConfig.0">
+        <source>Global Config</source>
+        <target>Global konfiguration</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.globalConfig.1">
+        <source>Please select a global configuration.</source>
+        <target>Välj en global konfiguration.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.gcmMode.0">
+        <source>Consent mode</source>
+        <target>Läge för samtycke</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.gcmMode.1">
+        <source>Define the consent mode here. If you want to request multiple consents via Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
+        <target>Definiera samtyckesläget här. Om du vill begära flera samtycken via Google Consent Mode ska du skapa en annan cookie-typ av typen Google Consent Mode.</target>
+      </trans-unit>
+
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
         <target>Infoga standard-token</target>
@@ -293,6 +319,14 @@
       <trans-unit id="tl_cookie.googleAnalytics.1">
         <source>Integrate Google Analytics.</source>
         <target>Integrera Google Analytics.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode.0">
+        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode.1">
+        <source>Integrate Google Consent Mode via Google Tag Manager.</source>
+        <target>Inkludera Google Consent Mode via Google Tag Manager.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.0">
         <source>Facebook Pixel</source>
@@ -393,6 +427,15 @@
         <target>Head-Tag</target>
       </trans-unit>
 
+      <trans-unit id="tl_cookie.ad_storage">
+        <source>ad_storage</source>
+        <target>ad_storage</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.analytics_storage">
+        <source>analytics_storage</source>
+        <target>analytics_storage</target>
+      </trans-unit>
+
       <trans-unit id="tl_cookie.new.0">
         <source>New</source>
         <target>Ny</target>
@@ -456,6 +499,11 @@
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
         <target>Publicera / avpublicera cookie ID %s</target>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie.msgGoogleConsentMode">
+        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
+        <target>Cookies av typen "Google Consent Mode" kan skapas flera gånger beroende på samtyckesläget.</target>
       </trans-unit>
     </body>
   </file>

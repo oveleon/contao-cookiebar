@@ -37,10 +37,42 @@
          gtag('config','XXXXXX' &lt;code class="tl_red"&gt;[, Parameters are placed here]&lt;/code&gt;)&lt;/pre&gt;</target>
       </trans-unit>
       <trans-unit id="XPL.cookiebarScriptConfig.1.0">
+        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.1.1">
+        <source>&lt;b&gt;Replace&lt;/b&gt; the default configuration of Google Consent Mode. If you do not enter your own configuration, the following code will be generated automatically: &lt;pre&gt;
+
+          gtag('consent', 'default', {
+          '&lt;code class="tl_red"&gt;consent mode&lt;/code&gt;': 'granted'
+          });
+          &lt;/pre&gt;
+
+          If own code is provided for the configuration, the above code must be integrated independently! This can be modified if necessary.
+          &lt;br&gt;&lt;br&gt;
+          Further information:&lt;br&gt;
+          https://developers.google.com/gtagjs/devguide/consent&lt;br&gt;&lt;br&gt;
+          &lt;i&gt;This cookie type also requires a global configuration of the type "Google Tag Manager" with "Google Consent Mode" activated therein.&lt;/i&gt;
+        </source>
+        <target>&lt;b&gt;Ersätter&lt;/b&gt; standardkonfigurationen för Google Consent Mode. Om du inte anger din egen konfiguration genereras följande kod automatiskt: &lt;pre&gt;
+
+          gtag('consent', 'default', {
+          '&lt;code class="tl_red"&gt;Läge för samtycke&lt;/code&gt;': 'granted'
+          });
+          &lt;/pre&gt;
+
+          Om din egen kod tillhandahålls för konfigurationen måste ovanstående kod integreras oberoende av varandra! Detta kan ändras vid behov.
+          &lt;br&gt;&lt;br&gt;
+          Mer information:&lt;br&gt;
+          https://developers.google.com/gtagjs/devguide/consent&lt;br&gt;&lt;br&gt;
+          &lt;i&gt;Den här cookietypen kräver också en global konfiguration av typen "Google Tag Manager" med "Google Consent Mode" aktiverat.&lt;/i&gt;
+        </target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.2.0">
         <source>Matomo</source>
         <target>Matomo</target>
       </trans-unit>
-      <trans-unit id="XPL.cookiebarScriptConfig.1.1">
+      <trans-unit id="XPL.cookiebarScriptConfig.2.1">
         <source>Extend the standard configuration of Matomo: &lt;pre&gt;
 
         var _paq = window._paq = window._paq || [];

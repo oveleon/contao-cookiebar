@@ -10,7 +10,7 @@
 
 // Back end modules
 $GLOBALS['BE_MOD']['system']['cookiebar'] = array(
-    'tables' => array('tl_cookiebar', 'tl_cookie_log', 'tl_cookie_group', 'tl_cookie'),
+    'tables' => array('tl_cookiebar', 'tl_cookie_log', 'tl_cookie_group', 'tl_cookie', 'tl_cookie_config'),
     'export' => array('Oveleon\ContaoCookiebar\LogExport', 'export'),
 );
 
@@ -19,6 +19,7 @@ $GLOBALS['TL_MODELS']['tl_cookiebar'] = 'Oveleon\ContaoCookiebar\CookiebarModel'
 $GLOBALS['TL_MODELS']['tl_cookie_log'] = 'Oveleon\ContaoCookiebar\CookieLogModel';
 $GLOBALS['TL_MODELS']['tl_cookie_group'] = 'Oveleon\ContaoCookiebar\CookieGroupModel';
 $GLOBALS['TL_MODELS']['tl_cookie'] = 'Oveleon\ContaoCookiebar\CookieModel';
+$GLOBALS['TL_MODELS']['tl_cookie_config'] = 'Oveleon\ContaoCookiebar\CookieConfigModel';
 
 // Front end modules
 $GLOBALS['FE_MOD']['application']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\ModuleCookiebar';
