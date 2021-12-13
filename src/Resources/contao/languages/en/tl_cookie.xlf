@@ -206,7 +206,7 @@
         <source>Global Config</source>
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.1">
-        <source>Please select a global configuration.</source>
+        <source>Global configurations are executed directly when entering the page and without confirmation, depending on the setting. Useful for Google Consent Mode or similar scripts, which may already be run without consent.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
         <source>Consent mode</source>

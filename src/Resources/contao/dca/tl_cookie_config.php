@@ -290,6 +290,11 @@ class tl_cookie_config extends Contao\Backend
      */
     public function addHostPrefix($varValue, $dc)
     {
+        if(!trim($varValue))
+        {
+            return $varValue;
+        }
+
         if(
             (strpos($varValue, 'http') === 0) ||
             (strpos($varValue, 'https') === 0) ||

@@ -29,7 +29,7 @@ public function addScript(string $strScript, int $mode = self::LOAD_CONFIRMED, i
 }
 ```
 
-> **Attention:** The `$mode` parameter of the `addScript` function must be passed as a boolean value before the branch `feature/google-consent-mode` will be merged. If true, the script is loaded only if the cookie is accepted.
+> **Attention:** The `$mode` parameter of the `addScript` function must be passed as a boolean value before Version 1.10. If true, the script is loaded only if the cookie is accepted.
 
 Parameter | Description
 ---------- | -----------

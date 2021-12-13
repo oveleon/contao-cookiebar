@@ -17,6 +17,10 @@
         <source>Template</source>
         <target>Template</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.global_config_legend">
+        <source>Global config</source>
+        <target>Globale Konfiguration</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.description_legend">
         <source>Description</source>
         <target>Beschreibung</target>
@@ -262,8 +266,8 @@
         <target>Globale Konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.1">
-        <source>Please select a global configuration.</source>
-        <target>Bitte wählen Sie eine globale Konfiguration aus.</target>
+        <source>Global configurations are executed directly when entering the page and without confirmation, depending on the setting. Useful for Google Consent Mode or similar scripts, which may already be run without consent.</source>
+        <target>Globale Konfigurationen werden je nach Einstellung direkt beim betreten der Seite und ohne Bestätigung ausgeführt. Nützlich für Google Consent Mode o. ä. Skripte, welche bereits ohne Zustimmung ausgeführt werden dürfen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
         <source>Consent mode</source>
@@ -365,6 +369,14 @@
       <trans-unit id="tl_cookie.vimeo.1">
         <source>Integrate Vimeo.</source>
         <target>Vimeo einbinden.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.openstreetmap.0">
+        <source>OpenStreetMap</source>
+        <target>OpenStreetMap</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.openstreetmap.1">
+        <source>Integrate OpenStreetMap.</source>
+        <target>OpenStreetMap einbinden.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.default.0">
         <source>Info</source>

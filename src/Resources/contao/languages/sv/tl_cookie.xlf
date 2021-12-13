@@ -17,6 +17,10 @@
         <source>Template</source>
         <target>Template</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.global_config_legend">
+        <source>Global config</source>
+        <target>Global konfiguration</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.description_legend">
         <source>Description</source>
         <target>Beskrivning</target>
@@ -263,8 +267,8 @@
         <target>Global konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.1">
-        <source>Please select a global configuration.</source>
-        <target>Välj en global konfiguration.</target>
+        <source>Global configurations are run directly when entering the page and without confirmation. Useful for Google Consent Mode or similar scripts, which may already be run without consent.</source>
+        <target>Globala konfigurationer utförs direkt när sidan anropas och utan bekräftelse. Användbart för Google Consent Mode eller liknande skript som redan kan exekveras utan samtycke.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
         <source>Consent mode</source>

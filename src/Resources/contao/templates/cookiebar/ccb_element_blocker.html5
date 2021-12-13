@@ -36,6 +36,9 @@
         .ccb-element-blocker .cc-icon.googlemaps:after {
             background-image: url("/bundles/contaocookiebar/images/googlemaps.png");
         }
+        .ccb-element-blocker .cc-icon.openstreetmap:after {
+            background-image: url("/bundles/contaocookiebar/images/openstreetmap.png");
+        }
         .ccb-element-blocker .cc-title{
             font-weight: bold;
         }

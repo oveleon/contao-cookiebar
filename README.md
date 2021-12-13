@@ -19,7 +19,7 @@
 - Custom (Script)
 - Custom (Template)
 - Google Analytics
-- Google Consent Mode [`BETA`](#beta)
+- Google Consent Mode
 - Facebook Pixel
 - Matomo
 - iFrame
@@ -28,12 +28,6 @@
   - Google Maps
   - [add more...](docs/EXTEND_IFRAME.md)
 - [add more...](docs/EXTEND_TYPE.md)
-
-###### BETA
-> You are welcome to help us test the Google Consent Mode, just install the `feature/google-consent-mode` branch.
-> ```
-> "oveleon/contao-cookiebar": "dev-feature/google-consent-mode"
-> ```
 
 ### Documentation
 - [Install](docs/INSTALL.md)

@@ -414,18 +414,14 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['globalConfig'],
             'exclude'                 => true,
-			'inputType'               => 'select',
+			'inputType'               => 'picker',
 			'foreignKey'              => 'tl_cookie_config.title',
-			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50 wizard'),
+			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
 			'sql'                     => "int(10) unsigned NOT NULL default 0",
 			'relation'                => array('type'=>'hasOne', 'load'=>'lazy'),
             'load_callback'           => array
             (
                 array('tl_cookie', 'loadGlobalConfigField')
-            ),
-            'wizard'                  => array
-            (
-                array('tl_cookie', 'editGlobalConfig')
             )
         ),
         'gcmMode' => array
@@ -596,6 +592,11 @@ class tl_cookie extends Contao\Backend
      */
     public function addHostPrefix($varValue, $dc)
     {
+        if(!trim($varValue))
+        {
+            return $varValue;
+        }
+
         if(
             (strpos($varValue, 'http') === 0) ||
             (strpos($varValue, 'https') === 0) ||
@@ -673,11 +674,11 @@ class tl_cookie extends Contao\Backend
     {
         $strAddition = '';
 
-        if($arrRow['vendorId'])
+        if($arrRow['vendorId'] && \in_array($arrRow['type'], ['googleAnalytics','facebookPixel','matomo']))
         {
             $strAddition = $arrRow['vendorId'];
         }
-        elseif($arrRow['globalConfig'])
+        elseif($arrRow['globalConfig'] && \in_array($arrRow['type'], ['script','template','googleConsentMode']))
         {
             $objConfig = Oveleon\ContaoCookiebar\CookieConfigModel::findById($arrRow['globalConfig']);
 
@@ -725,20 +726,6 @@ class tl_cookie extends Contao\Backend
     }
 
     /**
-     * Return the edit global config wizard
-     *
-     * @param Contao\DataContainer $dc
-     *
-     * @return string
-     */
-    public function editGlobalConfig(Contao\DataContainer $dc)
-    {
-        $title = sprintf($GLOBALS['TL_LANG']['tl_cookie']['editGlobalConfig'], $dc->value);
-
-        return ' <a href="contao/main.php?do=cookiebar&amp;table=tl_cookie_config&amp;popup=1&amp;nb=1&amp;rt=' . REQUEST_TOKEN . '" title="' . Contao\StringUtil::specialchars($title) . '" onclick="Backend.openModalIframe({\'title\':\'' . Contao\StringUtil::specialchars(str_replace("'", "\\'", $title)) . '\',\'url\':this.href});return false">' . Contao\Image::getHtml('all.svg', $title) . '</a>';
-    }
-
-    /**
      * Prepare global config field
      *
      * @param $varValue
@@ -750,14 +737,6 @@ class tl_cookie extends Contao\Backend
      */
     public function loadGlobalConfigField($varValue, $dc)
     {
-        $packages = Contao\System::getContainer()->getParameter('kernel.packages');
-
-        if(floatval($packages['contao/core-bundle']) >= 4.9){
-            $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['tl_class'] = 'w50';
-            $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['wizard'] = [];
-            $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['inputType'] = 'picker';
-        }
-
         if($dc->activeRecord->type === 'googleConsentMode')
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['mandatory'] = true;
