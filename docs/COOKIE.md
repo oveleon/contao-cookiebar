@@ -24,7 +24,7 @@ Cookie-Type | Description
 `Google Consent Mode` | This type integrates Google Consent Mode via the Tag Manager. Cookies of this type can be created multiple times depending on the consent mode.
 `Facebook Pixel` | This type integrates a Facebook pixel.
 `Matomo` | This type integrates Matomo. Using Contao's own `analytic_matomo.html5` __is no longer necessary__! The integration takes place directly through this cookie type.
-`iFrame` | This type offers the possibility to block different sources which are embedded via iFrames. For default, the integration of `Youtube`, `Vimeo` and `Google Maps` is already available. See also [Create own iFrame-Types](EXTENDING.md#create-own-iframe-types).
+`iFrame` | This type offers the possibility to block different sources which are embedded via iFrames. For default, the integration of `Youtube`, `Vimeo` and `Google Maps` is already available. See also [Create own iFrame-Types](EXTEND_IFRAME.md).
 
 ### iFrame-Types
 Cookie-Type | Description
