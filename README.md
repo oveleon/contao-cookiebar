@@ -19,7 +19,7 @@
 - Custom (Script)
 - Custom (Template)
 - Google Analytics
-- Google Consent Mode
+- Google Consent Mode (BETA)
 - Facebook Pixel
 - Matomo
 - iFrame

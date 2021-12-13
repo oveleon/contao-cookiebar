@@ -323,8 +323,8 @@
         <target>Google Analytics über den Google Tag Manager einbinden.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.0">
-        <source>Google Consent Mode</source>
-        <target>Google Consent Mode</target>
+        <source>Google Consent Mode (BETA)</source>
+        <target>Google Consent Mode (BETA)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.1">
         <source>Integrate Google Consent Mode via Google Tag Manager.</source>

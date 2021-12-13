@@ -248,6 +248,9 @@
       <trans-unit id="tl_cookie.googleAnalytics.1">
         <source>Integrate Google Analytics via Google Tag Manager.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode.0">
+        <source>Google Consent Mode (BETA)</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.0">
         <source>Facebook Pixel</source>
       </trans-unit>
