@@ -2,11 +2,11 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_cookiebar.php" source-language="en" target-language="sv">
     <body>
       <trans-unit id="tl_cookiebar.title_legend">
-        <source>Titel / Version</source>
+        <source>Title / Version</source>
         <target>Titel / Version</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.meta_legend">
-        <source>Meta-Information</source>
+        <source>Meta information</source>
         <target>Meta-Informationen</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.expert_legend">
@@ -89,11 +89,11 @@
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.title.0">
-        <source>Titel</source>
+        <source>Title</source>
         <target>Titel</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.title.1">
-        <source>Enter a intern title for the cookie bar here.</source>
+        <source>Please enter a unique cookiebar title.</source>
         <target>Ange en intern titel för cookieboxen här.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.0">
@@ -101,7 +101,7 @@
         <target>Version</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.1">
-        <source>The current version of the cookie bar configuration is displayed here.</source>
+        <source>The current version of the cookiebar configuration is displayed here.</source>
         <target>Den aktuella versionen av cookiebox-konfigurationen visas här.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.0">
@@ -109,23 +109,23 @@
         <target>Uppdatera version</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.1">
-        <source>Update the current version to force the cookie bar to be displayed to visitors.</source>
+        <source>Update the current version to force the cookiebar to be displayed to visitors.</source>
         <target>Uppdatera den aktuella versionen för att tvinga visning av cookieboxen för besökare.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
-        <source>Title &amp; Description</source>
+        <source>Title &amp; description</source>
         <target>Titel &amp; beskrivning</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.1">
-        <source>Describe the purpose of the cookie bar.</source>
+        <source>Here you can describe the purpose of the cookiebar.</source>
         <target>Beskriv syftet med cookiespanelen här.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.0">
-        <source>Info-Description</source>
+        <source>Additional information</source>
         <target>Info-beskrivning</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.1">
-        <source>Here you can define further information which is displayed below the buttons.</source>
+        <source>Here you can add more information, that are displayed below the buttons.</source>
         <target>Definiera ytterligare information här, som matas ut under knapparna.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.0">
@@ -141,7 +141,7 @@
         <target>Uteslut sidor</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.1">
-        <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
+        <source>Here you can define the pages in which the cookiebar should not open automatically.</source>
         <target>Definiera de sidor där cookiespanelen inte ska öppnas automatiskt.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.0">
@@ -149,7 +149,7 @@
         <target>Template</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.1">
-        <source>Choose a template.</source>
+        <source>Here you can select a template for the cookiebar.</source>
         <target>Välj en template.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.0">
@@ -157,15 +157,15 @@
         <target>Justering</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.1">
-        <source>Define here the position / alignment of the cookie bar.</source>
-        <target>Här kan du definiera kaklistans position och inriktning.</target>
+        <source>Here you can define the position &amp; orientation of the cookiebar.</source>
+        <target>Här kan du definiera kaklistans position &amp; inriktning.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.0">
         <source>Blocking</source>
         <target>Blockering</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.1">
-        <source>Blocks the use of the site until the cookie bar has been used.</source>
+        <source>Blocks the use of the site until the cookiebar has been used.</source>
         <target>Blockerar användningen av webbplatsen tills cookieboxen har använts.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.0">
@@ -173,7 +173,7 @@
         <target>Position</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.1">
-        <source>Here you define the position of the cookie bar in HTML.</source>
+        <source>Here you can define the position of the cookie bar in the HTML.</source>
         <target>Definiera placeringen av cookieboxen i HTML här.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.0">
@@ -181,7 +181,7 @@
         <target>Skript-Position</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.1">
-        <source>Here you define the position of the cookie bar scripts in HTML.</source>
+        <source>Here you can define the position of the cookiebar script within the HTML.</source>
         <target>Här definierar du placeringen av cookieboxen-skript i HTML.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.0">

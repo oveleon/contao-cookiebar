@@ -304,7 +304,7 @@
         <target>Förhandsval</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.1">
-        <source>Activates the checkbox when opening the cookie bar for the first time.</source>
+        <source>Activates the checkbox when opening the cookiebar for the first time.</source>
         <target>Aktiverar kryssrutan när kakfältet öppnas för första gången.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
@@ -361,7 +361,7 @@
         <target>Google Maps</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googlemaps.1">
-        <source>Google Maps YouTube.</source>
+        <source>Integrate Google Maps.</source>
         <target>Integrera Google Maps.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.0">

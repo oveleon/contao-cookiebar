@@ -6,7 +6,7 @@
         <target>Cookiebox (Länk till återöppning)</target>
       </trans-unit>
       <trans-unit id="CTE.cookiebarOpener.1">
-        <source>Creates a link which opens the cookie bar.</source>
+        <source>Creates a link which opens the cookiebar.</source>
         <target>Skapar en länk som öppnar Cookieboxen.</target>
       </trans-unit>
     </body>

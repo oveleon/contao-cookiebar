@@ -302,7 +302,7 @@
         <target>Vorauswählen</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.1">
-        <source>Activates the checkbox when opening the cookie bar for the first time.</source>
+        <source>Activates the checkbox when opening the cookiebar for the first time.</source>
         <target>Aktiviert die Checkbox beim erstmaligen öffnen der Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
@@ -359,7 +359,7 @@
         <target>Google Maps</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googlemaps.1">
-        <source>Google Maps YouTube.</source>
+        <source>Integrate Google Maps.</source>
         <target>Google Maps einbinden.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.0">

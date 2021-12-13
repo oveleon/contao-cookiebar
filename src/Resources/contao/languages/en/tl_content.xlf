@@ -5,7 +5,7 @@
         <source>Prefill settings</source>
       </trans-unit>
       <trans-unit id="tl_content.prefillCookies.1">
-        <source>Activates the already selected cookies when opening the cookie bar..</source>
+        <source>Activates the already selected cookies when opening the cookiebar.</source>
       </trans-unit>
     </body>
   </file>

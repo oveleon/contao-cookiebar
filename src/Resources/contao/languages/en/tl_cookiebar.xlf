@@ -2,10 +2,10 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_cookiebar.php" source-language="en">
     <body>
       <trans-unit id="tl_cookiebar.title_legend">
-        <source>Titel / Version</source>
+        <source>Title / Version</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.meta_legend">
-        <source>Meta-Information</source>
+        <source>Meta information</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.expert_legend">
         <source>Expert settings</source>
@@ -68,34 +68,34 @@
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.title.0">
-        <source>Titel</source>
+        <source>Title</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.title.1">
-        <source>Enter a intern title for the cookie bar here.</source>
+        <source>Please enter a unique cookiebar title.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.0">
         <source>Version</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.1">
-        <source>The current version of the cookie bar configuration is displayed here.</source>
+        <source>The current version of the cookiebar configuration is displayed here.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.0">
         <source>Update version</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.1">
-        <source>Update the current version to force the cookie bar to be displayed to visitors.</source>
+        <source>Update the current version to force the cookiebar to be displayed to visitors.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
-        <source>Title &amp; Description</source>
+        <source>Title &amp; description</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.1">
-        <source>Describe the purpose of the cookie bar.</source>
+        <source>Describe the purpose of the cookiebar.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.0">
-        <source>Info-Description</source>
+        <source>Additional information</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.1">
-        <source>Here you can define further information which is displayed below the buttons.</source>
+        <source>Here you can add more information, that are displayed below the buttons.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.0">
         <source>Info links</source>
@@ -107,13 +107,13 @@
         <source>Exclude Pages</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.1">
-        <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
+        <source>Here you can define the pages in which the cookiebar should not open automatically.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.0">
         <source>Template</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.1">
-        <source>Choose a template.</source>
+        <source>Here you can select a template for the cookiebar.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.buttonColorScheme.0">
         <source>Button color scheme</source>
@@ -125,25 +125,25 @@
         <source>Alignment</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.1">
-        <source>Define here the position / alignment of the cookie bar.</source>
+        <source>Here you can define the position &amp; orientation of the cookiebar.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.0">
         <source>Blocking</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.1">
-        <source>Blocks the use of the site until the cookie bar has been used.</source>
+        <source>Blocks the use of the site until the cookiebar has been used.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.0">
         <source>Position</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.1">
-        <source>Here you define the position of the cookie bar in HTML.</source>
+        <source>Here you can define the position of the cookie bar in the HTML.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.0">
         <source>Script-Position</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.1">
-        <source>Here you define the position of the cookie bar scripts in HTML.</source>
+        <source>Here you can define the position of the cookiebar script within the HTML.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.0">
         <source>CSS ID/class</source>

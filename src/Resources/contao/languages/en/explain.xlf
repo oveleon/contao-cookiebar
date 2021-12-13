@@ -5,7 +5,7 @@
         <source>Cookiebar Versions</source>
       </trans-unit>
       <trans-unit id="XPL.cookiebarVersion.0.1">
-        <source>Versions can be stored for each cookie bar configuration. For each newly created version of a configuration, it is forced to display it to the visitor, regardless of whether and when it has already been accepted. This allows visitors to be notified of new cookies and to grant or deny their permission. The settings previously set by the visitor are applied.</source>
+        <source>Versions can be stored for each cookiebar configuration. For each newly created version of a configuration, it is forced to display it to the visitor, regardless of whether and when it has already been accepted. This allows visitors to be notified of new cookies and to grant or deny their permission. The settings previously set by the visitor are applied.</source>
       </trans-unit>
       <trans-unit id="XPL.cookiebarVersion.1.0">
         <source>Create new version</source>
@@ -69,7 +69,7 @@
         <source>Google Tag Manager</source>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.1.1">
-        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note, these settings are already implemented without confirmation of the cookie bar in the HEAD of the website.</source>
+        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note, these settings are already implemented without confirmation of the cookiebar in the HEAD of the website.</source>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.2.0">
         <source>Tag Manager + Google Consent Mode</source>

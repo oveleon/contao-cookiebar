@@ -6,7 +6,7 @@
         <target>Förfylla inställningar</target>
       </trans-unit>
       <trans-unit id="tl_content.prefillCookies.1">
-        <source>Activates the already selected cookies when opening the cookie bar.</source>
+        <source>Activates the already selected cookies when opening the cookiebar.</source>
         <target>Aktiverar cookies som redan har valts när cookieboxen öppnas.</target>
       </trans-unit>
     </body>

@@ -14,7 +14,7 @@
         <target>Cookiebar</target>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.1">
-        <source>Creates a link which opens the cookie bar.</source>
+        <source>Creates a link which opens the cookiebar.</source>
         <target>Erzeugt einen Link welcher die Cookiebar öffnet.</target>
       </trans-unit>
     </body>

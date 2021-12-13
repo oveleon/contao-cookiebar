@@ -8,10 +8,10 @@
         <source>Manage cookiebar configurations</source>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.0">
-        <source>Open cookie bar</source>
+        <source>Open cookiebar</source>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.1">
-        <source>Creates a link which opens the cookie bar.</source>
+        <source>Creates a link which opens the cookiebar.</source>
       </trans-unit>
     </body>
   </file>

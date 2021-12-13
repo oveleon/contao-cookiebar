@@ -10,7 +10,7 @@
         <target>Cookiebar aktivieren</target>
       </trans-unit>
       <trans-unit id="tl_page.activateCookiebar.1">
-        <source>Activate the cookie bar for this and its subpages.</source>
+        <source>Activate the cookiebar for this and its subpages.</source>
         <target>Aktivieren Sie die Cookiebar für diese und dessen Unterseiten.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarConfig.0">
@@ -18,7 +18,7 @@
         <target>Cookiebar-Konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarConfig.1">
-        <source>Select the cookie bar configuration to be used.</source>
+        <source>Select the cookiebar configuration you want to use.</source>
         <target>Wählen Sie die zu verwendende Cookiebar-Konfiguration.</target>
       </trans-unit>
       <trans-unit id="tl_page.overwriteCookiebarMeta.0">
@@ -30,19 +30,19 @@
         <target>Überschreiben Sie die in der Konfiguration hinterlegten Metainformationen.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarDescription.0">
-        <source>Title &amp; Description</source>
+        <source>Title &amp; description</source>
         <target>Titel &amp; Beschreibung</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarDescription.1">
-        <source>Describe the purpose of the cookie bar.</source>
+        <source>Here you can describe the purpose of the cookiebar.</source>
         <target>Beschreiben Sie hier den Zweck der Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoDescription.0">
-        <source>Info-Description</source>
+        <source>Additional information</source>
         <target>Info-Beschreibung</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoDescription.1">
-        <source>Here you can define further information which is displayed below the buttons.</source>
+        <source>Here you can add more information, that are displayed below the buttons.</source>
         <target>Definieren Sie hier weitere Informationen, welche unterhalb der Buttons ausgegeben werden.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarAlignment.0">
@@ -50,7 +50,7 @@
         <target>Ausrichtung</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarAlignment.1">
-        <source>Define here where the cookie bar should be displayed.</source>
+        <source>Define here where the cookiebar should be displayed.</source>
         <target>Definieren Sie hier wo die Cookiebar angezeigt werden soll.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarBlocking.0">
@@ -58,7 +58,7 @@
         <target>Blockierend</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarBlocking.1">
-        <source>Blocks the use of the site until the cookie bar has been used.</source>
+        <source>Blocks the use of the site until the cookiebar has been used.</source>
         <target>Blockiert das Bedienen der Seite bis die Cookiebar bedient wurde.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoUrls.0">
@@ -74,7 +74,7 @@
         <target>Seiten ausschließen</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarExcludePages.1">
-        <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
+        <source>Here you can define the pages in which the cookiebar should not open automatically.</source>
         <target>Definieren Sie hier die Seiten, in denen die Cookiebar nicht automatisch geöffnet werden soll.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarButtonColorScheme.0">
@@ -82,7 +82,7 @@
         <target>Button-Farbschema</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarButtonColorScheme.1">
-        <source>Defines the color scheme of the available buttons.</source>
+        <source>Defines the color scheme for the available buttons.</source>
         <target>Definiert das Farbschema der verfügbaren Button.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.0">
@@ -90,8 +90,8 @@
         <target>Template</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.1">
-        <source>Choose a template.</source>
-        <target>Wählen Sie ein Template.</target>
+        <source>Here you can select a template for the cookiebar.</source>
+        <target>Hier können Sie ein Template für die Cookiebar auswählen.</target>
       </trans-unit>
     </body>
   </file>

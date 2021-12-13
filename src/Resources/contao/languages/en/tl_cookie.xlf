@@ -233,7 +233,7 @@
         <source>Preselect</source>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.1">
-        <source>Activates the checkbox when opening the cookie bar for the first time.</source>
+        <source>Activates the checkbox when opening the cookiebar for the first time.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
@@ -269,11 +269,23 @@
       <trans-unit id="tl_cookie.youtube.1">
         <source>Integrate YouTube.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.googlemaps.0">
+        <source>Google Maps</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googlemaps.1">
+        <source>Integrate Google Maps.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.vimeo.0">
         <source>Vimeo</source>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.1">
         <source>Integrate Vimeo.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.openstreetmap.0">
+        <source>OpenStreetMap</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.openstreetmap.1">
+        <source>Integrate OpenStreetMap.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.default.0">
         <source>Info</source>
