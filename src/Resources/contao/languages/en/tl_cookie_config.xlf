@@ -20,16 +20,16 @@
         <source>Source URL</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrl.1">
-        <source>The source URL is used to integrate scripts which must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
+        <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceLoadingMode.0">
-        <source>Loading-Mode of Source URL</source>
+        <source>Source URL loading mode</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceLoadingMode.1">
         <source>Define here when the source URL may be embedded.</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrlParameter.0">
-        <source>Source URL Parameter</source>
+        <source>Source URL parameter</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrlParameter.1">
         <source>Define the load parameters of the source URL to be used.</source>
@@ -38,7 +38,13 @@
         <source>Script position</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptPosition.1">
-        <source>Specify the position where the script should be embedded.</source>
+        <source>Here you can select the position for embedding the script.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptLoadingMode.0">
+        <source>Loading mode of the configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptLoadingMode.1">
+        <source>Define here when the script / configuration may be embedded.</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.vendorId.0">
         <source>ID</source>
@@ -56,7 +62,7 @@
         <source>Configuration</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptConfig.1">
-        <source>Own JavaScript code.</source>
+        <source>Custom JavaScript code.</source>
       </trans-unit>
       <trans-unit id="tl_cookie_config.googleConsentMode.0">
         <source>Activate Google Consent Mode</source>

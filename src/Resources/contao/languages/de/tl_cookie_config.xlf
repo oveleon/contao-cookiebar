@@ -26,11 +26,11 @@
         <target>Quell-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrl.1">
-        <source>The source URL is used to integrate scripts which must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
-        <target>Die Quell-URL dient zur Einbindung von Skripten welche expliziet im HEAD-Bereich der Website integriert werden müssen um einen externen Service bereitzustellen.</target>
+        <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
+        <target>Die Quell-URL dient zur Einbindung von Skripten, welche explizit im HEAD-Bereich der Website integriert werden müssen, um einen externen Service bereitzustellen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceLoadingMode.0">
-        <source>Loading-Mode of Source URL</source>
+        <source>Source URL loading mode</source>
         <target>Lademodus der Quell-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceLoadingMode.1">
@@ -38,23 +38,23 @@
         <target>Definieren Sie hier, wann die Quell-URL eingebettet werden darf.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrlParameter.0">
-        <source>Source URL Parameter</source>
+        <source>Source URL parameter</source>
         <target>Quell-URL Parameter</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrlParameter.1">
         <source>Define the load parameters of the source URL to be used.</source>
-        <target>Definieren Sie die zu verwedenden Lade-Parameter der Source URL.</target>
+        <target>Definieren Sie die zu verwendenden Lade-Parameter der Source URL.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptPosition.0">
         <source>Script position</source>
         <target>Skript-Position</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptPosition.1">
-        <source>Specify the position where the script should be embedded.</source>
-        <target>Geben Sie hier die Position an, an welcher Stelle das Skript eingebettet werden soll.</target>
+        <source>Here you can select the position for embedding the script.</source>
+        <target>Hier können Sie die Position für die Einbettung des Skripts auswählen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptLoadingMode.0">
-        <source>Loading-Mode of the configuration</source>
+        <source>Loading mode of the configuration</source>
         <target>Lademodus der Konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptLoadingMode.1">
@@ -82,7 +82,7 @@
         <target>Konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptConfig.1">
-        <source>Own JavaScript code.</source>
+        <source>Custom JavaScript code.</source>
         <target>Eigener JavaScript-Code.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.googleConsentMode.0">
@@ -96,7 +96,7 @@
 
       <trans-unit id="tl_cookie_config.scriptConfig_xlabel">
         <source>Insert advanced configuration</source>
-        <target>Erweiterte-Konfiguration einfügen</target>
+        <target>Erweiterte Konfiguration einfügen</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie_config.tagManager.0">
@@ -131,11 +131,11 @@
 
       <trans-unit id="tl_cookie_config.confirmed">
         <source>Load only if one of the cookies was accepted</source>
-        <target>Nur laden wenn einer der Cookies akzeptiert wurde</target>
+        <target>Nur laden, wenn einer der Cookies akzeptiert wurde</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.unconfirmed">
         <source>Load only if none of the cookies was accepted</source>
-        <target>Nur laden wenn keiner der Cookies akzeptiert wurde</target>
+        <target>Nur laden, wenn keiner der Cookies akzeptiert wurde</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.always">
         <source>Load always</source>

@@ -8,7 +8,7 @@
         <source>Activate Cookiebar</source>
       </trans-unit>
       <trans-unit id="tl_page.activateCookiebar.1">
-        <source>Activate the cookie bar for this and its subpages.</source>
+        <source>Activate the cookiebar for this and its subpages.</source>
       </trans-unit>
       <trans-unit id="tl_page.triggerCookiebar.0">
         <source>Open cookiebar</source>
@@ -26,7 +26,7 @@
         <source>Cookiebar configuration</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarConfig.1">
-        <source>Select the cookie bar configuration to be used.</source>
+        <source>Select the cookiebar configuration you want to use.</source>
       </trans-unit>
       <trans-unit id="tl_page.overwriteCookiebarMeta.0">
         <source>Overwrite metadata</source>
@@ -35,28 +35,28 @@
         <source>Overwrite the meta information stored in the configuration.</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarDescription.0">
-        <source>Title &amp; Description</source>
+        <source>Title &amp; description</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarDescription.1">
-        <source>Describe the purpose of the cookie bar.</source>
+        <source>Here you can describe the purpose of the cookiebar.</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoDescription.0">
-        <source>Info-Description</source>
+        <source>Additional information</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoDescription.1">
-        <source>Here you can define further information which is displayed below the buttons.</source>
+        <source>Here you can add more information, that are displayed below the buttons.</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarAlignment.0">
         <source>Alignment</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarAlignment.1">
-        <source>Define here where the cookie bar should be displayed.</source>
+        <source>Define here where the cookiebar should be displayed.</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarBlocking.0">
         <source>Blocking</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarBlocking.1">
-        <source>Blocks the use of the site until the cookie bar has been used.</source>
+        <source>Blocks the use of the site until the cookiebar has been used.</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoUrls.0">
         <source>Info links</source>
@@ -68,13 +68,19 @@
         <source>Exclude Pages</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarExcludePages.1">
-        <source>Here you define the pages in which the cookie bar should not be opened automatically.</source>
+        <source>Here you can define the pages where the cookiebar should not open automatically.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.0">
+        <source>Button color scheme</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.1">
+        <source>Defines the color scheme for the available buttons.</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.0">
         <source>Template</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.1">
-        <source>Choose a template.</source>
+        <source>Here you can select a template for the cookiebar.</source>
       </trans-unit>
     </body>
   </file>

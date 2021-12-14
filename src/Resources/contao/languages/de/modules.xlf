@@ -10,12 +10,12 @@
         <target>Cookiebar-Konfigurationen verwalten</target>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.0">
-        <source>Cookiebar</source>
-        <target>Cookiebar</target>
+        <source>Cookiebar (Opener)</source>
+        <target>Cookiebar (Link zum Öffnen)</target>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.1">
-        <source>Creates a link which opens the cookie bar.</source>
-        <target>Erzeugt einen Link welcher die Cookiebar öffnet.</target>
+        <source>Creates a link that displays the cookiebar</source>
+        <target>Erzeugt einen Link, der die Cookiebar anzeigt</target>
       </trans-unit>
     </body>
   </file>
