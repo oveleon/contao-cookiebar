@@ -13,9 +13,16 @@
 // Palettes
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'activateCookiebar';
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'overwriteCookiebarMeta';
+$GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'triggerCookiebar';
 
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['activateCookiebar'] = 'cookiebarConfig,overwriteCookiebarMeta';
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarButtonColorScheme,cookiebarTemplate,cookiebarInfoUrls,cookiebarExcludePages';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['triggerCookiebar'] = 'prefillCookies';
+
+// Callbacks
+$GLOBALS['TL_DCA']['tl_page']['fields']['cssClass']['eval']['alwaysSave'] = true;
+$GLOBALS['TL_DCA']['tl_page']['fields']['cssClass']['load_callback'][] = array('Oveleon\ContaoCookiebar\EventListener\DataContainer\PageCallbackListener', 'onLoadCssClass');
+$GLOBALS['TL_DCA']['tl_page']['fields']['cssClass']['save_callback'][] = array('Oveleon\ContaoCookiebar\EventListener\DataContainer\PageCallbackListener', 'onSaveCssClass');
 
 // Fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = array
@@ -26,6 +33,25 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = array
     'eval'                    => array('tl_class'=>'w50', 'submitOnChange'=>true),
     'sql'                     => "char(1) NOT NULL default ''"
 );
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['triggerCookiebar'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['triggerCookiebar'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'eval'                    => array('tl_class'=>'w50', 'submitOnChange'=>true),
+    'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['prefillCookies'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['prefillCookies'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'eval'                    => array('tl_class'=>'w50'),
+    'sql'                     => "char(1) NOT NULL default ''"
+);
+
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['overwriteCookiebarMeta'] = array
 (
@@ -146,10 +172,16 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarBlocking'] = array
 // Extend the default palettes
 $objPaletteManipulator = Contao\CoreBundle\DataContainer\PaletteManipulator::create()
     ->addLegend('cookiebar_legend', 'global_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
-    ->addField(array('activateCookiebar'), 'cookiebar_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->addField(['activateCookiebar'], 'cookiebar_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('root', 'tl_page')
 ;
 
 if (array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes'])) {
     $objPaletteManipulator->applyToPalette('rootfallback', 'tl_page');
 }
+
+$objPaletteManipulator = Contao\CoreBundle\DataContainer\PaletteManipulator::create()
+    ->addLegend('cookiebar_legend', 'redirect_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
+    ->addField(['triggerCookiebar'], 'cookiebar_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->applyToPalette('forward', 'tl_page')
+;

@@ -10,6 +10,18 @@
       <trans-unit id="tl_page.activateCookiebar.1">
         <source>Activate the cookie bar for this and its subpages.</source>
       </trans-unit>
+      <trans-unit id="tl_page.triggerCookiebar.0">
+        <source>Open cookiebar</source>
+      </trans-unit>
+      <trans-unit id="tl_page.triggerCookiebar.1">
+        <source>Define here whether the page should be used as a trigger for opening the cookie bar. If this page is included in a navigation, the click will not be redirected, but only the cookie bar will be opened (if JavaScript is active). This is useful, for example, for individual navigations that are placed in the footer.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.prefillCookies.0">
+        <source>Prefill settings</source>
+      </trans-unit>
+      <trans-unit id="tl_page.prefillCookies.1">
+        <source>Activates the already selected cookies when opening the cookiebar.</source>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarConfig.0">
         <source>Cookiebar configuration</source>
       </trans-unit>

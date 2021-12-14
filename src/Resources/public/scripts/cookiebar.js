@@ -61,6 +61,9 @@ let ContaoCookiebar = (function () {
             // Register events
             registerEvents();
 
+            // Register trigger events
+            registerTriggerEvents();
+
             // Validate cookies from storage
             validateCookies(storage.cookies);
 
@@ -394,6 +397,19 @@ let ContaoCookiebar = (function () {
             cookiebar.cache[ type ].push(obj.id);
             return false;
         };
+
+        const registerTriggerEvents = function(){
+            let btnOpener = document.querySelectorAll('a.ccb-trigger, strong.ccb-trigger');
+
+            if(btnOpener.length){
+                btnOpener.forEach(function(btn){
+                    btn.addEventListener('click', function(e){
+                        e.preventDefault();
+                        p.show(btn.classList.contains('ccb-prefill'));
+                    });
+                });
+            }
+        }
 
         const registerEvents = function(){
             let btnToggleCookies = cookiebar.dom.querySelectorAll('[data-toggle-cookies]');

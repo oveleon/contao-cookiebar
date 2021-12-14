@@ -13,6 +13,22 @@
         <source>Activate the cookie bar for this and its subpages.</source>
         <target>Aktivera cookieboxen för denna och dess undersidor.</target>
       </trans-unit>
+      <trans-unit id="tl_page.triggerCookiebar.0">
+        <source>Open cookiebar</source>
+        <target>Öppna cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_page.triggerCookiebar.1">
+        <source>Define here whether the page should be used as a trigger for opening the cookie bar. If this page is included in a navigation, the click will not be redirected, but only the cookie bar will be opened (if JavaScript is active). This is useful, for example, for individual navigations that are placed in the footer.</source>
+        <target>Här kan du ange om sidan ska användas som en utlösande faktor för att öppna kakfältet. Om den här sidan ingår i en navigering kommer klickningen inte att vidarebefordras, utan endast kakfältet kommer att öppnas (om JavaScript är aktivt). Detta är till exempel användbart för enskilda navigationer som placeras i sidfoten på webbplatsen.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.prefillCookies.0">
+        <source>Prefill settings</source>
+        <target>Inställningar förfyllning</target>
+      </trans-unit>
+      <trans-unit id="tl_page.prefillCookies.1">
+        <source>Activates the already selected cookies when opening the cookiebar.</source>
+        <target>Aktiverar de redan valda kakorna när kakfältet öppnas.</target>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarConfig.0">
         <source>Cookiebar configuration</source>
         <target>Cookiebox-konfiguration</target>
