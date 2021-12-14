@@ -39,13 +39,13 @@ Field | Description | Type
 `Title` | The title of the cookie. | All
 `Cookie-Type` | The type of the cookie. [Below](CONFIGURATION.md#types) you will find a description of the individual types. | All
 `Cookie-Token` | The technical name / token of the cookie (see all [Types](CONFIGURATION.md#types)). | All
-`Cookie storage duration` | Define how long the cookie is stored or refer to the description of the provider. | All
+`Retention period` | Define how long the cookie is stored or refer to the description of the provider. | All
 `Provider` | The provider from whom the cookie is set. | All
 `Description` | The description / purpose of the cookie. | All
-`Preselect` | Activates the checkbox when opening the cookie bar for the first time. | All
+`Preselect consent` | Activates the checkbox when opening the cookie bar for the first time. | All
 `Published` | Defines whether the cookie is in active use. | All
 `Source URL` | Allows the inclusion of external scripts in the HEAD-Tag. | Custom (Script)
-`Loading-Mode of Source URL` | Defines when the source URL may be loaded. | Custom (Script)
+`Source URL loading mode` | Defines when the source URL may be loaded. | Custom (Script)
 `Source URL Parameter` | Enables the addition of further parameters for loading the external source URL. | Custom (Script)
 `Script (confirmed)` | Script which is integrated after accepting the cookie. | Custom (Script)
 `Script (unconfirmed)` | Script which is included if the cookie is not accepted. | Custom (Script)
