@@ -56,7 +56,7 @@
         <source>Exclude Pages</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarExcludePages.1">
-        <source>Here you can define the pages in which the cookiebar should not open automatically.</source>
+        <source>Here you can define the pages where the cookiebar should not open automatically.</source>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarButtonColorScheme.0">
         <source>Button color scheme</source>

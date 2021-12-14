@@ -2,10 +2,10 @@
   <file datatype="php" original="src/Resources/contao/languages/en/explain.php" source-language="en">
     <body>
       <trans-unit id="XPL.cookiebarVersion.0.0">
-        <source>Cookiebar Versions</source>
+        <source>Cookiebar versions</source>
       </trans-unit>
       <trans-unit id="XPL.cookiebarVersion.0.1">
-        <source>Versions can be stored for each cookiebar configuration. For each newly created version of a configuration, it is forced to display it to the visitor, regardless of whether and when it has already been accepted. This allows visitors to be notified of new cookies and to grant or deny their permission. The settings previously set by the visitor are applied.</source>
+        <source>Versions can be stored for each cookiebar configuration. Every new version of a configuration forces the cookiebar to be displayed to the visitor, regardless of whether it has already been accepted. This way, visitors can be notified about new cookies and grant or deny permission. Any settings previously set by the visitor remain unchanged.</source>
       </trans-unit>
       <trans-unit id="XPL.cookiebarVersion.1.0">
         <source>Create new version</source>
@@ -69,7 +69,7 @@
         <source>Google Tag Manager</source>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.1.1">
-        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note, these settings are already implemented without confirmation of the cookiebar in the HEAD of the website.</source>
+        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note that these settings are already implemented without confirmation of the cookiebar in the HEAD of the website.</source>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.2.0">
         <source>Tag Manager + Google Consent Mode</source>
@@ -87,7 +87,7 @@
           });
 
           gtag('js', new Date());
-          gtag('config', '&lt;code class="tl_red"&gt;YOUR CONTAINER ID&lt;/code&gt;');
+          gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
           &lt;/pre&gt;
 
           Please note that you have to enter this code yourself if you want to create your own configuration.</source>
