@@ -26,6 +26,7 @@
   - YouTube
   - Vimeo
   - Google Maps
+  - OpenStreetMap
   - [add more...](docs/EXTEND_IFRAME.md)
 - [add more...](docs/EXTEND_TYPE.md)
 
