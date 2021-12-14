@@ -39,7 +39,7 @@
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoDescription.0">
         <source>Additional information</source>
-        <target>Info-Beschreibung</target>
+        <target>Weitere Informationen</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoDescription.1">
         <source>Here you can add more information, that are displayed below the buttons.</source>
@@ -51,7 +51,7 @@
       </trans-unit>
       <trans-unit id="tl_page.cookiebarAlignment.1">
         <source>Define here where the cookiebar should be displayed.</source>
-        <target>Definieren Sie hier wo die Cookiebar angezeigt werden soll.</target>
+        <target>Definieren Sie hier, wo die Cookiebar angezeigt werden soll.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarBlocking.0">
         <source>Blocking</source>
@@ -59,7 +59,7 @@
       </trans-unit>
       <trans-unit id="tl_page.cookiebarBlocking.1">
         <source>Blocks the use of the site until the cookiebar has been used.</source>
-        <target>Blockiert das Bedienen der Seite bis die Cookiebar bedient wurde.</target>
+        <target>Blockiert das Bedienen der Seite, bis die Cookiebar bedient wurde.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoUrls.0">
         <source>Info links</source>
@@ -74,7 +74,7 @@
         <target>Seiten ausschließen</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarExcludePages.1">
-        <source>Here you can define the pages in which the cookiebar should not open automatically.</source>
+        <source>Here you can define the pages where the cookiebar should not open automatically.</source>
         <target>Definieren Sie hier die Seiten, in denen die Cookiebar nicht automatisch geöffnet werden soll.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarButtonColorScheme.0">
@@ -83,7 +83,7 @@
       </trans-unit>
       <trans-unit id="tl_page.cookiebarButtonColorScheme.1">
         <source>Defines the color scheme for the available buttons.</source>
-        <target>Definiert das Farbschema der verfügbaren Button.</target>
+        <target>Definiert das Farbschema der verfügbaren Buttons.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.0">
         <source>Template</source>

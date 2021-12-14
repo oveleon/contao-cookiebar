@@ -2,8 +2,8 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_cookie_log.php" source-language="en" target-language="de">
     <body>
       <trans-unit id="tl_cookie_log.id.0">
-        <source>Id</source>
-        <target>Id</target>
+        <source>ID</source>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.cid.0">
         <source>Cookiebar</source>
