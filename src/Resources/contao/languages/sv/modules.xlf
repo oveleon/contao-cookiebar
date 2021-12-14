@@ -10,12 +10,12 @@
         <target>Hantera Cookiebox-konfigurationen</target>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.0">
-        <source>Cookiebar</source>
-        <target>Cookiebox</target>
+        <source>Cookiebar (Opener)</source>
+        <target>Cookiebox (Länk till återöppning)</target>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.1">
-        <source>Creates a link which opens the cookie bar.</source>
-        <target>Skapar en länk som öppnar cookieboxen.</target>
+        <source>Creates a link that displays the cookiebar</source>
+        <target>Skapar en länk som öppnar cookieboxen</target>
       </trans-unit>
     </body>
   </file>

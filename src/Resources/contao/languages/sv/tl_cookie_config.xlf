@@ -26,11 +26,11 @@
         <target>Källans URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrl.1">
-        <source>The source URL is used to integrate scripts which must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
+        <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
         <target>Käll-URL:n används för att integrera skript som uttryckligen måste integreras i HEAD-avsnittet på webbplatsen för att tillhandahålla en extern tjänst.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceLoadingMode.0">
-        <source>Loading-Mode of Source URL</source>
+        <source>Source URL loading mode</source>
         <target>Laddningsläge för käll-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceLoadingMode.1">
@@ -38,7 +38,7 @@
         <target>Här kan du ange när käll-URL:en får bäddas in.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrlParameter.0">
-        <source>Source URL Parameter</source>
+        <source>Source URL parameter</source>
         <target>Parameter för käll-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.sourceUrlParameter.1">
@@ -50,11 +50,11 @@
         <target>Position för manuskriptet</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptPosition.1">
-        <source>Specify the position where the script should be embedded.</source>
+        <source>Here you can select the position for embedding the script.</source>
         <target>Ange här den position där skriptet ska bäddas in.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptLoadingMode.0">
-        <source>Loading-Mode of the configuration</source>
+        <source>Loading mode of the configuration</source>
         <target>Konfigurationsläget för laddning</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptLoadingMode.1">
@@ -82,7 +82,7 @@
         <target>Konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptConfig.1">
-        <source>Own JavaScript code.</source>
+        <source>Custom JavaScript code.</source>
         <target>Egen JavaScript-kod.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.googleConsentMode.0">

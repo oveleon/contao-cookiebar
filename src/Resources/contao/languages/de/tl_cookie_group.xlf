@@ -2,7 +2,7 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_cookie_group.php" source-language="en" target-language="de">
     <body>
       <trans-unit id="tl_cookie_group.title_legend">
-        <source>Cookie-Group</source>
+        <source>Cookie group</source>
         <target>Cookie-Gruppe</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.title.0">
@@ -19,15 +19,15 @@
       </trans-unit>
       <trans-unit id="tl_cookie_group.description.1">
         <source>Describe the cookie group and its purpose.</source>
-        <target>Beschreiben Sie hier die Cookie-Gruppe und deren Zweck.</target>
+        <target>Beschreiben Sie hier die Cookie-Gruppe und ihren Zweck.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.published.0">
         <source>Publish</source>
         <target>Veröffentlichen</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.published.1">
-        <source>Define here whether the cookie group may be set / displayed.</source>
-        <target>Definieren Sie hier ob die Cookiegruppe verwendet werden darf.</target>
+        <source>Define here whether the cookie group may be used.</source>
+        <target>Definieren Sie hier, ob die Cookiegruppe verwendet werden darf.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie_group.new.0">

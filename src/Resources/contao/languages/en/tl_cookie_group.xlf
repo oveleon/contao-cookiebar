@@ -2,7 +2,7 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_cookie_group.php" source-language="en">
     <body>
       <trans-unit id="tl_cookie_group.title_legend">
-        <source>Cookie-Group</source>
+        <source>Cookie group</source>
       </trans-unit>
       <trans-unit id="tl_cookie_group.title.0">
         <source>Group name</source>
@@ -20,7 +20,7 @@
         <source>Publish</source>
       </trans-unit>
       <trans-unit id="tl_cookie_group.published.1">
-        <source>Define here whether the cookie group may be set / displayed.</source>
+        <source>Define here whether the cookie group may be used.</source>
       </trans-unit>
 
       <trans-unit id="tl_cookie_group.new.0">

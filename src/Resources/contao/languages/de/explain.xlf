@@ -2,12 +2,12 @@
   <file datatype="php" original="src/Resources/contao/languages/en/explain.php" source-language="en" target-language="de">
     <body>
       <trans-unit id="XPL.cookiebarVersion.0.0">
-        <source>Cookiebar Versions</source>
+        <source>Cookiebar versions</source>
         <target>Cookiebar Versionen</target>
       </trans-unit>
       <trans-unit id="XPL.cookiebarVersion.0.1">
-        <source>Versions can be stored for each cookie bar configuration. For each newly created version of a configuration, it is forced to display it to the visitor, regardless of whether and when it has already been accepted. This allows visitors to be notified of new cookies and to grant or deny their permission. The settings previously set by the visitor are applied.</source>
-        <target>Für jede Cookiebar-Konfiguration können Versionen hinterlegt werden. Für jede neu erstellte Version einer Konfiguration wird das Anzeigen dieser beim Besucher erzwungen, unabhängig davon, ob und wann diese bereits akzeptiert wurde. Dadurch können Besucher auf neue Cookies hingewiesen werden und dessen Erlaubnis erteilen oder ablehnen. Die vorher vom Besucher gesetzten Einstellungen werden dabei übernommen.</target>
+        <source>Versions can be stored for each cookiebar configuration. Every new version of a configuration forces the cookiebar to be displayed to the visitor, regardless of whether it has already been accepted. This way, visitors can be notified about new cookies and grant or deny permission. Any settings previously set by the visitor remain unchanged.</source>
+        <target>Für jede Cookiebar-Konfiguration können Versionen gespeichert werden. Jede neue Version einer Konfiguration führt dazu, dass die Cookiebar dem Besucher erneut angezeigt wird, unabhängig davon, ob sie bereits akzeptiert wurde. Auf diese Weise können die Besucher über neue Cookies informiert werden und die Erlaubnis erteilen oder verweigern. Alle Einstellungen, die der Besucher zuvor vorgenommen hat, bleiben unverändert.</target>
       </trans-unit>
       <trans-unit id="XPL.cookiebarVersion.1.0">
         <source>Create new version</source>
@@ -112,7 +112,7 @@
         <target>Google Tag Manager</target>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.1.1">
-        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note, these settings are already implemented without confirmation of the cookie bar in the HEAD of the website.</source>
+        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note that these settings are already implemented without confirmation of the cookiebar in the HEAD of the website.</source>
         <target>Ermöglicht die Einbindung des Google Tag Managers. Zusätzlich kann ein benutzerdefiniertes Skript eingetragen werden. Bitte beachte, dass diese Einstellungen bereits ohne Bestätigung der Cookiebar im Kopfbereich der Website implementiert werden.</target>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.2.0">
@@ -151,7 +151,7 @@
           gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
           &lt;/pre&gt;
 
-          Bitte beachte, dass dieser Code selber eingegeben werden muss, sofern eine eigene Konfiguration hintelregt wird.</target>
+          Bitte beachte, dass dieser Code selber eingegeben werden muss, sofern eine eigene Konfiguration hinterlegt wird.</target>
       </trans-unit>
     </body>
   </file>

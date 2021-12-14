@@ -18,7 +18,7 @@
         <target>Template</target>
       </trans-unit>
       <trans-unit id="tl_cookie.global_config_legend">
-        <source>Global config</source>
+        <source>Global configuration</source>
         <target>Global konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie.description_legend">
@@ -26,12 +26,16 @@
         <target>Beskrivning</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription_legend">
-        <source>Detail Description</source>
+        <source>Detailed description</source>
         <target>Detaljerad beskrivning</target>
       </trans-unit>
       <trans-unit id="tl_cookie.google_analytics_legend">
         <source>Google Analytics</source>
         <target>Google Analytics</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.google_consent_mode_legend">
+        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_legend">
         <source>Matomo</source>
@@ -40,6 +44,14 @@
       <trans-unit id="tl_cookie.facebook_pixel_legend">
         <source>Facebook Pixel</source>
         <target>Facebook Pixel</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.youtube_legend">
+        <source>YouTube</source>
+        <target>YouTube</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.vimeo_legend">
+        <source>Vimeo</source>
+        <target>Vimeo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe_legend">
         <source>iFrame</source>
@@ -54,7 +66,7 @@
         <target>Ange titeln på cookie här.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.token.0">
-        <source>Cookie-Token</source>
+        <source>Cookie token</source>
         <target>Cookie-Token</target>
       </trans-unit>
       <trans-unit id="tl_cookie.token.1">
@@ -98,7 +110,7 @@
         <target>iFrame-Typ</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframeType.1">
-        <source>Select a iframe type.</source>
+        <source>Select an iframe type.</source>
         <target>Välj en iframe-typ.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockTemplate.0">
@@ -106,7 +118,7 @@
         <target>Template (blockerad)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockTemplate.1">
-        <source>Choose a template which will be used when the content is blocked.</source>
+        <source>Choose a template that will be used when the content is blocked.</source>
         <target>Välj en template som ska användas när innehållet blockeras.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptTemplate.0">
@@ -114,7 +126,7 @@
         <target>Skript-Template</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptTemplate.1">
-        <source>Select a template that contains the custom script.</source>
+        <source>Choose a template where the custom script is located.</source>
         <target>Välj en template där det användardefinierade skriptet finns.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.0">
@@ -122,19 +134,19 @@
         <target>Käll-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.1">
-        <source>The source URL is used to integrate scripts which must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
+        <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
         <target>Käll-URL:en används för att integrera skript som måste uttryckligen integreras i HEAD-området på webbplatsen för att kunna tillhandahålla en extern tjänst.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.0">
-        <source>Loading-Mode of Source URL</source>
+        <source>Source URL loading mode</source>
         <target>Laddningsläge för käll-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.1">
-        <source>Define here when the source URL may be embedded.</source>
+        <source>Here you can define the moment when the source URL is allowed to be embedded.</source>
         <target>Definiera här när källadressen kan vara inbäddad.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrlParameter.0">
-        <source>Source URL Parameter</source>
+        <source>Source URL parameter</source>
         <target>Parametrar för käll-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrlParameter.1">
@@ -142,19 +154,19 @@
         <target>Definiera ladda-parametrarna för käll-URL:en som ska användas.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.0">
-        <source>Script (confirmed)</source>
-        <target>Skript (bekräftat)</target>
+        <source>Script (Confirmed)</source>
+        <target>Skript (Bekräftat)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.1">
-        <source>Enter the script here (without enclosing script tag) which is to be output after confirmation of the cookie.</source>
+        <source>Here you can enter the script (without the enclosing script tag) that is output after the cookie has been confirmed.</source>
         <target>Ange skriptet här (utan en bifogad skripttagg) som ska matas ut efter att denna cookie har bekräftats.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptUnconfirmed.0">
-        <source>Script (unconfirmed)</source>
+        <source>Script (Not confirmed)</source>
         <target>Skript (Inte bekräftat)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptUnconfirmed.1">
-        <source>Enter the script here (without enclosing script tag) which should be output if this cookie is not confirmed.</source>
+        <source>Here you can enter the script (without the enclosing script tag) that should be output if this cookie is not confirmed.</source>
         <target>Ange skriptet här (utan en bifogad skripttagg) som ska matas ut om denna cookie inte bekräftades.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptPosition.0">
@@ -162,15 +174,15 @@
         <target>Skript-Position</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptPosition.1">
-        <source>Specify the position where the script (both confirmed and unconfirmed) should be embedded.</source>
+        <source>Here you can select the position for embedding the script (both confirmed and unconfirmed).</source>
         <target>Ange den position där skriptet (både bekräftat och inte bekräftat) ska bäddas in.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.expireTime.0">
-        <source>Cookie storage duration</source>
+        <source>Cookie retention period</source>
         <target>Cookie lagringstid</target>
       </trans-unit>
       <trans-unit id="tl_cookie.expireTime.1">
-        <source>Define here how long the cookie is stored or refer to the description of the provider.</source>
+        <source>Here you can define the duration for how long the cookie is stored; alternatively, you can refer to the provider's description.</source>
         <target>Definiera hur länge denna cookie ska lagras här eller hänvisa till beskrivningen av leverantören.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.provider.0">
@@ -178,7 +190,7 @@
         <target>Leverantör</target>
       </trans-unit>
       <trans-unit id="tl_cookie.provider.1">
-        <source>Define here the provider information like company name and address which are responsible for this cookie.</source>
+        <source>Define here the provider information like company name and address, that is responsible for this cookie.</source>
         <target>Definiera här leverantörsinformation som företagsnamn och adress som ansvarar för denna cookie.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.description.0">
@@ -190,11 +202,11 @@
         <target>Beskriv cookie och dess syfte här.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.0">
-        <source>Detail Description</source>
+        <source>Detailed description</source>
         <target>Detaljerad beskrivning</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.1">
-        <source>Describe the cookie and its purpose with more details.</source>
+        <source>Here you can enter a detailed description about the cookie.</source>
         <target>Beskriv denna cookie och dess syfte mer detaljerat här.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.0">
@@ -202,7 +214,7 @@
         <target>Beskrivning (blockerad)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.1">
-        <source>This description appears when an iFrame is blocked by missing cookie confirmation.</source>
+        <source>This description appears when an iFrame is blocked due to not having consent.</source>
         <target>Denna beskrivning visas när en iFrame blockeras på grund av bristande bekräftelse av cookien.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vendorId.0">
@@ -242,15 +254,15 @@
         <target>Matomo-ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorId.1">
-        <source>Enter your Matomo-ID here.</source>
+        <source>Enter your Matomo ID here.</source>
         <target>Ange ditt Matomo-ID här.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorUrl.0">
-        <source>Matomo Server-URL</source>
+        <source>Matomo server URL</source>
         <target>Matomo Server-URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorUrl.1">
-        <source>Enter the Matomo Server-URL here.</source>
+        <source>Enter the Matomo server URL here.</source>
         <target>Ange URL för Matomo-server här.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
@@ -258,16 +270,16 @@
         <target>Ytterligare konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.1">
-        <source>Enter further parameters here, which should be taken into account when loading the script.</source>
+        <source>Here you can enter additional parameters that will be considered when loading the script.</source>
         <target>Ange ytterligare parametrar här som bör beaktas när man laddar skriptet.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.globalConfig.0">
-        <source>Global Config</source>
+        <source>Global configuration</source>
         <target>Global konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.1">
-        <source>Global configurations are run directly when entering the page and without confirmation. Useful for Google Consent Mode or similar scripts, which may already be run without consent.</source>
+        <source>Depending on the setting, global configurations are executed directly when entering the page and without any confirmation. Useful for Google Consent Mode or similar scripts, that are allowed to run without consent.</source>
         <target>Globala konfigurationer utförs direkt när sidan anropas och utan bekräftelse. Användbart för Google Consent Mode eller liknande skript som redan kan exekveras utan samtycke.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
@@ -275,7 +287,7 @@
         <target>Läge för samtycke</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
-        <source>Define the consent mode here. If you want to request multiple consents via Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
+        <source>Define the consent mode here. If you want to ask for multiple consents through Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
         <target>Definiera samtyckesläget här. Om du vill begära flera samtycken via Google Consent Mode ska du skapa en annan cookie-typ av typen Google Consent Mode.</target>
       </trans-unit>
 
@@ -284,7 +296,7 @@
         <target>Infoga standard-token</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_googleAnalytics_error">
-        <source>Google Analytics ID need to be set.</source>
+        <source>Google Analytics ID needs to be set.</source>
         <target>Google Analytics-ID måste ställas in.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig_xlabel">
@@ -300,11 +312,11 @@
         <target>Definiera om denna cookie kan inaktiveras av besökaren.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.0">
-        <source>Preselect</source>
-        <target>Förhandsval</target>
+        <source>Preselect consent</source>
+        <target>Förhandsval samtycke</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.1">
-        <source>Activates the checkbox when opening the cookie bar for the first time.</source>
+        <source>Activates the checkbox when opening the cookiebar for the first time.</source>
         <target>Aktiverar kryssrutan när kakfältet öppnas för första gången.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
@@ -321,31 +333,31 @@
         <target>Google Analytics</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics.1">
-        <source>Integrate Google Analytics.</source>
-        <target>Integrera Google Analytics.</target>
+        <source>Integrate Google Analytics via Google Tag Manager</source>
+        <target>Integrera Google Analytics via Google Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.0">
         <source>Google Consent Mode (BETA)</source>
         <target>Google Consent Mode (BETA)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.1">
-        <source>Integrate Google Consent Mode via Google Tag Manager.</source>
-        <target>Inkludera Google Consent Mode via Google Tag Manager.</target>
+        <source>Integrate Google Consent Mode via Google Tag Manager</source>
+        <target>Inkludera Google Consent Mode via Google Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.0">
         <source>Facebook Pixel</source>
         <target>Facebook Pixel</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.1">
-        <source>Integrate Facebook Pixel.</source>
-        <target>Integrera Facebook Pixel.</target>
+        <source>Integrate Facebook Pixel</source>
+        <target>Integrera Facebook Pixel</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo.0">
         <source>Matomo</source>
         <target>Matomo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo.1">
-        <source>Integrate Matomo.</source>
+        <source>Integrate Matomo</source>
         <target>Integrera Matomo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.youtube.0">
@@ -361,7 +373,7 @@
         <target>Google Maps</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googlemaps.1">
-        <source>Google Maps YouTube.</source>
+        <source>Integrate Google Maps.</source>
         <target>Integrera Google Maps.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.0">
@@ -372,13 +384,21 @@
         <source>Integrate Vimeo.</source>
         <target>Integrera Vimeo.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.openstreetmap.0">
+        <source>OpenStreetMap</source>
+        <target>OpenStreetMap</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.openstreetmap.1">
+        <source>Integrate OpenStreetMap.</source>
+        <target>Integrera OpenStreetMap.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.default.0">
         <source>Info</source>
         <target>Anteckning</target>
       </trans-unit>
       <trans-unit id="tl_cookie.default.1">
-        <source>Configure a cookie info.</source>
-        <target>Konfigurera en anteckning på en cookie.</target>
+        <source>Configure a cookie notice</source>
+        <target>Konfigurera en anteckning på en cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.script.0">
         <source>Custom (Script)</source>
@@ -393,7 +413,7 @@
         <target>Användardefinerat (Template)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.template.1">
-        <source>Include user-defined script via a template. Please note that only the script tag contained in the template will be considered during processing.</source>
+        <source>Include a custom script via a template. Remember that only the script tag inside the template will be used during processing.</source>
         <target>Integrera ett användardefinierat skript via en template. Observera att endast skripttaggen i den tas med i beräkningen under bearbetningen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.0">
@@ -401,8 +421,8 @@
         <target>iFrame</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.1">
-        <source>Configure iFrame for e.g. YouTube, Vimeo or Google Maps.</source>
-        <target>iFrame för t.ex. YouTube, Vimeo eller Google Maps.</target>
+        <source>Configure iFrame for e.g. YouTube, Vimeo or Google Maps</source>
+        <target>iFrame för t.ex. YouTube, Vimeo eller Google Maps</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.confirmed">
@@ -503,6 +523,10 @@
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
         <target>Publicera / avpublicera cookie ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.editGlobalConfig">
+        <source>Edit global configuration</source>
+        <target>Edit global configuration</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.msgGoogleConsentMode">
