@@ -34,7 +34,7 @@
         <target>Titel &amp; beskrivning</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarDescription.1">
-        <source>Describe the purpose of the cookiebar.</source>
+        <source>Here you can describe the purpose of the cookiebar.</source>
         <target>Beskriv syftet med cookieboxen här.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoDescription.0">
@@ -74,8 +74,16 @@
         <target>Uteslut sidor</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarExcludePages.1">
-        <source>Here you can define the pages in which the cookiebar should not open automatically.</source>
+        <source>Here you can define the pages where the cookiebar should not open automatically.</source>
         <target>Definiera de sidor där cookieboxen inte ska öppnas automatiskt.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.0">
+        <source>Button color scheme</source>
+        <target>Knappens färgschema</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.1">
+        <source>Defines the color scheme for the available buttons.</source>
+        <target>Definierar färgschemat för de tillgängliga knapparna.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarTemplate.0">
         <source>Template</source>
