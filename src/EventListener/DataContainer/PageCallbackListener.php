@@ -47,6 +47,11 @@ class PageCallbackListener
 
             return trim($varValue);
         }
+	
+	    if (null === $varValue)
+	    {
+		    return '';
+	    }
 
         return $varValue;
     }
@@ -63,6 +68,11 @@ class PageCallbackListener
         {
             return trim(preg_replace('#\s+#', ' ', str_replace([self::CLASS_TRIGGER, self::CLASS_PREFILL], '', $varValue)));
         }
+	
+	    if (null === $varValue)
+	    {
+		    return '';
+	    }
 
         return $varValue;
     }
