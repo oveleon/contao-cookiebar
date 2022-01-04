@@ -70,7 +70,7 @@ abstract class AbstractCookie
      * @param int $mode
      * @param int $pos
      */
-    protected function addScript(string $strScript, int $mode = self::LOAD_CONFIRMED, int $pos = self::POS_BELOW): void
+    public function addScript(string $strScript, int $mode = self::LOAD_CONFIRMED, int $pos = self::POS_BELOW): void
     {
         $this->scripts[] = [
             'script'    => $strScript,
@@ -86,7 +86,7 @@ abstract class AbstractCookie
      * @param array|null $flags
      * @param int $mode
      */
-    protected function addResource(string $strSrc, array $flags=null, int $mode = self::LOAD_CONFIRMED): void
+    public function addResource(string $strSrc, array $flags=null, int $mode = self::LOAD_CONFIRMED): void
     {
         $this->resources[] = [
             'src'   => $strSrc,
