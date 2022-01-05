@@ -99,9 +99,9 @@ class Cookiebar
                     {
                         $intConfigKey = $objCookies->globalConfig;
                         $strConfigKey = 'ccb_global_config';
-                        $arrConfigs   = Cache::get($strConfigKey);
+                        $arrConfigs   = Cache::has($strConfigKey) ? Cache::get($strConfigKey) : null;
 
-                        if(!Cache::has($strConfigKey) || null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
+                        if(null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
                         {
                             /** @var CookieConfigModel $objConfigModel */
                             $objConfigModel = CookieConfigModel::findById($intConfigKey);

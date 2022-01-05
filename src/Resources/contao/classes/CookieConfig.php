@@ -82,7 +82,7 @@ class CookieConfig extends AbstractCookie
      */
     public function __get($strKey)
     {
-        if($this->{$strKey})
+        if($this->{$strKey} ?? null)
         {
             return $this->{$strKey};
         }
