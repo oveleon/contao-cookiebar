@@ -68,7 +68,7 @@ class CookiebarController extends AbstractController
         // Protect against XSS attacks
         if(!Validator::isUrl($strUrl))
         {
-            throw new \Exception('The redirect destination must be a valid URL.');
+            return new Response('The redirect destination must be a valid URL.', Response::HTTP_BAD_REQUEST);
         }
 
         /** @var FrontendTemplate $objTemplate */
