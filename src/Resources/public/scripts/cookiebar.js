@@ -326,7 +326,7 @@ let ContaoCookiebar = (function () {
                 let scripts = document.querySelectorAll('script[src]');
                 let host = getHostname(resource.src);
                 for (let i = scripts.length; i--;) {
-                    if (scripts[i].src.indexOf(host) !== -1){
+                    if (scripts[i].src.indexOf(host) !== -1 && host !== window.location.host){
                         return false;
                     }
                 }
