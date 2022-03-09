@@ -285,9 +285,10 @@ class CookieHandler extends AbstractCookie
             '//code.etracker.com/code/e.js',
             [
                 'async',
-                ['blockCookies', 'true'],
-                ['secureCode', $this->vendorId],
-                ['respectDnt', System::getContainer()->getParameter('contao_cookiebar.consider_dnt')]
+                ['id', '_etLoader'],
+                ['data-block-cookies', 'true'],
+                ['data-secure-code', $this->vendorId],
+                ['data-respect-dnt', System::getContainer()->getParameter('contao_cookiebar.consider_dnt')]
             ],
             self::LOAD_ALWAYS
         );

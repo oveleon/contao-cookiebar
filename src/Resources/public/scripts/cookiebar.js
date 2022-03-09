@@ -349,7 +349,7 @@ let ContaoCookiebar = (function () {
             if(null !== resource.flags && resource.flags.length){
                 resource.flags.forEach(function(flag){
                     if(typeof flag === 'object'){
-                        script.dataset[flag[0]] = flag[1];
+                        script.setAttribute(flag[0], flag[1]);
                     }else{
                         script[flag] = true;
                     }
