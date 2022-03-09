@@ -315,6 +315,8 @@
       padding: 10px;
       border-radius: 5px;
       border: 1px solid #efefef; }
+      .cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info > div > span {
+        font-weight: 600; }
       .cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info > div + div {
         margin-top: 5px; }
       .cookiebar_default .cc-cookies .cc-cookie .cc-cookie-info + button.cc-detail-btn-details {
@@ -343,5 +345,3 @@
         display: inline-block;
         content: '·';
         margin-right: 5px; }
-
-/*# sourceMappingURL=cookiebar_default.css.map */

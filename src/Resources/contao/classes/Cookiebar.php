@@ -11,6 +11,7 @@
 namespace Oveleon\ContaoCookiebar;
 
 use Contao\Cache;
+use Contao\DataContainer;
 use Contao\Environment;
 use Contao\FrontendTemplate;
 use Contao\Input;
@@ -76,6 +77,8 @@ class Cookiebar
             $objConfig->blocking          = $objMeta->cookiebarBlocking;
         }
 
+        DataContainer::loadDataContainer('tl_cookie');
+
         while($objCookieGroups->next())
         {
             $objGroup = $objCookieGroups->current();
@@ -95,7 +98,10 @@ class Cookiebar
                         continue;
                     }
 
-                    if($objCookies->globalConfig)
+                    // Adding the global configuration with checking whether this may be used
+                    $strTypePalette = $GLOBALS['TL_DCA']['tl_cookie']['palettes'][$objCookies->type] ?? false;
+
+                    if($objCookies->globalConfig && $strTypePalette && strpos($strTypePalette, 'globalConfig') !== false)
                     {
                         $intConfigKey = $objCookies->globalConfig;
                         $strConfigKey = 'ccb_global_config';

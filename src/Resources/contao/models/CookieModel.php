@@ -13,7 +13,7 @@ namespace Oveleon\ContaoCookiebar;
 use Contao\Model;
 
 /**
- * Reads and writes cookiebar configurations
+ * Reads and writes cookie configurations
  *
  * @property integer $id
  * @property integer $pid
@@ -40,6 +40,8 @@ use Contao\Model;
  * @property string  $gcmMode
  * @property integer $globalConfig
  * @property boolean $disabled
+ * @property boolean $checked
+ * @property boolean $blockCookies
  * @property boolean $published
  *
  * @method static CookieModel|null findById($id, array $opt=array())

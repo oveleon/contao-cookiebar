@@ -9,7 +9,7 @@
 
 ### Features
 - Flexible script integration
-- Vanilla JS / No jQuery needed
+- Vanilla JS / No jQuery
 - No `analytics_*`-Templates required
 - Expandable
 - Consent Log
@@ -19,9 +19,11 @@
 - Custom (Script)
 - Custom (Template)
 - Google Analytics
-- Google Consent Mode (BETA)
+- Google Consent Mode
 - Facebook Pixel
 - Matomo
+- Matomo Tag Manager
+- etracker
 - iFrame
   - YouTube
   - Vimeo

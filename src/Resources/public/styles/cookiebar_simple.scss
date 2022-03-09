@@ -63,6 +63,10 @@ $cookiebar-animation-duration: .5s;
         border-radius: 5px;
         border: 1px solid #efefef;
 
+        > div > span{
+          font-weight: 600;
+        }
+
         > div + div{
           margin-top: 5px;
         }

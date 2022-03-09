@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
                 'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null . '\'))return false;Backend.getScrollOffset()"',
+                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"',
                 'button_callback'     => array('tl_cookie_group', 'disableAction')
             ),
             'toggle' => array

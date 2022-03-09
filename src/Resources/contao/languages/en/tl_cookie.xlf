@@ -199,6 +199,24 @@
       <trans-unit id="tl_cookie.matomo_vendorUrl.1">
         <source>Enter the Matomo server URL here.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.0">
+        <source>Matomo Container-ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.1">
+        <source>Enter your Matomo ID here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.0">
+        <source>Matomo server URL</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.1">
+        <source>Enter the Matomo server URL here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.0">
+        <source>Secure-Code</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.1">
+        <source>Enter your etracker secure code here.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
         <source>Additional configuration</source>
       </trans-unit>
@@ -238,6 +256,12 @@
       <trans-unit id="tl_cookie.checked.1">
         <source>Activates the checkbox when opening the cookiebar for the first time.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.blockCookies.0">
+        <source>Always block cookies</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockCookies.1">
+        <source>This service can be used with and without cookies. Cookies are always blocked via this setting.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
       </trans-unit>
@@ -268,6 +292,18 @@
       </trans-unit>
       <trans-unit id="tl_cookie.matomo.1">
         <source>Integrate Matomo</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager.0">
+        <source>Matomo Tag Manager</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager.1">
+        <source>Integrate etracker</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker.0">
+        <source>etracker</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker.1">
+        <source>Integrate etracker</source>
       </trans-unit>
       <trans-unit id="tl_cookie.youtube.0">
         <source>YouTube</source>

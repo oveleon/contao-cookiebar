@@ -89,7 +89,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
                 'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null . '\'))return false;Backend.getScrollOffset()"',
+                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"',
             ),
             'show' => array
             (
@@ -169,7 +169,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'exclude'                 => true,
             'inputType'               => 'pageTree',
             'foreignKey'              => 'tl_page.title',
-            'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50 clr'),
+            'eval'                    => array('multiple'=>true, 'isSortable'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50 clr'),
             'sql'                     => "blob NULL",
             'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
         ),

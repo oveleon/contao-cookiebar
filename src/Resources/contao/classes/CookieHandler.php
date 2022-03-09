@@ -11,6 +11,7 @@
 namespace Oveleon\ContaoCookiebar;
 
 use Contao\BackendTemplate;
+use Contao\Environment;
 use Contao\StringUtil;
 use Contao\System;
 
@@ -102,6 +103,12 @@ class CookieHandler extends AbstractCookie
                 break;
             case 'matomo':
                 $this->compileMatomo();
+                break;
+            case 'matomoTagManager':
+                $this->compileMatomoTagManager();
+                break;
+            case 'etracker':
+                $this->compileEtracker();
                 break;
             default:
                 // HOOK: allow to compile custom types
@@ -233,5 +240,67 @@ class CookieHandler extends AbstractCookie
             self::LOAD_CONFIRMED,
             self::POS_HEAD
         );
+    }
+
+    /**
+     * Compile cookie of type "matomo tag manager"
+     */
+    private function compileMatomoTagManager()
+    {
+        // Custom config
+        if($src = $this->scriptConfig)
+        {
+            $this->addScript(
+                $src,
+                self::LOAD_CONFIRMED,
+                self::POS_HEAD
+            );
+        }
+
+        $url = substr($this->vendorUrl, -1) === '/' ? $this->vendorUrl : $this->vendorUrl . '/';
+
+        $this->addScript(
+            " var _mtm = window._mtm = window._mtm || []; _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'}); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src='https://".$url."js/container_".$this->vendorId.".js'; s.parentNode.insertBefore(g,s);",
+            self::LOAD_CONFIRMED,
+            self::POS_HEAD
+        );
+    }
+
+    /**
+     * Compile cookie of type "etracker"
+     */
+    private function compileEtracker()
+    {
+        // Custom config
+        if($src = $this->scriptConfig)
+        {
+            $this->addScript(
+                $src,
+                self::LOAD_ALWAYS,
+                self::POS_HEAD
+            );
+        }
+
+        $this->addResource(
+            '//code.etracker.com/code/e.js',
+            [
+                'async',
+                ['blockCookies', 'true'],
+                ['secureCode', $this->vendorId],
+                ['respectDnt', System::getContainer()->getParameter('contao_cookiebar.consider_dnt')]
+            ],
+            self::LOAD_ALWAYS
+        );
+
+        if(!$this->blockCookies)
+        {
+            $script = "cookiebar.onResourceLoaded(".$this->id.", function(){ _etracker.enableCookies('".Environment::get('host')."');});";
+
+            $this->addScript(
+                "if(cookiebar && typeof cookiebar.onResourceLoaded === 'function'){ $script } else { document.addEventListener('DOMContentLoaded',function(){ $script }); }",
+                self::LOAD_CONFIRMED,
+                self::POS_BELOW
+            );
+        }
     }
 }

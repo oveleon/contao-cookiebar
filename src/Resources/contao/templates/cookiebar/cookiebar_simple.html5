@@ -28,13 +28,13 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
                                     <?php if(($cookie->provider && $cookie->showProvider) || ($cookie->expireTime && $cookie->showExpireTime) || ($cookie->token && $cookie->showTokens)): ?>
                                         <div class="cc-cookie-info">
                                             <?php if($cookie->provider && $cookie->showProvider): ?>
-                                                <div><strong><?=$this->providerLabel?>:</strong> <?=$cookie->provider?></div>
+                                                <div><span><?=$this->providerLabel?>:</span> <?=$cookie->provider?></div>
                                             <?php endif; ?>
                                             <?php if($cookie->expireTime && $cookie->showExpireTime): ?>
-                                                <div><strong><?=$this->expireLabel?>:</strong> <?=$cookie->expireTime?></div>
+                                                <div><span><?=$this->expireLabel?>:</span> <?=$cookie->expireTime?></div>
                                             <?php endif; ?>
                                             <?php if($cookie->token && $cookie->showTokens): ?>
-                                                <div><strong><?=$this->tokenLabel?>:</strong> <?=$cookie->token?></div>
+                                                <div><span><?=$this->tokenLabel?>:</span> <?=$cookie->token?></div>
                                             <?php endif; ?>
                                         </div>
                                     <?php endif; ?>

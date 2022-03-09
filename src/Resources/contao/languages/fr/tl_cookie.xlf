@@ -264,6 +264,30 @@
         <source>Enter the Matomo server URL here.</source>
         <target>Saisissez l'URL du serveur Matomo ici.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.0">
+        <source>Matomo Container-ID</source>
+        <target>Matomo Container-ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.1">
+        <source>Enter your Matomo ID here.</source>
+        <target>Saisissez ici votre Matomo-ID.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.0">
+        <source>Matomo server URL</source>
+        <target>URL du serveur Matomo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.1">
+        <source>Enter the Matomo server URL here.</source>
+        <target>Saisissez ici l'URL du serveur Matomo.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.0">
+        <source>Secure-Code</source>
+        <target>Secure-Code</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.1">
+        <source>Enter your etracker secure code here.</source>
+        <target>Saisissez ici votre etracker Secure Code.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
         <source>Additional configuration</source>
         <target>Configuration supplémentaire</target>
@@ -315,6 +339,14 @@
       <trans-unit id="tl_cookie.checked.1">
         <source>Activates the checkbox when opening the cookiebar for the first time.</source>
         <target>Cocher la case à cocher lors de la première ouverture du panneau Cookiebar.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockCookies.0">
+        <source>Always block cookies</source>
+        <target>Cookies à bloquer</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockCookies.1">
+        <source>This service can be used with and without cookies. Cookies are always blocked via this setting.</source>
+        <target>Ce service peut être utilisé avec ou sans cookies. Ce paramètre permet de toujours bloquer les cookies.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>

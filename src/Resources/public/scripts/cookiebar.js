@@ -35,6 +35,8 @@ let ContaoCookiebar = (function () {
             cookiebar.dom = document.querySelector(cookiebar.settings.selector);
             cookiebar.cache = {};
             cookiebar.modules = {};
+            cookiebar.loadedResources = [];
+            cookiebar.resourcesEvents = [];
             cookiebar.show = false;
 
             let storage = getStorage();
@@ -223,7 +225,7 @@ let ContaoCookiebar = (function () {
                 let confirmed = checkCookieConfirmation(config.cookies);
 
                 if(null !== config.resources){
-                    config.resources.forEach(function(resource){
+                    config.resources.forEach(function(resource, index){
                         // 1. load script only if one of the cookies was confirmed
                         // 2. load script only if one of the cookies was not confirmed
                         // 3. load script always
@@ -232,7 +234,7 @@ let ContaoCookiebar = (function () {
                             (resource.mode === 2 && !confirmed) ||
                             (resource.mode === 3)
                         ){
-                            if(cache(config, 'config_resource')){
+                            if(cache(getChacheToken(config, index), 'config_resource')){
                                 return;
                             }
 
@@ -242,7 +244,7 @@ let ContaoCookiebar = (function () {
                 }
 
                 if(null !== config.scripts){
-                    config.scripts.forEach(function(script){
+                    config.scripts.forEach(function(script, index){
                         // 1. load script only if one of the cookies was confirmed
                         // 2. load script only if one of the cookies was not confirmed
                         // 3. load script always
@@ -251,7 +253,7 @@ let ContaoCookiebar = (function () {
                             (script.mode === 2 === !confirmed) ||
                             (script.mode === 3)
                         ){
-                            if(cache(config, 'config_script')){
+                            if(cache(getChacheToken(config, index), 'config_script')){
                                 return;
                             }
 
@@ -273,7 +275,7 @@ let ContaoCookiebar = (function () {
                 let cookie = cookiebar.settings.cookies[ cookieId ];
 
                 if(null !== cookie.resources){
-                    cookie.resources.forEach(function(resource){
+                    cookie.resources.forEach(function(resource, index){
                         // 1. load script if cookie confirmed
                         // 2. load script if cookie not confirmed
                         // 3. load script always
@@ -282,7 +284,7 @@ let ContaoCookiebar = (function () {
                             (resource.mode === 2 && !cookie.confirmed) ||
                             (resource.mode === 3)
                         ){
-                            if(cache(cookie, 'resource')){
+                            if(cache(getChacheToken(cookie, index), 'resource')){
                                 return;
                             }
 
@@ -292,7 +294,7 @@ let ContaoCookiebar = (function () {
                 }
 
                 if(null !== cookie.scripts){
-                    cookie.scripts.forEach(function(script){
+                    cookie.scripts.forEach(function(script, index){
                         // 1. load script if cookie confirmed
                         // 2. load script if cookie not confirmed
                         // 3. load script always
@@ -301,7 +303,7 @@ let ContaoCookiebar = (function () {
                             (script.mode === 2 === !cookie.confirmed) ||
                             (script.mode === 3)
                         ){
-                            if(cache(cookie, 'script')){
+                            if(cache(getChacheToken(cookie, index), 'script')){
                                 return;
                             }
 
@@ -336,10 +338,21 @@ let ContaoCookiebar = (function () {
             let script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.src = resource.src;
+                script.onload = () => {
+                    // Mark resource as loaded
+                    cookiebar.loadedResources.push(resource.src);
+
+                    // Process resource events
+                    processResourceEvents();
+                };
 
             if(null !== resource.flags && resource.flags.length){
                 resource.flags.forEach(function(flag){
-                    script[flag] = true;
+                    if(typeof flag === 'object'){
+                        script.dataset[flag[0]] = flag[1];
+                    }else{
+                        script[flag] = true;
+                    }
                 });
             }
 
@@ -384,19 +397,23 @@ let ContaoCookiebar = (function () {
             return confirmed;
         };
 
-        const cache = function(obj, type){
+        const cache = function(token, type){
             // Create new cache bag
             if(!cookiebar.cache[type]){
                 cookiebar.cache[ type ] = [];
             }
 
-            if(cookiebar.cache[ type ].indexOf(obj.id) !== -1){
+            if(cookiebar.cache[ type ].indexOf(token) !== -1){
                 return true;
             }
 
-            cookiebar.cache[ type ].push(obj.id);
+            cookiebar.cache[ type ].push(token);
             return false;
         };
+
+        const getChacheToken = function(cookie, index){
+            return cookie.id  + '' + index;
+        }
 
         const registerTriggerEvents = function(){
             let btnOpener = document.querySelectorAll('a.ccb-trigger, strong.ccb-trigger');
@@ -459,6 +476,22 @@ let ContaoCookiebar = (function () {
             delete cookiebar.modules[cookieId];
 
             restoreCookieStatus();
+        };
+
+        const processResourceEvents = function(){
+            if(!cookiebar.resourcesEvents.length) {
+                return false;
+            }
+
+            cookiebar.resourcesEvents.forEach(function(event, index) {
+                if(cookiebar.loadedResources.indexOf(event.src) === -1) {
+                    return false;
+                }
+
+                event.callback();
+
+                delete cookiebar.resourcesEvents[index];
+            });
         };
 
         const unblockIframe = function(cookieId){
@@ -875,6 +908,31 @@ let ContaoCookiebar = (function () {
 
                     container.appendChild(html);
                 }
+            }
+        };
+
+        p.onResourceLoaded = function(cookieId, callback){
+            if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
+                console.warn(`Cookie ID ${cookieId} does not exists.`)
+                return false;
+            }
+
+            if(!cookiebar.settings.cookies[cookieId].resources.length) {
+                console.warn(`The cookie ID ${cookieId} does not contain any resources.`)
+                return false;
+            }
+
+            // Get resource by cookie id
+            const resource = cookiebar.settings.cookies[cookieId].resources[0].src;
+
+            // Check if resource already loaded
+            if(cookiebar.loadedResources.indexOf(resource) !== -1) {
+                callback();
+            }else{
+                cookiebar.resourcesEvents.push({
+                    src: resource,
+                    callback: callback
+                });
             }
         };
 

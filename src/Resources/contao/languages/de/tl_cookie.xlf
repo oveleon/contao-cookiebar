@@ -264,6 +264,30 @@
         <source>Enter the Matomo server URL here.</source>
         <target>Geben Sie hier die Matomo Server-URL ein.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.0">
+        <source>Matomo Container-ID</source>
+        <target>Matomo Container-ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.1">
+        <source>Enter your Matomo ID here.</source>
+        <target>Geben Sie hier Ihre Matomo-ID ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.0">
+        <source>Matomo server URL</source>
+        <target>Matomo Server-URL</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.1">
+        <source>Enter the Matomo server URL here.</source>
+        <target>Geben Sie hier die Matomo Server-URL ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.0">
+        <source>Secure-Code</source>
+        <target>Secure-Code</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.1">
+        <source>Enter your etracker secure code here.</source>
+        <target>Geben Sie hier Ihren etracker Secure Code ein.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
         <source>Additional configuration</source>
         <target>Zusätzliche Konfiguration</target>
@@ -316,6 +340,14 @@
         <source>Activates the checkbox when opening the cookiebar for the first time.</source>
         <target>Aktiviert die Checkbox beim erstmaligen Öffnen der Cookiebar.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.blockCookies.0">
+        <source>Always block cookies</source>
+        <target>Cookies immer blockieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.blockCookies.1">
+        <source>This service can be used with and without cookies. Cookies are always blocked via this setting.</source>
+        <target>Dieser Service kann mit und ohne Cookies verwendet werden. Über diese Einstellung werden Cookies immer blockiert.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
         <target>Veröffentlichen</target>
@@ -356,6 +388,22 @@
       <trans-unit id="tl_cookie.matomo.1">
         <source>Integrate Matomo</source>
         <target>Matomo einbinden</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager.0">
+        <source>Matomo Tag Manager (BETA)</source>
+        <target>Matomo Tag Manager (BETA)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager.1">
+        <source>Integrate Matomo Tag Manager</source>
+        <target>Matomo Tag Manager einbinden</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker.0">
+        <source>etracker (BETA)</source>
+        <target>etracker (BETA)</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker.1">
+        <source>Integrate etracker</source>
+        <target>etracker einbinden</target>
       </trans-unit>
       <trans-unit id="tl_cookie.youtube.0">
         <source>YouTube</source>
