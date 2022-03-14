@@ -9,8 +9,7 @@
 
 ### Features
 - Flexible script integration
-- Vanilla JS / No jQuery
-- No `analytics_*`-Templates required
+- Vanilla JS
 - Expandable
 - Consent Log
 - Free & Open Source
