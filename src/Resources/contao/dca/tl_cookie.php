@@ -117,7 +117,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
         'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,gcmMode,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
         'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;published,checked;',
-        'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
+        'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig,disableForBeUser;{description_legend:hide},description,detailDescription;published,checked;',
         'matomoTagManager'            => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
         'etracker'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,blockCookies,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
         'iframe'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description,detailDescription;published,checked;',
@@ -483,6 +483,15 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
+        'disableForBeUser' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['disableForBeUser'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50 m12'),
             'sql'                     => "char(1) NOT NULL default ''"
         )
 	)

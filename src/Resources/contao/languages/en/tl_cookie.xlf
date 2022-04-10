@@ -436,6 +436,13 @@
       <trans-unit id="tl_cookie.msgGoogleConsentMode">
         <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
       </trans-unit>
+
+      <trans-unit id="tl_cookie.disableForBeUser.0">
+        <source>Disable for BE users</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.disableForBeUser.1">
+        <source>Disable tracking while a bakend user is authenticated, to prevent polluting the statistics.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

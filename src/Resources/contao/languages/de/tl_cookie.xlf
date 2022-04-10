@@ -578,6 +578,15 @@
         <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
         <target>Cookies vom Typ "Google Consent Mode" können abhängig vom Einwilligungsmodus mehrfach angelegt werden.</target>
       </trans-unit>
+
+      <trans-unit id="tl_cookie.disableForBeUser.0">
+        <source>Disable for BE users</source>
+        <target>Für BE Benutzer deaktivieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.disableForBeUser.1">
+        <source>Disable tracking while a bakend user is authenticated, to prevent polluting the statistics.</source>
+        <target>Tracking deaktivieren solange ein Backend-Nutzer angemeldet ist um die Statistik nicht zu verzerren.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
