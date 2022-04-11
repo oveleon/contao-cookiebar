@@ -5,62 +5,69 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
 <div <?=$this->cssID ? 'id="' . $this->cssID . '"' : ''?> class="contao-cookiebar<?=$this->class ? ' ' . $this->class : ''?>" role="complementary" aria-describedby="cookiebar-desc">
     <div class="cc-inner" aria-live="assertive" role="alert">
         <div id="cookiebar-desc" class="cc-head">
-            <?=$this->description?>
+            <?php $this->block('header'); ?>
+                <?=$this->description?>
+            <?php $this->endblock() ?>
         </div>
         <div class="cc-footer <?=$this->buttonColorScheme?>">
-            <button class="cc-btn success" data-accept-all><?=$this->acceptAllLabel?></button>
-            <button class="cc-btn deny" data-deny-all><?=$this->denyAllLabel?></button>
-            <button class="cc-btn info" data-toggle-group><?=$this->infoLabel?></button>
+            <?php $this->block('actions'); ?>
+                <button class="cc-btn success" data-accept-all><?=$this->acceptAllLabel?></button>
+                <button class="cc-btn deny" data-deny-all><?=$this->denyAllLabel?></button>
+                <button class="cc-btn info" data-toggle-group><?=$this->infoLabel?></button>
+            <?php $this->endblock() ?>
             <div class="cc-groups toggle-group">
-                <?php foreach ($this->groups as $group): ?>
-                    <div class="cc-group">
-                        <?php if($group->hasCookies): ?>
-                            <input type="checkbox" name="group[]" id="g<?=$group->id?>" value="<?=$group->id?>" data-toggle-cookies<?=$group->isLocked ? ' disabled checked' : ''?>>
-                        <?php endif; ?>
-                        <label <?php if($group->hasCookies): ?>for="g<?=$group->id?>"<?php endif; ?> class="group"><?=$group->title?></label>
-                        <div class="cc-cookies">
-                            <?=$group->description?>
-                            <?php foreach ($group->cookies as $cookie): ?>
-                                <div class="cc-cookie">
-                                    <input type="checkbox" name="cookie[]" id="c<?=$cookie->id?>" value="<?=$cookie->id?>"<?=$cookie->isLocked || $cookie->isDisabled ? ' disabled checked' : ''?>>
-                                    <label for="c<?=$cookie->id?>" class="cookie"><?=$cookie->title?></label>
-                                    <?=$cookie->description?>
-                                    <?php if(($cookie->provider && $cookie->showProvider) || ($cookie->expireTime && $cookie->showExpireTime) || ($cookie->token && $cookie->showTokens)): ?>
-                                        <div class="cc-cookie-info">
-                                            <?php if($cookie->provider && $cookie->showProvider): ?>
-                                                <div><span><?=$this->providerLabel?>:</span> <?=$cookie->provider?></div>
-                                            <?php endif; ?>
-                                            <?php if($cookie->expireTime && $cookie->showExpireTime): ?>
-                                                <div><span><?=$this->expireLabel?>:</span> <?=$cookie->expireTime?></div>
-                                            <?php endif; ?>
-                                            <?php if($cookie->token && $cookie->showTokens): ?>
-                                                <div><span><?=$this->tokenLabel?>:</span> <?=$cookie->token?></div>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <?php if($cookie->detailDescription): ?>
-                                        <button class="cc-detail-btn-details" data-toggle-group>
-                                            <span><?=$this->showMoreDetailsLabel?></span>
-                                            <span><?=$this->hideMoreDetailsLabel?></span>
-                                        </button>
-                                        <div class="cc-cookie-desc toggle-group" style="display: none">
-                                            <?=$cookie->detailDescription?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endforeach; ?>
+                <?php $this->block('groups'); ?>
+                    <?php foreach ($this->groups as $group): ?>
+                        <div class="cc-group">
+                            <?php if($group->hasCookies): ?>
+                                <input type="checkbox" name="group[]" id="g<?=$group->id?>" value="<?=$group->id?>" data-toggle-cookies<?=$group->isLocked ? ' disabled checked' : ''?>>
+                            <?php endif; ?>
+                            <label <?php if($group->hasCookies): ?>for="g<?=$group->id?>"<?php endif; ?> class="group"><?=$group->title?></label>
+                            <div class="cc-cookies">
+                                <?=$group->description?>
+                                <?php foreach ($group->cookies as $cookie): ?>
+                                    <div class="cc-cookie">
+                                        <input type="checkbox" name="cookie[]" id="c<?=$cookie->id?>" value="<?=$cookie->id?>"<?=$cookie->isLocked || $cookie->isDisabled ? ' disabled checked' : ''?>>
+                                        <label for="c<?=$cookie->id?>" class="cookie"><?=$cookie->title?></label>
+                                        <?=$cookie->description?>
+                                        <?php if(($cookie->provider && $cookie->showProvider) || ($cookie->expireTime && $cookie->showExpireTime) || ($cookie->token && $cookie->showTokens)): ?>
+                                            <div class="cc-cookie-info">
+                                                <?php if($cookie->provider && $cookie->showProvider): ?>
+                                                    <div><span><?=$this->providerLabel?>:</span> <?=$cookie->provider?></div>
+                                                <?php endif; ?>
+                                                <?php if($cookie->expireTime && $cookie->showExpireTime): ?>
+                                                    <div><span><?=$this->expireLabel?>:</span> <?=$cookie->expireTime?></div>
+                                                <?php endif; ?>
+                                                <?php if($cookie->token && $cookie->showTokens): ?>
+                                                    <div><span><?=$this->tokenLabel?>:</span> <?=$cookie->token?></div>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if($cookie->detailDescription): ?>
+                                            <button class="cc-detail-btn-details" data-toggle-group>
+                                                <span><?=$this->showMoreDetailsLabel?></span>
+                                                <span><?=$this->hideMoreDetailsLabel?></span>
+                                            </button>
+                                            <div class="cc-cookie-desc toggle-group" style="display: none">
+                                                <?=$cookie->detailDescription?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-
+                    <?php endforeach; ?>
+                <?php $this->endblock() ?>
                 <button class="cc-btn save" data-save><?=$this->saveLabel?></button>
             </div>
         </div>
         <div class="cc-info">
-            <?=$this->infoDescription?>
-            <?php foreach ($this->infoUrls as $name => $link): ?>
-                <a href="<?=$link?>"><?=$name?></a>
-            <?php endforeach; ?>
+            <?php $this->block('info'); ?>
+                <?=$this->infoDescription?>
+                <?php foreach ($this->infoUrls as $name => $link): ?>
+                    <a href="<?=$link?>"><?=$name?></a>
+                <?php endforeach; ?>
+            <?php $this->endblock() ?>
         </div>
     </div>
 </div>

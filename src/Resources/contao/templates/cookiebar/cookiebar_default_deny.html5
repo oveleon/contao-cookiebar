@@ -1,0 +1,9 @@
+<?php
+    $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_default.css|static';
+    $this->extend('cookiebar_default');
+?>
+
+<?php $this->block('actions'); ?>
+    <?php $this->parent(); ?>
+    <button class="cc-btn deny" data-deny-all><?=$this->denyAllLabel?></button>
+<?php $this->endblock() ?>
