@@ -41,7 +41,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
     (
         'sorting' => array
         (
-            'mode'                    => DataContainer::MODE_PARENT,
+            'mode'                    => 4,
             'fields'                  => array('sorting'),
             'headerFields'            => array('title'),
             'panelLayout'             => 'limit',

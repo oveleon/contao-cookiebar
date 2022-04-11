@@ -35,7 +35,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
 	(
         'sorting' => array
         (
-            'mode'                    => DataContainer::MODE_SORTABLE,
+            'mode'                    => 2,
             'fields'                  => array('tstamp'),
             'flag'                    => 2,
             'panelLayout'             => 'filter;sort,search,limit'
