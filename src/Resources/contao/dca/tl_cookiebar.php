@@ -8,14 +8,18 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-\Contao\System::loadLanguageFile('tl_cookiebar');
+use Contao\DC_Table;
+use Contao\DataContainer;
+use Contao\System;
+
+System::loadLanguageFile('tl_cookiebar');
 
 $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 (
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
+		'dataContainer'               => DC_Table::class,
         'ctable'                      => array('tl_cookie_group'),
         'switchToEdit'                => true,
 		'sql' => array
@@ -38,7 +42,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	(
         'sorting' => array
         (
-            'mode'                    => 1,
+            'mode'                    => DataContainer::MODE_SORTED,
             'fields'                  => array('title'),
             'flag'                    => 1,
             'panelLayout'             => 'search,limit'
@@ -194,7 +198,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
                 return Contao\Controller::getTemplateGroup('cookiebar_');
             },
             'eval'                    => array('tl_class'=>'w50'),
-            'sql'                     => "varchar(64) NOT NULL default ''"
+            'sql'                     => "varchar(64) NOT NULL default 'cookiebar_default_deny'"
         ),
         'alignment' => array
         (

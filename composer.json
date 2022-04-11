@@ -21,7 +21,7 @@
   "require":{
     "php":">=7.2",
     "ext-json":"*",
-    "contao/core-bundle":"^4.9",
+    "contao/core-bundle":"^4.9.28",
     "symfony/http-foundation":"^4.4 || ^5.2",
     "symfony/serializer":"^4.4 || ^5.2"
   },

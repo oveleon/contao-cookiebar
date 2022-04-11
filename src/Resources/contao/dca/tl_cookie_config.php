@@ -8,12 +8,15 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
+use Contao\DC_Table;
+use Contao\DataContainer;
+
 $GLOBALS['TL_DCA']['tl_cookie_config'] = array
 (
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
+		'dataContainer'               => DC_Table::class,
         'switchToEdit'                => true,
         'enableVersioning'            => true,
         'markAsCopy'                  => 'title',
@@ -36,7 +39,7 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
 	(
         'sorting' => array
         (
-            'mode'                    => 2,
+            'mode'                    => DataContainer::MODE_SORTABLE,
             'fields'                  => array('title'),
             'flag'                    => 1,
             'panelLayout'             => 'sort,search,limit'
