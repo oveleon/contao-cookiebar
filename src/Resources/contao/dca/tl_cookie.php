@@ -9,7 +9,6 @@
  */
 
 use Contao\DC_Table;
-use Contao\DataContainer;
 
 $GLOBALS['TL_DCA']['tl_cookie'] = array
 (

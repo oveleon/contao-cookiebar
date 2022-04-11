@@ -9,7 +9,6 @@
  */
 
 use Contao\DC_Table;
-use Contao\DataContainer;
 use Contao\System;
 
 System::loadLanguageFile('tl_cookiebar');
