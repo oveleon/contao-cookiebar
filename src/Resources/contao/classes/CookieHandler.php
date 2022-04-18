@@ -44,6 +44,7 @@ use Contao\System;
  * @property integer $globalConfig
  * @property boolean $disabled
  * @property boolean $published
+ * @property boolean $disableForBeUser
  */
 class CookieHandler extends AbstractCookie
 {
@@ -303,5 +304,10 @@ class CookieHandler extends AbstractCookie
                 self::POS_BELOW
             );
         }
+    }
+
+    protected function backendUserIsLoggedIn()
+    {
+        return !is_null(\Contao\BackendUser::getInstance()->username);
     }
 }
