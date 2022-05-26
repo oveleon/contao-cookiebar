@@ -13,7 +13,7 @@
 
 # JavaScript
 ```javascript
-// Return instance of cookiebar
+// Return instance of cookie bar
 cookiebar.get();
 
 // Return current cookie information

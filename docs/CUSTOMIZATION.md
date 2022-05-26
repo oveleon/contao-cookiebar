@@ -11,8 +11,8 @@
 
 ---
 
-# Cookiebar Templates
-There are already two templates for a different presentation of the cookibar.
+# Cookie bar Templates
+There are already two templates for a different presentation of the cookie bar.
 
 <img src="https://www.oveleon.de/share/github-assets/contao-cookiebar/cookiebar_example.jpg">
 
@@ -26,7 +26,7 @@ A separate stylesheet is output for each template. These are made available via 
 
 The `_cookiebar.scss` included in the package contains all default stylings, responsive settings as well as animations can be integrated into your own style sheet.
 
-> However, we recommend here to override style adjustments only in a separate CSS file or to take the `_cookiebar.scss` file as a basis.
+> However, we recommend to override style adjustments only in a separate CSS file or to take the `_cookiebar.scss` file as a basis.
 
 # Blocked Content Elements
 Template | Description
