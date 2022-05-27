@@ -38,7 +38,7 @@ Parameter | Description
 ---------- | -----------
 `consider_dnt` | Consider "Do not Track" browser setting
 `anonymize_ip` | Anonymizes the visitor's IP address for each log entry using [Symfony IP Address Anonymizer](https://symfony.com/blog/new-in-symfony-4-4-ip-address-anonymizer).
-`lifetime` | Time in seconds until when the cookie bar settings apply. If the time has expired, the cookie bar is displayed again. If 0 is passed, the cookiebar will never be displayed again automatically and can only be triggered via the version within the cookiebar configuration. (Default: `63072000` = 2 years)
+`lifetime` | Time in seconds that specifies how long the cookie bar settings apply. If the time has expired, the cookie bar is displayed again. If 0 is passed, the cookie bar will never be displayed again automatically and can only be triggered via the version within the cookie bar configuration. (Default: `63072000` = 2 years)
 `storage_key` | The key used for localStorage
 `page_templates` | An array with page templates which should be considered. Since version `1.8.2` all templates which start with `fe_page_` are considered by default.
 `iframe_types.*` | An array of iFrame-Types and the corresponding templates. By customizing this array, any type can be added (see [Create own iFrame-Types](EXTEND_IFRAME.md))
@@ -49,4 +49,4 @@ The anonymization of all entries can be triggered via the console as follows:
 vendor/bin/contao-console cookiebar:anonymizeip
 ```
 
-> As of version `1.8`, IP addresses are automatically anonymized. The command is therefore only needed if the cookiebar was already in use before this version.
+> As of version `1.8`, IP addresses are automatically anonymized. The command is therefore only needed if the cookie bar was already in use before this version.
