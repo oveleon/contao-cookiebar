@@ -60,7 +60,10 @@
         </style>
         <script>
             if(parent.cookiebar.issetCookie(<?=$this->id?>)){
-                window.location.href = '<?=$this->redirect?>';
+                const decoder = document.createElement('textarea');
+                decoder.innerHTML = '<?=$this->redirect?>';
+
+                window.location.href = decoder.value;
             }
         </script>
     <?php $this->endblock(); ?>
