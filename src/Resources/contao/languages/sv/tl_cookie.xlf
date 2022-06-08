@@ -265,6 +265,30 @@
         <source>Enter the Matomo server URL here.</source>
         <target>Ange URL för Matomo-server här.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.0">
+        <source>Matomo Container-ID</source>
+        <target>Matomo Container-ID</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorId.1">
+        <source>Enter your Matomo ID here.</source>
+        <target>Ange ditt Matomo-ID här.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.0">
+        <source>Matomo server URL</source>
+        <target>URL till Matomo-servern</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.1">
+        <source>Enter the Matomo server URL here.</source>
+        <target>Ange Matomo-serverns URL här.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.0">
+        <source>Secure-Code</source>
+        <target>Secure-Code</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.etracker_vendorId.1">
+        <source>Enter your etracker secure code here.</source>
+        <target>Ange din säkra etracker-kod här.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
         <source>Additional configuration</source>
         <target>Ytterligare konfiguration</target>

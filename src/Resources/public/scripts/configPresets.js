@@ -1,7 +1,8 @@
 var Cookiebar = {
     presets: {
         token: {
-            googleAnalytics: ['_ga','_gat','_gid']
+            googleAnalytics: ['_ga','_gat','_gid'],
+            etracker: ['et_allow_cookies']
         },
         scripts: {
             googleAnalytics: {
@@ -33,14 +34,29 @@ var Cookiebar = {
 
             matomo: "_paq.push(['disableCookies']);\n" +
                     "_paq.push(['trackPageView']);\n" +
-                    "_paq.push(['enableLinkTracking']);"
+                    "_paq.push(['enableLinkTracking']);",
+
+            matomoTagManager: "// Static Data Layer Example\n" +
+                              "// var_mtm = _mtm || [];\n" +
+                              "// _mtm.push({\n" +
+                              "//  'pageValue': '0.5',\n" +
+                              "//  'pageTitle': document.title\n" +
+                              "// });",
+
+            etracker: "// var et_pagename = '';\n" +
+                      "// var et_areas = '';\n" +
+                      "// var et_tval = 0;\n" +
+                      "// var et_tsale = 0;\n" +
+                      "// var et_tonr = '';\n" +
+                      "// var et_basket = '';"
         },
         docs: {
             googleAnalytics:   "https://developers.google.com/analytics/devguides/collection/ga4/cookies-user-id",
             googleConsentMode: "https://developers.google.com/gtagjs/devguide/consent",
             tagManager:        "https://support.google.com/tagmanager/answer/6102821",
             tagManager_gcm:    "https://developers.google.com/gtagjs/devguide/consent#implementation_example",
-            matomo:            "https://developer.matomo.org/guides/tracking-javascript-guide"
+            matomo:            "https://developer.matomo.org/guides/tracking-javascript-guide",
+            etracker:          "https://www.etracker.com/docs/integration-setup/tracking-code-sdks/tracking-code-integration/parameter-setzen/"
         }
     },
     issetConfig: function(s, e){

@@ -13,7 +13,7 @@
 
 # JavaScript
 ```javascript
-// Return instance of cookiebar
+// Return instance of cookie bar
 cookiebar.get();
 
 // Return current cookie information
@@ -36,6 +36,13 @@ cookiebar.hide();
 // - [function] callbackMethod: The function to be executed once the cookie type is accepted
 // - [object] placeholderOptions (optional): Placeholder options for displaying own content
 cookiebar.addModule(1, callbackMethod [, placeholderOptions]);
+
+// In addition to the method mentioned above, the loading status of resources that are loaded 
+// into the HEAD area via a cookie type (e.g. source URL) can be checked using the following method.
+// This is necessary, for example, for scripts that depend on resources that are loaded asynchronously.
+// - [int] cookieTypeId: The cookie type ID to be listened to
+// - [function] callbackMethod: The function to be executed once the resource is loaded
+cookiebar.onResourceLoaded(1, callbackMethod);
 
 // Custom Events
 window.addEventListener('cookiebar_init', function (e) {

@@ -8,14 +8,17 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-\Contao\System::loadLanguageFile('tl_cookiebar');
+use Contao\DC_Table;
+use Contao\System;
+
+System::loadLanguageFile('tl_cookiebar');
 
 $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 (
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
+		'dataContainer'               => DC_Table::class,
         'ctable'                      => array('tl_cookie_group'),
         'switchToEdit'                => true,
 		'sql' => array
@@ -89,7 +92,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
                 'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null . '\'))return false;Backend.getScrollOffset()"',
+                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"',
             ),
             'show' => array
             (
@@ -169,7 +172,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'exclude'                 => true,
             'inputType'               => 'pageTree',
             'foreignKey'              => 'tl_page.title',
-            'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50 clr'),
+            'eval'                    => array('multiple'=>true, 'isSortable'=>true, 'fieldType'=>'checkbox', 'tl_class'=>'w50 clr'),
             'sql'                     => "blob NULL",
             'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
         ),
@@ -194,7 +197,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
                 return Contao\Controller::getTemplateGroup('cookiebar_');
             },
             'eval'                    => array('tl_class'=>'w50'),
-            'sql'                     => "varchar(64) NOT NULL default ''"
+            'sql'                     => "varchar(64) NOT NULL default 'cookiebar_default_deny'"
         ),
         'alignment' => array
         (

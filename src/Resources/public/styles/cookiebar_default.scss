@@ -6,7 +6,7 @@ $cookiebar-animation-duration: .5s;
 
 @import "cookiebar";
 
-.cookiebar_default{
+.contao-cookiebar{
   color: #444444;
 
   p{
@@ -142,6 +142,10 @@ $cookiebar-animation-duration: .5s;
         padding: 10px;
         border-radius: 5px;
         border: 1px solid #efefef;
+
+        > div > span{
+          font-weight: 600;
+        }
 
         > div + div{
           margin-top: 5px;

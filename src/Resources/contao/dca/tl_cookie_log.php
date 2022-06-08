@@ -8,12 +8,14 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
+use Contao\DC_Table;
+
 $GLOBALS['TL_DCA']['tl_cookie_log'] = array
 (
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
+		'dataContainer'               => DC_Table::class,
         'notCopyable'                 => true,
         'notEditable'                 => true,
         'notCreatable'                => true,
@@ -62,7 +64,7 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = array
             (
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null . '\'))return false;Backend.getScrollOffset()"'
+                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"'
             ),
             'show' => array
             (
