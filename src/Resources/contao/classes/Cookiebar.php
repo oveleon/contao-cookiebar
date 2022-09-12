@@ -456,15 +456,13 @@ class Cookiebar
      * Create and save new log entry
      *
      * @param $configId
-     * @param $version
      * @param null|string $domain
      * @param null|string $url
      * @param null|string $ip
-     * @param null $data
+     * @param null|string $data
      */
-    public static function log($configId, $version, $domain=null, $url=null, $ip=null, $data=null): void
+    public static function log($configId, $domain=null, $url=null, $ip=null, $data=null): void
     {
-        $objLog = new CookieLogModel();
         $strIp = $ip ?? Environment::get('ip');
 
         if(System::getContainer()->getParameter('contao_cookiebar.anonymize_ip'))
@@ -472,8 +470,14 @@ class Cookiebar
             $strIp = IpUtils::anonymize($strIp);
         }
 
+        if(!$cookieBar = CookiebarModel::findById($configId))
+        {
+            return;
+        }
+
+        $objLog = new CookieLogModel();
         $objLog->cid = $configId;
-        $objLog->version = $version;
+        $objLog->version = $cookieBar->version;
         $objLog->domain = $domain ?? Environment::get('url');
         $objLog->url = $url ?? Environment::get('requestUri');
         $objLog->ip = $strIp;

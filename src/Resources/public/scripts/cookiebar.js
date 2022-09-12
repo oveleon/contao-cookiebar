@@ -618,7 +618,6 @@ let ContaoCookiebar = (function () {
                 referrer: window.location.pathname,
                 configId: cookiebar.settings.configId,
                 pageId:   cookiebar.settings.pageId,
-                version:  cookiebar.settings.version,
                 cookies:  getStorage().cookies
             };
 
