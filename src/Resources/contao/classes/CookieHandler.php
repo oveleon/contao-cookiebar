@@ -199,6 +199,12 @@ class CookieHandler extends AbstractCookie
             self::LOAD_CONFIRMED,
             self::POS_HEAD
         );
+
+        $this->addScript(
+            "try{ let gid; for(gid in window.google_tag_data.td) { window['ga-disable-' + gid] = true; }}catch (e) {}",
+            self::LOAD_UNCONFIRMED,
+            self::POS_HEAD
+        );
     }
 
     /**
