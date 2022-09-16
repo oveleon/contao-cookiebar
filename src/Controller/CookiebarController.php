@@ -120,7 +120,7 @@ class CookiebarController extends AbstractController
                     return $error;
                 }
 
-                Cookiebar::log($request->get('configId'), null, $request->get('referrer'),null, $request->get('cookies'));
+                Cookiebar::log($request->get('configId'), $request->get('referrer'), null, $request->get('cookies'));
                 break;
         }
 

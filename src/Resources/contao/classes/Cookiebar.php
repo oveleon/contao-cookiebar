@@ -456,12 +456,11 @@ class Cookiebar
      * Create and save new log entry
      *
      * @param $configId
-     * @param null|string $domain
-     * @param null|string $url
      * @param null|string $ip
-     * @param null|string $data
+     * @param null|string $url
+     * @param null|array $data
      */
-    public static function log($configId, $domain=null, $url=null, $ip=null, $data=null): void
+    public static function log($configId, $url=null, $ip=null, $data=null): void
     {
         $strIp = $ip ?? Environment::get('ip');
 
@@ -470,21 +469,37 @@ class Cookiebar
             $strIp = IpUtils::anonymize($strIp);
         }
 
+        // Check if the cookie bar exists (#128)
         if(!$cookieBar = CookiebarModel::findById($configId))
         {
-            return;
+            throw new \InvalidArgumentException("Cookie bar configuration could not be found, the log entry was skipped");
+        }
+
+        // Check if it is a valid URL (#128)
+        if ($url && (filter_var('https://www.example.com' . $url, FILTER_VALIDATE_URL) === false))
+        {
+            throw new \InvalidArgumentException("The URL passed is not valid");
         }
 
         $objLog = new CookieLogModel();
         $objLog->cid = $configId;
         $objLog->version = $cookieBar->version;
-        $objLog->domain = $domain ?? Environment::get('url');
+        $objLog->domain = Environment::get('url');
         $objLog->url = $url ?? Environment::get('requestUri');
         $objLog->ip = $strIp;
         $objLog->tstamp = time();
 
         if(null !== $data)
         {
+            // Remove values which are not of type integer (#128)
+            foreach ($data as $index => $cookieId)
+            {
+                if(!((int) $cookieId == $cookieId))
+                {
+                    unset($data[$index]);
+                }
+            }
+
             /** @var Connection $db */
             $db = System::getContainer()->get('database_connection');
             $result = $db->fetchAllAssociative("SELECT id, title, token FROM tl_cookie WHERE id IN (?)", [$data], [Connection::PARAM_INT_ARRAY]);
