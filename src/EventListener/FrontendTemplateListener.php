@@ -28,7 +28,7 @@ class FrontendTemplateListener
     {
         $arrPageTemplates = System::getContainer()->getParameter('contao_cookiebar.page_templates') ?? ['fe_page'];
 
-        if (!in_array($template, $arrPageTemplates) && 0 !== strpos($template, 'fe_page_')) {
+        if (!in_array($template, $arrPageTemplates) && 0 !== strpos($template, 'fe_page')) {
             return $buffer;
         }
 
