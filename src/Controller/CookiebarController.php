@@ -115,12 +115,12 @@ class CookiebarController extends AbstractController
 
             // Add new log entry
             case 'log':
-                if($error = $this->errorMissingParameter($request, ['configId','version']))
+                if($error = $this->errorMissingParameter($request, ['configId']))
                 {
                     return $error;
                 }
 
-                Cookiebar::log($request->get('configId'), $request->get('version'), null, $request->get('referrer'),null, $request->get('cookies'));
+                Cookiebar::log($request->get('configId'), $request->get('referrer'), null, $request->get('cookies'));
                 break;
         }
 
