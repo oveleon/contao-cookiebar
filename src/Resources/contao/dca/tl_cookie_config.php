@@ -52,7 +52,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
 		(
 			'all' => array
 			(
-                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
 				'href'                => 'act=select',
 				'class'               => 'header_edit_all',
 				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
@@ -62,26 +61,22 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
 		(
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_config']['edit'],
                 'href'                => 'act=edit',
                 'icon'                => 'edit.svg'
             ),
             'copy' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_config']['copy'],
                 'href'                => 'act=paste&amp;mode=copy',
                 'icon'                => 'copy.svg'
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_config']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"'
             ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_config']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             )
@@ -110,7 +105,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'title' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['title'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -119,7 +113,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'type' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['type'],
             'exclude'                 => true,
             'filter'                  => true,
             'search'                  => true,
@@ -132,7 +125,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'vendorId' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['vendorId'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -144,7 +136,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'sourceUrl' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['sourceUrl'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => array('rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'dcaPicker'=>array('do'=>'files', 'context'=>'file', 'icon'=>'pickfile.svg', 'fieldType'=>'radio', 'filesOnly'=>true, 'extensions'=>'js'), 'addWizardClass'=>false, 'tl_class'=>'w50'),
@@ -155,7 +146,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'sourceLoadingMode' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['sourceLoadingMode'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array(
@@ -169,7 +159,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'sourceUrlParameter' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['sourceUrlParameter'],
             'exclude'                 => true,
             'inputType'               => 'checkbox',
             'options'                 => array('async', 'defer'),
@@ -178,7 +167,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
 		'scriptPosition' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['scriptPosition'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array(
@@ -192,7 +180,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'scriptLoadingMode' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['scriptLoadingMode'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array(
@@ -206,7 +193,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'scriptConfig' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['scriptConfig'],
             'exclude'                 => true,
             'inputType'               => 'textarea',
             'eval'                    => array('preserveTags'=>true, 'decodeEntities'=>true, 'helpwizard'=>true, 'class'=>'monospace', 'rte'=>'ace|javascript', 'tl_class'=>'clr'),
@@ -219,7 +205,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'googleConsentMode' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['googleConsentMode'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
@@ -228,7 +213,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = array
         ),
         'published' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_config']['published'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',

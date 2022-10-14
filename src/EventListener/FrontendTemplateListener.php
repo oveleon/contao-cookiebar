@@ -28,7 +28,8 @@ class FrontendTemplateListener
     {
         $arrPageTemplates = System::getContainer()->getParameter('contao_cookiebar.page_templates') ?? ['fe_page'];
 
-        if (!in_array($template, $arrPageTemplates) && 0 !== strpos($template, 'fe_page')) {
+        if (!in_array($template, $arrPageTemplates) && !str_starts_with($template, 'fe_page'))
+        {
             return $buffer;
         }
 
@@ -40,9 +41,6 @@ class FrontendTemplateListener
         {
             return $buffer;
         }
-
-        // If a cookie is still set by an older version, it must be deleted
-        Cookiebar::checkCookie();
 
         // Parse template
         $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);

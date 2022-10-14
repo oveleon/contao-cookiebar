@@ -8,9 +8,10 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCookiebar;
+namespace Oveleon\ContaoCookiebar\Model;
 
 use Contao\Model;
+use Contao\Model\Collection;
 
 /**
  * Reads and writes global configurations
@@ -36,11 +37,11 @@ use Contao\Model;
  * @method static CookiebarModel|null findOneByTstamp($val, array $opt=array())
  * @method static CookiebarModel|null findOneByTitle($val, array $opt=array())
  *
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByTstamp($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByTitle($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findMultipleByIds($var, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findBy($col, $val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findAll(array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByTstamp($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByTitle($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findMultipleByIds($var, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findBy($col, $val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findAll(array $opt=array())
  *
  * @method static integer countById($id, array $opt=array())
  * @method static integer countByTstamp($val, array $opt=array())

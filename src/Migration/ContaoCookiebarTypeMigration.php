@@ -25,7 +25,7 @@ class ContaoCookiebarTypeMigration extends AbstractMigration
 
     public function shouldRun(): bool
     {
-        $schemaManager = $this->connection->getSchemaManager();
+        $schemaManager = $this->connection->createSchemaManager();
 
         // If the database table itself does not exist we should do nothing
         if (!$schemaManager->tablesExist(['tl_cookie'])) {

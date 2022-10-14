@@ -8,18 +8,31 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
+use Oveleon\ContaoCookiebar\Export\LogExport;
+use Oveleon\ContaoCookiebar\Model\CookiebarModel;
+use Oveleon\ContaoCookiebar\Model\CookieLogModel;
+use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
+use Oveleon\ContaoCookiebar\Model\CookieModel;
+use Oveleon\ContaoCookiebar\Model\CookieConfigModel;
+
 // Back end modules
-$GLOBALS['BE_MOD']['system']['cookiebar'] = array(
-    'tables' => array('tl_cookiebar', 'tl_cookie_log', 'tl_cookie_group', 'tl_cookie', 'tl_cookie_config'),
-    'export' => array('Oveleon\ContaoCookiebar\LogExport', 'export'),
-);
+$GLOBALS['BE_MOD']['system']['cookiebar'] = [
+    'tables' => [
+        'tl_cookiebar',
+        'tl_cookie_log',
+        'tl_cookie_group',
+        'tl_cookie',
+        'tl_cookie_config'
+    ],
+    'export' => [LogExport::class, 'export']
+];
 
 // Models
-$GLOBALS['TL_MODELS']['tl_cookiebar'] = 'Oveleon\ContaoCookiebar\CookiebarModel';
-$GLOBALS['TL_MODELS']['tl_cookie_log'] = 'Oveleon\ContaoCookiebar\CookieLogModel';
-$GLOBALS['TL_MODELS']['tl_cookie_group'] = 'Oveleon\ContaoCookiebar\CookieGroupModel';
-$GLOBALS['TL_MODELS']['tl_cookie'] = 'Oveleon\ContaoCookiebar\CookieModel';
-$GLOBALS['TL_MODELS']['tl_cookie_config'] = 'Oveleon\ContaoCookiebar\CookieConfigModel';
+$GLOBALS['TL_MODELS']['tl_cookiebar']     = CookiebarModel::class;
+$GLOBALS['TL_MODELS']['tl_cookie_log']    = CookieLogModel::class;
+$GLOBALS['TL_MODELS']['tl_cookie_group']  = CookieGroupModel::class;
+$GLOBALS['TL_MODELS']['tl_cookie']        = CookieModel::class;
+$GLOBALS['TL_MODELS']['tl_cookie_config'] = CookieConfigModel::class;
 
 // Front end modules
 $GLOBALS['FE_MOD']['application']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\ModuleCookiebar';
@@ -30,9 +43,3 @@ $GLOBALS['TL_CTE']['links']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\Conten
 // Hooks
 $GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('Oveleon\ContaoCookiebar\EventListener\FrontendTemplateListener', 'onOutputFrontendTemplate');
 $GLOBALS['TL_HOOKS']['parseFrontendTemplate'][] = array('Oveleon\ContaoCookiebar\EventListener\FrontendTemplateListener', 'onParseFrontendTemplate');
-
-// Scripts
-if (defined('TL_MODE') && TL_MODE == 'BE')
-{
-    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/configPresets.min.js';
-}

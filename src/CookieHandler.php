@@ -14,6 +14,7 @@ use Contao\BackendTemplate;
 use Contao\Environment;
 use Contao\StringUtil;
 use Contao\System;
+use Oveleon\ContaoCookiebar\Model\CookieModel;
 
 /**
  * Arranges the properties and resources of a cookie
@@ -49,21 +50,18 @@ class CookieHandler extends AbstractCookie
 {
     /**
      * Model
-     * @var CookieModel
      */
-    protected $objModel;
+    protected CookieModel $objModel;
 
     /**
      * Locked state
-     * @var boolean
      */
-    protected $isLocked = false;
+    protected bool $isLocked = false;
 
     /**
      * Disabled state
-     * @var boolean
      */
-    protected $isDisabled = false;
+    protected bool $isDisabled = false;
 
     /**
      * Initialize the object
@@ -124,12 +122,8 @@ class CookieHandler extends AbstractCookie
 
     /**
      * Return an object property
-     *
-     * @param string $strKey The property name
-     *
-     * @return mixed|null The property value or null
      */
-    public function __get($strKey)
+    public function __get(string $strKey): mixed
     {
         if(isset($this->{$strKey}))
         {
@@ -142,7 +136,7 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "script"
      */
-    private function compileScript()
+    private function compileScript(): void
     {
         if($src = $this->sourceUrl)
         {
@@ -167,9 +161,8 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "template"
      */
-    private function compileTemplate()
+    private function compileTemplate(): void
     {
-        /** @var BackendTemplate $objTemplate */
         $objTemplate = new BackendTemplate($this->scriptTemplate);
         $strTemplate = $objTemplate->parse();
 
@@ -186,7 +179,7 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "googleAnalytics"
      */
-    private function compileGoogleAnalytics()
+    private function compileGoogleAnalytics(): void
     {
         $this->addResource(
             'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
@@ -210,7 +203,7 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "googleConsentMode"
      */
-    private function compileGoogleConsentMode()
+    private function compileGoogleConsentMode(): void
     {
         if($src = $this->scriptConfig)
         {
@@ -225,7 +218,7 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "facebookPixel"
      */
-    private function compileFacebookPixel()
+    private function compileFacebookPixel(): void
     {
         $this->addScript(
             "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '" . $this->vendorId . "');fbq('track', 'PageView');",
@@ -237,9 +230,9 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "matomo"
      */
-    private function compileMatomo()
+    private function compileMatomo(): void
     {
-        $url = substr($this->vendorUrl, -1) === '/' ? $this->vendorUrl : $this->vendorUrl . '/';
+        $url = str_ends_with($this->vendorUrl, '/') ? $this->vendorUrl : $this->vendorUrl . '/';
 
         $this->addScript(
             "var _paq = window._paq = window._paq || []; " . ($this->scriptConfig ?: "_paq.push(['trackPageView']); _paq.push(['enableLinkTracking']);") . " (function() { var u='" . $url . "'; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', " . $this->vendorId . "]); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);})();",
@@ -251,7 +244,7 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "matomo tag manager"
      */
-    private function compileMatomoTagManager()
+    private function compileMatomoTagManager(): void
     {
         // Custom config
         if($src = $this->scriptConfig)
@@ -263,7 +256,7 @@ class CookieHandler extends AbstractCookie
             );
         }
 
-        $url = substr($this->vendorUrl, -1) === '/' ? $this->vendorUrl : $this->vendorUrl . '/';
+        $url = str_ends_with($this->vendorUrl, '/') ? $this->vendorUrl : $this->vendorUrl . '/';
 
         $this->addScript(
             " var _mtm = window._mtm = window._mtm || []; _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'}); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src='https://".$url."js/container_".$this->vendorId.".js'; s.parentNode.insertBefore(g,s);",
@@ -275,7 +268,7 @@ class CookieHandler extends AbstractCookie
     /**
      * Compile cookie of type "etracker"
      */
-    private function compileEtracker()
+    private function compileEtracker(): void
     {
         // Custom config
         if($src = $this->scriptConfig)

@@ -14,7 +14,6 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['cookiebarOpener'] = '{title_legend}
 // Fields
 $GLOBALS['TL_DCA']['tl_module']['fields']['titleText'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_module']['titleText'],
     'exclude'                 => true,
     'search'                  => true,
     'inputType'               => 'text',
@@ -24,7 +23,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['titleText'] = array
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['linkTitle'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_module']['linkTitle'],
     'exclude'                 => true,
     'search'                  => true,
     'inputType'               => 'text',
@@ -34,7 +32,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['linkTitle'] = array
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['prefillCookies'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_module']['prefillCookies'],
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => array('tl_class'=>'w50 m12'),

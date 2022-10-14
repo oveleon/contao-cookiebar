@@ -9,6 +9,7 @@
  */
 
 use Contao\DC_Table;
+use Contao\DataContainer;
 
 $GLOBALS['TL_DCA']['tl_cookie_group'] = array
 (
@@ -40,7 +41,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
     (
         'sorting' => array
         (
-            'mode'                    => 4,
+            'mode'                    => DataContainer::SORT_INITIAL_LETTERS_DESC,
             'fields'                  => array('sorting'),
             'headerFields'            => array('title'),
             'panelLayout'             => 'limit',
@@ -56,7 +57,6 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
         (
             'all' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
                 'href'                => 'act=select',
                 'class'               => 'header_edit_all',
                 'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
@@ -66,26 +66,22 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
         (
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['edit'],
                 'href'                => 'table=tl_cookie',
                 'icon'                => 'edit.svg'
             ),
             'editheader' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['editheader'],
                 'href'                => 'act=edit',
                 'icon'                => 'header.svg'
             ),
             'copy' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['copy'],
                 'href'                => 'act=paste&amp;mode=copy',
                 'icon'                => 'copy.svg',
                 'button_callback'     => array('tl_cookie_group', 'disableAction')
             ),
             'cut' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['cut'],
                 'href'                => 'act=paste&amp;mode=cut',
                 'icon'                => 'cut.svg',
                 'attributes'          => 'onclick="Backend.getScrollOffset()"',
@@ -93,7 +89,6 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"',
@@ -101,15 +96,12 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             ),
             'toggle' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['toggle'],
+                'href'                => 'act=toggle&amp;field=published',
                 'icon'                => 'visible.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-                'button_callback'     => array('tl_cookie_group', 'toggleGroupIcon'),
                 'showInHeader'        => true
             ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookie_group']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             )
@@ -171,6 +163,7 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_group']['published'],
             'exclude'                 => true,
             'filter'                  => true,
+            'toggle'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
             'sql'                     => "char(1) NOT NULL default ''"
@@ -292,151 +285,5 @@ class tl_cookie_group extends Contao\Backend
         }
 
         return '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . Contao\StringUtil::specialchars($title) . '"' . $attributes . '>' . Contao\Image::getHtml($icon, $label) . '</a> ';
-    }
-
-    /**
-     * Return the "toggle visibility" button
-     *
-     * @param array  $row
-     * @param string $href
-     * @param string $label
-     * @param string $title
-     * @param string $icon
-     * @param string $attributes
-     *
-     * @return string
-     */
-    public function toggleGroupIcon($row, $href, $label, $title, $icon, $attributes)
-    {
-        if (Contao\Input::get('tid'))
-        {
-            $this->toggleGroupVisibility(Contao\Input::get('tid'), (Contao\Input::get('state') == 1), (@func_get_arg(12) ?: null));
-            $this->redirect($this->getReferer());
-        }
-
-        // Check permissions AFTER checking the tid, so hacking attempts are logged
-        if (!$this->User->hasAccess('tl_cookie_group::published', 'alexf'))
-        {
-            return '';
-        }
-
-        $href .= '&amp;tid=' . $row['id'] . '&amp;state=' . ($row['published'] ? '' : 1);
-
-        if (!$row['published'])
-        {
-            $icon = 'invisible.svg';
-        }
-
-        return '<a href="' . $this->addToUrl($href) . '" title="' . Contao\StringUtil::specialchars($title) . '"' . $attributes . '>' . Contao\Image::getHtml($icon, $label, 'data-state="' . ($row['published'] ? 1 : 0) . '"') . '</a> ';
-    }
-
-    /**
-     * Disable/enable a user group
-     *
-     * @param integer              $intId
-     * @param boolean              $blnVisible
-     * @param Contao\DataContainer $dc
-     *
-     * @throws Contao\CoreBundle\Exception\AccessDeniedException
-     */
-    public function toggleGroupVisibility($intId, $blnVisible, Contao\DataContainer $dc=null)
-    {
-        // Set the ID and action
-        Contao\Input::setGet('id', $intId);
-        Contao\Input::setGet('act', 'toggle');
-
-        if ($dc)
-        {
-            $dc->id = $intId; // see #8043
-        }
-
-        // Trigger the onload_callback
-        if (is_array($GLOBALS['TL_DCA']['tl_cookie_group']['config']['onload_callback']))
-        {
-            foreach ($GLOBALS['TL_DCA']['tl_cookie_group']['config']['onload_callback'] as $callback)
-            {
-                if (is_array($callback))
-                {
-                    $this->import($callback[0]);
-                    $this->{$callback[0]}->{$callback[1]}($dc);
-                }
-                elseif (is_callable($callback))
-                {
-                    $callback($dc);
-                }
-            }
-        }
-
-        // Check the field access
-        if (!$this->User->hasAccess('tl_cookie_group::published', 'alexf'))
-        {
-            throw new Contao\CoreBundle\Exception\AccessDeniedException('Not enough permissions to publish/unpublish cookie group ID "' . $intId . '".');
-        }
-
-        $objRow = $this->Database->prepare("SELECT * FROM tl_cookie_group WHERE id=?")
-            ->limit(1)
-            ->execute($intId);
-
-        if ($objRow->numRows < 1)
-        {
-            throw new Contao\CoreBundle\Exception\AccessDeniedException('Invalid cookie group ID "' . $intId . '".');
-        }
-
-        // Set the current record
-        if ($dc)
-        {
-            $dc->activeRecord = $objRow;
-        }
-
-        $objVersions = new Contao\Versions('tl_cookie_group', $intId);
-        $objVersions->initialize();
-
-        // Trigger the save_callback
-        if (is_array($GLOBALS['TL_DCA']['tl_cookie_group']['fields']['published']['save_callback']))
-        {
-            foreach ($GLOBALS['TL_DCA']['tl_cookie_group']['fields']['published']['save_callback'] as $callback)
-            {
-                if (is_array($callback))
-                {
-                    $this->import($callback[0]);
-                    $blnVisible = $this->{$callback[0]}->{$callback[1]}($blnVisible, $dc);
-                }
-                elseif (is_callable($callback))
-                {
-                    $blnVisible = $callback($blnVisible, $dc);
-                }
-            }
-        }
-
-        $time = time();
-
-        // Update the database
-        $this->Database->prepare("UPDATE tl_cookie_group SET tstamp=$time, published='" . ($blnVisible ? '1' : '') . "' WHERE id=?")
-            ->execute($intId);
-
-        if ($dc)
-        {
-            $dc->activeRecord->tstamp = $time;
-            $dc->activeRecord->published = ($blnVisible ? '1' : '');
-        }
-
-        // Trigger the onsubmit_callback
-        if (is_array($GLOBALS['TL_DCA']['tl_cookie_group']['config']['onsubmit_callback']))
-        {
-            foreach ($GLOBALS['TL_DCA']['tl_cookie_group']['config']['onsubmit_callback'] as $callback)
-            {
-                if (is_array($callback))
-                {
-                    $this->import($callback[0]);
-                    $this->{$callback[0]}->{$callback[1]}($dc);
-                }
-                elseif (is_callable($callback))
-                {
-                    $callback($dc);
-                }
-            }
-        }
-
-        $objVersions->create();
     }
 }

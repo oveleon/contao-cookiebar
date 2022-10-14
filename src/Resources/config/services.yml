@@ -1,9 +1,9 @@
 services:
     _defaults:
         autowire: true
+        autoconfigure: true
+        public: true
 
-    Oveleon\ContaoCookiebar\Controller\CookiebarController:
-        arguments:
-            - '@contao.framework'
-        tags:
-            - controller.service_arguments
+    Oveleon\ContaoCookiebar\:
+        resource: '../../'
+        exclude: '../../{Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,CookieConfig.php,CookieHandler.php}'

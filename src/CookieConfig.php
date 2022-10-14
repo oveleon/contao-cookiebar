@@ -12,6 +12,8 @@ namespace Oveleon\ContaoCookiebar;
 
 use Contao\StringUtil;
 use Contao\System;
+use Oveleon\ContaoCookiebar\Model\CookieConfigModel;
+use Oveleon\ContaoCookiebar\Model\CookieModel;
 
 /**
  * Arranges the properties and resources of a config
@@ -33,21 +35,17 @@ use Contao\System;
 class CookieConfig extends AbstractCookie
 {
     /**
-     * Model
-     * @var CookieModel
+     * Config Model
      */
-    protected $objModel;
+    protected CookieConfigModel $objModel;
 
     /**
      * Collection of cookie IDs which use this configuration
-     * @var array
      */
-    protected $arrCookies = array();
+    protected array $arrCookies = [];
 
     /**
      * Initialize the object
-     *
-     * @param CookieConfigModel $objConfig
      */
     public function __construct(CookieConfigModel $objConfig)
     {
@@ -75,12 +73,8 @@ class CookieConfig extends AbstractCookie
 
     /**
      * Return an object property
-     *
-     * @param string $strKey The property name
-     *
-     * @return mixed|null The property value or null
      */
-    public function __get($strKey)
+    public function __get(string $strKey): mixed
     {
         if($this->{$strKey} ?? null)
         {
@@ -92,10 +86,8 @@ class CookieConfig extends AbstractCookie
 
     /**
      * Adds a cookie to the configuration
-     *
-     * @param CookieModel $objCookie The cookie model
      */
-    public function addCookie(CookieModel $objCookie)
+    public function addCookie(CookieModel $objCookie): void
     {
         $this->arrCookies[ $objCookie->id ] = $objCookie;
     }
@@ -103,7 +95,7 @@ class CookieConfig extends AbstractCookie
     /**
      * Compile cookie of type "script"
      */
-    private function compileScript()
+    private function compileScript(): void
     {
         if($src = $this->sourceUrl)
         {
@@ -123,7 +115,7 @@ class CookieConfig extends AbstractCookie
     /**
      * Compile config of type "tagManager"
      */
-    private function compileTagManager()
+    private function compileTagManager(): void
     {
         $this->addResource(
             'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
@@ -144,7 +136,7 @@ class CookieConfig extends AbstractCookie
     /**
      * Compile config of type "tagManager"
      */
-    private function compileGoogleConsentMode()
+    private function compileGoogleConsentMode(): void
     {
         $this->addScript(
             "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied', 'wait_for_update': 500 }); gtag('js', new Date()); gtag('config', '" . $this->vendorId . "');",

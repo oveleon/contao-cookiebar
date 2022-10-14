@@ -10,53 +10,51 @@
 
 namespace Oveleon\ContaoCookiebar;
 
-use Contao\Cache;
+
 use Contao\DataContainer;
 use Contao\Environment;
 use Contao\FrontendTemplate;
-use Contao\Input;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
 use Doctrine\DBAL\Connection;
 use FOS\HttpCache\ResponseTagger;
-use Oveleon\ContaoCookiebar\DependencyInjection\Configuration;
 use Oveleon\ContaoCookiebar\Exception\NoCookiebarSpecifiedException;
+use Oveleon\ContaoCookiebar\Model\CookiebarModel;
+use Oveleon\ContaoCookiebar\Model\CookieConfigModel;
+use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
+use Oveleon\ContaoCookiebar\Model\CookieLogModel;
+use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 class Cookiebar
 {
     /**
-     * Config cache
-     * @var null
+     * Config key
      */
-    static private $configCache = null;
+    const GLOBAL_CONFIG_KEY = 'ccb_global_config';
+
+    /**
+     * Config cache
+     */
+    static private ?CookiebarModel $configCache = null;
 
     /**
      * Create and return config object
-     *
-     * @param integer $configId
-     * @param null $objMeta
-     *
-     * @return object
      */
-    public static function getConfig($configId, $objMeta=null)
+    public static function getConfig(int $configId, ?PageModel $objMeta=null): ?CookiebarModel
     {
         if(null !== static::$configCache)
         {
             return static::$configCache;
         }
 
-        $objCookiebar = CookiebarModel::findById($configId);
-
-        if(null === $objCookiebar)
+        if(null === $objCookiebar = CookiebarModel::findById($configId))
         {
             throw new NoCookiebarSpecifiedException('No cookiebar specified');
         }
 
-        $objCookieGroups = CookieGroupModel::findPublishedByPid($objCookiebar->id);
-
-        if(null === $objCookieGroups)
+        if(null === $objCookieGroups = CookieGroupModel::findPublishedByPid($objCookiebar->id))
         {
             return null;
         }
@@ -101,11 +99,10 @@ class Cookiebar
                     // Adding the global configuration with checking whether this may be used
                     $strTypePalette = $GLOBALS['TL_DCA']['tl_cookie']['palettes'][$objCookies->type] ?? false;
 
-                    if($objCookies->globalConfig && $strTypePalette && strpos($strTypePalette, 'globalConfig') !== false)
+                    if($objCookies->globalConfig && $strTypePalette && str_contains($strTypePalette, 'globalConfig'))
                     {
                         $intConfigKey = $objCookies->globalConfig;
-                        $strConfigKey = 'ccb_global_config';
-                        $arrConfigs   = Cache::has($strConfigKey) ? Cache::get($strConfigKey) : null;
+                        $arrConfigs   = Cache::has(self::GLOBAL_CONFIG_KEY) ? Cache::get(self::GLOBAL_CONFIG_KEY) : null;
 
                         if(null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
                         {
@@ -119,7 +116,7 @@ class Cookiebar
 
                                 $arrConfigs[ $intConfigKey ] = $objGlobalConfig;
 
-                                Cache::set($strConfigKey, $arrConfigs);
+                                Cache::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                             }
                         }
                         else
@@ -130,7 +127,7 @@ class Cookiebar
 
                             $arrConfigs[ $intConfigKey ] = $objGlobalConfig;
 
-                            Cache::set($strConfigKey, $arrConfigs);
+                            Cache::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                         }
                     }
 
@@ -152,9 +149,9 @@ class Cookiebar
         $objConfig->configs = null;
 
         // Add global configuration
-        if(Cache::has('ccb_global_config'))
+        if(Cache::has(self::GLOBAL_CONFIG_KEY))
         {
-            $objConfig->configs = Cache::get('ccb_global_config');
+            $objConfig->configs = Cache::get(self::GLOBAL_CONFIG_KEY);
         }
 
         // Cache config
@@ -165,12 +162,8 @@ class Cookiebar
 
     /**
      * Return config by page
-     *
-     * @param $varPage
-     *
-     * @return object|null
      */
-    public static function getConfigByPage($varPage)
+    public static function getConfigByPage(int|PageModel $varPage): ?CookiebarModel
     {
         if(!($varPage instanceof PageModel))
         {
@@ -182,13 +175,11 @@ class Cookiebar
             return null;
         }
 
-        return static::getConfig($objPage->cookiebarConfig, !!$objPage->overwriteCookiebarMeta ? $objPage : null);
+        return static::getConfig((int) $objPage->cookiebarConfig, !!$objPage->overwriteCookiebarMeta ? $objPage : null);
     }
 
     /**
-     * Returns all configurations [id => title]
-     *
-     * @return array
+     * Returns all configurations ([id => title])
      */
     public static function getConfigurationList(): array
     {
@@ -208,8 +199,6 @@ class Cookiebar
 
     /**
      * Return all iFrame-Types
-     *
-     * @return array|null
      */
     public static function getIframeTypes(): ?array
     {
@@ -218,15 +207,11 @@ class Cookiebar
 
     /**
      * Parse Cookiebar template
-     *
-     * @param $objConfig
-     * @return string
      */
-    public static function parseCookiebarTemplate($objConfig)
+    public static function parseCookiebarTemplate(CookiebarModel $objConfig): string
     {
         System::loadLanguageFile('tl_cookiebar');
 
-        /** @var FrontendTemplate $objTemplate */
         $objTemplate = new FrontendTemplate($objConfig->template);
 
         $cssID = unserialize($objConfig->cssID);
@@ -294,12 +279,8 @@ class Cookiebar
 
     /**
      * Collect cookie scripts
-     *
-     * @param object $objConfig
-     *
-     * @return array
      */
-    public static function validateCookies($objConfig): array
+    public static function validateCookies(CookiebarModel $objConfig): array
     {
         $arrResponse = [];
 
@@ -335,12 +316,8 @@ class Cookiebar
 
     /**
      * Collect global config scripts
-     *
-     * @param object $objConfig
-     *
-     * @return array
      */
-    public static function validateGlobalConfigs($objConfig): array
+    public static function validateGlobalConfigs(CookiebarModel $objConfig): array
     {
         $arrResponse = [];
 
@@ -367,14 +344,11 @@ class Cookiebar
 
     /**
      * Parse token string and return their as array
-     *
-     * @param $varToken
-     *
-     * @return array|null
      */
-    public static function parseToken($varToken): ?array
+    public static function parseToken(array|string $varToken): ?array
     {
-        if(is_array($varToken)){
+        if(is_array($varToken))
+        {
             return $varToken;
         }
 
@@ -382,7 +356,7 @@ class Cookiebar
             return null;
         }
 
-        if(strpos($varToken, ',') !== false)
+        if(str_contains($varToken, ','))
         {
               $varToken = explode(",", $varToken);
         }else $varToken = [$varToken];
@@ -391,15 +365,14 @@ class Cookiebar
     }
 
     /**
-     * Delete cookie by their token/s
-     *
-     * @param $varToken
+     * Delete cookie by their tokens
      */
-    public static function deleteCookieByToken($varToken): void
+    public static function deleteCookieByToken(array|string $varToken): void
     {
         $varToken = static::parseToken($varToken);
 
-        if(null === $varToken){
+        if(null === $varToken)
+        {
             return;
         }
 
@@ -418,12 +391,8 @@ class Cookiebar
 
     /**
      * Return a collection of possible domains
-     *
-     * @param $domain
-     *
-     * @return array
      */
-    private static function getDomainCollection($domain): array
+    private static function getDomainCollection(string $domain): array
     {
         $arrCollection = [$domain, '.' . $domain];
 
@@ -440,27 +409,9 @@ class Cookiebar
     }
 
     /**
-     * Deletes the cookie from old versions
-     *
-     * @deprecated Deprecated since CCB 1.2.0 to be removed in 2.0. Provided for backward compatibility.
-     */
-    public static function checkCookie(): void
-    {
-        if(Input::cookie(System::getContainer()->getParameter('contao_cookiebar.storage_key')))
-        {
-            setcookie(System::getContainer()->getParameter('contao_cookiebar.storage_key'),"",time() - 3600,'/');
-        }
-    }
-
-    /**
      * Create and save new log entry
-     *
-     * @param $configId
-     * @param null|string $ip
-     * @param null|string $url
-     * @param null|array $data
      */
-    public static function log($configId, $url=null, $ip=null, $data=null): void
+    public static function log(int $configId, ?string $url=null, ?string $ip=null, ?array $data=null): void
     {
         $strIp = $ip ?? Environment::get('ip');
 

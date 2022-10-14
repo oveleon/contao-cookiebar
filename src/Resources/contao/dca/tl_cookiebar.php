@@ -8,6 +8,7 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
+use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\System;
 
@@ -41,7 +42,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	(
         'sorting' => array
         (
-            'mode'                    => 1,
+            'mode'                    => DataContainer::SORT_INITIAL_LETTER_ASC,
             'fields'                  => array('title'),
             'flag'                    => 1,
             'panelLayout'             => 'search,limit'
@@ -55,13 +56,11 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 		(
             'cookieLog' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['cookieLog'],
                 'href'                => 'table=tl_cookie_log',
                 'icon'                => 'diff.svg'
             ),
 			'all' => array
 			(
-			    'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
 				'href'                => 'act=select',
 				'class'               => 'header_edit_all',
 				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
@@ -71,32 +70,27 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 		(
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['edit'],
                 'href'                => 'table=tl_cookie_group',
                 'icon'                => 'edit.svg'
             ),
             'editheader' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['editheader'],
                 'href'                => 'act=edit',
                 'icon'                => 'header.svg'
             ),
             'copy' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['copy'],
                 'href'                => 'act=copy',
                 'icon'                => 'copy.svg'
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"',
             ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_cookiebar']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             )
@@ -122,7 +116,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'title' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['title'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -131,7 +124,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'description' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['description'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
@@ -141,7 +133,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'infoDescription' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['infoDescription'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
@@ -151,7 +142,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'version' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['version'],
             'inputType'               => 'text',
             'explanation'             => 'cookiebarVersion',
             'eval'                    => array('readonly'=>true, 'maxlength'=>255, 'tl_class'=>'w50 clr', 'helpwizard'=>true),
@@ -159,7 +149,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'updateVersion' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['updateVersion'],
             'inputType'               => 'checkbox',
             'eval'                    => array('tl_class'=>'w50 m12'),
             'save_callback'           => array(
@@ -168,7 +157,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'infoUrls' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['infoUrls'],
             'exclude'                 => true,
             'inputType'               => 'pageTree',
             'foreignKey'              => 'tl_page.title',
@@ -178,7 +166,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'excludePages' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['excludePages'],
             'exclude'                 => true,
             'inputType'               => 'pageTree',
             'foreignKey'              => 'tl_page.title',
@@ -188,7 +175,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'template' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['template'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'select',
@@ -201,7 +187,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'alignment' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['alignment'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array(
@@ -219,7 +204,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'buttonColorScheme' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['buttonColorScheme'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => ['grayscale', 'highlight'],
@@ -229,14 +213,12 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'blocking' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['blocking'],
             'inputType'               => 'checkbox',
             'eval'                    => array('tl_class'=>'w50 m12'),
             'sql'                     => "char(1) NOT NULL default ''"
         ),
         'essentialCookieLanguage' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['essentialCookieLanguage'],
             'default'                 => $GLOBALS['TL_LANGUAGE'] ?? 'en',
             'exclude'                 => true,
             'inputType'               => 'select',
@@ -247,7 +229,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'scriptPosition' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['scriptPosition'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array('head', 'body'),
@@ -257,7 +238,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'position' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['position'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => array('bodyBelowContent', 'bodyAboveContent'),
@@ -267,7 +247,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         ),
         'cssID' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['cssID'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => array('multiple'=>true, 'size'=>2, 'tl_class'=>'w50'),
@@ -290,7 +269,7 @@ class tl_cookiebar extends Contao\Backend
      */
     public function loadAvailableLanguages(): array
     {
-        $validLanguages = $this->getLanguages();
+        $validLanguages = self::getContainer()->get('contao.intl.locales')->getLocales(null, true);
         $arrLanguages = ['en', 'de', 'sv'];
         $arrReturn = [];
 
@@ -309,7 +288,7 @@ class tl_cookiebar extends Contao\Backend
      */
     public function hasEssentialGroup(Contao\DataContainer $dc): bool
     {
-        $countEssentialGroup = Oveleon\ContaoCookiebar\CookieGroupModel::countBy(['pid=?', 'identifier=?'], [$dc->id, 'lock']);
+        $countEssentialGroup = Oveleon\ContaoCookiebar\Model\CookieGroupModel::countBy(['pid=?', 'identifier=?'], [$dc->id, 'lock']);
         return null !== $countEssentialGroup && $countEssentialGroup >= 1;
     }
 
@@ -343,11 +322,12 @@ class tl_cookiebar extends Contao\Backend
         $translator = System::getContainer()->get('translator');
         $translator->setLocale($strLang);
 
-        $essentialGroup = new Oveleon\ContaoCookiebar\CookieGroupModel();
+        $essentialGroup = new Oveleon\ContaoCookiebar\Model\CookieGroupModel();
         $essentialGroup->title = $translator->trans('tl_cookiebar.defaultEssentialGroupName', [], 'contao_tl_cookiebar');
         $essentialGroup->pid = $dc->id;
         $essentialGroup->identifier = 'lock';
         $essentialGroup->published = 1;
+        $essentialGroup->tstamp = time();
         $essentialGroup->save();
 
         $arrDefaultCookies = [
@@ -376,7 +356,7 @@ class tl_cookiebar extends Contao\Backend
 
         foreach ($arrDefaultCookies as $arrCookie)
         {
-            $newCookie = new Oveleon\ContaoCookiebar\CookieModel();
+            $newCookie = new Oveleon\ContaoCookiebar\Model\CookieModel();
             $newCookie->pid = $essentialGroup->id;
             $newCookie->title = $arrCookie[0];
             $newCookie->type = 'default';
@@ -385,6 +365,7 @@ class tl_cookiebar extends Contao\Backend
             $newCookie->description = $arrCookie[3];
             $newCookie->identifier = $arrCookie[4];
             $newCookie->published = 1;
+            $newCookie->tstamp = time();
             $newCookie->save();
         }
 
