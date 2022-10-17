@@ -160,6 +160,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
                 'etracker',
                 'iframe'
             ],
+            'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => ['helpwizard'=>true, 'submitOnChange'=>true, 'tl_class'=>'w50'],
             'sql'                     => ['name'=>'type', 'type'=>'string', 'length'=>64, 'default'=>'text']
         ],

@@ -13,17 +13,14 @@ namespace Oveleon\ContaoCookiebar\EventListener;
 use Contao\StringUtil;
 use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 
 class FrontendTemplateListener
 {
     /**
      * Output front end template
-     *
-     * @param string $buffer
-     * @param string $template
-     *
-     * @return string
      */
+    #[AsHook('outputFrontendTemplate')]
     public function onOutputFrontendTemplate(string $buffer, string $template): string
     {
         $arrPageTemplates = System::getContainer()->getParameter('contao_cookiebar.page_templates') ?? ['fe_page'];
@@ -87,17 +84,15 @@ class FrontendTemplateListener
 
     /**
      * Parse front end template
-     *
-     * @param string $buffer
-     * @param string $template
-     *
-     * @return string
      */
+    #[AsHook('parseFrontendTemplate')]
     public function onParseFrontendTemplate(string $buffer, string $template): string
     {
         global $objPage;
 
-        if (TL_MODE == 'BE' || null === $objPage)
+        $request = System::getContainer()->get('request_stack')->getCurrentRequest();
+
+        if (System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request) || null === $objPage)
         {
             return $buffer;
         }

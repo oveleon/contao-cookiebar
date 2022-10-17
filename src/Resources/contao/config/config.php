@@ -33,13 +33,3 @@ $GLOBALS['TL_MODELS']['tl_cookie_log']    = CookieLogModel::class;
 $GLOBALS['TL_MODELS']['tl_cookie_group']  = CookieGroupModel::class;
 $GLOBALS['TL_MODELS']['tl_cookie']        = CookieModel::class;
 $GLOBALS['TL_MODELS']['tl_cookie_config'] = CookieConfigModel::class;
-
-// Front end modules
-$GLOBALS['FE_MOD']['application']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\ModuleCookiebar';
-
-// Content elements
-$GLOBALS['TL_CTE']['links']['cookiebarOpener'] = 'Oveleon\ContaoCookiebar\ContentCookiebar';
-
-// Hooks
-$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('Oveleon\ContaoCookiebar\EventListener\FrontendTemplateListener', 'onOutputFrontendTemplate');
-$GLOBALS['TL_HOOKS']['parseFrontendTemplate'][] = array('Oveleon\ContaoCookiebar\EventListener\FrontendTemplateListener', 'onParseFrontendTemplate');
