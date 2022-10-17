@@ -11,6 +11,7 @@
 namespace Oveleon\ContaoCookiebar;
 
 
+use Contao\Config;
 use Contao\DataContainer;
 use Contao\Environment;
 use Contao\FrontendTemplate;
@@ -102,7 +103,7 @@ class Cookiebar
                     if($objCookies->globalConfig && $strTypePalette && str_contains($strTypePalette, 'globalConfig'))
                     {
                         $intConfigKey = $objCookies->globalConfig;
-                        $arrConfigs   = Cache::has(self::GLOBAL_CONFIG_KEY) ? Cache::get(self::GLOBAL_CONFIG_KEY) : null;
+                        $arrConfigs   = Config::has(self::GLOBAL_CONFIG_KEY) ? Config::get(self::GLOBAL_CONFIG_KEY) : null;
 
                         if(null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
                         {
@@ -116,7 +117,7 @@ class Cookiebar
 
                                 $arrConfigs[ $intConfigKey ] = $objGlobalConfig;
 
-                                Cache::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
+                                Config::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                             }
                         }
                         else
@@ -127,7 +128,7 @@ class Cookiebar
 
                             $arrConfigs[ $intConfigKey ] = $objGlobalConfig;
 
-                            Cache::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
+                            Config::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                         }
                     }
 
@@ -149,9 +150,9 @@ class Cookiebar
         $objConfig->configs = null;
 
         // Add global configuration
-        if(Cache::has(self::GLOBAL_CONFIG_KEY))
+        if(Config::has(self::GLOBAL_CONFIG_KEY))
         {
-            $objConfig->configs = Cache::get(self::GLOBAL_CONFIG_KEY);
+            $objConfig->configs = Config::get(self::GLOBAL_CONFIG_KEY);
         }
 
         // Cache config
