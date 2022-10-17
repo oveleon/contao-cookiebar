@@ -90,7 +90,7 @@ class FrontendTemplateListener
 
 
     /**
-     * Check content elements to be modified
+     * Check content element and module templates to be modified
      */
     #[AsHook('getContentElement')]
     #[AsHook('getFrontendModule')]

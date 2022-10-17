@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * ContentApiController provides all routes.
@@ -29,7 +30,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CookiebarController
 {
     public function __construct(
-        private ContaoFramework $framework
+        private readonly ContaoFramework $framework,
+        private readonly TranslatorInterface $translator
     ){}
 
     /**
@@ -39,9 +41,9 @@ class CookiebarController
      */
     public function block(Request $request, string $locale, int $id): Response
     {
-        $this->framework->initialize();
-
         System::loadLanguageFile('tl_cookiebar', $locale);
+
+        $this->framework->initialize();
 
         $objCookie = CookieModel::findById($id);
 
@@ -67,7 +69,7 @@ class CookiebarController
         $objTemplate->iframeType = $objCookie->iframeType;
         $objTemplate->description = $objCookie->blockDescription;
         $objTemplate->redirect = $request->get('redirect');
-        $objTemplate->acceptAndDisplayLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAndDisplayLabel'];
+        $objTemplate->acceptAndDisplayLabel = $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default', $locale);
 
         return $objTemplate->getResponse();
     }
@@ -75,9 +77,9 @@ class CookiebarController
     /**
      * Execute various functions
      *
-     * @Route("/cookiebar/{module}/{id}", name="cookiebar_prepare", defaults={"_token_check" = false, "id" = null})
+     * @Route("/cookiebar/{module}", name="cookiebar_prepare", defaults={"_token_check" = false})
      */
-    public function execute(Request $request, $module, $id): JsonResponse
+    public function execute(Request $request, $module): JsonResponse
     {
         $this->framework->initialize();
 
