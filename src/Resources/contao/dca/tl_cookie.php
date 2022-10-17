@@ -9,57 +9,10 @@
  */
 
 use Contao\DC_Table;
+use Contao\DataContainer;
+use Oveleon\ContaoCookiebar\AbstractCookie;
 
 $GLOBALS['TL_DCA']['tl_cookie'] = [
-	// Config
-	'config' => array
-	(
-		'dataContainer'               => DC_Table::class,
-        'ptable'                      => 'tl_cookie_group',
-        'switchToEdit'                => true,
-        'enableVersioning'            => true,
-        'markAsCopy'                  => 'title',
-		'sql' => [
-			'keys' => [
-				'id' => 'primary',
-                'pid,published' => 'index'
-            ]
-        ]
-	),
-
-	// List
-	'list' => [
-        'sorting' => [
-            'mode'                    => 4,
-            'fields'                  => ['sorting'],
-            'headerFields'            => ['title'],
-            'panelLayout'             => 'limit',
-            'child_record_class'      => 'no_padding'
-        ],
-        'label' => [
-            'fields'                  => ['title'],
-            'format'                  => '%s'
-        ],
-		'global_operations' => [
-			'all' => [
-				'href'                => 'act=select',
-				'class'               => 'header_edit_all',
-				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-			]
-        ],
-		'operations' => [
-            'edit',
-            'copy',
-            'cut',
-            'delete',
-            'show',
-            'toggle' => [
-                'href'                => 'act=toggle&amp;field=published',
-                'icon'                => 'visible.svg'
-            ]
-        ]
-    ],
-
 	// Palettes
 	'palettes' => [
 	    '__selector__'                => ['type'],
@@ -237,9 +190,9 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'search'                  => true,
             'inputType'               => 'select',
             'options'                 => [
-                1 => 'confirmed',
-                2 => 'unconfirmed',
-                3 => 'always'
+                AbstractCookie::LOAD_CONFIRMED   => 'confirmed',
+                AbstractCookie::LOAD_UNCONFIRMED => 'unconfirmed',
+                AbstractCookie::LOAD_ALWAYS      => 'always'
             ],
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => ['tl_class'=>'w50'],
@@ -271,9 +224,9 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => [
-                1 => 'bodyBelowContent',
-                2 => 'bodyAboveContent',
-                3 => 'head'
+                AbstractCookie::POS_BELOW => 'bodyBelowContent',
+                AbstractCookie::POS_ABOVE => 'bodyAboveContent',
+                AbstractCookie::POS_HEAD  => 'head'
             ],
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => ['tl_class'=>'w50'],
@@ -331,5 +284,70 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'eval'                    => ['doNotCopy'=>true, 'tl_class'=>'w50 m12'],
             'sql'                     => "char(1) NOT NULL default ''"
         ]
-	]
+	],
+
+    // Config
+    'config' => [
+        'dataContainer'               => DC_Table::class,
+        'ptable'                      => 'tl_cookie_group',
+        'switchToEdit'                => true,
+        'enableVersioning'            => true,
+        'markAsCopy'                  => 'title',
+        'sql' => [
+            'keys' => [
+                'id' => 'primary',
+                'pid,published' => 'index'
+            ]
+        ]
+    ],
+
+    // List
+    'list' => [
+        'sorting' => [
+            'mode'                    => DataContainer::MODE_PARENT,
+            'fields'                  => ['sorting'],
+            'headerFields'            => ['title'],
+            'panelLayout'             => 'limit',
+            'child_record_class'      => 'no_padding'
+        ],
+        'label' => [
+            'fields'                  => ['title'],
+            'format'                  => '%s'
+        ],
+        'global_operations' => [
+            'all' => [
+                'href'                => 'act=select',
+                'class'               => 'header_edit_all',
+                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+            ]
+        ],
+        'operations' => [
+            'edit' => [
+                'href'                => 'act=edit',
+                'icon'                => 'edit.svg'
+            ],
+            'copy' => [
+                'href'                => 'act=paste&amp;mode=copy',
+                'icon'                => 'copy.svg'
+            ],
+            'cut'  => [
+                'href'                => 'act=paste&amp;mode=cut',
+                'icon'                => 'cut.svg',
+                'attributes'          => 'onclick="Backend.getScrollOffset()"'
+            ],
+            'delete' => [
+                'href'                => 'act=delete',
+                'icon'                => 'delete.svg',
+                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"',
+            ],
+            'show' => [
+                'href'                => 'act=show',
+                'icon'                => 'show.svg'
+            ],
+            'toggle' => [
+                'href'                => 'act=toggle&amp;field=published',
+                'icon'                => 'visible.svg'
+            ]
+        ]
+    ]
 ];

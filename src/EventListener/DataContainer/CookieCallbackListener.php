@@ -20,6 +20,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CookieCallbackListener
 {
+    use CookiebarTrait;
+
     public function __construct(
         private readonly RequestStack        $requestStack,
         private readonly Connection          $connection,
@@ -33,7 +35,7 @@ class CookieCallbackListener
      *
      * @throws Exception
      */
-    public function handleMultipleEdits(): void
+    public function handleMultipleEdit(): void
     {
         $request = $this->requestStack->getCurrentRequest();
         $session = $this->requestStack->getSession();
@@ -152,29 +154,6 @@ class CookieCallbackListener
             $arrRow['title'],
             $GLOBALS['TL_LANG']['tl_cookie'][$arrRow['type']][0],
             $add ?  ' | <span style="color:#f47c00;">' . $add . '</span>' : ''
-        ]);
-    }
-
-    /**
-     * Check if a button needs to be disabled
-     *
-     * @Callback(table="tl_cookie", target="list.operations.copy.button")
-     * @Callback(table="tl_cookie", target="list.operations.cut.button")
-     * @Callback(table="tl_cookie", target="list.operations.delete.button")
-     */
-    public function disableButton(array $row, ?string $href, string $label, string $title, ?string $icon, string $attributes): string
-    {
-        // Disable the button if the element is locked
-        if ($row['identifier'] === 'lock')
-        {
-            return Image::getHtml(preg_replace('/\.svg$/i', '_.svg', $icon)) . ' ';
-        }
-
-        return vsprintf('<a href="%s" title="%s"%s>%s</a> ', [
-            Backend::addToUrl($href . '&amp;id=' . $row['id']),
-            StringUtil::specialchars($title),
-            $attributes,
-            Image::getHtml($icon, $label)
         ]);
     }
 
@@ -324,24 +303,6 @@ class CookieCallbackListener
     }
 
     /**
-     * Overwrite vendor* field translation by cookie type
-     *
-     * @Callback(table="tl_cookie", target="fields.vendorId.load")
-     * @Callback(table="tl_cookie", target="fields.vendorUrl.load")
-     */
-    public function overwriteTranslation(mixed $varValue, DataContainer $dc)
-    {
-        $field = $dc->activeRecord->type . '_' . $dc->field;
-
-        if($tl = $GLOBALS['TL_LANG']['tl_cookie'][$field])
-        {
-            $GLOBALS['TL_DCA']['tl_cookie']['fields'][$dc->field]['label'] = $tl;
-        }
-
-        return $varValue;
-    }
-
-    /**
      * Makes the global config field mandatory for google consent mode
      *
      * @Callback(table="tl_cookie", target="fields.globalConfig.load")
@@ -357,28 +318,35 @@ class CookieCallbackListener
     }
 
     /**
+     * Overwrite vendor* field translation by cookie type
+     *
+     * @Callback(table="tl_cookie", target="fields.vendorId.load")
+     * @Callback(table="tl_cookie", target="fields.vendorUrl.load")
+     */
+    public function overwriteTranslation(string $value, DataContainer $dc): string
+    {
+        return $this->setVendorTranslation($value, $dc);
+    }
+
+    /**
+     * Check if a button needs to be disabled
+     *
+     * @Callback(table="tl_cookie", target="list.operations.copy.button")
+     * @Callback(table="tl_cookie", target="list.operations.cut.button")
+     * @Callback(table="tl_cookie", target="list.operations.delete.button")
+     */
+    public function disableButton(array $row, ?string $href, string $label, string $title, ?string $icon, string $attributes): string
+    {
+        return $this->disableButtonOnLocked($row, $href, $label, $title, $icon, $attributes);
+    }
+
+    /**
      * Adds a host prefix if none was specified
      *
      * @Callback(table="tl_cookie", target="fields.sourceUrl.save")
      */
-    public function addHostPrefix(mixed $varValue, DataContainer $dc)
+    public function addHostPrefix(string $varValue): string
     {
-        if(!trim($varValue))
-        {
-            return $varValue;
-        }
-
-        if(
-            str_starts_with($varValue, 'http') ||
-            str_starts_with($varValue, 'https') ||
-            str_starts_with($varValue, 'www') ||
-            str_starts_with($varValue, '//') ||
-            str_starts_with($varValue, '{{')
-        )
-        {
-            return $varValue;
-        }
-
-        return '{{env::url}}/' . $varValue;
+        return $this->setHostPrefix($varValue);
     }
 }

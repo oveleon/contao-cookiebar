@@ -12,10 +12,9 @@
 $GLOBALS['TL_DCA']['tl_content']['palettes']['cookiebar_opener'] = '{type_legend},type,headline;{link_legend},linkTitle,titleText,prefillCookies;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
 // Fields
-$GLOBALS['TL_DCA']['tl_content']['fields']['prefillCookies'] = array
-(
+$GLOBALS['TL_DCA']['tl_content']['fields']['prefillCookies'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
-    'eval'                    => array('tl_class'=>'w50 m12'),
+    'eval'                    => ['tl_class'=>'w50 m12'],
     'sql'                     => "char(1) NOT NULL default ''"
-);
+];
