@@ -10,13 +10,19 @@
 
 namespace Oveleon\ContaoCookiebar\EventListener;
 
+use Contao\Model;
 use Contao\StringUtil;
 use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FrontendTemplateListener
 {
+    public function __construct(
+        private readonly TranslatorInterface $translator
+    ){}
+
     /**
      * Output front end template
      */
@@ -64,7 +70,7 @@ class FrontendTemplateListener
             json_encode(StringUtil::deserialize($objConfig->excludePages)),
             json_encode(Cookiebar::validateCookies($objConfig)),
             json_encode(Cookiebar::validateGlobalConfigs($objConfig)),
-            $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAndDisplayLabel']
+            $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default')
         );
 
         if(null !== $objConfig)
@@ -82,14 +88,17 @@ class FrontendTemplateListener
         return $buffer;
     }
 
+
     /**
-     * Parse front end template
+     * Check content elements to be modified
      */
-    #[AsHook('parseFrontendTemplate')]
-    public function onParseFrontendTemplate(string $buffer, string $template): string
+    #[AsHook('getContentElement')]
+    #[AsHook('getFrontendModule')]
+    public function parseTemplates(Model $model, string $buffer): string
     {
         global $objPage;
 
+        $template = $model->typePrefix . $model->type;
         $request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
         if (System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request) || null === $objPage)
