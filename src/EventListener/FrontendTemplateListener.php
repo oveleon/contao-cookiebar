@@ -10,6 +10,7 @@
 
 namespace Oveleon\ContaoCookiebar\EventListener;
 
+use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
 use Contao\Model;
 use Contao\StringUtil;
 use Contao\System;
@@ -20,7 +21,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class FrontendTemplateListener
 {
     public function __construct(
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
+        private readonly TokenChecker $tokenChecker
     ){}
 
     /**
@@ -59,7 +61,7 @@ class FrontendTemplateListener
         }
 
         // Add cookiebar script initialization
-        $strHtml .= sprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,texts:{acceptAndDisplay:'%s'}});</script>",
+        $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
             $objConfig->id,
             $objConfig->pageId,
             $objConfig->version,
@@ -70,8 +72,9 @@ class FrontendTemplateListener
             json_encode(StringUtil::deserialize($objConfig->excludePages)),
             json_encode(Cookiebar::validateCookies($objConfig)),
             json_encode(Cookiebar::validateGlobalConfigs($objConfig)),
+            $this->tokenChecker->hasBackendUser() && !!$objConfig->disableTrackingWhileLoggedIn ? 1 : 0,
             $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default')
-        );
+        ]);
 
         if(null !== $objConfig)
         {

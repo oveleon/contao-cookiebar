@@ -18,7 +18,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,buttonColorScheme,template,infoUrls,excludePages;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion'
+        'default'                     => '{title_legend},title,essentialCookieLanguage;{meta_legend},description,infoDescription,alignment,blocking,buttonColorScheme,template,infoUrls,excludePages;{expert_legend:hide},cssID,disableTrackingWhileLoggedIn,position,scriptPosition,version,updateVersion;'
 	),
 
     // Fields
@@ -144,6 +144,11 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'inputType'               => 'text',
             'eval'                    => ['multiple'=>true, 'size'=>2, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
+        ],
+        'disableTrackingWhileLoggedIn' => [
+            'inputType'               => 'checkbox',
+            'eval'                    => ['tl_class'=>'w50 m12'],
+            'sql'                     => "char(1) NOT NULL default ''"
         ]
 	],
 

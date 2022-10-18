@@ -31,6 +31,7 @@ use Contao\Model\Collection;
  * @property string  $blocking
  * @property integer $scriptPosition
  * @property integer $position
+ * @property integer $disableTrackingWhileLoggedIn
  * @property boolean $cssID
  *
  * @method static CookiebarModel|null findById($id, array $opt=array())

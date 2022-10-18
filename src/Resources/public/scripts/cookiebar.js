@@ -18,6 +18,7 @@ let ContaoCookiebar = (function () {
             doNotTrack: false,
             currentPageId: 0,
             excludedPageIds: null,
+            disableTracking: false,
             texts: {
                 acceptAndDisplay: 'Accept'
             },
@@ -59,6 +60,12 @@ let ContaoCookiebar = (function () {
                     cookiebar.inputs.push( input );
                 }
             });
+
+            // Trigger logger info
+            if(cookiebar.settings.disableTracking)
+            {
+                logger('The execution of scripts is prevented. Please log out of the backend to test scripts, or disable the setting within the cookiebar config.');
+            }
 
             // Register events
             registerEvents();
@@ -315,6 +322,12 @@ let ContaoCookiebar = (function () {
         };
 
         const addScript = function(script){
+            if(cookiebar.settings.disableTracking)
+            {
+                logger('Script execution was stopped.');
+                return;
+            }
+
             // Create script tag
             script.script = createScript(script.script);
 
@@ -323,6 +336,12 @@ let ContaoCookiebar = (function () {
         };
 
         const addResource = function(resource){
+            if(cookiebar.settings.disableTracking)
+            {
+                logger('Adding a resource was stopped.');
+                return;
+            }
+
             // Skip resources that are already available
             try{
                 let scripts = document.querySelectorAll('script[src]');
@@ -413,6 +432,10 @@ let ContaoCookiebar = (function () {
 
         const getChacheToken = function(cookie, index){
             return cookie.id  + '' + index;
+        }
+
+        const logger = function(message){
+            console.info('%cContao Cookiebar:', 'background: #fff09b; color: #222; padding: 3px', '\n' + message)
         }
 
         const registerTriggerEvents = function(){
@@ -912,12 +935,12 @@ let ContaoCookiebar = (function () {
 
         p.onResourceLoaded = function(cookieId, callback){
             if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
-                console.warn(`Cookie ID ${cookieId} does not exists.`)
+                logger.warn(`Cookie ID ${cookieId} does not exists.`)
                 return false;
             }
 
             if(!cookiebar.settings.cookies[cookieId].resources.length) {
-                console.warn(`The cookie ID ${cookieId} does not contain any resources.`)
+                logger.warn(`The cookie ID ${cookieId} does not contain any resources.`)
                 return false;
             }
 
