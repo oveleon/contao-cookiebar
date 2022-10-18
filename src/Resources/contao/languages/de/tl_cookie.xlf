@@ -225,12 +225,12 @@
         <target>Geben Sie hier Ihre ID ein.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.0">
-        <source>Google Analytics ID</source>
-        <target>Google Analytics ID</target>
+        <source>ID</source>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.1">
-        <source>Enter your Google Analytics ID here.</source>
-        <target>Geben Sie hier Ihre Google Analytics ID ein.</target>
+        <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
+        <target>Geben Sie hier Ihre Mess-ID, Container-ID oder Google Analytics ID ein.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
         <source>Google Tag Manager ID</source>
@@ -317,8 +317,8 @@
         <target>Standard-Token einfügen</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_googleAnalytics_error">
-        <source>Google Analytics ID needs to be set.</source>
-        <target>Google Analytics ID muss gesetzt sein.</target>
+        <source>ID needs to be set.</source>
+        <target>ID muss gesetzt sein.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig_xlabel">
         <source>Insert default configuration</source>
@@ -366,8 +366,8 @@
         <target>Google Analytics über den Google Tag Manager einbinden</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.0">
-        <source>Google Consent Mode (BETA)</source>
-        <target>Google Consent Mode (BETA)</target>
+        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.1">
         <source>Integrate Google Consent Mode via Google Tag Manager</source>
@@ -390,16 +390,16 @@
         <target>Matomo einbinden</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager.0">
-        <source>Matomo Tag Manager (BETA)</source>
-        <target>Matomo Tag Manager (BETA)</target>
+        <source>Matomo Tag Manager</source>
+        <target>Matomo Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager.1">
         <source>Integrate Matomo Tag Manager</source>
         <target>Matomo Tag Manager einbinden</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker.0">
-        <source>etracker (BETA)</source>
-        <target>etracker (BETA)</target>
+        <source>etracker</source>
+        <target>etracker</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker.1">
         <source>Integrate etracker</source>
