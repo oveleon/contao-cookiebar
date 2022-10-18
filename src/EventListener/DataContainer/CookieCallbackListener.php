@@ -2,13 +2,11 @@
 
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
-use Contao\Backend;
 use Contao\Controller;
 use Contao\CoreBundle\ServiceAnnotation\Callback;
 use Contao\DataContainer;
 use Contao\Image;
 use Contao\Message;
-use Contao\StringUtil;
 use Contao\System;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;

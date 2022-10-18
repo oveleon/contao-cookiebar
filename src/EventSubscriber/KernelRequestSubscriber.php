@@ -9,12 +9,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class KernelRequestSubscriber implements EventSubscriberInterface
 {
-    protected $scopeMatcher;
-
-    public function __construct(ScopeMatcher $scopeMatcher)
-    {
-        $this->scopeMatcher = $scopeMatcher;
-    }
+    public function __construct(
+        protected ScopeMatcher $scopeMatcher
+    ){}
 
     public static function getSubscribedEvents()
     {

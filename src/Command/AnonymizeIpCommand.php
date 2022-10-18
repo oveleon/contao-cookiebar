@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Oveleon\ContaoCookiebar\Command;
 
 use Contao\CoreBundle\Framework\ContaoFramework;
-use Oveleon\ContaoCookiebar\CookieLogModel;
+use Oveleon\ContaoCookiebar\Model\CookieLogModel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
