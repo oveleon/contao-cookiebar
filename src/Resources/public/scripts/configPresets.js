@@ -21,7 +21,7 @@ var Cookiebar = {
             tagManager_gcm: "window.dataLayer = window.dataLayer || [];\n" +
                             "function gtag(){dataLayer.push(arguments);}\n\n" +
                             "// Define only global settings here.\n" +
-                            "// The \"granted\" values should be set in the cookie itself.\n" +
+                            "// The \"granted\" values should be set in the cookie type itself.\n" +
                             "gtag('consent', 'default', {\n" +
                             "   'ad_storage': 'denied',\n" +
                             "   'analytics_storage': 'denied',\n" +
