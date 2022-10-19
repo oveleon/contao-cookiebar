@@ -87,7 +87,7 @@
           });
 
           gtag('js', new Date());
-          gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
+          gtag('config', '&lt;code class="tl_red"&gt;ID&lt;/code&gt;');
           &lt;/pre&gt;
 
           Please note that you have to enter this code yourself if you want to create your own configuration.</source>
