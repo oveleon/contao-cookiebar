@@ -34,8 +34,8 @@
         <target>Google Analytics</target>
       </trans-unit>
       <trans-unit id="tl_cookie.google_consent_mode_legend">
-        <source>Google Consent Mode</source>
-        <target>Google Consent Mode</target>
+        <source>Google Consent Mode (BETA)</source>
+        <target>Google Consent Mode (BETA)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_legend">
         <source>Matomo</source>
