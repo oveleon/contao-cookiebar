@@ -132,7 +132,7 @@ class CookiebarCallbackListener
             $cacheManager->invalidateTags(array('oveleon.cookiebar.' . $dc->activeRecord->id));
         }
 
-        return $value;
+        return '';
     }
 
     /**
