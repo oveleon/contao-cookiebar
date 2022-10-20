@@ -251,7 +251,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
         'gcmMode' => [
             'exclude'                 => true,
             'inputType'               => 'select',
-            'options'                 => ['ad_storage','analytics_storage'],
+            'options'                 => ['ad_storage','analytics_storage','functionality_storage','personalization_storage','security_storage'],
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => ['tl_class'=>'w50 clr'],
             'sql'                     => "varchar(32) NOT NULL default ''"

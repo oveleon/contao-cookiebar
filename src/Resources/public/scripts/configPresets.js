@@ -25,6 +25,9 @@ var Cookiebar = {
                             "gtag('consent', 'default', {\n" +
                             "   'ad_storage': 'denied',\n" +
                             "   'analytics_storage': 'denied',\n" +
+                            "   'functionality_storage': 'denied',\n" +
+                            "   'personalization_storage': 'denied',\n" +
+                            "   'security_storage': 'denied',\n" +
                             "   'wait_for_update': 500\n" +
                             "});\n\n" +
                             "//gtag('set', 'ads_data_redaction', true);\n" +
