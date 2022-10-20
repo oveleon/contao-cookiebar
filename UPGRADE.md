@@ -33,8 +33,8 @@ __Methods__
 - The `compileEtracker()` method has been renamed to `addEtracker()` in `Cookie` class
 
 __Hooks__
-- The `compileCookieType()` hook has been renamed to `addCookieType()` in `Cookie` class
-- The `compileCookieConfigType()` hook has been renamed to `addGlobalConfigType()` in `GlobalConfig` class
+- The `compileCookieType` hook has been renamed to `addCookieType` in `Cookie` class
+- The `compileCookieConfigType` hook has been renamed to `addGlobalConfigType` in `GlobalConfig` class
 
 ### New requirements
 - Contao 4.13 / Contao 5.0
@@ -44,5 +44,8 @@ __Hooks__
 ### New features
 - Tracking can be disabled while logged in to the backend (New checkbox in the configuration)
 
-### Customizations to services
+### Adjustments to the services
 - The integration of the Google Tag Manager via the global configuration has changed
+
+### Further adjustments
+- The appearance was slightly adjusted (CSS)
