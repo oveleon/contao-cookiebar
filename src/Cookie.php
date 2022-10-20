@@ -85,34 +85,34 @@ class Cookie extends AbstractCookie
         switch($objCookie->type)
         {
             case 'script':
-                $this->compileScript();
+                $this->addCustomScript();
                 break;
             case 'template':
-                $this->compileTemplate();
+                $this->addCustomTemplate();
                 break;
             case 'googleAnalytics':
-                $this->compileGoogleAnalytics();
+                $this->addGoogleAnalytics();
                 break;
             case 'googleConsentMode':
-                $this->compileGoogleConsentMode();
+                $this->addGoogleConsentMode();
                 break;
             case 'facebookPixel':
-                $this->compileFacebookPixel();
+                $this->addFacebookPixel();
                 break;
             case 'matomo':
-                $this->compileMatomo();
+                $this->addMatomo();
                 break;
             case 'matomoTagManager':
-                $this->compileMatomoTagManager();
+                $this->addMatomoTagManager();
                 break;
             case 'etracker':
-                $this->compileEtracker();
+                $this->addEtracker();
                 break;
             default:
                 // HOOK: allow to compile custom types
-                if (isset($GLOBALS['TL_HOOKS']['compileCookieType']) && \is_array($GLOBALS['TL_HOOKS']['compileCookieType']))
+                if (isset($GLOBALS['TL_HOOKS']['addCookieType']) && \is_array($GLOBALS['TL_HOOKS']['addCookieType']))
                 {
-                    foreach ($GLOBALS['TL_HOOKS']['compileCookieType'] as $callback)
+                    foreach ($GLOBALS['TL_HOOKS']['addCookieType'] as $callback)
                     {
                         System::importStatic($callback[0])->{$callback[1]}($objCookie->type, $this);
                     }
@@ -136,7 +136,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "script"
      */
-    private function compileScript(): void
+    private function addCustomScript(): void
     {
         if($src = $this->sourceUrl)
         {
@@ -161,7 +161,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "template"
      */
-    private function compileTemplate(): void
+    private function addCustomTemplate(): void
     {
         $objTemplate = new BackendTemplate($this->scriptTemplate);
         $strTemplate = $objTemplate->parse();
@@ -179,7 +179,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "googleAnalytics"
      */
-    private function compileGoogleAnalytics(): void
+    private function addGoogleAnalytics(): void
     {
         $this->addResource(
             'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
@@ -193,6 +193,7 @@ class Cookie extends AbstractCookie
             self::POS_HEAD
         );
 
+        # Determine the G-ID to ensure the opt-out (#127)
         $this->addScript(
             "try{ let gid; for(gid in window.google_tag_data.td) { window['ga-disable-' + gid] = true; }}catch (e) {}",
             self::LOAD_UNCONFIRMED,
@@ -203,7 +204,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "googleConsentMode"
      */
-    private function compileGoogleConsentMode(): void
+    private function addGoogleConsentMode(): void
     {
         if($src = $this->scriptConfig)
         {
@@ -218,7 +219,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "facebookPixel"
      */
-    private function compileFacebookPixel(): void
+    private function addFacebookPixel(): void
     {
         $this->addScript(
             "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '" . $this->vendorId . "');fbq('track', 'PageView');",
@@ -230,7 +231,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "matomo"
      */
-    private function compileMatomo(): void
+    private function addMatomo(): void
     {
         $url = str_ends_with($this->vendorUrl, '/') ? $this->vendorUrl : $this->vendorUrl . '/';
 
@@ -244,7 +245,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "matomo tag manager"
      */
-    private function compileMatomoTagManager(): void
+    private function addMatomoTagManager(): void
     {
         // Custom config
         if($src = $this->scriptConfig)
@@ -268,7 +269,7 @@ class Cookie extends AbstractCookie
     /**
      * Compile cookie of type "etracker"
      */
-    private function compileEtracker(): void
+    private function addEtracker(): void
     {
         // Custom config
         if($src = $this->scriptConfig)
