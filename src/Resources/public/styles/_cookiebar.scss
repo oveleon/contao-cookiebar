@@ -40,6 +40,10 @@
 
     font-size: 1rem;
     text-align: left;
+
+    .cc-head p:first-child{
+      margin-top: 0;
+    }
   }
 
   &.cc-top{
@@ -188,13 +192,13 @@
     opacity: 0;
 
     + label{
-      padding: 8px 13px 8px 50px;
+      padding: 8px 13px 8px 45px;
       cursor: pointer;
 
       &:before{
         content: '';
         position: absolute;
-        top: 6px;
+        top: 7px;
         left: 0;
 
         width: 35px;
@@ -204,7 +208,7 @@
         box-sizing: content-box;
         border-radius: 10px;
         background: #fff;
-        border: 2px solid $cookiebar-input-unchecked;
+        border: 1px solid $cookiebar-input-unchecked;
 
         transition: border-color .2s;
       }
@@ -214,11 +218,11 @@
         content: '';
 
         position: absolute;
-        top: 10px;
+        top: 11px;
         left: 4px;
 
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         border-radius: 10px;
         background: $cookiebar-input-unchecked;
 

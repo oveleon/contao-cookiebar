@@ -31,6 +31,8 @@
     visibility: hidden;
     font-size: 1rem;
     text-align: left; }
+    .contao-cookiebar .cc-inner .cc-head p:first-child {
+      margin-top: 0; }
   .contao-cookiebar.cc-top .cc-inner {
     vertical-align: top; }
   .contao-cookiebar.cc-top.cc-active .cc-inner {
@@ -101,12 +103,12 @@
     outline: 0 none;
     opacity: 0; }
     .contao-cookiebar input + label {
-      padding: 8px 13px 8px 50px;
+      padding: 8px 13px 8px 45px;
       cursor: pointer; }
       .contao-cookiebar input + label:before {
         content: '';
         position: absolute;
-        top: 6px;
+        top: 7px;
         left: 0;
         width: 35px;
         height: 18px;
@@ -114,16 +116,16 @@
         box-sizing: content-box;
         border-radius: 10px;
         background: #fff;
-        border: 2px solid #9c9b99;
+        border: 1px solid #9c9b99;
         transition: border-color .2s; }
       .contao-cookiebar input + label:after {
         display: block;
         content: '';
         position: absolute;
-        top: 10px;
+        top: 11px;
         left: 4px;
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         border-radius: 10px;
         background: #9c9b99;
         transition: background .2s, margin-left .2s, padding .2s; }
@@ -241,10 +243,9 @@
     color: #868686;
     line-height: 1.4; }
   .contao-cookiebar .cc-inner {
-    padding: 25px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    padding: 23px;
+    border-radius: 3px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
     background: #fff; }
   .contao-cookiebar .cc-groups {
     display: none;
