@@ -47,7 +47,7 @@ use Contao\Model\Collection;
  * @method static integer countByTstamp($val, array $opt=array())
  * @method static integer countByTitle($val, array $opt=array())
  */
-class CookieConfigModel extends Model
+class GlobalConfigModel extends Model
 {
 
     /**

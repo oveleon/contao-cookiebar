@@ -46,7 +46,7 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
  * @property boolean $disabled
  * @property boolean $published
  */
-class CookieHandler extends AbstractCookie
+class Cookie extends AbstractCookie
 {
     /**
      * Model

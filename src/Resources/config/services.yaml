@@ -6,4 +6,4 @@ services:
 
     Oveleon\ContaoCookiebar\:
         resource: '../../'
-        exclude: '../../{Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,CookieConfig.php,CookieHandler.php}'
+        exclude: '../../{Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,GlobalConfig.php,Cookie.php}'

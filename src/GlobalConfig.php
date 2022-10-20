@@ -12,7 +12,7 @@ namespace Oveleon\ContaoCookiebar;
 
 use Contao\StringUtil;
 use Contao\System;
-use Oveleon\ContaoCookiebar\Model\CookieConfigModel;
+use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
 
 /**
@@ -32,12 +32,12 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
  * @property boolean $googleConsentMode
  * @property boolean $published
  */
-class CookieConfig extends AbstractCookie
+class GlobalConfig extends AbstractCookie
 {
     /**
      * Config Model
      */
-    protected CookieConfigModel $objModel;
+    protected GlobalConfigModel $objModel;
 
     /**
      * Collection of cookie IDs which use this configuration
@@ -47,7 +47,7 @@ class CookieConfig extends AbstractCookie
     /**
      * Initialize the object
      */
-    public function __construct(CookieConfigModel $objConfig)
+    public function __construct(GlobalConfigModel $objConfig)
     {
         $this->objModel = $objConfig;
 
@@ -117,10 +117,10 @@ class CookieConfig extends AbstractCookie
      */
     private function compileTagManager(): void
     {
-        $this->addResource(
-            'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
-            ['async'],
-            self::LOAD_ALWAYS
+        $this->addScript(
+            "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','".$this->vendorId."');",
+            self::LOAD_ALWAYS,
+            self::POS_HEAD
         );
 
         if($src = $this->scriptConfig)

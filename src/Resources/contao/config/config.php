@@ -13,7 +13,7 @@ use Oveleon\ContaoCookiebar\Model\CookiebarModel;
 use Oveleon\ContaoCookiebar\Model\CookieLogModel;
 use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
-use Oveleon\ContaoCookiebar\Model\CookieConfigModel;
+use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 
 // Back end modules
 $GLOBALS['BE_MOD']['system']['cookiebar'] = [
@@ -32,4 +32,4 @@ $GLOBALS['TL_MODELS']['tl_cookiebar']     = CookiebarModel::class;
 $GLOBALS['TL_MODELS']['tl_cookie_log']    = CookieLogModel::class;
 $GLOBALS['TL_MODELS']['tl_cookie_group']  = CookieGroupModel::class;
 $GLOBALS['TL_MODELS']['tl_cookie']        = CookieModel::class;
-$GLOBALS['TL_MODELS']['tl_cookie_config'] = CookieConfigModel::class;
+$GLOBALS['TL_MODELS']['tl_cookie_config'] = GlobalConfigModel::class;

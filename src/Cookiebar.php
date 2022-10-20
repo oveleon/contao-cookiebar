@@ -22,7 +22,7 @@ use Doctrine\DBAL\Connection;
 use FOS\HttpCache\ResponseTagger;
 use Oveleon\ContaoCookiebar\Exception\NoCookiebarSpecifiedException;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
-use Oveleon\ContaoCookiebar\Model\CookieConfigModel;
+use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
 use Oveleon\ContaoCookiebar\Model\CookieLogModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
@@ -107,12 +107,12 @@ class Cookiebar
 
                         if(null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
                         {
-                            /** @var CookieConfigModel $objConfigModel */
-                            $objConfigModel = CookieConfigModel::findById($intConfigKey);
+                            /** @var GlobalConfigModel $objConfigModel */
+                            $objConfigModel = GlobalConfigModel::findById($intConfigKey);
 
                             if(null !== $objConfigModel)
                             {
-                                $objGlobalConfig = new CookieConfig($objConfigModel);
+                                $objGlobalConfig = new GlobalConfig($objConfigModel);
                                 $objGlobalConfig->addCookie( $objCookies->current() );
 
                                 $arrConfigs[ $intConfigKey ] = $objGlobalConfig;
@@ -122,7 +122,7 @@ class Cookiebar
                         }
                         else
                         {
-                            /** @var CookieConfig $objGlobalConfig */
+                            /** @var GlobalConfig $objGlobalConfig */
                             $objGlobalConfig = $arrConfigs[ $intConfigKey ];
                             $objGlobalConfig->addCookie( $objCookies->current() );
 
@@ -132,7 +132,7 @@ class Cookiebar
                         }
                     }
 
-                    $arrCookies[] = new CookieHandler($objCookies->current());
+                    $arrCookies[] = new Cookie($objCookies->current());
                 }
             }
 

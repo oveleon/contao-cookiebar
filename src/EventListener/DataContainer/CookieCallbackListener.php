@@ -10,7 +10,7 @@ use Contao\Message;
 use Contao\System;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
-use Oveleon\ContaoCookiebar\Model\CookieConfigModel;
+use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -133,7 +133,7 @@ class CookieCallbackListener
 
         $getConfigTitle = static function($id): string
         {
-            if(null !== $objConfig = CookieConfigModel::findById($id))
+            if(null !== $objConfig = GlobalConfigModel::findById($id))
             {
                 return $objConfig->title;
             }
