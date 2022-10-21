@@ -24,7 +24,7 @@ class PageCallbackListener
      *
      * @Callback(table="tl_page", target="fields.cssClass.save")
      */
-    public function onSaveCssClass(string $value, DataContainer $dc): string
+    public function onSaveCssClass(?string $value, DataContainer $dc): string
     {
         if($dc->activeRecord->triggerCookiebar && $dc->activeRecord->type === 'forward')
         {
@@ -47,7 +47,7 @@ class PageCallbackListener
      *
      * @Callback(table="tl_page", target="fields.cssClass.load")
      */
-    public function clearCssClasses(string $value): string
+    public function clearCssClasses(?string $value): string
     {
         if(str_contains($value, self::CLASS_TRIGGER) || str_contains($value, self::CLASS_PREFILL))
         {
