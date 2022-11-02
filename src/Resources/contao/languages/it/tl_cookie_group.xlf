@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_cookie_group.php" source-language="en" target-language="it">
+    <body>
+      <trans-unit id="tl_cookie_group.title_legend">
+        <source>Cookie group</source>
+        <target state="translated">Gruppo di cookie</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.title.0">
+        <source>Group name</source>
+        <target state="translated">Nome del gruppo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.title.1">
+        <source>Enter a group name here.</source>
+        <target state="translated">Inserisci qui il nome del gruppo.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.description.0">
+        <source>Description</source>
+        <target state="translated">Descrizione</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.description.1">
+        <source>Describe the cookie group and its purpose.</source>
+        <target state="translated">Descrivi il gruppo di cookie e il suo scopo.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.published.0">
+        <source>Publish</source>
+        <target state="translated">Pubblica</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.published.1">
+        <source>Define here whether the cookie group may be used.</source>
+        <target state="translated">Definisci qui se il gruppo di cookie può essere utilizzato.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.new.0">
+        <source>New</source>
+        <target state="translated">Nuovo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.new.1">
+        <source>Create a new Groupe</source>
+        <target state="translated">Crea un nuovo gruppo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.0">
+        <source>Show details</source>
+        <target state="translated">Mostra i dettagli</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.1">
+        <source>Show the details of group ID %s</source>
+        <target state="translated">Mostra i dettagli del gruppo ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.0">
+        <source>Edit cookies</source>
+        <target state="translated">Modifica i cookie</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.1">
+        <source>Edit cookies of group ID %s</source>
+        <target state="translated">Modifica i cookie del gruppo ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.0">
+        <source>Edit group</source>
+        <target state="translated">Modifica il gruppo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.1">
+        <source>Edit group ID %s</source>
+        <target state="translated">Modifica l'ID del gruppo %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.0">
+        <source>Duplicate group</source>
+        <target state="translated">Duplica il gruppo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.1">
+        <source>Duplicate group ID %s</source>
+        <target state="translated">Duplica l'ID del gruppo %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.0">
+        <source>Move group</source>
+        <target state="translated">Sposta il gruppo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.1">
+        <source>Move group ID %s</source>
+        <target state="translated">Sposta gruppo ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.0">
+        <source>Delete group</source>
+        <target state="translated">Elimina il gruppo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.1">
+        <source>Delete group ID %s</source>
+        <target state="translated">Elimina il gruppo ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.0">
+        <source>Publish/unpublish group</source>
+        <target state="translated">Pubblica/non pubblicare il gruppo</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.1">
+        <source>Publish/unpublish group ID %s</source>
+        <target state="translated">Pubblica/non pubblicare l'ID del gruppo %s</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/default.php" source-language="en" target-language="it">
+    <body>
+      <trans-unit id="CTE.cookiebarOpener.0">
+        <source>Cookiebar (Opener)</source>
+        <target state="translated">Cookiebar (aprire)</target>
+      </trans-unit>
+      <trans-unit id="CTE.cookiebarOpener.1">
+        <source>Creates a link that displays the cookiebar</source>
+        <target state="translated">Crea un link per visualizzare la cookiebar</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

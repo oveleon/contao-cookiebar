@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/explain.php" source-language="en" target-language="it">
+    <body>
+      <trans-unit id="XPL.cookiebarVersion.0.0">
+        <source>Cookiebar versions</source>
+        <target state="translated">Versioni della cookiebar</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarVersion.0.1">
+        <source>Versions can be stored for each cookiebar configuration. Every new version of a configuration forces the cookiebar to be displayed to the visitor, regardless of whether it has already been accepted. This way, visitors can be notified about new cookies and grant or deny permission. Any settings previously set by the visitor remain unchanged.</source>
+        <target state="translated">È possibile memorizzare versioni per ogni configurazione della cookiebar. Ogni nuova versione di una configurazione fa sì che la cookiebar venga nuovamente mostrata al visitatore, indipendentemente dal fatto che sia già stata accettata. In questo modo, i visitatori possono essere informati dei nuovi cookie e concedere o negare l'autorizzazione. Le impostazioni precedentemente definite dal visitatore rimangono invariate.</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarVersion.1.0">
+        <source>Create new version</source>
+        <target state="translated">Crea una nuova versione</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarVersion.1.1">
+        <source>To create a new version, select the &lt;code&gt;checkbox&lt;/code&gt; for &lt;code&gt;Update version&lt;/code&gt; and then save the mask. The version is automatically incremented.</source>
+        <target state="translated">Per creare una nuova versione, seleziona la &lt;code&gt;casella di controllo&lt;/code&gt; per &lt;code&gt;Aggiornare la versione&lt;/code&gt; e quindi salvare la maschera. La versione viene incrementata automaticamente.</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.0.0">
+        <source>Google Analytics</source>
+        <target state="translated">Google Analytics</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.0.1">
+        <source>Extend the standard configuration of Google Analytics: &lt;pre&gt;
+
+         window.dataLayer=window.dataLayer||[];
+         function gtag(){dataLayer.push(arguments)}
+         gtag('js',new Date());
+         gtag('config','XXXXXX' &lt;code class="tl_red"&gt;[, Parameters are placed here]&lt;/code&gt;)&lt;/pre&gt;</source>
+        <target state="translated">Estendi la configurazione standard di Google Analytics: &lt;pre&gt;
+
+         window.dataLayer=window.dataLayer||[];
+         function gtag(){dataLayer.push(arguments)}
+         gtag('js',new Date());
+         gtag('config','XXXXXX' &lt;code class="tl_red"&gt;[, Parameters are placed here]&lt;/code&gt;)&lt;/pre&gt;</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.1.0">
+        <source>Google Consent Mode</source>
+        <target state="translated">Modalità di consenso di Google</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.1.1">
+        <source>&lt;b&gt;Replace&lt;/b&gt; the default configuration of Google Consent Mode. If you do not enter your own configuration, the following code will be generated automatically: &lt;pre&gt;
+
+          gtag('consent', 'default', {
+          '&lt;code class="tl_red"&gt;consent mode&lt;/code&gt;': 'granted'
+          });
+          &lt;/pre&gt;
+
+          If own code is provided for the configuration, the above code must be integrated independently! This can be modified if necessary.
+          &lt;br&gt;&lt;br&gt;
+          Further information:&lt;br&gt;
+          https://developers.google.com/gtagjs/devguide/consent&lt;br&gt;&lt;br&gt;
+          &lt;i&gt;This cookie type also requires a global configuration of the type "Google Tag Manager" with "Google Consent Mode" activated therein.&lt;/i&gt;
+        </source>
+        <target state="translated">&lt;b&gt;Sostituisci&lt;/b&gt; la configurazione predefinita della modalità di consenso di Google. Se non inserisci la tua configurazione, il seguente codice verrà generato automaticamente: &lt;pre&gt; 
+
+          gtag('consent', 'default', {
+          '&lt;code class="tl_red"&gt;Einwilligungsmodus&lt;/code&gt;': 'granted'
+          });
+          &lt;/pre&gt;
+
+          Se viene fornito un codice proprio per la configurazione, il codice di cui sopra deve essere integrato in modo indipendente! Se necessario, questo può essere modificato.
+          &lt;br&gt;&lt;br&gt;
+          Ulteriori informazioni:&lt;br&gt;
+          https://developers.google.com/gtagjs/devguide/consent&lt;br&gt;&lt;br&gt;
+          &lt;i&gt;Questo tipo di cookie richiede inoltre una configurazione globale del tipo "Google Tag Manager" con "Modalità di consenso di Google" attivata.&lt;/i&gt;
+        </target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.2.0">
+        <source>Matomo</source>
+        <target state="translated">Matomo</target>
+      </trans-unit>
+      <trans-unit id="XPL.cookiebarScriptConfig.2.1">
+        <source>Extend the standard configuration of Matomo: &lt;pre&gt;
+
+        var _paq = window._paq = window._paq || [];
+
+        (function() { var u='XXX/';
+          &lt;code class="tl_red"&gt;Parameters are placed here&lt;/code&gt;
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript';
+          g.async=true;
+          g.src=u+'matomo.js';
+          s.parentNode.insertBefore(g,s);})();
+          &lt;/pre&gt;
+          If no own parameters are defined, the following lines are added automatically:
+          &lt;pre&gt;
+          &lt;code class="tl_red"&gt;_paq.push(['trackPageView']);&lt;/code&gt;
+          &lt;code class="tl_red"&gt;_paq.push(['enableLinkTracking']);&lt;/code&gt;&lt;pre&gt;</source>
+        <target state="translated">Estendi la configurazione standard di Matomo: &lt;pre&gt;
+
+        var _paq = window._paq = window._paq || [];
+
+        (function() { var u='XXX/';
+          &lt;code class="tl_red"&gt;Parameters are placed here&lt;/code&gt;
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript';
+          g.async=true;
+          g.src=u+'matomo.js';
+          s.parentNode.insertBefore(g,s);})();
+          &lt;/pre&gt;
+          Se non sono stati definiti parametri propri, le seguenti righe vengono aggiunte automaticamente:
+          &lt;pre&gt;
+          &lt;code class="tl_red"&gt;_paq.push(['trackPageView']);&lt;/code&gt;
+          &lt;code class="tl_red"&gt;_paq.push(['enableLinkTracking']);&lt;/code&gt;&lt;pre&gt;</target>
+      </trans-unit>
+
+      <trans-unit id="XPL.configurationScriptConfig.1.0">
+        <source>Google Tag Manager</source>
+        <target state="translated">Google Tag Manager</target>
+      </trans-unit>
+      <trans-unit id="XPL.configurationScriptConfig.1.1">
+        <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note that these settings are already implemented without confirmation of the cookiebar in the HEAD of the website.</source>
+        <target state="translated">Consente l'integrazione di Google Tag Managers. Inoltre, è possibile immettere uno script personalizzato. Si prega di notare che queste impostazioni sono già implementate senza la conferma della cookiebar nell'HEAD del sito web..</target>
+      </trans-unit>
+      <trans-unit id="XPL.configurationScriptConfig.2.0">
+        <source>Tag Manager + Google Consent Mode</source>
+        <target state="translated">Tag Manager + Modalità di consenso di Google</target>
+      </trans-unit>
+      <trans-unit id="XPL.configurationScriptConfig.2.1">
+        <source>If you do not define your own configuration for Google Consent Mode, the following settings are set automatically: &lt;pre&gt;
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+
+          gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'analytics_storage': 'denied',
+          'wait_for_update': 500
+          });
+
+          gtag('js', new Date());
+          gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
+          &lt;/pre&gt;
+
+          Please note that you have to enter this code yourself if you want to create your own configuration.</source>
+        <target state="translated">Se non definisci la tua configurazione per la modalità consenso di Google, le seguenti impostazioni vengono definite automaticamente: &lt;pre&gt;
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+
+          gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'analytics_storage': 'denied',
+          'wait_for_update': 500
+          });
+
+          gtag('js', new Date());
+          gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
+          &lt;/pre&gt;
+
+          Se si desidera creare una propria configurazione, si prega di notare che è necessario inserire questo codice..</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
