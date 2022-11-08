@@ -291,7 +291,7 @@ class tl_cookiebar extends Contao\Backend
     public function loadAvailableLanguages(): array
     {
         $validLanguages = $this->getLanguages();
-        $arrLanguages = ['en', 'de', 'sv'];
+        $arrLanguages = ['en', 'de', 'fr', 'it', 'sv'];
         $arrReturn = [];
 
         foreach ($arrLanguages as $strLanguage) {
