@@ -3,323 +3,323 @@
     <body>
       <trans-unit id="tl_cookiebar.title_legend">
         <source>Title / Version</source>
-        <target state="translated">Titolo / Versione</target>
+        <target>Titolo / Versione</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.meta_legend">
         <source>Meta information</source>
-        <target state="translated">Informazioni meta</target>
+        <target>Informazioni meta</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.expert_legend">
         <source>Expert settings</source>
-        <target state="translated">Impostazioni avanzate</target>
+        <target>Impostazioni avanzate</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.defaultEssentialGroupName">
         <source>Essential</source>
-        <target state="translated">Essenziale</target>
+        <target>Essenziale</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.noExpireTime">
         <source>This cookie will only remain for the current browser session.</source>
-        <target state="translated">Questo cookie rimane solo per la sessione corrente del browser.</target>
+        <target>Questo cookie rimane solo per la sessione corrente del browser.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.defaultCsrfDescription">
         <source>&lt;p&gt;Protects against cross-site request forgery attacks.&lt;/p&gt;</source>
-        <target state="translated">&lt;p&gt;Protegge dagli attacchi di tipo cross-site request forgery.&lt;/p&gt;</target>
+        <target>&lt;p&gt;Protegge dagli attacchi di tipo cross-site request forgery.&lt;/p&gt;</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.defaultHttpsCsrfDescription">
         <source>&lt;p&gt;Protects against cross-site request forgery attacks.&lt;/p&gt;</source>
-        <target state="translated">&lt;p&gt;Protegge dagli attacchi di tipo cross-site request forgery.&lt;/p&gt;</target>
+        <target>&lt;p&gt;Protegge dagli attacchi di tipo cross-site request forgery.&lt;/p&gt;</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.defaultPhpSessionDescription">
         <source>&lt;p&gt;Saves the current PHP session.&lt;/p&gt;</source>
-        <target state="translated">&lt;p&gt;Salva la sessione PHP corrente.&lt;/p&gt;</target>
+        <target>&lt;p&gt;Salva la sessione PHP corrente.&lt;/p&gt;</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.saveLabel">
         <source>Save selection</source>
-        <target state="translated">Salva la selezione</target>
+        <target>Salva la selezione</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.acceptAllLabel">
         <source>Accept all</source>
-        <target state="translated">Accetta tutti</target>
+        <target>Accetta tutti</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.denyAllLabel">
         <source>Deny all</source>
-        <target state="translated">Rifiuta tutti</target>
+        <target>Rifiuta tutti</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoLabel">
         <source>Privacy settings</source>
-        <target state="translated">Impostazioni sulla privacy</target>
+        <target>Impostazioni sulla privacy</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.acceptAndDisplayLabel">
         <source>Accept and show</source>
-        <target state="translated">Accetta e mostra</target>
+        <target>Accetta e mostra</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.showDetailsLabel">
         <source>Show details</source>
-        <target state="translated">Mostra i dettagli</target>
+        <target>Mostra i dettagli</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.hideDetailsLabel">
         <source>Hide details</source>
-        <target state="translated">Nascondi i dettagli</target>
+        <target>Nascondi i dettagli</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.showMoreDetailsLabel">
         <source>Show more details</source>
-        <target state="translated">Mostra ulteriori dettagli</target>
+        <target>Mostra ulteriori dettagli</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.hideMoreDetailsLabel">
         <source>Hide more details</source>
-        <target state="translated">Nascondi ulteriori dettagli</target>
+        <target>Nascondi ulteriori dettagli</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.providerLabel">
         <source>Provider</source>
-        <target state="translated">Provider</target>
+        <target>Provider</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.expireLabel">
         <source>Retention period</source>
-        <target state="translated">Periodo di conservazione</target>
+        <target>Periodo di conservazione</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.tokenLabel">
         <source>Technical name</source>
-        <target state="translated">Nome tecnico</target>
+        <target>Nome tecnico</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.changePrivacyLabel">
         <source>Change privacy settings</source>
-        <target state="translated">Modifica le impostazioni sulla privacy</target>
+        <target>Modifica le impostazioni sulla privacy</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.title.0">
         <source>Title</source>
-        <target state="translated">Titolo</target>
+        <target>Titolo</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.title.1">
         <source>Please enter a unique cookiebar title.</source>
-        <target state="translated">Inserisci un titolo univoco per la cookiebar.</target>
+        <target>Inserisci un titolo univoco per la cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.0">
         <source>Version</source>
-        <target state="translated">Versione</target>
+        <target>Versione</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.1">
         <source>The current version of the cookiebar configuration is shown here.</source>
-        <target state="translated">Qui viene mostrata la versione attuale della configurazione della cookiebar.</target>
+        <target>Qui viene mostrata la versione attuale della configurazione della cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.0">
         <source>Update version</source>
-        <target state="translated">Aggiorna la versione</target>
+        <target>Aggiorna la versione</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.1">
         <source>Update the current version to force the cookiebar to be displayed again to visitors.</source>
-        <target state="translated">Aggiorna la versione corrente per forzare la visualizzazione della cookiebar ai visitatori.</target>
+        <target>Aggiorna la versione corrente per forzare la visualizzazione della cookiebar ai visitatori.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
         <source>Title &amp; description</source>
-        <target state="translated">Titolo e descrizione</target>
+        <target>Titolo e descrizione</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.1">
         <source>Describe the purpose of the cookiebar.</source>
-        <target state="translated">Descrivi lo scopo della cookiebar.</target>
+        <target>Descrivi lo scopo della cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.0">
         <source>Additional information</source>
-        <target state="translated">Informazioni aggiuntive</target>
+        <target>Informazioni aggiuntive</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.1">
         <source>Here you can add more information, that are displayed below the buttons.</source>
-        <target state="translated">Qui è possibile aggiungere ulteriori informazioni, che vengono visualizzate sotto i pulsanti.</target>
+        <target>Qui è possibile aggiungere ulteriori informazioni, che vengono visualizzate sotto i pulsanti.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.0">
         <source>Info links</source>
-        <target state="translated">Link informativi</target>
+        <target>Link informativi</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.1">
         <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
-        <target state="translated">Ti preghiamo d’inserire qui ulteriori link, ad es. all'informativa sulla privacy, all'imprinting o alle note legali.</target>
+        <target>Ti preghiamo d’inserire qui ulteriori link, ad es. all'informativa sulla privacy, all'imprinting o alle note legali.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.0">
         <source>Exclude pages</source>
-        <target state="translated">Escludi pagine</target>
+        <target>Escludi pagine</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.1">
         <source>Here you can define the pages where the cookiebar should not open automatically.</source>
-        <target state="translated">Qui è possibile definire le pagine in cui la cookiebar non deve aprirsi automaticamente.</target>
+        <target>Qui è possibile definire le pagine in cui la cookiebar non deve aprirsi automaticamente.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.0">
         <source>Template</source>
-        <target state="translated">Modello</target>
+        <target>Modello</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.1">
         <source>Here you can select a template for the cookiebar.</source>
-        <target state="translated">Qui è possibile selezionare un modello per la cookiebar.</target>
+        <target>Qui è possibile selezionare un modello per la cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.buttonColorScheme.0">
         <source>Button color scheme</source>
-        <target state="translated">Schema dei colori dei pulsanti</target>
+        <target>Schema dei colori dei pulsanti</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.buttonColorScheme.1">
         <source>Defines the color scheme of the available buttons.</source>
-        <target state="translated">Definisce la combinazione dei colori dei pulsanti disponibili.</target>
+        <target>Definisce la combinazione dei colori dei pulsanti disponibili.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.0">
         <source>Alignment</source>
-        <target state="translated">Allineamento</target>
+        <target>Allineamento</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.1">
         <source>Here you can define the position &amp; orientation of the cookiebar.</source>
-        <target state="translated">Qui è possibile definire la posizione e l'orientamento della cookiebar.</target>
+        <target>Qui è possibile definire la posizione e l'orientamento della cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.0">
         <source>Blocking</source>
-        <target state="translated">Blocco</target>
+        <target>Blocco</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.1">
         <source>Blocks the use of the site until the cookiebar has been used.</source>
-        <target state="translated">Blocca l'utilizzo del sito fino a quando la cookiebar non è stata utilizzata.</target>
+        <target>Blocca l'utilizzo del sito fino a quando la cookiebar non è stata utilizzata.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.0">
         <source>Position</source>
-        <target state="translated">Posizione</target>
+        <target>Posizione</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.1">
         <source>Here you can define the position of the cookiebar in the HTML.</source>
-        <target state="translated">Qui è possibile definire la posizione della cookiebar nell'HTML.</target>
+        <target>Qui è possibile definire la posizione della cookiebar nell'HTML.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.0">
         <source>Script position</source>
-        <target state="translated">Posizione dello script</target>
+        <target>Posizione dello script</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.1">
         <source>Here you can define the position of the cookiebar scripts within the HTML.</source>
-        <target state="translated">Qui è possibile definire la posizione degli script della cookiebar nell'HTML.</target>
+        <target>Qui è possibile definire la posizione degli script della cookiebar nell'HTML.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.0">
         <source>CSS ID/class</source>
-        <target state="translated">CSS ID/classe</target>
+        <target>CSS ID/classe</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.1">
         <source>Here you can set an ID and one or more classes.</source>
-        <target state="translated">Qui è possibile impostare un ID e una o più classi.</target>
+        <target>Qui è possibile impostare un ID e una o più classi.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cookieLog.0">
         <source>Log</source>
-        <target state="translated">Log</target>
+        <target>Log</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cookieLog.1">
         <source>Show consents</source>
-        <target state="translated">Mostra i consensi</target>
+        <target>Mostra i consensi</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.essentialCookieLanguage.0">
         <source>Language of the essential cookie group</source>
-        <target state="translated">Lingua del gruppo di cookie essenziali</target>
+        <target>Lingua del gruppo di cookie essenziali</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.essentialCookieLanguage.1">
         <source>Specify in which language the descriptions of the essential cookies should be created.</source>
-        <target state="translated">Specifica in quale lingua devono essere create le descrizioni dei cookie essenziali.</target>
+        <target>Specifica in quale lingua devono essere create le descrizioni dei cookie essenziali.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
         <source>Above the content in the body tag</source>
-        <target state="translated">Sopra il contenuto del tag body</target>
+        <target>Sopra il contenuto del tag body</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.bodyBelowContent">
         <source>Below the content in the body tag</source>
-        <target state="translated">Sotto il contenuto del tag body</target>
+        <target>Sotto il contenuto del tag body</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.body">
         <source>Body tag</source>
-        <target state="translated">Body tag</target>
+        <target>Body tag</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.head">
         <source>Head tag</source>
-        <target state="translated">Head tag</target>
+        <target>Head tag</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-top">
         <source>Center | Top</source>
-        <target state="translated">Centro | In alto</target>
+        <target>Centro | In alto</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-top-left">
         <source>Left | Top</source>
-        <target state="translated">Sinistra | In alto</target>
+        <target>Sinistra | In alto</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-top-right">
         <source>Right | Top</source>
-        <target state="translated">Destra | In alto</target>
+        <target>Destra | In alto</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-middle">
         <source>Center | Center</source>
-        <target state="translated">Centro | In mezzo</target>
+        <target>Centro | In mezzo</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-bottom">
         <source>Center | Bottom</source>
-        <target state="translated">Centro | In basso</target>
+        <target>Centro | In basso</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-bottom-left">
         <source>Left | Bottom</source>
-        <target state="translated">Sinistra | In basso</target>
+        <target>Sinistra | In basso</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.align-bottom-right">
         <source>Right | Bottom</source>
-        <target state="translated">Destra | In basso</target>
+        <target>Destra | In basso</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.neutral">
         <source>Neutral</source>
-        <target state="translated">Neutro</target>
+        <target>Neutro</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.grayscale">
         <source>Grayscale</source>
-        <target state="translated">Scala di grigi</target>
+        <target>Scala di grigi</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.highlight">
         <source>Highlight</source>
-        <target state="translated">In evidenza</target>
+        <target>In evidenza</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.new.0">
         <source>New</source>
-        <target state="translated">Nuovo</target>
+        <target>Nuovo</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.new.1">
         <source>Create a new cookiebar configuration</source>
-        <target state="translated">Crea una nuova configurazione della cookiebar</target>
+        <target>Crea una nuova configurazione della cookiebar</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.show.0">
         <source>Cookiebar configuration details</source>
-        <target state="translated">Dettagli della configurazione della cookiebar</target>
+        <target>Dettagli della configurazione della cookiebar</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.show.1">
         <source>Show the details of configuration ID %s</source>
-        <target state="translated">Mostra i dettagli della configurazione ID %s</target>
+        <target>Mostra i dettagli della configurazione ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.edit.0">
         <source>Edit groups</source>
-        <target state="translated">Modifica i gruppi</target>
+        <target>Modifica i gruppi</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.edit.1">
         <source>Edit cookiebar groups of configuration ID %s</source>
-        <target state="translated">Modifica i gruppi della cookiebar della configurazione ID %s</target>
+        <target>Modifica i gruppi della cookiebar della configurazione ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.editheader.0">
         <source>Edit cookiebar configuration</source>
-        <target state="translated">Modifica la configurazione della cookiebar</target>
+        <target>Modifica la configurazione della cookiebar</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.editheader.1">
         <source>Edit cookiebar configuration ID %s</source>
-        <target state="translated">Modifica la configurazione della cookiebar ID %s</target>
+        <target>Modifica la configurazione della cookiebar ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.copy.0">
         <source>Duplicate cookiebar configuration</source>
-        <target state="translated">Duplica la configurazione della cookiebar</target>
+        <target>Duplica la configurazione della cookiebar</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.copy.1">
         <source>Duplicate cookiebar configuration ID %s</source>
-        <target state="translated">Duplica la configurazione della cookiebar ID %s</target>
+        <target>Duplica la configurazione della cookiebar ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.delete.0">
         <source>Delete cookiebar configuration</source>
-        <target state="translated">Elimina la configurazione della cookiebar</target>
+        <target>Elimina la configurazione della cookiebar</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.delete.1">
         <source>Delete cookiebar configuration ID %s</source>
-        <target state="translated">Elimina la configurazione della cookiebar ID %s</target>
+        <target>Elimina la configurazione della cookiebar ID %s</target>
       </trans-unit>
     </body>
   </file>

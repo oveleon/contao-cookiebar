@@ -3,39 +3,39 @@
     <body>
       <trans-unit id="tl_cookie_log.id.0">
         <source>ID</source>
-        <target state="translated">ID</target>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.cid.0">
         <source>Cookiebar</source>
-        <target state="translated">Cookiebar</target>
+        <target>Cookiebar</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.version.0">
         <source>Version</source>
-        <target state="translated">Versione</target>
+        <target>Versione</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.domain.0">
         <source>Domain</source>
-        <target state="translated">Domain</target>
+        <target>Domain</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.url.0">
         <source>URL</source>
-        <target state="translated">URL</target>
+        <target>URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.ip.0">
         <source>IP</source>
-        <target state="translated">IP</target>
+        <target>IP</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.config.0">
         <source>Settings</source>
-        <target state="translated">Impostazioni</target>
+        <target>Impostazioni</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.tstamp.0">
         <source>Date</source>
-        <target state="translated">Data</target>
+        <target>Data</target>
       </trans-unit>
       <trans-unit id="tl_cookie_log.export.0">
         <source>Export log (CSV)</source>
-        <target state="translated">Esporta il log (CSV)</target>
+        <target>Esporta il log (CSV)</target>
       </trans-unit>
     </body>
   </file>

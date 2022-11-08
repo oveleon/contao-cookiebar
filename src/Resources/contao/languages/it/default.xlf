@@ -3,11 +3,11 @@
     <body>
       <trans-unit id="CTE.cookiebarOpener.0">
         <source>Cookiebar (Opener)</source>
-        <target state="translated">Cookiebar (aprire)</target>
+        <target>Cookiebar (aprire)</target>
       </trans-unit>
       <trans-unit id="CTE.cookiebarOpener.1">
         <source>Creates a link that displays the cookiebar</source>
-        <target state="translated">Crea un link per visualizzare la cookiebar</target>
+        <target>Crea un link per visualizzare la cookiebar</target>
       </trans-unit>
     </body>
   </file>

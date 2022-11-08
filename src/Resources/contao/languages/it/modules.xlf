@@ -3,19 +3,19 @@
     <body>
       <trans-unit id="MOD.cookiebar.0">
         <source>Cookiebar</source>
-        <target state="translated">Cookiebar</target>
+        <target>Cookiebar</target>
       </trans-unit>
       <trans-unit id="MOD.cookiebar.1">
         <source>Manage cookiebar configurations</source>
-        <target state="translated">Gestire le configurazioni della cookiebar</target>
+        <target>Gestire le configurazioni della cookiebar</target>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.0">
         <source>Cookiebar (Opener)</source>
-        <target state="translated">Cookiebar (aprire)</target>
+        <target>Cookiebar (aprire)</target>
       </trans-unit>
       <trans-unit id="FMD.cookiebarOpener.1">
         <source>Creates a link that displays the cookiebar</source>
-        <target state="translated">Crea un link per visualizzare la cookiebar</target>
+        <target>Crea un link per visualizzare la cookiebar</target>
       </trans-unit>
     </body>
   </file>

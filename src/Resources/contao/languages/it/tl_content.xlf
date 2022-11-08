@@ -3,11 +3,11 @@
     <body>
       <trans-unit id="tl_content.prefillCookies.0">
         <source>Prefill settings</source>
-        <target state="translated">Impostazioni di precompilazione</target>
+        <target>Impostazioni di precompilazione</target>
       </trans-unit>
       <trans-unit id="tl_content.prefillCookies.1">
         <source>Activates the already selected cookies when opening the cookiebar.</source>
-        <target state="translated">Attiva i cookie già selezionati al momento dell’apertura della cookiebar.</target>
+        <target>Attiva i cookie già selezionati al momento dell’apertura della cookiebar.</target>
       </trans-unit>
     </body>
   </file>

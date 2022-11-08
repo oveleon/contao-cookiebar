@@ -3,580 +3,581 @@
     <body>
       <trans-unit id="tl_cookie.msgUnpublished">
         <source>This cookie cannot be deactivated.</source>
-        <target state="translated">Questo cookie non può essere disattivato.</target>
+        <target>Questo cookie non può essere disattivato.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.title_legend">
         <source>Cookie / Type</source>
-        <target state="translated">Cookie / Tipo</target>
+        <target>Cookie / Tipo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.script_legend">
         <source>Script</source>
-        <target state="translated">Script</target>
+        <target>Script</target>
       </trans-unit>
       <trans-unit id="tl_cookie.template_legend">
         <source>Template</source>
-        <target state="translated">Modello</target>
+        <target>Modello</target>
       </trans-unit>
       <trans-unit id="tl_cookie.global_config_legend">
         <source>Global configuration</source>
-        <target state="translated">Configurazione globale</target>
+        <target>Configurazione globale</target>
       </trans-unit>
       <trans-unit id="tl_cookie.description_legend">
         <source>Description</source>
-        <target state="translated">Descrizione</target>
+        <target>Descrizione</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription_legend">
         <source>Detailed description</source>
-        <target state="translated">Descrizione dettagliata</target>
+        <target>Descrizione dettagliata</target>
       </trans-unit>
       <trans-unit id="tl_cookie.google_analytics_legend">
         <source>Google Analytics</source>
-        <target state="translated">Google Analytics</target>
+        <target>Google Analytics</target>
       </trans-unit>
       <trans-unit id="tl_cookie.google_consent_mode_legend">
-        <source>Google Consent ModeGoogle Consent Mode</source><target state="translated">Modalità consenso di GoogleModalità consenso di Google</target>
-        <source>Google Consent ModeGoogle Consent Mode</source><target state="translated">Modalità consenso di GoogleModalità consenso di Google</target>
+        <source>Google Consent Mode</source>
+        <target>Modalità consenso di Google</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_legend">
         <source>Matomo</source>
-        <target state="translated">Matomo</target>
+        <target>Matomo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebook_pixel_legend">
         <source>Facebook Pixel</source>
-        <target state="translated">Facebook Pixel</target>
+        <target>Facebook Pixel</target>
       </trans-unit>
       <trans-unit id="tl_cookie.youtube_legend">
-        <source>YouTube</source><target state="translated">YouTube</target>
+        <source>YouTube</source>
+        <target>YouTube</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo_legend">
-        <source>VimeoVimeo</source><target state="translated">VimeoVimeo</target>
-        <source>VimeoVimeo</source><target state="translated">VimeoVimeo</target>
+        <source>Vimeo</source>
+        <target>Vimeo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe_legend">
         <source>iFrame</source>
-        <target state="translated">iFrame</target>
+        <target>iFrame</target>
       </trans-unit>
       <trans-unit id="tl_cookie.title.0">
         <source>Title</source>
-        <target state="translated">Titolo</target>
+        <target>Titolo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.title.1">
         <source>Enter the title of the cookie here.</source>
-        <target state="translated">Inserisci qui il titolo del cookie.</target>
+        <target>Inserisci qui il titolo del cookie.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.token.0">
         <source>Cookie token</source>
-        <target state="translated">Token del cookie</target>
+        <target>Token del cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.token.1">
         <source>Enter the unique name(s) (token) in a comma-separated list for the cookie (e.g. _ga, gid, ...). These are mandatory to be able to delete cookies that have already been set.</source>
-        <target state="translated">Inserisci il/i nome/i univoco/i (token) in un elenco separato da virgole per il cookie (ad es. _ga, gid, ...). Questi sono obbligatori per poter cancellare i cookie già impostati.</target>
+        <target>Inserisci il/i nome/i univoco/i (token) in un elenco separato da virgole per il cookie (ad es. _ga, gid, ...). Questi sono obbligatori per poter cancellare i cookie già impostati.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showTokens.0">
         <source>Show Cookie-Token</source>
-        <target state="translated">Mostra il token del cookie</target>
+        <target>Mostra il token del cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showTokens.1">
         <source>Defines if the Cookie-Token should be visible in the info section.</source>
-        <target state="translated">Definisce se il token del cookie deve essere visibile nella sezione delle informazioni.</target>
+        <target>Definisce se il token del cookie deve essere visibile nella sezione delle informazioni.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showExpireTime.0">
         <source>Show expire time</source>
-        <target state="translated">Mostra tempo di scadenza</target>
+        <target>Mostra tempo di scadenza</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showExpireTime.1">
         <source>Defines whether the expire time should be visible in the info section.</source>
-        <target state="translated">Definisce se il tempo di scadenza deve essere visibile nella sezione delle informazioni.</target>
+        <target>Definisce se il tempo di scadenza deve essere visibile nella sezione delle informazioni.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showProvider.0">
         <source>Show provider</source>
-        <target state="translated">Mostra provider</target>
+        <target>Mostra provider</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showProvider.1">
         <source>Defines whether the provider should be visible in the info section.</source>
-        <target state="translated">Definisce se il provider deve essere visibile nella sezione delle informazioni.</target>
+        <target>Definisce se il provider deve essere visibile nella sezione delle informazioni.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.type.0">
         <source>Cookie-Type</source>
-        <target state="translated">Tipo di cookie</target>
+        <target>Tipo di cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.type.1">
         <source>Select a predefined cookie type.</source>
-        <target state="translated">Seleziona un tipo di cookie predefinito.</target>
+        <target>Seleziona un tipo di cookie predefinito.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframeType.0">
         <source>iFrame-Type</source>
-        <target state="translated">Tipo di iFrame</target>
+        <target>Tipo di iFrame</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframeType.1">
         <source>Select an iframe type.</source>
-        <target state="translated">Seleziona un tipo di iFrame.</target>
+        <target>Seleziona un tipo di iFrame.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockTemplate.0">
         <source>Template (blocked)</source>
-        <target state="translated">Modello (bloccato)</target>
+        <target>Modello (bloccato)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockTemplate.1">
         <source>Choose a template that will be used when the content is blocked.</source>
-        <target state="translated">Scegli un modello da utilizzare quando il contenuto è bloccato.</target>
+        <target>Scegli un modello da utilizzare quando il contenuto è bloccato.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptTemplate.0">
         <source>Script template</source>
-        <target state="translated">Modello di script</target>
+        <target>Modello di script</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptTemplate.1">
         <source>Choose a template where the custom script is located.</source>
-        <target state="translated">Scegli un modello in cui si trova lo script personalizzato.</target>
+        <target>Scegli un modello in cui si trova lo script personalizzato.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.0">
         <source>Source URL</source>
-        <target state="translated">URL sorgente</target>
+        <target>URL sorgente</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.1">
         <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
-        <target state="translated">L'URL sorgente viene utilizzato per integrare script che devono essere esplicitamente integrati nella sezione HEAD del sito web per fornire un servizio esterno.</target>
+        <target>L'URL sorgente viene utilizzato per integrare script che devono essere esplicitamente integrati nella sezione HEAD del sito web per fornire un servizio esterno.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.0">
         <source>Source URL loading mode</source>
-        <target state="translated">Modalità di caricamento dell'URL sorgente</target>
+        <target>Modalità di caricamento dell'URL sorgente</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.1">
         <source>Here you can define the moment when the source URL is allowed to be embedded.</source>
-        <target state="translated">Qui puoi definire il momento in cui l'URL sorgente può essere incorporato.</target>
+        <target>Qui puoi definire il momento in cui l'URL sorgente può essere incorporato.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrlParameter.0">
         <source>Source URL parameter</source>
-        <target state="translated">Parametro dell'URL sorgente </target>
+        <target>Parametro dell'URL sorgente </target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrlParameter.1">
         <source>Define the load parameters of the source URL to be used.</source>
-        <target state="translated">Definisci i parametri di caricamento dell'URL sorgente da utilizzare.</target>
+        <target>Definisci i parametri di caricamento dell'URL sorgente da utilizzare.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.0">
         <source>Script (Confirmed)</source>
-        <target state="translated">Script (confermato)</target>
+        <target>Script (confermato)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.1">
         <source>Here you can enter the script (without the enclosing script tag) that is output after the cookie has been confirmed.</source>
-        <target state="translated">Qui è possibile inserire lo script (senza il tag script allegato) che viene emesso dopo che il cookie è stato confermato.</target>
+        <target>Qui è possibile inserire lo script (senza il tag script allegato) che viene emesso dopo che il cookie è stato confermato.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptUnconfirmed.0">
         <source>Script (Not confirmed)</source>
-        <target state="translated">Script (non confermato)</target>
+        <target>Script (non confermato)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptUnconfirmed.1">
         <source>Here you can enter the script (without the enclosing script tag) that should be output if this cookie is not confirmed.</source>
-        <target state="translated">Qui è possibile inserire lo script (senza il tag script allegato) che dovrebbe essere emesso se il cookie non viene confermato.</target>
+        <target>Qui è possibile inserire lo script (senza il tag script allegato) che dovrebbe essere emesso se il cookie non viene confermato.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptPosition.0">
         <source>Script position</source>
-        <target state="translated">Posizione dello script</target>
+        <target>Posizione dello script</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptPosition.1">
         <source>Here you can select the position for embedding the script (both confirmed and unconfirmed).</source>
-        <target state="translated">Qui è possibile selezionare la posizione per l'inserimento dello script (sia confermato che non confermato).</target>
+        <target>Qui è possibile selezionare la posizione per l'inserimento dello script (sia confermato che non confermato).</target>
       </trans-unit>
       <trans-unit id="tl_cookie.expireTime.0">
         <source>Cookie retention period</source>
-        <target state="translated">Periodo di conservazione del cookie</target>
+        <target>Periodo di conservazione del cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.expireTime.1">
         <source>Here you can define the duration for how long the cookie is stored; alternatively, you can refer to the provider's description.</source>
-        <target state="translated">Qui è possibile definire la durata di conservazione del cookie; in alternativa, è possibile fare riferimento alla descrizione del provider.</target>
+        <target>Qui è possibile definire la durata di conservazione del cookie; in alternativa, è possibile fare riferimento alla descrizione del provider.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.provider.0">
         <source>Provider</source>
-        <target state="translated">Provider</target>
+        <target>Provider</target>
       </trans-unit>
       <trans-unit id="tl_cookie.provider.1">
         <source>Define here the provider information like company name and address, that is responsible for this cookie.</source>
-        <target state="translated">Definisci qui le informazioni del provider come ad es. nome e indirizzo dell'azienda che è responsabile di questo cookie.</target>
+        <target>Definisci qui le informazioni del provider come ad es. nome e indirizzo dell'azienda che è responsabile di questo cookie.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.description.0">
         <source>Description</source>
-        <target state="translated">Descrizione</target>
+        <target>Descrizione</target>
       </trans-unit>
       <trans-unit id="tl_cookie.description.1">
         <source>Describe the cookie and its purpose.</source>
-        <target state="translated">Descrivi il cookie e il suo scopo.</target>
+        <target>Descrivi il cookie e il suo scopo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.0">
         <source>Detailed description</source>
-        <target state="translated">Descrizione dettagliata</target>
+        <target>Descrizione dettagliata</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.1">
         <source>Here you can enter a detailed description about the cookie.</source>
-        <target state="translated">Qui è possibile inserire una descrizione dettagliata del cookie.</target>
+        <target>Qui è possibile inserire una descrizione dettagliata del cookie.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.0">
         <source>Description (blocked)</source>
-        <target state="translated">Descrizione (bloccata)</target>
+        <target>Descrizione (bloccata)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.1">
         <source>This description appears when an iFrame is blocked due to not having consent.</source>
-        <target state="translated">Questa descrizione appare quando un iFrame viene bloccato per mancanza di consenso.</target>
+        <target>Questa descrizione appare quando un iFrame viene bloccato per mancanza di consenso.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vendorId.0">
         <source>ID</source>
-        <target state="translated">ID</target>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vendorId.1">
         <source>Enter your ID here.</source>
-        <target state="translated">Inserisci il tuo ID qui.</target>
+        <target>Inserisci il tuo ID qui.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.0">
         <source>Google Analytics ID</source>
-        <target state="translated">Google Analytics</target>
+        <target>Google Analytics</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.1">
         <source>Enter your Google Analytics ID here.</source>
-        <target state="translated">Inserisci qui il tuo ID Google Analytics.</target>
+        <target>Inserisci qui il tuo ID Google Analytics.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
         <source>Google Tag Manager ID</source>
-        <target state="translated">Google Tag Manager ID</target>
+        <target>Google Tag Manager ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
         <source>Enter your Google Tag Manager ID here.</source>
-        <target state="translated">Inserisci qui il tuo ID Google Tag Manager.</target>
+        <target>Inserisci qui il tuo ID Google Tag Manager.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
-        <target state="translated">Facebook-ID</target>
+        <target>Facebook-ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.1">
         <source>Enter your Facebook ID here.</source>
-        <target state="translated">Inserisci qui il tuo ID Facebook.</target>
+        <target>Inserisci qui il tuo ID Facebook.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorId.0">
         <source>Matomo-ID</source>
-        <target state="translated">Matomo-ID</target>
+        <target>Matomo-ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorId.1">
         <source>Enter your Matomo ID here.</source>
-        <target state="translated">Inserisci qui il tuo ID Matomo.</target>
+        <target>Inserisci qui il tuo ID Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorUrl.0">
         <source>Matomo server URL</source>
-        <target state="translated">Matomo server URL</target>
+        <target>Matomo server URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorUrl.1">
         <source>Enter the Matomo server URL here.</source>
-        <target state="translated">Inserisci qui l'URL del server Matomo.</target>
+        <target>Inserisci qui l'URL del server Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorId.0">
         <source>Matomo Container-ID</source>
-        <target state="translated">Matomo Container-ID</target>
+        <target>Matomo Container-ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorId.1">
         <source>Enter your Matomo ID here.</source>
-        <target state="translated">Inserisci qui il tuo ID Matomo.</target>
+        <target>Inserisci qui il tuo ID Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.0">
         <source>Matomo server URL</source>
-        <target state="translated">Matomo server URL</target>
+        <target>Matomo server URL</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.1">
         <source>Enter the Matomo server URL here.</source>
-        <target state="translated">Inserisci qui l'URL del server Matomo.</target>
+        <target>Inserisci qui l'URL del server Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker_vendorId.0">
         <source>Secure-Code</source>
-        <target state="translated">Secure-Code</target>
+        <target>Secure-Code</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker_vendorId.1">
         <source>Enter your etracker secure code here.</source>
-        <target state="translated">Inserisci qui il tuo codice di sicurezza etracker..</target>
+        <target>Inserisci qui il tuo codice di sicurezza etracker..</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
         <source>Additional configuration</source>
-        <target state="translated">Configurazione aggiuntiva</target>
+        <target>Configurazione aggiuntiva</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.1">
         <source>Here you can enter additional parameters that will be considered when loading the script.</source>
-        <target state="translated">Qui è possibile inserire parametri aggiuntivi che verranno considerati durante il caricamento dello script.</target>
+        <target>Qui è possibile inserire parametri aggiuntivi che verranno considerati durante il caricamento dello script.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.0">
         <source>Global configuration</source>
-        <target state="translated">Configurazione globale</target>
+        <target>Configurazione globale</target>
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.1">
         <source>Depending on the setting, global configurations are executed directly when entering the page and without any confirmation. Useful for Google Consent Mode or similar scripts, that are allowed to run without consent.</source>
-        <target state="translated">A seconda dell'impostazione, le configurazioni globali vengono eseguite direttamente quando si entra nella pagina e senza alcuna conferma. Utile per la modalità consenso di Google o per script simili, che possono essere eseguiti senza consenso.</target>
+        <target>A seconda dell'impostazione, le configurazioni globali vengono eseguite direttamente quando si entra nella pagina e senza alcuna conferma. Utile per la modalità consenso di Google o per script simili, che possono essere eseguiti senza consenso.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
         <source>Consent mode</source>
-        <target state="translated">Modalità di consenso</target>
+        <target>Modalità di consenso</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
         <source>Define the consent mode here. If you want to ask for multiple consents through Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
-        <target state="translated">Definisci qui la modalità di consenso. Se desideri richiedere più consensi tramite la modalità consenso di Google, ti preghiamo di creare un altro tipo di cookie della modalità consenso di Google.</target>
+        <target>Definisci qui la modalità di consenso. Se desideri richiedere più consensi tramite la modalità consenso di Google, ti preghiamo di creare un altro tipo di cookie della modalità consenso di Google.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
-        <target state="translated">Inserire il token predefinito</target>
+        <target>Inserire il token predefinito</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_googleAnalytics_error">
         <source>Google Analytics ID needs to be set.</source>
-        <target state="translated">È necessario impostare l'ID di Google Analytics.</target>
+        <target>È necessario impostare l'ID di Google Analytics.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig_xlabel">
         <source>Insert default configuration</source>
-        <target state="translated">Inserisci la configurazione predefinita</target>
+        <target>Inserisci la configurazione predefinita</target>
       </trans-unit>
       <trans-unit id="tl_cookie.disabled.0">
         <source>Prevent deactivation</source>
-        <target state="translated">Impedisci la disattivazione</target>
+        <target>Impedisci la disattivazione</target>
       </trans-unit>
       <trans-unit id="tl_cookie.disabled.1">
         <source>Define whether this cookie can be deactivated by the visitor.</source>
-        <target state="translated">Definisci se questo cookie può essere disattivato dal visitatore.</target>
+        <target>Definisci se questo cookie può essere disattivato dal visitatore.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.0">
         <source>Preselect consent</source>
-        <target state="translated">Preselezione del consenso</target>
+        <target>Preselezione del consenso</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.1">
         <source>Activates the checkbox when opening the cookiebar for the first time.</source>
-        <target state="translated">Attiva la casella di controllo quando si apre la cookiebar per la prima volta.</target>
+        <target>Attiva la casella di controllo quando si apre la cookiebar per la prima volta.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockCookies.0">
         <source>Always block cookies</source>
-        <target state="translated">Blocca sempre i cookie</target>
+        <target>Blocca sempre i cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockCookies.1">
         <source>This service can be used with and without cookies. Cookies are always blocked via this setting.</source>
-        <target state="translated">Questo servizio può essere utilizzato con o senza cookie. Con questa impostazione i cookie vengono sempre bloccati.</target>
+        <target>Questo servizio può essere utilizzato con o senza cookie. Con questa impostazione i cookie vengono sempre bloccati.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
-        <target state="translated">Pubblica</target>
+        <target>Pubblica</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.1">
         <source>Define here whether the cookie may be set / displayed.</source>
-        <target state="translated">Definisci qui se il cookie può essere impostato / visualizzato.</target>
+        <target>Definisci qui se il cookie può essere impostato / visualizzato.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.googleAnalytics.0">
         <source>Google Analytics</source>
-        <target state="translated">Google Analytics</target>
+        <target>Google Analytics</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics.1">
         <source>Integrate Google Analytics via Google Tag Manager</source>
-        <target state="translated">Integrazione di Google Analytics tramite Google Tag Manager</target>
+        <target>Integrazione di Google Analytics tramite Google Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.0">
         <source>Google Consent Mode (BETA)</source>
-        <target state="translated">Modalità consenso di Google (BETA)</target>
+        <target>Modalità consenso di Google (BETA)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.1">
         <source>Integrate Google Consent Mode via Google Tag Manager</source>
-        <target state="translated">Integra la modalità di consenso di Google tramite Google Tag Manager.</target>
+        <target>Integra la modalità di consenso di Google tramite Google Tag Manager.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.0">
         <source>Facebook Pixel</source>
-        <target state="translated">Facebook Pixel</target>
+        <target>Facebook Pixel</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.1">
         <source>Integrate Facebook Pixel</source>
-        <target state="translated">Integra Facebook Pixel</target>
+        <target>Integra Facebook Pixel</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo.0">
         <source>Matomo</source>
-        <target state="translated">Matomo</target>
+        <target>Matomo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo.1">
         <source>Integrate Matomo</source>
-        <target state="translated">Integra Matomo</target>
+        <target>Integra Matomo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager.0">
         <source>Matomo Tag Manager (BETA)</source>
-        <target state="translated">Matomo Tag Manager (BETA)</target>
+        <target>Matomo Tag Manager (BETA)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager.1">
         <source>Integrate Matomo Tag Manager</source>
-        <target state="translated">Integra Matomo Tag Manager</target>
+        <target>Integra Matomo Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker.0">
         <source>etracker (BETA)</source>
-        <target state="translated">etracker (BETA)</target>
+        <target>etracker (BETA)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker.1">
         <source>Integrate etracker</source>
-        <target state="translated">Integra etracker</target>
+        <target>Integra etracker</target>
       </trans-unit>
       <trans-unit id="tl_cookie.youtube.0">
         <source>YouTube</source>
-        <target state="translated">YouTube</target>
+        <target>YouTube</target>
       </trans-unit>
       <trans-unit id="tl_cookie.youtube.1">
         <source>Integrate YouTube.</source>
-        <target state="translated">Integra YouTube.</target>
+        <target>Integra YouTube.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googlemaps.0">
         <source>Google Maps</source>
-        <target state="translated">Google Maps</target>
+        <target>Google Maps</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googlemaps.1">
         <source>Integrate Google Maps.</source>
-        <target state="translated">Integra Google Maps.</target>
+        <target>Integra Google Maps.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.0">
         <source>Vimeo</source>
-        <target state="translated">Vimeo</target>
+        <target>Vimeo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.1">
         <source>Integrate Vimeo.</source>
-        <target state="translated">Integra Vimeo.</target>
+        <target>Integra Vimeo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.openstreetmap.0">
         <source>OpenStreetMap</source>
-        <target state="translated">OpenStreetMap</target>
+        <target>OpenStreetMap</target>
       </trans-unit>
       <trans-unit id="tl_cookie.openstreetmap.1">
         <source>Integrate OpenStreetMap.</source>
-        <target state="translated">Integra OpenStreetMap.</target>
+        <target>Integra OpenStreetMap.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.default.0">
         <source>Info</source>
-        <target state="translated">Avviso</target>
+        <target>Avviso</target>
       </trans-unit>
       <trans-unit id="tl_cookie.default.1">
         <source>Configure a cookie notice</source>
-        <target state="translated">Configura un avviso sui cookie</target>
+        <target>Configura un avviso sui cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.script.0">
         <source>Custom (Script)</source>
-        <target state="translated">Personalizzato (script)</target>
+        <target>Personalizzato (script)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.script.1">
         <source>Configure custom script</source>
-        <target state="translated">Configura uno script personalizzato</target>
+        <target>Configura uno script personalizzato</target>
       </trans-unit>
       <trans-unit id="tl_cookie.template.0">
         <source>Custom (Template)</source>
-        <target state="translated">Personalizzato (modello)</target>
+        <target>Personalizzato (modello)</target>
       </trans-unit>
       <trans-unit id="tl_cookie.template.1">
         <source>Include a custom script via a template. Remember that only the script tag inside the template will be used during processing.</source>
-        <target state="translated">Includi uno script personalizzato tramite un modello. Ricorda che solo il tag script all'interno del modello verrà utilizzato durante l'elaborazione.</target>
+        <target>Includi uno script personalizzato tramite un modello. Ricorda che solo il tag script all'interno del modello verrà utilizzato durante l'elaborazione.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.0">
         <source>iFrame</source>
-        <target state="translated">iFrame</target>
+        <target>iFrame</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.1">
         <source>Configure iFrame for e.g. YouTube, Vimeo or Google Maps</source>
-        <target state="translated">Configura l'iFrame, ad es. per YouTube, Vimeo o Google Maps.</target>
+        <target>Configura l'iFrame, ad es. per YouTube, Vimeo o Google Maps.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.confirmed">
         <source>Only load if cookie was accepted</source>
-        <target state="translated">Carica solo se il cookie è stato accettato</target>
+        <target>Carica solo se il cookie è stato accettato</target>
       </trans-unit>
       <trans-unit id="tl_cookie.unconfirmed">
         <source>Only load if cookie was not accepted</source>
-        <target state="translated">Carica solo se il cookie non è stato accettato</target>
+        <target>Carica solo se il cookie non è stato accettato</target>
       </trans-unit>
       <trans-unit id="tl_cookie.always">
         <source>Load always</source>
-        <target state="translated">Carica sempre</target>
+        <target>Carica sempre</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.bodyBelowContent">
         <source>Below the content in the body tag</source>
-        <target state="translated">Sotto il contenuto del tag body</target>
+        <target>Sotto il contenuto del tag body</target>
       </trans-unit>
       <trans-unit id="tl_cookie.bodyAboveContent">
         <source>Above the content in the body tag</source>
-        <target state="translated">Sopra il contenuto del tag body</target>
+        <target>Sopra il contenuto del tag body</target>
       </trans-unit>
       <trans-unit id="tl_cookie.head">
         <source>Head tag</source>
-        <target state="translated">Head tag</target>
+        <target>Head tag</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.ad_storage">
         <source>ad_storage</source>
-        <target state="translated">ad_storage</target>
+        <target>ad_storage</target>
       </trans-unit>
       <trans-unit id="tl_cookie.analytics_storage">
         <source>analytics_storage</source>
-        <target state="translated">analytics_storage</target>
+        <target>analytics_storage</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.new.0">
         <source>New</source>
-        <target state="translated">Nuovo</target>
+        <target>Nuovo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.new.1">
         <source>Create a new cookie</source>
-        <target state="translated">Crea un nuovo cookie</target>
+        <target>Crea un nuovo cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.show.0">
         <source>Show details</source>
-        <target state="translated">Mostra i dettagli</target>
+        <target>Mostra i dettagli</target>
       </trans-unit>
       <trans-unit id="tl_cookie.show.1">
         <source>Show the details of cookie ID %s</source>
-        <target state="translated">Mostra i dettagli dell'ID cookie %s</target>
+        <target>Mostra i dettagli dell'ID cookie %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.edit.0">
         <source>Edit cookie</source>
-        <target state="translated">Modifica il cookie</target>
+        <target>Modifica il cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.edit.1">
         <source>Edit cookie ID %s</source>
-        <target state="translated">Modifica l'ID del cookie %s</target>
+        <target>Modifica l'ID del cookie %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editheader.0">
         <source>Edit group</source>
-        <target state="translated">Modifica il gruppo</target>
+        <target>Modifica il gruppo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editheader.1">
         <source>Edit group</source>
-        <target state="translated">Modifica il gruppo</target>
+        <target>Modifica il gruppo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.copy.0">
         <source>Duplicate cookie</source>
-        <target state="translated">Duplica il cookie</target>
+        <target>Duplica il cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.copy.1">
         <source>Duplicate cookie ID %s</source>
-        <target state="translated">Duplica l'ID del cookie %s</target>
+        <target>Duplica l'ID del cookie %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.cut.0">
         <source>Move cookie</source>
-        <target state="translated">Sposta il cookie</target>
+        <target>Sposta il cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.cut.1">
         <source>Move cookie ID %s</source>
-        <target state="translated">Sposta il cookie ID %s</target>
+        <target>Sposta il cookie ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.delete.0">
         <source>Delete cookie</source>
-        <target state="translated">Elimina il cookie</target>
+        <target>Elimina il cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.delete.1">
         <source>Delete cookie ID %s</source>
-        <target state="translated">Elimina il cookie ID %s</target>
+        <target>Elimina il cookie ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.toggle.0">
         <source>Publish/unpublish cookie</source>
-        <target state="translated">Pubblica/non pubblicare il cookie</target>
+        <target>Pubblica/non pubblicare il cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
-        <target state="translated">Pubblica/non pubblicare l'ID del cookie %s</target>
+        <target>Pubblica/non pubblicare l'ID del cookie %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editGlobalConfig">
         <source>Edit global configuration</source>
-        <target state="translated">Modifica la configurazione globale</target>
+        <target>Modifica la configurazione globale</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.msgGoogleConsentMode">
         <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
-        <target state="translated">I cookie del tipo "Modalità di consenso Google" possono essere creati più volte a seconda della modalità di consenso.</target>
+        <target>I cookie del tipo "Modalità di consenso Google" possono essere creati più volte a seconda della modalità di consenso.</target>
       </trans-unit>
     </body>
   </file>
