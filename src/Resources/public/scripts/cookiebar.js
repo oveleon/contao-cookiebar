@@ -208,8 +208,8 @@ let ContaoCookiebar = (function () {
 
             if(true === deleteCookies && arrDelete.length){
                 let request = new XMLHttpRequest();
-                    request.open('GET', '/cookiebar/delete?' + serialize({tokens: arrDelete}), true);
-                    request.send();
+                    request.open('POST', '/cookiebar/delete', true);
+                    request.send(serialize({tokens: arrDelete}));
             }
         };
 
