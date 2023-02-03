@@ -201,7 +201,7 @@ class CookieHandler extends AbstractCookie
         );
 
         $this->addScript(
-            "try{ let gid; for(gid in window.google_tag_data.td) { window['ga-disable-' + gid] = true; }}catch (e) {}",
+            "try{ let keys = []; Object.keys(window.google_tag_manager).forEach((key) => { if(key.indexOf('G-') === 0 || key.indexOf('GTM-') === 0){ window['ga-disable-' + key] = true; } }); }catch (e) {}",
             self::LOAD_UNCONFIRMED,
             self::POS_HEAD
         );
