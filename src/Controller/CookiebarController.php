@@ -105,22 +105,26 @@ class CookiebarController extends AbstractController
         {
             // Delete cookies by their tokens
             case 'delete':
+                // The `delete` route is now called via POST, so the query string must be split.
+                $queryString = urldecode($request->getContent());
+                parse_str($queryString, $request);
+
                 if($error = $this->errorMissingParameter($request, ['tokens']))
                 {
                     return $error;
                 }
 
-                Cookiebar::deleteCookieByToken($request->get('tokens'));
+                Cookiebar::deleteCookieByToken($request['tokens']);
                 break;
 
             // Add new log entry
             case 'log':
-                if($error = $this->errorMissingParameter($request, ['configId','version']))
+                if($error = $this->errorMissingParameter($request, ['configId']))
                 {
                     return $error;
                 }
 
-                Cookiebar::log($request->get('configId'), $request->get('version'), null, $request->get('referrer'),null, $request->get('cookies'));
+                Cookiebar::log($request->get('configId'), $request->get('referrer'), null, $request->get('cookies'));
                 break;
         }
 
@@ -142,16 +146,23 @@ class CookiebarController extends AbstractController
     /**
      * Return error if the given parameters are not set
      *
-     * @param Request $request
+     * @param $request
      * @param array $arrParameter
      *
      * @return JsonResponse
      */
-    private function errorMissingParameter(Request $request, array $arrParameter)
+    private function errorMissingParameter($request, array $arrParameter)
     {
         foreach ($arrParameter as $parameter)
         {
-            if(!$request->get($parameter))
+            if(is_array($request))
+            {
+                if(!isset($request[$parameter]))
+                {
+                    return $this->error('Missing parameter: ' . $parameter);
+                }
+            }
+            elseif(!$request->get($parameter))
             {
                 return $this->error('Missing parameter: ' . $parameter);
             }

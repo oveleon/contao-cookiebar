@@ -291,7 +291,7 @@ class tl_cookiebar extends Contao\Backend
     public function loadAvailableLanguages(): array
     {
         $validLanguages = $this->getLanguages();
-        $arrLanguages = ['en', 'de', 'sv'];
+        $arrLanguages = ['en', 'de', 'fr', 'it', 'sv'];
         $arrReturn = [];
 
         foreach ($arrLanguages as $strLanguage) {
@@ -348,6 +348,7 @@ class tl_cookiebar extends Contao\Backend
         $essentialGroup->pid = $dc->id;
         $essentialGroup->identifier = 'lock';
         $essentialGroup->published = 1;
+        $essentialGroup->tstamp = time();
         $essentialGroup->save();
 
         $arrDefaultCookies = [
@@ -385,6 +386,7 @@ class tl_cookiebar extends Contao\Backend
             $newCookie->description = $arrCookie[3];
             $newCookie->identifier = $arrCookie[4];
             $newCookie->published = 1;
+            $newCookie->tstamp = time();
             $newCookie->save();
         }
 

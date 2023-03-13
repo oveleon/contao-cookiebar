@@ -28,7 +28,7 @@ class FrontendTemplateListener
     {
         $arrPageTemplates = System::getContainer()->getParameter('contao_cookiebar.page_templates') ?? ['fe_page'];
 
-        if (!in_array($template, $arrPageTemplates) && 0 !== strpos($template, 'fe_page_')) {
+        if (!in_array($template, $arrPageTemplates) && 0 !== strpos($template, 'fe_page')) {
             return $buffer;
         }
 
@@ -122,7 +122,7 @@ class FrontendTemplateListener
                 {
                     if(isset($cookie['iframeType']) && $cookie['iframeType'] === $strType)
                     {
-                        $strBlockUrl = '/cookiebar/block/'.$objPage->language.'/'.$cookie['id'].'?redirect=';
+                        $strBlockUrl = 'cookiebar/block/'.$objPage->language.'/'.$cookie['id'].'?redirect=';
 
                         // Check if the element is delivered with a preview image
                         if(strpos($buffer, 'id="splashImage') !== false)

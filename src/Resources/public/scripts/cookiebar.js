@@ -208,8 +208,8 @@ let ContaoCookiebar = (function () {
 
             if(true === deleteCookies && arrDelete.length){
                 let request = new XMLHttpRequest();
-                    request.open('GET', '/cookiebar/delete?' + serialize({tokens: arrDelete}), true);
-                    request.send();
+                    request.open('POST', '/cookiebar/delete', true);
+                    request.send(serialize({tokens: arrDelete}));
             }
         };
 
@@ -618,7 +618,6 @@ let ContaoCookiebar = (function () {
                 referrer: window.location.pathname,
                 configId: cookiebar.settings.configId,
                 pageId:   cookiebar.settings.pageId,
-                version:  cookiebar.settings.version,
                 cookies:  getStorage().cookies
             };
 

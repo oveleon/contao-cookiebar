@@ -199,6 +199,12 @@ class CookieHandler extends AbstractCookie
             self::LOAD_CONFIRMED,
             self::POS_HEAD
         );
+
+        $this->addScript(
+            "try{ let keys = []; Object.keys(window.google_tag_manager).forEach((key) => { if(key.indexOf('G-') === 0 || key.indexOf('GTM-') === 0){ window['ga-disable-' + key] = true; } }); }catch (e) {}",
+            self::LOAD_UNCONFIRMED,
+            self::POS_HEAD
+        );
     }
 
     /**
