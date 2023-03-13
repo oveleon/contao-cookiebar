@@ -60,36 +60,39 @@ let ContaoCookiebar = (function () {
                 }
             });
 
-            // Register events
-            registerEvents();
+            parent.addEventListener('load', () => {
 
-            // Register trigger events
-            registerTriggerEvents();
+                // Register events
+                registerEvents();
 
-            // Validate cookies from storage
-            validateCookies(storage.cookies);
+                // Register trigger events
+                registerTriggerEvents();
 
-            // Check visibility
-            checkVisibility();
+                // Validate cookies from storage
+                validateCookies(storage.cookies);
 
-            // Load global config
-            setConfigs();
+                // Check visibility
+                checkVisibility();
 
-            // Load scripts
-            setScripts();
+                // Load global config
+                setConfigs();
 
-            // Restore temporary status
-            restoreCookieStatus();
+                // Load scripts
+                setScripts();
 
-            // Custom event (init)
-            let event = new CustomEvent("cookiebar_init", {
-                detail: {
-                    visibility: cookiebar.show,
-                    cookiebar: cookiebar
-                }
+                // Restore temporary status
+                restoreCookieStatus();
+
+                // Custom event (init)
+                let event = new CustomEvent("cookiebar_init", {
+                    detail: {
+                        visibility: cookiebar.show,
+                        cookiebar: cookiebar
+                    }
+                });
+
+                window.dispatchEvent(event);
             });
-
-            window.dispatchEvent(event);
         };
 
         const save = function(e){
