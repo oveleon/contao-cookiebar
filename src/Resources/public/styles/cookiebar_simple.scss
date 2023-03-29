@@ -69,6 +69,7 @@ $cookiebar-animation-duration: .5s;
 
         > div + div{
           margin-top: 5px;
+          word-wrap: break-word;
         }
 
         + button.cc-detail-btn-details{

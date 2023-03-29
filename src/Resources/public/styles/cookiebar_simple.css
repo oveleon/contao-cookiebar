@@ -275,7 +275,8 @@
       .contao-cookiebar .cc-cookies .cc-cookie .cc-cookie-info > div > span {
         font-weight: 600; }
       .contao-cookiebar .cc-cookies .cc-cookie .cc-cookie-info > div + div {
-        margin-top: 5px; }
+        margin-top: 5px;
+        word-wrap: break-word; }
       .contao-cookiebar .cc-cookies .cc-cookie .cc-cookie-info + button.cc-detail-btn-details {
         margin-top: 15px; }
     .contao-cookiebar .cc-cookies .cc-cookie .cc-cookie-desc p {
