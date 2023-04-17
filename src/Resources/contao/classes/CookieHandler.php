@@ -173,13 +173,16 @@ class CookieHandler extends AbstractCookie
         $objTemplate = new BackendTemplate($this->scriptTemplate);
         $strTemplate = $objTemplate->parse();
 
-        // Regex: Get content from script tag
-        $scriptRegex = "/<script.*>([\s\S]*)<\/script>/ms";
-        preg_match($scriptRegex, $strTemplate, $matches);
+        if (empty($strTemplate)) {
+            return;
+        }
 
-        if(isset($matches[1]))
-        {
-            $this->addScript($matches[1], self::LOAD_CONFIRMED, $this->scriptPosition);
+        $doc = new \DOMDocument();
+        $doc->loadHTML($strTemplate);
+        $scripts = $doc->getElementsByTagName('script');
+
+        if ($scripts->length > 0) {
+            $this->addScript($scripts[0]->nodeValue, self::LOAD_CONFIRMED, $this->scriptPosition);
         }
     }
 
