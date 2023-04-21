@@ -178,11 +178,19 @@ class CookieHandler extends AbstractCookie
         }
 
         $doc = new \DOMDocument();
+
+        libxml_use_internal_errors(true);
         $doc->loadHTML($strTemplate);
+        libxml_clear_errors();
+
         $scripts = $doc->getElementsByTagName('script');
 
-        if ($scripts->length > 0) {
-            $this->addScript($scripts[0]->nodeValue, self::LOAD_CONFIRMED, $this->scriptPosition);
+        if ($scripts->length > 0)
+        {
+            foreach ($scripts as $script)
+            {
+                $this->addScript($script->nodeValue, self::LOAD_CONFIRMED, $this->scriptPosition);
+            }
         }
     }
 
