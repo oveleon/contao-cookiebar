@@ -13,6 +13,7 @@ let ContaoCookiebar = (function () {
             pageId: null,
             version: null,
             lifetime: 63072000,
+            consentLog: false,
             cookies: null,
             configs: null,
             doNotTrack: false,
@@ -612,6 +613,11 @@ let ContaoCookiebar = (function () {
         };
 
         const log = function(){
+            if(!cookiebar.settings.consentLog)
+            {
+                return;
+            }
+
             let request = new XMLHttpRequest();
 
             let parameter = {
