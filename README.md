@@ -51,6 +51,9 @@ npm run-script buildjs
 npm run-script buildcss
 ```
 
+### Community Extensions
+- [Contao Cookiebar Optin](https://github.com/postyou/contao-cookiebar-optin): Extends the cookie bar with an opt-in functionality for content elements. ([@postyou](https://github.com/postyou))
+
 <br>
 
 ---
