@@ -850,7 +850,7 @@ let ContaoCookiebar = (function () {
 
             for(cookieId in cookiebar.settings.cookies){
                 if(null !== cookiebar.settings.cookies[cookieId].token && cookiebar.settings.cookies[cookieId].token.indexOf(varCookie) !== -1){
-                    return true;
+                    return arrCookies.cookies.indexOf(cookiebar.settings.cookies[cookieId].id) !== -1;
                 }
             }
 
