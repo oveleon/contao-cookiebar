@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
-            'eval'                    => ['rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50'],
+            'eval'                    => ['rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50','basicEntities' => true],
             'explanation'             => 'insertTags',
             'sql'                     => "mediumtext NULL"
         ],
@@ -48,7 +48,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
-            'eval'                    => ['rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50'],
+            'eval'                    => ['rte'=>'tinyMCE', 'helpwizard'=>true, 'tl_class' => 'w50','basicEntities' => true],
             'explanation'             => 'insertTags',
             'sql'                     => "mediumtext NULL"
         ],
