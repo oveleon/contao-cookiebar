@@ -47,6 +47,9 @@ class KernelRequestListener
             $request->attributes->has('pageModel')
         ) {
 
+            // use first request of any Contao-request to handle the pageModel settings
+            // because every Contao-Request does have the PageModel
+            // @TODO maybe it can be moved to ResponseListener at first place
             $pageModel = $request->attributes->get('pageModel');
             if ($pageModel instanceof PageModel) {
 
@@ -74,7 +77,7 @@ class KernelRequestListener
         if ($this->scopeMatcher->isFrontendRequest($request)) {
 
             $response = $event->getResponse();
-            $content = $response->getContent(false);
+            $content = $response->getContent();
 
             $pageModel = $request->attributes->get('pageModel');
             if ($pageModel instanceof PageModel) {
@@ -175,7 +178,8 @@ class KernelRequestListener
     {
         $template = $model->typePrefix . $model->type;
 
-        if (null === $this->cookiebarModel ||
+        if (
+            null === $this->cookiebarModel ||
             null === $this->objPage
         ) {
             return $buffer;
