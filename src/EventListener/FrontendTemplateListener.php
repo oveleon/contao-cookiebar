@@ -28,12 +28,6 @@ class FrontendTemplateListener
     {
     }
 
-    #[AsHook('parseTemplate')]
-    public function onParseTemplate(mixed $template): void
-    {
-        $t = $template;
-    }
-
     /**
      * Output front end template
      */
