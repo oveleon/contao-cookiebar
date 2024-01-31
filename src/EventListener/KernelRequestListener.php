@@ -74,27 +74,28 @@ class KernelRequestListener
     {
         $request = $event->getRequest();
 
-        if ($this->scopeMatcher->isFrontendRequest($request)) {
+        if (
+            $this->scopeMatcher->isFrontendRequest($request) &&
+            $request->attributes->has('pageModel')
+        ) {
 
             $response = $event->getResponse();
             $content = $response->getContent();
 
+            // normal Website only have one Main-Request for fe_page
+            // Ajax-requests do not have a Root-Page so CookieBar do not work
             $pageModel = $request->attributes->get('pageModel');
-            if ($pageModel instanceof PageModel) {
+            if (
+                ($pageModel instanceof PageModel) &&
+                $this->scopeMatcher->isFrontendMainRequest($event) === true
+            ) {
 
-                $controller = $request->attributes->get('_controller');
+                $content = match ($this->rootPagePosition) {
+                    'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$this->rootPageBuffer$2</body>", $content),
+                    default => str_replace("</body>", "$this->rootPageBuffer</body>", $content),
+                };
 
-                // @TODO maybe better identifier that it is PageTemplate
-                if ($controller === 'Contao\FrontendIndex::renderPage') {
-
-                    $content = match ($this->rootPagePosition) {
-                        'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$this->rootPageBuffer$2</body>", $content),
-                        default => str_replace("</body>", "$this->rootPageBuffer</body>", $content),
-                    };
-
-                    $response->setContent($content);
-
-                }
+                $response->setContent($content);
 
             }
 
