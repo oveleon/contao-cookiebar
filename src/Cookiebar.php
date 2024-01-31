@@ -119,7 +119,8 @@ class Cookiebar
 
                                 Config::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                             }
-                        } else
+                        }
+                        else
                         {
                             /** @var GlobalConfig $objGlobalConfig */
                             $objGlobalConfig = $arrConfigs[$intConfigKey];
@@ -166,7 +167,8 @@ class Cookiebar
         if (!($varPage instanceof PageModel))
         {
             $objPage = PageModel::findById($varPage);
-        } else $objPage = $varPage;
+        }
+        else $objPage = $varPage;
 
         if (!$objPage->activateCookiebar)
         {
@@ -359,7 +361,8 @@ class Cookiebar
         if (str_contains($varToken, ','))
         {
             $varToken = explode(",", $varToken);
-        } else $varToken = [$varToken];
+        }
+        else $varToken = [$varToken];
 
         return $varToken;
     }

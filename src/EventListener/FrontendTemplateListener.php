@@ -24,9 +24,7 @@ class FrontendTemplateListener
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly TokenChecker        $tokenChecker
-    )
-    {
-    }
+    ){}
 
     /**
      * Output front end template
