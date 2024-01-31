@@ -155,8 +155,7 @@ class KernelRequestListener
             if ($objConfig->scriptPosition === 'body')
             {
                 $strHtml .= '<script src="bundles/contaocookiebar/scripts/cookiebar.min.js"></script>';
-            }
-            else
+            } else
             {
                 // @TODO better implementation
                 $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js|static';
@@ -234,8 +233,7 @@ class KernelRequestListener
                             $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="' . $strBlockUrl . urlencode($matches[2]) . '"', $buffer);
                             $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "' . $cookie['id'] . '"); iframe.src', $buffer);
 
-                        }
-                        else
+                        } else
                         {
 
                             // Regex: Modify src attribute for iframes
