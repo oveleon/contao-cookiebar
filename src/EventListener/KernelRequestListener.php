@@ -24,6 +24,7 @@ class KernelRequestListener
     private mixed $rootPagePosition = '';
     private ?PageModel $objPage = null;
     private ?CookiebarModel $cookiebarModel = null;
+    private ?string $globalCss = null;
 
     public function __construct(
         private readonly TranslatorInterface $translator,
@@ -97,6 +98,7 @@ class KernelRequestListener
                     default => str_replace("</body>", "$this->rootPageBuffer</body>", $content),
                 };
 
+                $content = $this->injectGlobalJs($content);
                 $response->setContent($content);
 
             }
@@ -149,13 +151,14 @@ class KernelRequestListener
 
             $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
 
-            if ($objConfig->scriptPosition === 'body')
+            if ((string)$objConfig->scriptPosition === 'body')
             {
                 $strHtml .= '<script src="bundles/contaocookiebar/scripts/cookiebar.min.js"></script>';
             } else
             {
                 // @TODO better implementation
-                $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js|static';
+                $this->globalCss = '<script src="/bundles/contaocookiebar/scripts/cookiebar.min.js?v=' . time() . '"></script>';
+                // $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js|static';
             }
 
             $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
@@ -305,6 +308,28 @@ class KernelRequestListener
         }
 
         return true;
+
+    }
+
+    /**
+     * @param string $content
+     * @return string
+     * see also Contao\CoreBundle\EventListener\PreviewToolbarListener
+     */
+    private function injectGlobalJs(string $content): string
+    {
+        if (is_string($this->globalCss) && $this->globalCss !== '')
+        {
+            $pos = strripos($content, '</head>');
+
+            if (false !== $pos)
+            {
+                $content = substr($content, 0, $pos) . "\n" . $this->globalCss . "\n" . substr($content, $pos);
+            }
+
+        }
+
+        return $content;
 
     }
 
