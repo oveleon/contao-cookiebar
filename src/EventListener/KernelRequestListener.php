@@ -47,14 +47,12 @@ class KernelRequestListener
             $request->attributes->has('pageModel')
         )
         {
-
             // use first request of any Contao-request to handle the pageModel settings
             // because every Contao-Request does have the PageModel
             // @TODO maybe it can be moved to ResponseListener at first place
             $pageModel = $request->attributes->get('pageModel');
             if ($pageModel instanceof PageModel)
             {
-
                 $this->objPage = $pageModel;
 
                 $rootPageObject = PageModel::findByPk($pageModel->rootId);
@@ -82,7 +80,6 @@ class KernelRequestListener
             $request->attributes->has('pageModel')
         )
         {
-
             $response = $event->getResponse();
             $content = $response->getContent();
 
@@ -94,7 +91,6 @@ class KernelRequestListener
                 $this->scopeMatcher->isFrontendMainRequest($event) === true
             )
             {
-
                 $content = match ($this->rootPagePosition)
                 {
                     'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$this->rootPageBuffer$2</body>", $content),
@@ -107,7 +103,6 @@ class KernelRequestListener
 
             if ($request->attributes->has('contentModel'))
             {
-
                 $contentModel = $request->attributes->get('contentModel');
 
                 if (!$contentModel instanceof ContentModel)
@@ -115,13 +110,14 @@ class KernelRequestListener
                     $contentModel = ContentModel::findByPk($contentModel);
                 }
 
-                $response->setContent($this->parseTemplates($contentModel, $content));
+                // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
+                $content = $this->parseTemplates($contentModel, $content);
+                $response->setContent($content);
 
             }
 
             if ($request->attributes->has('moduleModel'))
             {
-
                 $moduleModel = $request->attributes->get('moduleModel');
 
                 if (!$moduleModel instanceof ModuleModel)
@@ -129,7 +125,9 @@ class KernelRequestListener
                     $moduleModel = ModuleModel::findByPk($moduleModel);
                 }
 
-                $response->setContent($this->parseTemplates($moduleModel, $content));
+                // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
+                $content = $this->parseTemplates($moduleModel, $content);
+                $response->setContent($content);
 
             }
 
@@ -147,7 +145,6 @@ class KernelRequestListener
         $objConfig = Cookiebar::getConfigByPage($rootPageModel);
         if ($objConfig !== null)
         {
-
             $this->cookiebarModel = $objConfig;
 
             $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
@@ -205,53 +202,51 @@ class KernelRequestListener
         $arrTypes = Cookiebar::getIframeTypes();
         $arrCookies = Cookiebar::validateCookies($objConfig);
 
-        foreach ($arrTypes as $strType => $arrTemplates)
+        if (is_array($arrTypes))
         {
-
-            if (in_array($template, $arrTemplates))
+            foreach ($arrTypes as $strType => $arrTemplates)
             {
-
-                foreach ($arrCookies as $cookie)
+                if (in_array($template, $arrTemplates))
                 {
-
-                    if (isset($cookie['iframeType']) && $cookie['iframeType'] === $strType)
+                    foreach ($arrCookies as $cookie)
                     {
-
-                        $strBlockUrl = '/cookiebar/block/' . $this->objPage->language . '/' . $cookie['id'] . '?redirect=';
-
-                        // Check if the element is delivered with a preview image
-                        if (strpos($buffer, 'id="splashImage') !== false)
+                        if (isset($cookie['iframeType']) && $cookie['iframeType'] === $strType)
                         {
+                            $strBlockUrl = '/cookiebar/block/' . $this->objPage->language . '/' . $cookie['id'] . '?redirect=';
 
-                            // Regex: Modify href attribute for splash images
-                            $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
-
-                            // Get current href attribute
-                            preg_match($atagRegex, $buffer, $matches);
-
-                            // Overwrite href attribute
-                            $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="' . $strBlockUrl . urlencode($matches[2]) . '"', $buffer);
-                            $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "' . $cookie['id'] . '"); iframe.src', $buffer);
-
-                        } else
-                        {
-
-                            // Regex: Modify src attribute for iframes
-                            $frameRegex = "/<iframe([\s\S]*?)src=([\\\\\"\']+)(.*?)[\\\\\"\']+/i";
-
-                            // Get current src attribute
-                            preg_match_all($frameRegex, $buffer, $matches);
-
-                            $matchCount = count($matches[0]);
-                            for ($i = 0; $i < $matchCount; $i++)
+                            // Check if the element is delivered with a preview image
+                            if (strpos($buffer, 'id="splashImage') !== false)
                             {
+                                // Regex: Modify href attribute for splash images
+                                $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
 
-                                $quote = $matches[2][$i];
-                                $search = 'src=' . $quote;
-                                $replace = 'data-ccb-id=' . $quote . $cookie['id'] . $quote . '  src=' . $quote . $strBlockUrl . urlencode($matches[3][$i]) . $quote . ' data-src=' . $quote;
+                                // Get current href attribute
+                                preg_match($atagRegex, $buffer, $matches);
 
-                                $iframe = str_replace($search, $replace, $matches[0][$i]);
-                                $buffer = str_replace($matches[0][$i], $iframe, $buffer);
+                                // Overwrite href attribute
+                                $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="' . $strBlockUrl . urlencode($matches[2]) . '"', $buffer);
+                                $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "' . $cookie['id'] . '"); iframe.src', $buffer);
+
+                            } else
+                            {
+                                // Regex: Modify src attribute for iframes
+                                $frameRegex = "/<iframe([\s\S]*?)src=([\\\\\"\']+)(.*?)[\\\\\"\']+/i";
+
+                                // Get current src attribute
+                                preg_match_all($frameRegex, $buffer, $matches);
+
+                                $matchCount = count($matches[0]);
+                                for ($i = 0; $i < $matchCount; $i++)
+                                {
+
+                                    $quote = $matches[2][$i];
+                                    $search = 'src=' . $quote;
+                                    $replace = 'data-ccb-id=' . $quote . $cookie['id'] . $quote . '  src=' . $quote . $strBlockUrl . urlencode($matches[3][$i]) . $quote . ' data-src=' . $quote;
+
+                                    $iframe = str_replace($search, $replace, $matches[0][$i]);
+                                    $buffer = str_replace($matches[0][$i], $iframe, $buffer);
+
+                                }
 
                             }
 
@@ -259,9 +254,9 @@ class KernelRequestListener
 
                     }
 
-                }
+                    break;
 
-                break;
+                }
 
             }
 
