@@ -212,7 +212,7 @@ class Cookiebar
 
         $objTemplate = new FrontendTemplate($objConfig->template);
 
-        $cssID = unserialize($objConfig->cssID);
+        $cssID = StringUtil::deserialize($objConfig->cssID);
         $objTemplate->cssID = $cssID[0];
         $objTemplate->class = $cssID[1] ? $objConfig->template . ' ' . $objConfig->alignment . ' ' . trim($cssID[1]) : $objConfig->template . ' ' . $objConfig->alignment;
 
