@@ -25,7 +25,7 @@
     "ext-libxml": "*",
     "contao/core-bundle":"^4.9.28",
     "symfony/http-foundation":"^4.4 || ^5.2",
-    "symfony/serializer":"^4.4 || ^5.2"
+    "symfony/serializer":"^4.4 || ^5.2 || ^6.4 || ^7.0"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0"
