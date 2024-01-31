@@ -88,7 +88,7 @@ class KernelRequestListener
             $pageModel = $request->attributes->get('pageModel');
             if (
                 ($pageModel instanceof PageModel) &&
-                $this->scopeMatcher->isFrontendMainRequest($event) === true
+                $this->isPageTemplate($event) === true
             )
             {
                 $content = match ($this->rootPagePosition)
@@ -263,6 +263,48 @@ class KernelRequestListener
         }
 
         return $buffer;
+
+    }
+
+    /**
+     * @param ResponseEvent $event
+     * @return bool
+     * see also Contao\CoreBundle\EventListener\PreviewToolbarListener
+     */
+    private function isPageTemplate(ResponseEvent $event): bool
+    {
+        $request = $event->getRequest();
+        $response = $event->getResponse();
+
+        if (
+            $request->isXmlHttpRequest()
+            || (!$response->isSuccessful() && !$response->isClientError())
+        )
+        {
+            return false;
+        }
+
+        if (
+            'html' !== $request->getRequestFormat()
+            || !str_contains((string)$response->headers->get('Content-Type'), 'text/html')
+            || false !== stripos((string)$response->headers->get('Content-Disposition'), 'attachment;')
+        )
+        {
+            return false;
+        }
+
+        if (false === strripos($response->getContent(), '</body>'))
+        {
+            return false;
+        }
+
+        // @TODO Maybe this can be removed
+        if (!$this->scopeMatcher->isFrontendMainRequest($event))
+        {
+            return false;
+        }
+
+        return true;
 
     }
 
