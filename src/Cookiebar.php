@@ -66,14 +66,14 @@ class Cookiebar
         // Overwrite metadata
         if(null !== $objMeta)
         {
-            $objConfig->description = $objMeta->cookiebarDescription;
-            $objConfig->infoDescription = $objMeta->cookiebarInfoDescription;
-            $objConfig->infoUrls = $objMeta->cookiebarInfoUrls;
-            $objConfig->excludePages = $objMeta->cookiebarExcludePages;
+            $objConfig->description       = $objMeta->cookiebarDescription;
+            $objConfig->infoDescription   = $objMeta->cookiebarInfoDescription;
+            $objConfig->infoUrls          = $objMeta->cookiebarInfoUrls;
+            $objConfig->excludePages      = $objMeta->cookiebarExcludePages;
             $objConfig->buttonColorScheme = $objMeta->cookiebarButtonColorScheme;
-            $objConfig->template = $objMeta->cookiebarTemplate;
-            $objConfig->alignment = $objMeta->cookiebarAlignment;
-            $objConfig->blocking = $objMeta->cookiebarBlocking;
+            $objConfig->template          = $objMeta->cookiebarTemplate;
+            $objConfig->alignment         = $objMeta->cookiebarAlignment;
+            $objConfig->blocking          = $objMeta->cookiebarBlocking;
         }
 
         DataContainer::loadDataContainer('tl_cookie');
