@@ -13,6 +13,9 @@ services:
             - '@contao.translation.translator'
             - '@contao.security.token_checker'
             - '@contao.routing.scope_matcher'
+            - '%contao_cookiebar.lifetime%'
+            - '%contao_cookiebar.storage_key%'
+            - '%contao_cookiebar.consider_dnt%'
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

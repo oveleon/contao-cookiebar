@@ -11,7 +11,6 @@ use Contao\Model;
 use Contao\ModuleModel;
 use Contao\PageModel;
 use Contao\StringUtil;
-use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -29,7 +28,10 @@ class KernelRequestListener
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly TokenChecker        $tokenChecker,
-        private readonly ScopeMatcher        $scopeMatcher
+        private readonly ScopeMatcher        $scopeMatcher,
+        private readonly int                 $lifetime,
+        private readonly string              $storageKey,
+        private readonly bool                $considerDnt
     )
     {
     }
@@ -171,9 +173,9 @@ class KernelRequestListener
             $objConfig->id,
             $objConfig->pageId,
             $objConfig->version,
-            System::getContainer()->getParameter('contao_cookiebar.lifetime'),
-            System::getContainer()->getParameter('contao_cookiebar.storage_key'),
-            System::getContainer()->getParameter('contao_cookiebar.consider_dnt') ? 1 : 0,
+            $this->lifetime,
+            $this->storageKey,
+            $this->considerDnt ? 1 : 0,
             $pageModel->id,
             json_encode(StringUtil::deserialize($objConfig->excludePages)),
             json_encode(Cookiebar::validateCookies($objConfig)),
