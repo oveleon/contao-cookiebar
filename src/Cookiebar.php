@@ -174,7 +174,7 @@ class Cookiebar
             return null;
         }
 
-        return static::getConfig((int)$objPage->cookiebarConfig, $objPage->id, !!$objPage->overwriteCookiebarMeta ? $objPage : null);
+        return static::getConfig((int) $objPage->cookiebarConfig, $objPage->id, !!$objPage->overwriteCookiebarMeta ? $objPage : null);
     }
 
     /**
