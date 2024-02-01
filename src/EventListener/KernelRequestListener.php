@@ -253,12 +253,26 @@ class KernelRequestListener
                     for ($i = 0; $i < $matchCount; $i++)
                     {
 
+                        $iframePattern = $matches[0][$i];
                         $quote = $matches[2][$i];
-                        $search = 'src=' . $quote;
-                        $replace = 'data-ccb-id=' . $quote . $cookie['id'] . $quote . '  src=' . $quote . $strBlockUrl . urlencode($matches[3][$i]) . $quote . ' data-src=' . $quote;
 
-                        $iframe = str_replace($search, $replace, $matches[0][$i]);
-                        $buffer = str_replace($matches[0][$i], $iframe, $buffer);
+                        // @TODO check if this logic is fine
+                        // check if nested content ist still parsed
+                        // e.g. when using youtubeElement as insertTag in htmlElement and htmlElement is also defined as iframeType
+                        // 16 = youtubeElement
+                        // <div id="youtubeInsert">{{insert_content::16}}</div>
+                        if (
+                            !str_contains($iframePattern, 'data-ccb-id=' . $quote) &&
+                            !str_contains($iframePattern, 'src=' . $quote . $strBlockUrl)
+                        )
+                        {
+                            $search = 'src=' . $quote;
+                            $replace = 'data-ccb-id=' . $quote . $cookie['id'] . $quote . '  src=' . $quote . $strBlockUrl . urlencode($matches[3][$i]) . $quote . ' data-src=' . $quote;
+
+                            $iframe = str_replace($search, $replace, $iframePattern);
+                            $buffer = str_replace($iframePattern, $iframe, $buffer);
+
+                        }
 
                     }
 
