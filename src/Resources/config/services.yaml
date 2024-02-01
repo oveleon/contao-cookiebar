@@ -4,15 +4,15 @@ services:
     autoconfigure: true
     public: true
 
-  Oveleon\ContaoCookiebar\:
-    resource: '../../'
-    exclude: '../../{Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,GlobalConfig.php,Cookie.php}'
+    Oveleon\ContaoCookiebar\:
+        resource: '../../'
+        exclude: '../../{Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,GlobalConfig.php,Cookie.php}'
 
-  Oveleon\ContaoCookiebar\EventListener\KernelRequestListener:
-    arguments:
-      - '@contao.translation.translator'
-      - '@contao.security.token_checker'
-      - '@contao.routing.scope_matcher'
-    tags:
-      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
-      - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+    Oveleon\ContaoCookiebar\EventListener\KernelRequestListener:
+        arguments:
+            - '@contao.translation.translator'
+            - '@contao.security.token_checker'
+            - '@contao.routing.scope_matcher'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
