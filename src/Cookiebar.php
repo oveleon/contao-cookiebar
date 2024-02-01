@@ -166,7 +166,7 @@ class Cookiebar
     {
         if(!($varPage instanceof PageModel))
         {
-              $objPage = PageModel::findById($varPage);
+              $objPage = PageModel::findById( $varPage );
         }else $objPage = $varPage;
 
         if(!$objPage->activateCookiebar)
@@ -301,12 +301,12 @@ class Cookiebar
                     'scripts'   => $cookie->scripts
                 ];
 
-                if ($cookie->type === 'iframe')
+                if($cookie->type === 'iframe')
                 {
                     $arrCookie['iframeType'] = $cookie->iframeType;
                 }
 
-                $arrResponse[$cookie->id] = $arrCookie;
+                $arrResponse[ $cookie->id ] = $arrCookie;
             }
         }
 
@@ -320,7 +320,7 @@ class Cookiebar
     {
         $arrResponse = [];
 
-        if (null === $objConfig->configs)
+        if(null === $objConfig->configs)
         {
             return $arrResponse;
         }
@@ -328,14 +328,14 @@ class Cookiebar
         foreach ($objConfig->configs as $config)
         {
             $arrConfig = [
-                'id' => $config->id,
-                'type' => $config->type,
-                'cookies' => array_combine(array_keys($config->arrCookies), array_keys($config->arrCookies)),
+                'id'        => $config->id,
+                'type'      => $config->type,
+                'cookies'   => array_combine(array_keys($config->arrCookies), array_keys($config->arrCookies)),
                 'resources' => $config->resources,
-                'scripts' => $config->scripts
+                'scripts'   => $config->scripts
             ];
 
-            $arrResponse[$config->id] = $arrConfig;
+            $arrResponse[ $config->id ] = $arrConfig;
         }
 
         return $arrResponse;
@@ -346,19 +346,19 @@ class Cookiebar
      */
     public static function parseToken(array|string $varToken): ?array
     {
-        if (is_array($varToken))
+        if(is_array($varToken))
         {
             return $varToken;
         }
 
-        if ($varToken === ''){
+        if($varToken === ''){
             return null;
         }
 
-        if (str_contains($varToken, ','))
+        if(str_contains($varToken, ','))
         {
             $varToken = explode(",", $varToken);
-        } else $varToken = [$varToken];
+        }else $varToken = [$varToken];
 
         return $varToken;
     }
@@ -370,7 +370,7 @@ class Cookiebar
     {
         $varToken = static::parseToken($varToken);
 
-        if (null === $varToken)
+        if(null === $varToken)
         {
             return;
         }
@@ -410,17 +410,17 @@ class Cookiebar
     /**
      * Create and save new log entry
      */
-    public static function log(int $configId, ?string $url = null, ?string $ip = null, ?array $data = null): void
+    public static function log(int $configId, ?string $url=null, ?string $ip=null, ?array $data=null): void
     {
         $strIp = $ip ?? Environment::get('ip');
 
-        if (System::getContainer()->getParameter('contao_cookiebar.anonymize_ip'))
+        if(System::getContainer()->getParameter('contao_cookiebar.anonymize_ip'))
         {
             $strIp = IpUtils::anonymize($strIp);
         }
 
         // Check if the cookie bar exists (#128)
-        if (!$cookieBar = CookiebarModel::findById($configId))
+        if(!$cookieBar = CookiebarModel::findById($configId))
         {
             throw new \InvalidArgumentException("Cookie bar configuration could not be found, the log entry was skipped");
         }
@@ -439,7 +439,7 @@ class Cookiebar
         $objLog->ip = $strIp;
         $objLog->tstamp = time();
 
-        if (null !== $data)
+        if(null !== $data)
         {
             // Remove values which are not of type integer (#128)
             foreach ($data as $index => $cookieId)
