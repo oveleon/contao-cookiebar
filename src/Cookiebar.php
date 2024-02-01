@@ -45,17 +45,17 @@ class Cookiebar
      */
     public static function getConfig(int $configId, int $pageId, ?PageModel $objMeta=null): ?CookiebarModel
     {
-        if (null !== static::$configCache)
+        if(null !== static::$configCache)
         {
             return static::$configCache;
         }
 
-        if (null === $objCookiebar = CookiebarModel::findById($configId))
+        if(null === $objCookiebar = CookiebarModel::findById($configId))
         {
             throw new NoCookiebarSpecifiedException('No cookiebar specified');
         }
 
-        if (null === $objCookieGroups = CookieGroupModel::findPublishedByPid($objCookiebar->id))
+        if(null === $objCookieGroups = CookieGroupModel::findPublishedByPid($objCookiebar->id))
         {
             return null;
         }
@@ -64,7 +64,7 @@ class Cookiebar
         $arrGroups = [];
 
         // Overwrite metadata
-        if (null !== $objMeta)
+        if(null !== $objMeta)
         {
             $objConfig->description = $objMeta->cookiebarDescription;
             $objConfig->infoDescription = $objMeta->cookiebarInfoDescription;
@@ -78,18 +78,18 @@ class Cookiebar
 
         DataContainer::loadDataContainer('tl_cookie');
 
-        while ($objCookieGroups->next())
+        while($objCookieGroups->next())
         {
             $objGroup = $objCookieGroups->current();
             $arrCookies = [];
 
             $objCookies = CookieModel::findPublishedByPid($objCookieGroups->id);
 
-            if (null !== $objCookies)
+            if(null !== $objCookies)
             {
-                while ($objCookies->next())
+                while($objCookies->next())
                 {
-                    if (
+                    if(
                         ($objCookies->token === 'csrf_contao_csrf_token' && Environment::get('ssl')) ||
                         ($objCookies->token === 'csrf_https-contao_csrf_token' && !Environment::get('ssl'))
                     )
@@ -100,22 +100,22 @@ class Cookiebar
                     // Adding the global configuration with checking whether this may be used
                     $strTypePalette = $GLOBALS['TL_DCA']['tl_cookie']['palettes'][$objCookies->type] ?? false;
 
-                    if ($objCookies->globalConfig && $strTypePalette && str_contains($strTypePalette, 'globalConfig'))
+                    if($objCookies->globalConfig && $strTypePalette && str_contains($strTypePalette, 'globalConfig'))
                     {
                         $intConfigKey = $objCookies->globalConfig;
-                        $arrConfigs = Config::has(self::GLOBAL_CONFIG_KEY) ? Config::get(self::GLOBAL_CONFIG_KEY) : null;
+                        $arrConfigs  = Config::has(self::GLOBAL_CONFIG_KEY) ? Config::get(self::GLOBAL_CONFIG_KEY) : null;
 
-                        if (null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
+                        if(null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
                         {
                             /** @var GlobalConfigModel $objConfigModel */
                             $objConfigModel = GlobalConfigModel::findById($intConfigKey);
 
-                            if (null !== $objConfigModel)
+                            if(null !== $objConfigModel)
                             {
                                 $objGlobalConfig = new GlobalConfig($objConfigModel);
-                                $objGlobalConfig->addCookie($objCookies->current());
+                                $objGlobalConfig->addCookie( $objCookies->current() );
 
-                                $arrConfigs[$intConfigKey] = $objGlobalConfig;
+                                $arrConfigs[ $intConfigKey ] = $objGlobalConfig;
 
                                 Config::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                             }
