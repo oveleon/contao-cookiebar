@@ -53,9 +53,8 @@ class KernelRequestListener
             return;
         }
 
-        // use first request of any Contao-request to handle the pageModel settings
-        // because every Contao-Request does have the PageModel
-        // @TODO maybe it can be moved to ResponseListener at first place
+        // use first Contao-FrontendRequest to handle the pageModel settings
+        // normally this should be the MainRequest to handle Page
         $pageModel = $request->attributes->get('pageModel');
         if ($pageModel instanceof PageModel)
         {
