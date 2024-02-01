@@ -192,8 +192,6 @@ class KernelRequestListener
      * s*/
     private function parseTemplates(Model $model, string $buffer): string
     {
-        $template = $model->typePrefix . $model->type;
-
         if (
             null === $this->cookiebarModel ||
             null === $this->objPage
@@ -201,6 +199,8 @@ class KernelRequestListener
         {
             return $buffer;
         }
+
+        $template = $model->typePrefix . $model->type;
 
         $objConfig = $this->cookiebarModel;
 
