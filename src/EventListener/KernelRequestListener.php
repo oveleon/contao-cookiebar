@@ -79,6 +79,8 @@ class KernelRequestListener
     {
         $request = $event->getRequest();
 
+        // Ajax-Request also could render HTML-Output. So it could be that it is detected as PageTemplate.
+        // So normally Ajax-Request does not have pageModel as attribute. Therefore, check the parameter
         if (
             !$this->scopeMatcher->isFrontendRequest($request) ||
             !$request->attributes->has('pageModel')
