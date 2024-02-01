@@ -216,47 +216,48 @@ class KernelRequestListener
 
         foreach ($arrTypes as $strType => $arrTemplates)
         {
-            if (in_array($template, $arrTemplates))
+            if (!in_array($template, $arrTemplates))
             {
-                foreach ($arrCookies as $cookie)
+                continue;
+            }
+
+            foreach ($arrCookies as $cookie)
+            {
+                if (isset($cookie['iframeType']) && $cookie['iframeType'] === $strType)
                 {
-                    if (isset($cookie['iframeType']) && $cookie['iframeType'] === $strType)
+                    $strBlockUrl = '/cookiebar/block/' . $this->objPage->language . '/' . $cookie['id'] . '?redirect=';
+
+                    // Check if the element is delivered with a preview image
+                    if (strpos($buffer, 'id="splashImage') !== false)
                     {
-                        $strBlockUrl = '/cookiebar/block/' . $this->objPage->language . '/' . $cookie['id'] . '?redirect=';
+                        // Regex: Modify href attribute for splash images
+                        $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
 
-                        // Check if the element is delivered with a preview image
-                        if (strpos($buffer, 'id="splashImage') !== false)
+                        // Get current href attribute
+                        preg_match($atagRegex, $buffer, $matches);
+
+                        // Overwrite href attribute
+                        $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="' . $strBlockUrl . urlencode($matches[2]) . '"', $buffer);
+                        $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "' . $cookie['id'] . '"); iframe.src', $buffer);
+
+                    } else
+                    {
+                        // Regex: Modify src attribute for iframes
+                        $frameRegex = "/<iframe([\s\S]*?)src=([\\\\\"\']+)(.*?)[\\\\\"\']+/i";
+
+                        // Get current src attribute
+                        preg_match_all($frameRegex, $buffer, $matches);
+
+                        $matchCount = count($matches[0]);
+                        for ($i = 0; $i < $matchCount; $i++)
                         {
-                            // Regex: Modify href attribute for splash images
-                            $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
 
-                            // Get current href attribute
-                            preg_match($atagRegex, $buffer, $matches);
+                            $quote = $matches[2][$i];
+                            $search = 'src=' . $quote;
+                            $replace = 'data-ccb-id=' . $quote . $cookie['id'] . $quote . '  src=' . $quote . $strBlockUrl . urlencode($matches[3][$i]) . $quote . ' data-src=' . $quote;
 
-                            // Overwrite href attribute
-                            $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="' . $strBlockUrl . urlencode($matches[2]) . '"', $buffer);
-                            $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "' . $cookie['id'] . '"); iframe.src', $buffer);
-
-                        } else
-                        {
-                            // Regex: Modify src attribute for iframes
-                            $frameRegex = "/<iframe([\s\S]*?)src=([\\\\\"\']+)(.*?)[\\\\\"\']+/i";
-
-                            // Get current src attribute
-                            preg_match_all($frameRegex, $buffer, $matches);
-
-                            $matchCount = count($matches[0]);
-                            for ($i = 0; $i < $matchCount; $i++)
-                            {
-
-                                $quote = $matches[2][$i];
-                                $search = 'src=' . $quote;
-                                $replace = 'data-ccb-id=' . $quote . $cookie['id'] . $quote . '  src=' . $quote . $strBlockUrl . urlencode($matches[3][$i]) . $quote . ' data-src=' . $quote;
-
-                                $iframe = str_replace($search, $replace, $matches[0][$i]);
-                                $buffer = str_replace($matches[0][$i], $iframe, $buffer);
-
-                            }
+                            $iframe = str_replace($search, $replace, $matches[0][$i]);
+                            $buffer = str_replace($matches[0][$i], $iframe, $buffer);
 
                         }
 
@@ -264,9 +265,9 @@ class KernelRequestListener
 
                 }
 
-                break;
-
             }
+
+            break;
 
         }
 
