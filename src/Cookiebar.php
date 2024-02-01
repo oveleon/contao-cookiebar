@@ -103,7 +103,7 @@ class Cookiebar
                     if($objCookies->globalConfig && $strTypePalette && str_contains($strTypePalette, 'globalConfig'))
                     {
                         $intConfigKey = $objCookies->globalConfig;
-                        $arrConfigs  = Config::has(self::GLOBAL_CONFIG_KEY) ? Config::get(self::GLOBAL_CONFIG_KEY) : null;
+                        $arrConfigs   = Config::has(self::GLOBAL_CONFIG_KEY) ? Config::get(self::GLOBAL_CONFIG_KEY) : null;
 
                         if(null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
                         {
@@ -123,10 +123,10 @@ class Cookiebar
                         else
                         {
                             /** @var GlobalConfig $objGlobalConfig */
-                            $objGlobalConfig = $arrConfigs[$intConfigKey];
-                            $objGlobalConfig->addCookie($objCookies->current());
+                            $objGlobalConfig = $arrConfigs[ $intConfigKey ];
+                            $objGlobalConfig->addCookie( $objCookies->current() );
 
-                            $arrConfigs[$intConfigKey] = $objGlobalConfig;
+                            $arrConfigs[ $intConfigKey ] = $objGlobalConfig;
 
                             Config::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                         }
@@ -148,7 +148,7 @@ class Cookiebar
         $objConfig->configs = null;
 
         // Add global configuration
-        if (Config::has(self::GLOBAL_CONFIG_KEY))
+        if(Config::has(self::GLOBAL_CONFIG_KEY))
         {
             $objConfig->configs = Config::get(self::GLOBAL_CONFIG_KEY);
         }
@@ -164,12 +164,12 @@ class Cookiebar
      */
     public static function getConfigByPage(int|PageModel $varPage): ?CookiebarModel
     {
-        if (!($varPage instanceof PageModel))
+        if(!($varPage instanceof PageModel))
         {
-            $objPage = PageModel::findById($varPage);
-        } else $objPage = $varPage;
+              $objPage = PageModel::findById($varPage);
+        }else $objPage = $varPage;
 
-        if (!$objPage->activateCookiebar)
+        if(!$objPage->activateCookiebar)
         {
             return null;
         }
@@ -185,11 +185,11 @@ class Cookiebar
         $objCookiebars = CookiebarModel::findAll();
         $arrCookiebars = [];
 
-        if (null != $objCookiebars)
+        if(null != $objCookiebars)
         {
-            while ($objCookiebars->next())
+            while($objCookiebars->next())
             {
-                $arrCookiebars[$objCookiebars->id] = $objCookiebars->title;
+                $arrCookiebars[ $objCookiebars->id ] = $objCookiebars->title;
             }
         }
 
@@ -217,7 +217,7 @@ class Cookiebar
         $objTemplate->cssID = $cssID[0];
         $objTemplate->class = $cssID[1] ? $objConfig->template . ' ' . $objConfig->alignment . ' ' . trim($cssID[1]) : $objConfig->template . ' ' . $objConfig->alignment;
 
-        if ($objConfig->blocking)
+        if($objConfig->blocking)
         {
             $objTemplate->class .= ' cc-blocked';
         }
@@ -242,14 +242,14 @@ class Cookiebar
         // Collect info links
         $arrLinks = [];
 
-        if ($varLinks = StringUtil::deserialize($objConfig->infoUrls))
+        if($varLinks = StringUtil::deserialize($objConfig->infoUrls))
         {
             foreach ($varLinks as $link) {
                 $objPage = PageModel::findById($link);
 
-                if (null !== $objPage)
+                if(null !== $objPage)
                 {
-                    $arrLinks[$objPage->title] = $objPage->getAbsoluteUrl();
+                    $arrLinks[ $objPage->title ] = $objPage->getAbsoluteUrl();
                 }
             }
         }
@@ -287,18 +287,18 @@ class Cookiebar
         {
             foreach ($group->cookies as $cookie)
             {
-                if ($cookie->isLocked)
+                if($cookie->isLocked)
                 {
                     continue;
                 }
 
                 $arrCookie = [
-                    'id' => $cookie->id,
-                    'type' => $cookie->type,
-                    'checked' => !!$cookie->checked,
-                    'token' => static::parseToken($cookie->token),
+                    'id'        => $cookie->id,
+                    'type'      => $cookie->type,
+                    'checked'   => !!$cookie->checked,
+                    'token'     => static::parseToken($cookie->token),
                     'resources' => $cookie->resources,
-                    'scripts' => $cookie->scripts
+                    'scripts'   => $cookie->scripts
                 ];
 
                 if ($cookie->type === 'iframe')
