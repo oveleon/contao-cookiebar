@@ -46,7 +46,7 @@ class KernelRequestListener
 
         if (
             $this->rootPageBuffer !== null ||
-            $this->scopeMatcher->isFrontendRequest($request) === false ||
+            !$this->scopeMatcher->isFrontendRequest($request) ||
             !$request->attributes->has('pageModel')
         )
         {
@@ -80,7 +80,7 @@ class KernelRequestListener
         $request = $event->getRequest();
 
         if (
-            $this->scopeMatcher->isFrontendRequest($request) === false ||
+            !$this->scopeMatcher->isFrontendRequest($request) ||
             !$request->attributes->has('pageModel')
         )
         {
@@ -90,13 +90,7 @@ class KernelRequestListener
         $response = $event->getResponse();
         $content = $response->getContent();
 
-        // normal Website only have one Main-Request for fe_page
-        // Ajax-requests do not have a Root-Page so CookieBar do not work
-        $pageModel = $request->attributes->get('pageModel');
-        if (
-            ($pageModel instanceof PageModel) &&
-            $this->isPageTemplate($event) === true
-        )
+        if ($this->isPageTemplate($event) === true)
         {
             $content = match ($this->rootPagePosition)
             {
