@@ -357,7 +357,7 @@ class Cookiebar
 
         if(str_contains($varToken, ','))
         {
-            $varToken = explode(",", $varToken);
+              $varToken = explode(",", $varToken);
         }else $varToken = [$varToken];
 
         return $varToken;
@@ -444,7 +444,7 @@ class Cookiebar
             // Remove values which are not of type integer (#128)
             foreach ($data as $index => $cookieId)
             {
-                if (!((int)$cookieId == $cookieId))
+                if(!((int)$cookieId == $cookieId))
                 {
                     unset($data[$index]);
                 }
