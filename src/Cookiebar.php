@@ -43,7 +43,7 @@ class Cookiebar
     /**
      * Create and return config object
      */
-    public static function getConfig(int $configId, int $pageId, ?PageModel $objMeta = null): ?CookiebarModel
+    public static function getConfig(int $configId, int $pageId, ?PageModel $objMeta=null): ?CookiebarModel
     {
         if (null !== static::$configCache)
         {
@@ -119,7 +119,8 @@ class Cookiebar
 
                                 Config::set(self::GLOBAL_CONFIG_KEY, $arrConfigs);
                             }
-                        } else
+                        }
+                        else
                         {
                             /** @var GlobalConfig $objGlobalConfig */
                             $objGlobalConfig = $arrConfigs[$intConfigKey];
@@ -243,8 +244,7 @@ class Cookiebar
 
         if ($varLinks = StringUtil::deserialize($objConfig->infoUrls))
         {
-            foreach ($varLinks as $link)
-            {
+            foreach ($varLinks as $link) {
                 $objPage = PageModel::findById($link);
 
                 if (null !== $objPage)
@@ -351,8 +351,7 @@ class Cookiebar
             return $varToken;
         }
 
-        if ($varToken === '')
-        {
+        if ($varToken === ''){
             return null;
         }
 
