@@ -20,7 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class KernelRequestListener
 {
     private ?string $rootPageBuffer = null;
-    private mixed $rootPagePosition = '';
+    private ?PageModel $objRootPage = null;
     private ?PageModel $objPage = null;
     private ?CookiebarModel $cookiebarModel = null;
     private ?string $globalCss = null;
@@ -44,8 +44,9 @@ class KernelRequestListener
     {
         $request = $event->getRequest();
 
+        // if cookieBar is deactivated in rootPage this is also caught because $this->objRootPage still instanced
         if (
-            $this->rootPageBuffer !== null ||
+            $this->objRootPage instanceof PageModel ||
             !$this->scopeMatcher->isFrontendRequest($request) ||
             !$request->attributes->has('pageModel')
         )
@@ -62,12 +63,14 @@ class KernelRequestListener
             $pageModel->type === 'regular'
         )
         {
-            $this->objPage = $pageModel;
-
             $rootPageObject = PageModel::findByPk($pageModel->rootId);
             if ($rootPageObject instanceof PageModel)
             {
-                $this->prepareCookieBar($pageModel, $rootPageObject);
+                $this->objRootPage = $rootPageObject;
+                $this->objPage = $pageModel;
+
+                $this->prepareCookieBar();
+
             }
 
         }
@@ -96,9 +99,12 @@ class KernelRequestListener
         $response = $event->getResponse();
         $content = $response->getContent();
 
-        if ($this->isPageTemplate($event) === true)
+        if (
+            $this->isPageTemplate($event) === true &&
+            $this->cookiebarModel instanceof CookiebarModel
+        )
         {
-            $content = match ($this->rootPagePosition)
+            $content = match ($this->cookiebarModel->position)
             {
                 'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$this->rootPageBuffer$2</body>", $content),
                 default => str_replace("</body>", "$this->rootPageBuffer</body>", $content),
@@ -142,13 +148,19 @@ class KernelRequestListener
     }
 
     /**
-     * @param PageModel $pageModel
-     * @param PageModel $rootPageModel
      * @return void
      */
-    private function prepareCookieBar(PageModel $pageModel, PageModel $rootPageModel): void
+    private function prepareCookieBar(): void
     {
-        $objConfig = Cookiebar::getConfigByPage($rootPageModel);
+        if (
+            !$this->objRootPage instanceof PageModel ||
+            !$this->objPage instanceof PageModel
+        )
+        {
+            return;
+        }
+
+        $objConfig = Cookiebar::getConfigByPage($this->objRootPage);
 
         if (!$objConfig instanceof CookiebarModel)
         {
@@ -157,7 +169,7 @@ class KernelRequestListener
 
         $this->cookiebarModel = $objConfig;
 
-        $strHtml = Cookiebar::parseCookiebarTemplate($objConfig, $rootPageModel->language);
+        $strHtml = Cookiebar::parseCookiebarTemplate($objConfig, $this->objRootPage->language);
 
         if ((string)$objConfig->scriptPosition === 'body')
         {
@@ -176,7 +188,7 @@ class KernelRequestListener
             $this->lifetime,
             $this->storageKey,
             $this->considerDnt ? 1 : 0,
-            $pageModel->id,
+            $this->objPage->id,
             json_encode(StringUtil::deserialize($objConfig->excludePages)),
             json_encode(Cookiebar::validateCookies($objConfig)),
             json_encode(Cookiebar::validateGlobalConfigs($objConfig)),
@@ -185,7 +197,6 @@ class KernelRequestListener
         ]);
 
         $this->rootPageBuffer = $strHtml;
-        $this->rootPagePosition = $objConfig->position;
 
     }
 
