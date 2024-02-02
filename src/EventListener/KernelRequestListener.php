@@ -100,8 +100,8 @@ class KernelRequestListener
         $content = $response->getContent();
 
         if (
-            $this->isPageTemplate($event) === true &&
-            $this->cookiebarModel instanceof CookiebarModel
+            $this->cookiebarModel instanceof CookiebarModel &&
+            $this->isPageTemplate($event) === true
         )
         {
             $content = match ($this->cookiebarModel->position)
@@ -115,7 +115,10 @@ class KernelRequestListener
 
         }
 
-        if ($request->attributes->has('contentModel'))
+        if (
+            $this->cookiebarModel instanceof CookiebarModel &&
+            $request->attributes->has('contentModel')
+        )
         {
             $contentModel = $request->attributes->get('contentModel');
 
@@ -130,7 +133,10 @@ class KernelRequestListener
 
         }
 
-        if ($request->attributes->has('moduleModel'))
+        if (
+            $this->cookiebarModel instanceof CookiebarModel &&
+            $request->attributes->has('moduleModel')
+        )
         {
             $moduleModel = $request->attributes->get('moduleModel');
 
