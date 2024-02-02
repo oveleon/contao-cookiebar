@@ -88,6 +88,7 @@ class KernelRequestListener
         // Ajax-Request also could render HTML-Output. So it could be that it is detected as PageTemplate.
         // So normally Ajax-Request does not have pageModel as attribute. Therefore, check the parameter
         if (
+            !$this->cookiebarModel instanceof CookiebarModel ||
             !$this->objPage instanceof PageModel ||
             !$this->scopeMatcher->isFrontendRequest($request) ||
             !$request->attributes->has('pageModel')
@@ -99,10 +100,7 @@ class KernelRequestListener
         $response = $event->getResponse();
         $content = $response->getContent();
 
-        if (
-            $this->cookiebarModel instanceof CookiebarModel &&
-            $this->isPageTemplate($event) === true
-        )
+        if ($this->isPageTemplate($event) === true)
         {
             $content = match ($this->cookiebarModel->position)
             {
@@ -115,10 +113,7 @@ class KernelRequestListener
 
         }
 
-        if (
-            $this->cookiebarModel instanceof CookiebarModel &&
-            $request->attributes->has('contentModel')
-        )
+        if ($request->attributes->has('contentModel'))
         {
             $contentModel = $request->attributes->get('contentModel');
 
@@ -133,10 +128,7 @@ class KernelRequestListener
 
         }
 
-        if (
-            $this->cookiebarModel instanceof CookiebarModel &&
-            $request->attributes->has('moduleModel')
-        )
+        if ($request->attributes->has('moduleModel'))
         {
             $moduleModel = $request->attributes->get('moduleModel');
 
