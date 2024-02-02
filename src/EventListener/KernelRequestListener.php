@@ -55,8 +55,12 @@ class KernelRequestListener
 
         // use first Contao-FrontendRequest to handle the pageModel settings
         // normally this should be the MainRequest to handle Page
+        // check also pageType because it also could be a rootPage which is redirected then
         $pageModel = $request->attributes->get('pageModel');
-        if ($pageModel instanceof PageModel)
+        if (
+            $pageModel instanceof PageModel &&
+            $pageModel->type === 'regular'
+        )
         {
             $this->objPage = $pageModel;
 
@@ -81,6 +85,7 @@ class KernelRequestListener
         // Ajax-Request also could render HTML-Output. So it could be that it is detected as PageTemplate.
         // So normally Ajax-Request does not have pageModel as attribute. Therefore, check the parameter
         if (
+            !$this->objPage instanceof PageModel ||
             !$this->scopeMatcher->isFrontendRequest($request) ||
             !$request->attributes->has('pageModel')
         )
