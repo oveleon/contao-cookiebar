@@ -207,9 +207,9 @@ class Cookiebar
     /**
      * Parse Cookiebar template
      */
-    public static function parseCookiebarTemplate(CookiebarModel $objConfig): string
+    public static function parseCookiebarTemplate(CookiebarModel $objConfig, null|string $strLanguage = null): string
     {
-        System::loadLanguageFile('tl_cookiebar');
+        System::loadLanguageFile('tl_cookiebar', $strLanguage);
 
         $objTemplate = new FrontendTemplate($objConfig->template);
 

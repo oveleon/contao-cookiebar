@@ -157,7 +157,7 @@ class KernelRequestListener
 
         $this->cookiebarModel = $objConfig;
 
-        $strHtml = Cookiebar::parseCookiebarTemplate($objConfig);
+        $strHtml = Cookiebar::parseCookiebarTemplate($objConfig, $rootPageModel->language);
 
         if ((string)$objConfig->scriptPosition === 'body')
         {
