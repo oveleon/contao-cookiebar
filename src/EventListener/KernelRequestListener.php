@@ -158,18 +158,17 @@ class KernelRequestListener
             return;
         }
 
-        $objConfig = Cookiebar::getConfigByPage($this->objRootPage);
+        $this->cookiebarModel = Cookiebar::getConfigByPage($this->objRootPage);
 
-        if (!$objConfig instanceof CookiebarModel)
+        if (!$this->cookiebarModel instanceof CookiebarModel)
         {
+            $this->cookiebarModel = null;
             return;
         }
 
-        $this->cookiebarModel = $objConfig;
+        $strHtml = Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language);
 
-        $strHtml = Cookiebar::parseCookiebarTemplate($objConfig, $this->objRootPage->language);
-
-        if ((string)$objConfig->scriptPosition === 'body')
+        if ((string)$this->cookiebarModel->scriptPosition === 'body')
         {
             $strHtml .= '<script src="bundles/contaocookiebar/scripts/cookiebar.min.js"></script>';
         } else
@@ -180,17 +179,17 @@ class KernelRequestListener
         }
 
         $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
-            $objConfig->id,
-            $objConfig->pageId,
-            $objConfig->version,
+            $this->cookiebarModel->id,
+            $this->cookiebarModel->pageId,
+            $this->cookiebarModel->version,
             $this->lifetime,
             $this->storageKey,
             $this->considerDnt ? 1 : 0,
             $this->objPage->id,
-            json_encode(StringUtil::deserialize($objConfig->excludePages)),
-            json_encode(Cookiebar::validateCookies($objConfig)),
-            json_encode(Cookiebar::validateGlobalConfigs($objConfig)),
-            $this->tokenChecker->hasBackendUser() && !!$objConfig->disableTrackingWhileLoggedIn ? 1 : 0,
+            json_encode(StringUtil::deserialize($this->cookiebarModel->excludePages)),
+            json_encode(Cookiebar::validateCookies($this->cookiebarModel)),
+            json_encode(Cookiebar::validateGlobalConfigs($this->cookiebarModel)),
+            $this->tokenChecker->hasBackendUser() && !!$this->cookiebarModel->disableTrackingWhileLoggedIn ? 1 : 0,
             $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default')
         ]);
 
@@ -206,8 +205,8 @@ class KernelRequestListener
     private function parseTemplates(Model $model, string $buffer): string
     {
         if (
-            null === $this->cookiebarModel ||
-            null === $this->objPage
+            !$this->cookiebarModel instanceof CookiebarModel ||
+            !$this->objPage instanceof PageModel
         )
         {
             return $buffer;
@@ -215,10 +214,8 @@ class KernelRequestListener
 
         $template = $model->typePrefix . $model->type;
 
-        $objConfig = $this->cookiebarModel;
-
         $arrTypes = Cookiebar::getIframeTypes();
-        $arrCookies = Cookiebar::validateCookies($objConfig);
+        $arrCookies = Cookiebar::validateCookies($this->cookiebarModel);
 
         if (!is_array($arrTypes))
         {
