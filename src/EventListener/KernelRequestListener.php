@@ -11,6 +11,7 @@ use Contao\Model;
 use Contao\ModuleModel;
 use Contao\PageModel;
 use Contao\StringUtil;
+use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -23,7 +24,7 @@ class KernelRequestListener
     private ?PageModel $objRootPage = null;
     private ?PageModel $objPage = null;
     private ?CookiebarModel $cookiebarModel = null;
-    private ?string $globalCss = null;
+    private ?string $globalJavaScript = null;
 
     public function __construct(
         private readonly TranslatorInterface $translator,
@@ -168,14 +169,16 @@ class KernelRequestListener
 
         $strHtml = Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language);
 
-        if ((string)$this->cookiebarModel->scriptPosition === 'body')
+        // Always add cache busting
+        $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
+        $mtime = (string) filemtime($this->getRealPath($javascript));
+        $script = '<script src="'. $javascript . '?v=' . substr(md5($mtime), 0, 8) .'"></script>';
+
+        if ((string) $this->cookiebarModel->scriptPosition === 'body')
         {
-            $strHtml .= '<script src="bundles/contaocookiebar/scripts/cookiebar.min.js"></script>';
-        } else
-        {
-            // @TODO better implementation
-            $this->globalCss = '<script src="/bundles/contaocookiebar/scripts/cookiebar.min.js?v=' . time() . '"></script>';
-            // $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocookiebar/scripts/cookiebar.min.js|static';
+            $strHtml .= $script;
+        } else {
+            $this->globalJavaScript = $script;
         }
 
         $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
@@ -341,13 +344,13 @@ class KernelRequestListener
      */
     private function injectGlobalJs(string $content): string
     {
-        if (is_string($this->globalCss) && $this->globalCss !== '')
+        if (is_string($this->globalJavaScript) && $this->globalJavaScript !== '')
         {
             $pos = strripos($content, '</head>');
 
             if (false !== $pos)
             {
-                $content = substr($content, 0, $pos) . "\n" . $this->globalCss . "\n" . substr($content, $pos);
+                $content = substr($content, 0, $pos) . "\n" . $this->globalJavaScript . "\n" . substr($content, $pos);
             }
 
         }
@@ -356,4 +359,23 @@ class KernelRequestListener
 
     }
 
+    private function getRealPath(string $strFile): string
+    {
+        $container = System::getContainer();
+        $strRootDir = $container->getParameter('kernel.project_dir');
+
+        // Check the source file
+        if (!file_exists($strRootDir . '/' . $strFile))
+        {
+            $strWebDir = StringUtil::stripRootDir($container->getParameter('contao.web_dir'));
+            $webDirPath = $strRootDir . '/' . $strWebDir . '/' . $strFile;
+
+            if (file_exists($webDirPath))
+            {
+                return $webDirPath;
+            }
+        }
+
+        return $strFile;
+    }
 }
