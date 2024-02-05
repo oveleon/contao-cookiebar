@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Oveleon\ContaoCookiebar\EventListener;
 
 use Contao\ContentModel;
+use Contao\ContentProxy;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
+use Contao\Model;
 use Contao\ModuleModel;
 use Contao\ModuleProxy;
 use Contao\PageModel;
@@ -33,7 +35,9 @@ class KernelRequestListener
         private readonly int                 $lifetime,
         private readonly string              $storageKey,
         private readonly bool                $considerDnt
-    ){}
+    )
+    {
+    }
 
     /**
      * @param RequestEvent $event
@@ -114,7 +118,7 @@ class KernelRequestListener
             }
 
             // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
-            $content = $this->parseTemplates($contentModel->typePrefix . $contentModel->type, $content);
+            $content = $this->parseTemplates($contentModel, $content);
             $response->setContent($content);
         }
 
@@ -128,23 +132,24 @@ class KernelRequestListener
             }
 
             // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
-            $content = $this->parseTemplates($moduleModel->typePrefix . $moduleModel->type, $content);
+            $content = $this->parseTemplates($moduleModel, $content);
             $response->setContent($content);
         }
     }
 
     /**
-     * @param ModuleModel $model
+     * @param Model $model
      * @param string $buffer
      * @param mixed $module
      * @return string
      * This is for legacyTemplates without Controller. @TODO to be removed in future
      */
-    public function onGetFrontendModule(ModuleModel $model, string $buffer, mixed $module): string
+    public function onGetModule(Model $model, string $buffer, mixed $module): string
     {
-        // if !$module instanceof ModuleProxy then it´s currently not a Fragment
+        // if !$module instanceof ModuleProxy || ContentProxy then it´s currently not a Fragment
         if (
             $module instanceof ModuleProxy ||
+            $module instanceof ContentProxy ||
             !$this->cookiebarModel instanceof CookiebarModel ||
             !$this->objPage instanceof PageModel
         )
@@ -152,7 +157,7 @@ class KernelRequestListener
             return $buffer;
         }
 
-        return $this->parseTemplates($model->typePrefix . $model->type, $buffer);
+        return $this->parseTemplates($model, $buffer);
     }
 
     /**
@@ -180,13 +185,14 @@ class KernelRequestListener
 
         // Always add cache busting
         $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
-        $mtime = (string) filemtime($this->getRealPath($javascript));
-        $script = '<script src="'. $javascript . '?v=' . substr(md5($mtime), 0, 8) .'"></script>';
+        $mtime = (string)filemtime($this->getRealPath($javascript));
+        $script = '<script src="' . $javascript . '?v=' . substr(md5($mtime), 0, 8) . '"></script>';
 
         if ($this->cookiebarModel->scriptPosition === 'body')
         {
             $strHtml .= $script;
-        } else {
+        } else
+        {
             $this->globalJavaScript = $script;
         }
 
@@ -209,12 +215,12 @@ class KernelRequestListener
     }
 
     /**
-     * @param string $template
+     * @param Model $model
      * @param string $buffer
      * @return string
      * s
      */
-    private function parseTemplates(string $template, string $buffer): string
+    private function parseTemplates(Model $model, string $buffer): string
     {
         if (
             !$this->cookiebarModel instanceof CookiebarModel ||
@@ -226,6 +232,12 @@ class KernelRequestListener
 
         $arrTypes = Cookiebar::getIframeTypes();
         $arrCookies = Cookiebar::validateCookies($this->cookiebarModel);
+
+        $template = $model->typePrefix . $model->type;
+        if ($model->customTpl && $model->customTpl !== '')
+        {
+            $template = $model->customTpl;
+        }
 
         if (!is_array($arrTypes))
         {
@@ -260,8 +272,7 @@ class KernelRequestListener
                     // Overwrite href attribute
                     $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="' . $strBlockUrl . urlencode($matches[2]) . '"', $buffer);
                     $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "' . $cookie['id'] . '"); iframe.src', $buffer);
-                }
-                else
+                } else
                 {
                     // Regex: Modify src attribute for iframes
                     $frameRegex = "/<iframe([\s\S]*?)src=([\\\\\"\']+)(.*?)[\\\\\"\']+/i";
