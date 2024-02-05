@@ -7,8 +7,8 @@ namespace Oveleon\ContaoCookiebar\EventListener;
 use Contao\ContentModel;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
-use Contao\Model;
 use Contao\ModuleModel;
+use Contao\ModuleProxy;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
@@ -115,7 +115,7 @@ class KernelRequestListener
             }
 
             // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
-            $content = $this->parseTemplates($contentModel, $content);
+            $content = $this->parseTemplates($contentModel->typePrefix . $contentModel->type, $content);
             $response->setContent($content);
 
         }
@@ -130,11 +130,33 @@ class KernelRequestListener
             }
 
             // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
-            $content = $this->parseTemplates($moduleModel, $content);
+            $content = $this->parseTemplates($moduleModel->typePrefix . $moduleModel->type, $content);
             $response->setContent($content);
 
         }
 
+    }
+
+    /**
+     * @param ModuleModel $model
+     * @param string $buffer
+     * @param mixed $module
+     * @return string
+     * This is for legacyTemplates without Controller. @TODO to be removed in future
+     */
+    public function onGetFrontendModule(ModuleModel $model, string $buffer, mixed $module): string
+    {
+        // if !$module instanceof ModuleProxy then it´s currently not a Fragment
+        if (
+            $module instanceof ModuleProxy ||
+            !$this->cookiebarModel instanceof CookiebarModel ||
+            !$this->objPage instanceof PageModel
+        )
+        {
+            return $buffer;
+        }
+
+        return $this->parseTemplates($model->typePrefix . $model->type, $buffer);
     }
 
     /**
@@ -192,11 +214,12 @@ class KernelRequestListener
     }
 
     /**
-     * @param Model $model
+     * @param string $template
      * @param string $buffer
      * @return string
-     * s*/
-    private function parseTemplates(Model $model, string $buffer): string
+     * s
+     */
+    private function parseTemplates(string $template, string $buffer): string
     {
         if (
             !$this->cookiebarModel instanceof CookiebarModel ||
@@ -205,8 +228,6 @@ class KernelRequestListener
         {
             return $buffer;
         }
-
-        $template = $model->typePrefix . $model->type;
 
         $arrTypes = Cookiebar::getIframeTypes();
         $arrCookies = Cookiebar::validateCookies($this->cookiebarModel);
@@ -306,7 +327,8 @@ class KernelRequestListener
             !$this->scopeMatcher->isFrontendMainRequest($event) ||
             $request->isXmlHttpRequest() ||
             (!$response->isSuccessful() && !$response->isClientError())
-        ) {
+        )
+        {
             return false;
         }
 
