@@ -28,6 +28,9 @@ class KernelRequestListener
     private ?CookiebarModel $cookiebarModel = null;
     private ?string $globalJavaScript = null;
 
+    private ?array $types = null;
+    private array $cookies = [];
+
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly TokenChecker        $tokenChecker,
@@ -140,16 +143,16 @@ class KernelRequestListener
     /**
      * @param Model $model
      * @param string $buffer
-     * @param mixed $module
+     * @param mixed $context
      * @return string
      * This is for legacyTemplates without Controller. @TODO to be removed in future
      */
-    public function onGetModule(Model $model, string $buffer, mixed $module): string
+    public function onParseLegacyTemplates(Model $model, string $buffer, mixed $context): string
     {
         // if !$module instanceof ModuleProxy || ContentProxy then it´s currently not a Fragment
         if (
-            $module instanceof ModuleProxy ||
-            $module instanceof ContentProxy ||
+            $context instanceof ModuleProxy ||
+            $context instanceof ContentProxy ||
             !$this->cookiebarModel instanceof CookiebarModel ||
             !$this->objPage instanceof PageModel
         )
@@ -180,6 +183,9 @@ class KernelRequestListener
             $this->cookiebarModel = null;
             return;
         }
+
+        $this->types = Cookiebar::getIframeTypes();
+        $this->cookies = Cookiebar::validateCookies($this->cookiebarModel);
 
         $strHtml = Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language);
 
@@ -224,14 +230,12 @@ class KernelRequestListener
     {
         if (
             !$this->cookiebarModel instanceof CookiebarModel ||
-            !$this->objPage instanceof PageModel
+            !$this->objPage instanceof PageModel ||
+            !is_array($this->types)
         )
         {
             return $buffer;
         }
-
-        $arrTypes = Cookiebar::getIframeTypes();
-        $arrCookies = Cookiebar::validateCookies($this->cookiebarModel);
 
         $template = $model->typePrefix . $model->type;
         if ($model->customTpl && $model->customTpl !== '')
@@ -239,19 +243,14 @@ class KernelRequestListener
             $template = $model->customTpl;
         }
 
-        if (!is_array($arrTypes))
-        {
-            return $buffer;
-        }
-
-        foreach ($arrTypes as $strType => $arrTemplates)
+        foreach ($this->types as $strType => $arrTemplates)
         {
             if (!in_array($template, $arrTemplates))
             {
                 continue;
             }
 
-            foreach ($arrCookies as $cookie)
+            foreach ($this->cookies as $cookie)
             {
                 if (!isset($cookie['iframeType']) || $cookie['iframeType'] !== $strType)
                 {

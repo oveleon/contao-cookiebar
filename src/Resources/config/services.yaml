@@ -19,5 +19,5 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
-            - { name: contao.hook, hook: getFrontendModule, method: onGetModule, priority: 0 }
-            - { name: contao.hook, hook: getContentElement, method: onGetModule, priority: 0 }
+            - { name: contao.hook, hook: getFrontendModule, method: onParseLegacyTemplates, priority: 0 }
+            - { name: contao.hook, hook: getContentElement, method: onParseLegacyTemplates, priority: 0 }
