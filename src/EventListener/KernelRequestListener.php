@@ -33,9 +33,7 @@ class KernelRequestListener
         private readonly int                 $lifetime,
         private readonly string              $storageKey,
         private readonly bool                $considerDnt
-    )
-    {
-    }
+    ){}
 
     /**
      * @param RequestEvent $event
@@ -55,27 +53,20 @@ class KernelRequestListener
             return;
         }
 
-        // use first Contao-FrontendRequest to handle the pageModel settings
-        // normally this should be the MainRequest to handle Page
-        // check also pageType because it also could be a rootPage which is redirected then
         $pageModel = $request->attributes->get('pageModel');
-        if (
-            $pageModel instanceof PageModel &&
-            $pageModel->type === 'regular'
-        )
+
+        if ($pageModel instanceof PageModel)
         {
             $rootPageObject = PageModel::findByPk($pageModel->rootId);
+
             if ($rootPageObject instanceof PageModel)
             {
                 $this->objRootPage = $rootPageObject;
                 $this->objPage = $pageModel;
 
                 $this->prepareCookieBar();
-
             }
-
         }
-
     }
 
     /**
