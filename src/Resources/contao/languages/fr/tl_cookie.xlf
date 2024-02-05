@@ -225,20 +225,20 @@
         <target>Saisissez votre ID ici.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.0">
-        <source>Google Analytics ID</source>
-        <target>ID Google Analytics</target>
+        <source>ID</source>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.1">
-        <source>Enter your Google Analytics ID here.</source>
-        <target>Saisissez votre ID Google Analytics ici.</target>
+        <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
+        <target>Saisissez votre Mess-ID, Container-ID ou Google Analytics ID ici.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
-        <source>Google Tag Manager ID</source>
-        <target>ID Google Tag Manager</target>
+        <source>ID</source>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
-        <source>Enter your Google Tag Manager ID here.</source>
-        <target>Saisissez votre ID Google Tag Manager ici</target>
+        <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
+        <target>Saisissez votre Mess-ID, Container-ID ou Google Analytics ID ici</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
@@ -317,8 +317,8 @@
         <target>Insérer le token par défaut</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_googleAnalytics_error">
-        <source>Google Analytics ID needs to be set.</source>
-        <target>L'ID Google Analytics doit être défini.</target>
+        <source>ID needs to be set.</source>
+        <target>L'ID doit être défini.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig_xlabel">
         <source>Insert default configuration</source>

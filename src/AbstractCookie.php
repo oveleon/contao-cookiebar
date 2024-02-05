@@ -17,51 +17,43 @@ abstract class AbstractCookie
 {
     /**
      * Position flag: Below the content within the body tag
-     * @var integer
      */
     const POS_BELOW = 1;
 
     /**
      * Position flag: Above the content within the body tag
-     * @var integer
      */
     const POS_ABOVE = 2;
 
     /**
      * Position flag: Within the head tag
-     * @var integer
      */
     const POS_HEAD = 3;
 
     /**
      * Loading flag: Load only after confirmation
-     * @var integer
      */
     const LOAD_CONFIRMED = 1;
 
     /**
      * Loading flag: Load only if not confirmed
-     * @var integer
      */
     const LOAD_UNCONFIRMED = 2;
 
     /**
      * Loading flag: Load always
-     * @var integer
      */
     const LOAD_ALWAYS = 3;
 
     /**
      * Resource scripts
-     * @var array
      */
-    protected $resources = [];
+    protected array $resources = [];
 
     /**
      * Plain scripts
-     * @var array
      */
-    protected $scripts = [];
+    protected array $scripts = [];
 
     /**
      * Add a script

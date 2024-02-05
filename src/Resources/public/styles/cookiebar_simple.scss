@@ -15,11 +15,9 @@ $cookiebar-animation-duration: .5s;
   }
 
   .cc-inner{
-    padding: 25px;
-    border-radius: 5px;
-
-    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.25);
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.25);
+    padding: 23px;
+    border-radius: 3px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
     background: #fff;
   }
 

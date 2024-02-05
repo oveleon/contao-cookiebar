@@ -9,132 +9,106 @@
  */
 
 use Contao\DC_Table;
+use Contao\DataContainer;
 
-$GLOBALS['TL_DCA']['tl_cookie_log'] = array
-(
-	// Config
-	'config' => array
-	(
-		'dataContainer'               => DC_Table::class,
-        'notCopyable'                 => true,
-        'notEditable'                 => true,
-        'notCreatable'                => true,
-		'sql' => array
-		(
-			'keys' => array
-			(
-				'id' => 'primary',
-                'cid' => 'index'
-			)
-		)
-	),
-
-	// List
-	'list' => array
-	(
-        'sorting' => array
-        (
-            'mode'                    => 2,
-            'fields'                  => array('tstamp'),
-            'flag'                    => 2,
-            'panelLayout'             => 'filter;sort,search,limit'
-        ),
-        'label' => array
-        (
-            'fields'                  => array('id','cid','version','domain','url', 'ip','tstamp'),
-            'showColumns'             => true,
-        ),
-		'global_operations' => array
-		(
-            'all' => array
-            (
-                'href'                => 'act=select',
-                'class'               => 'header_edit_all',
-                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-            ),
-			'export' => array
-			(
-                'href'                => 'key=export',
-				'icon'                => 'theme_export.svg'
-			)
-		),
-		'operations' => array
-		(
-            'delete' => array
-            (
-                'href'                => 'act=delete',
-                'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"'
-            ),
-            'show' => array
-            (
-                'href'                => 'act=show',
-                'icon'                => 'show.svg'
-            )
-		)
-	),
-
+$GLOBALS['TL_DCA']['tl_cookie_log'] = [
 	// Palettes
-	'palettes' => array
-	(
+	'palettes' => [
         'default'                     => '{log_legend},cid,version,tstamp,domain,url,ip,config'
-	),
+	],
 
     // Fields
-	'fields' => array
-	(
-        'id' => array
-        (
+	'fields' => [
+        'id' => [
             'sorting'                 => true,
             'sql'                     => "int(10) unsigned NOT NULL auto_increment"
-        ),
-        'cid' => array
-        (
+        ],
+        'cid' => [
             'sql'                     => "int(10) unsigned NOT NULL default 0"
-        ),
-        'version' => array
-        (
+        ],
+        'version' => [
             'sorting'                 => true,
             'sql'                     => "int(10) unsigned NOT NULL default 0"
-        ),
-        'tstamp' => array
-        (
+        ],
+        'tstamp' => [
             'filter'                  => true,
             'sorting'                 => true,
             'flag'                    => 6,
             'sql'                     => "int(10) unsigned NOT NULL default 0"
-        ),
-        'domain' => array
-        (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['domain'],
+        ],
+        'domain' => [
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
             'sql'                     => "varchar(255) NOT NULL default ''"
-        ),
-        'url' => array
-        (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['url'],
+        ],
+        'url' => [
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
             'sql'                     => "varchar(255) NOT NULL default ''"
-        ),
-        'ip' => array
-        (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['ip'],
+        ],
+        'ip' => [
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
             'sql'                     => "varchar(255) NOT NULL default ''"
-        ),
-        'config' => array
-        (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie_log']['config'],
+        ],
+        'config' => [
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
             'sql'                     => "text NULL"
-        ),
-	)
-);
+        ]
+	],
+
+    // Config
+    'config' => [
+        'dataContainer'  => DC_Table::class,
+        'notCopyable'    => true,
+        'notEditable'    => true,
+        'notCreatable'   => true,
+        'sql' => [
+            'keys' => [
+                'id' => 'primary',
+                'cid' => 'index'
+            ]
+        ]
+    ],
+
+    // List
+    'list' => [
+        'sorting' => [
+            'mode'                    => DataContainer::MODE_SORTABLE,
+            'flag'                    => DataContainer::SORT_INITIAL_LETTER_DESC,
+            'fields'                  => ['tstamp'],
+            'panelLayout'             => 'filter;sort,search,limit'
+        ],
+        'label' => [
+            'fields'                  => ['id','cid','version','domain','url', 'ip','tstamp'],
+            'showColumns'             => true,
+        ],
+        'global_operations' => [
+            'all' => [
+                'href'                => 'act=select',
+                'class'               => 'header_edit_all',
+                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+            ],
+            'export' => [
+                'href'                => 'key=export',
+                'icon'                => 'theme_export.svg'
+            ]
+        ],
+        'operations' => [
+            'delete' => [
+                'href'                => 'act=delete',
+                'icon'                => 'delete.svg',
+                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"'
+            ],
+            'show' => [
+                'href'                => 'act=show',
+                'icon'                => 'show.svg'
+            ]
+        ]
+    ]
+];

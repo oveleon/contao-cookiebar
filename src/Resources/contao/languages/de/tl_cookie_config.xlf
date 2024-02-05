@@ -70,12 +70,12 @@
         <target>Geben Sie hier Ihre ID ein.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.tagManager_vendorId.0">
-        <source>Container ID</source>
-        <target>Container ID</target>
+        <source>ID</source>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.tagManager_vendorId.1">
-        <source>Enter your Container ID here.</source>
-        <target>Geben Sie hier Ihre Container ID ein.</target>
+        <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
+        <target>Geben Sie hier Ihre Mess-ID, Container-ID or Google Analytics ID ein.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptConfig.0">
         <source>Configuration</source>

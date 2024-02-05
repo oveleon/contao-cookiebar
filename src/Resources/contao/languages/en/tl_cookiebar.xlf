@@ -163,6 +163,12 @@
       <trans-unit id="tl_cookiebar.essentialCookieLanguage.1">
         <source>Specify in which language the descriptions of the essential cookies should be created.</source>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.0">
+        <source>Disable tracking when logged in</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.1">
+        <source>Disables the execution of scripts when logged in to the backend.</source>
+      </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
         <source>Above the content in the body tag</source>

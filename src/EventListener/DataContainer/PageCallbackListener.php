@@ -2,6 +2,11 @@
 
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
+use Contao\Controller;
+use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\DataContainer;
+use Oveleon\ContaoCookiebar\Cookiebar;
+
 class PageCallbackListener
 {
     /**
@@ -15,55 +20,60 @@ class PageCallbackListener
     const CLASS_PREFILL = 'ccb-prefill';
 
     /**
-     * Clean up the CSS classes field
-     *
-     * @param $varValue
-     * @param $dc
-     * @return string
-     */
-    public function onLoadCssClass($varValue, $dc): string
-    {
-        return $this->clearCssClasses($varValue);
-    }
-
-    /**
      * Attach trigger CSS Class
      *
-     * @param $varValue
-     * @param $dc
-     * @return string
+     * @Callback(table="tl_page", target="fields.cssClass.save")
      */
-    public function onSaveCssClass($varValue, $dc): string
+    public function onSaveCssClass(?string $value, DataContainer $dc): string
     {
         if($dc->activeRecord->triggerCookiebar && $dc->activeRecord->type === 'forward')
         {
-            $varValue = $this->clearCssClasses($varValue);
-            $varValue .= ' ' . self::CLASS_TRIGGER;
+            $value = $this->clearCssClasses($value);
+            $value .= ' ' . self::CLASS_TRIGGER;
 
             if($dc->activeRecord->prefillCookies)
             {
-                $varValue .= ' ' . self::CLASS_PREFILL;
+                $value .= ' ' . self::CLASS_PREFILL;
             }
 
-            return trim($varValue);
+            return trim($value);
         }
 
-        return $varValue ?? '';
+        return $value ?? '';
     }
 
     /**
      * Remove trigger CSS class from value
      *
-     * @param $varValue
-     * @return string
+     * @Callback(table="tl_page", target="fields.cssClass.load")
      */
-    private function clearCssClasses($varValue): string
+    public function clearCssClasses(?string $value): string
     {
-        if(strpos($varValue, self::CLASS_TRIGGER) !== false || strpos($varValue, self::CLASS_PREFILL) !== false)
+        if(str_contains($value, self::CLASS_TRIGGER) || str_contains($value, self::CLASS_PREFILL))
         {
-            return trim(preg_replace('#\s+#', ' ', str_replace([self::CLASS_TRIGGER, self::CLASS_PREFILL], '', $varValue)));
+            return trim(preg_replace('#\s+#', ' ', str_replace([self::CLASS_TRIGGER, self::CLASS_PREFILL], '', $value)));
         }
 
-        return $varValue ?? '';
+        return $value ?? '';
+    }
+
+    /**
+     * Return all cookiebar templates
+     *
+     * @Callback(table="tl_page", target="fields.cookiebarTemplate.options")
+     */
+    public function getCookiebarTemplates(): array
+    {
+        return Controller::getTemplateGroup('cookiebar_');
+    }
+
+    /**
+     * Return all cookiebar templates
+     *
+     * @Callback(table="tl_page", target="fields.cookiebarConfig.options")
+     */
+    public function getCookiebarConfigurations(): array
+    {
+        return Cookiebar::getConfigurationList();
     }
 }

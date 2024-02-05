@@ -216,6 +216,14 @@
         <source>Specify in which language the descriptions of the essential cookies should be created.</source>
         <target>Legen Sie fest, in welcher Sprache die Beschreibungen der essenziellen Cookies angelegt werden sollen.</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.0">
+        <source>Disable tracking when logged in</source>
+        <target>Tracking im eingeloggten Zustand deaktivieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.1">
+        <source>Disables the execution of scripts when logged in to the backend.</source>
+        <target>Deaktiviert das Ausführen von Skripten im Frontend wenn man im Backend eingeloggt ist.</target>
+      </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
         <source>Above the content in the body tag</source>

@@ -8,9 +8,10 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCookiebar;
+namespace Oveleon\ContaoCookiebar\Model;
 
 use Contao\Model;
+use Contao\Model\Collection;
 
 /**
  * Reads and writes cookiebar configurations
@@ -30,6 +31,7 @@ use Contao\Model;
  * @property string  $blocking
  * @property integer $scriptPosition
  * @property integer $position
+ * @property integer $disableTrackingWhileLoggedIn
  * @property boolean $cssID
  *
  * @method static CookiebarModel|null findById($id, array $opt=array())
@@ -47,20 +49,20 @@ use Contao\Model;
  * @method static CookiebarModel|null findOneByPosition($val, array $opt=array())
  * @method static CookiebarModel|null findOneByCssID($val, array $opt=array())
  *
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByTstamp($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByTitle($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByDescription($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByVersion($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByUpdateVersion($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByInfoUrls($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByTemplate($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByAlignment($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByBlocking($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByPosition($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findByCssID($val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findMultipleByIds($var, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findBy($col, $val, array $opt=array())
- * @method static Model\Collection|CookiebarModel[]|CookiebarModel|null findAll(array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByTstamp($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByTitle($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByDescription($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByVersion($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByUpdateVersion($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByInfoUrls($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByTemplate($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByAlignment($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByBlocking($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByPosition($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByCssID($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findMultipleByIds($var, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findBy($col, $val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findAll(array $opt=array())
  *
  * @method static integer countById($id, array $opt=array())
  * @method static integer countByTstamp($val, array $opt=array())

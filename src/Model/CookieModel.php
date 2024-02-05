@@ -8,9 +8,11 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCookiebar;
+namespace Oveleon\ContaoCookiebar\Model;
 
 use Contao\Model;
+use Contao\Model\Collection;
+use Oveleon\ContaoCookiebar\Cookiebar;
 
 /**
  * Reads and writes cookie configurations
@@ -18,7 +20,7 @@ use Contao\Model;
  * @property integer $id
  * @property integer $pid
  * @property integer $tstamp
- * @property integer $identifier
+ * @property string  $identifier
  * @property integer $sorting
  * @property integer $expireTime
  * @property integer $provider
@@ -58,19 +60,19 @@ use Contao\Model;
  * @method static CookieModel|null findOneByGoogleId($val, array $opt=array())
  * @method static CookieModel|null findOneByPublished($val, array $opt=array())
  *
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByPid($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByPtable($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByTstamp($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findBySorting($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByExpireTime($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByProvider($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByTitle($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByType($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByGoogleId($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findByPublished($val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findMultipleByIds($var, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findBy($col, $val, array $opt=array())
- * @method static \Model\Collection|CookieModel[]|CookieModel|null findAll(array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByPid($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByPtable($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByTstamp($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findBySorting($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByExpireTime($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByProvider($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByTitle($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByType($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByGoogleId($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findByPublished($val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findMultipleByIds($var, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findBy($col, $val, array $opt=array())
+ * @method static Collection|CookieModel[]|CookieModel|null findAll(array $opt=array())
  *
  * @method static integer countById($id, array $opt=array())
  * @method static integer countByTitle($val, array $opt=array())
@@ -95,13 +97,8 @@ class CookieModel extends Model
 
     /**
      * Find published cookies by their PID
-     *
-     * @param integer $intPid     The parent ID
-     * @param array   $arrOptions An optional options array
-     *
-     * @return \Model\Collection|CookieModel[]|CookieModel|null A collection of models or null if there are no cookies
      */
-    public static function findPublishedByPid($intPid, array $arrOptions=array())
+    public static function findPublishedByPid(int $intPid, array $arrOptions=[]): Collection|array|CookieModel|null
     {
         $t = static::$strTable;
 
@@ -117,14 +114,8 @@ class CookieModel extends Model
 
     /**
      * Find cookies by their token
-     *
-     * @param $strToken
-     * @param $intRootPageId
-     * @param array $arrOptions An optional options array
-     *
-     * @return \Model\Collection|CookieModel[]|CookieModel|null A collection of models or null if there are no cookies
      */
-    public static function findByToken(string $strToken, int $intRootPageId, array $arrOptions=array())
+    public static function findByToken(string $strToken, int $intRootPageId, array $arrOptions=[]): ?CookieModel
     {
         $t = static::$strTable;
 

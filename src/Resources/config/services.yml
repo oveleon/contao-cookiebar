@@ -1,9 +1,0 @@
-services:
-    _defaults:
-        autowire: true
-
-    Oveleon\ContaoCookiebar\Controller\CookiebarController:
-        arguments:
-            - '@contao.framework'
-        tags:
-            - controller.service_arguments

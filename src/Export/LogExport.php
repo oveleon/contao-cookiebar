@@ -8,11 +8,12 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCookiebar;
+namespace Oveleon\ContaoCookiebar\Export;
 
 use Contao\Config;
 use Contao\File;
 use Contao\StringUtil;
+use Oveleon\ContaoCookiebar\Model\CookieLogModel;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -21,10 +22,8 @@ class LogExport
 {
     /**
      * Export log
-     *
-     * @throws \Exception
      */
-    public function export()
+    public function export(): void
     {
         $objLog = CookieLogModel::findAll();
         $arrLog = [];

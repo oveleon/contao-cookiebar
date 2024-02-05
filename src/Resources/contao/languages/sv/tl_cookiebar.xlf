@@ -216,6 +216,14 @@
         <source>Specify in which language the descriptions of the essential cookies should be created.</source>
         <target>Ange på vilket språk beskrivningarna av de väsentliga kakorna ska skapas.</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.0">
+        <source>Disable tracking when logged in</source>
+        <target>Inaktivera spårning när du är inloggad</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.1">
+        <source>Disables the execution of scripts when logged in to the backend.</source>
+        <target>Inaktiverar utförandet av skript när du är inloggad i backend.</target>
+      </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
         <source>Above the content in the body tag</source>

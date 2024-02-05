@@ -87,10 +87,21 @@
           });
 
           gtag('js', new Date());
-          gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
+          gtag('config', '&lt;code class="tl_red"&gt;ID&lt;/code&gt;');
           &lt;/pre&gt;
 
-          Please note that you have to enter this code yourself if you want to create your own configuration.</source>
+          Please note that you have to enter this code yourself if you want to create your own configuration.
+          The integration of the Google Tag Manager is done automatically via the following code:
+
+          &lt;pre&gt;
+
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','ID');
+          &lt;/pre&gt;
+        </source>
       </trans-unit>
     </body>
   </file>

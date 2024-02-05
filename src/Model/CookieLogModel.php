@@ -8,9 +8,10 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCookiebar;
+namespace Oveleon\ContaoCookiebar\Model;
 
 use Contao\Model;
+use Contao\Model\Collection;
 
 /**
  * Reads and writes cookie logs
@@ -32,14 +33,14 @@ use Contao\Model;
  * @method static CookieLogModel|null findOneByUrl($val, array $opt=array())
  * @method static CookieLogModel|null findOneByIp($val, array $opt=array())
  *
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByCid($val, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByTstamp($val, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByDomain($val, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByUrl($val, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findByIp($val, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findMultipleByIds($var, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findBy($col, $val, array $opt=array())
- * @method static \Model\Collection|CookieLogModel[]|CookieLogModel|null findAll(array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findByCid($val, array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findByTstamp($val, array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findByDomain($val, array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findByUrl($val, array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findByIp($val, array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findMultipleByIds($var, array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findBy($col, $val, array $opt=array())
+ * @method static Collection|CookieLogModel[]|CookieLogModel|null findAll(array $opt=array())
  *
  * @method static integer countById($id, array $opt=array())
  * @method static integer countByDomain($val, array $opt=array())

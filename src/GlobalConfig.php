@@ -12,6 +12,8 @@ namespace Oveleon\ContaoCookiebar;
 
 use Contao\StringUtil;
 use Contao\System;
+use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
+use Oveleon\ContaoCookiebar\Model\CookieModel;
 
 /**
  * Arranges the properties and resources of a config
@@ -30,42 +32,38 @@ use Contao\System;
  * @property boolean $googleConsentMode
  * @property boolean $published
  */
-class CookieConfig extends AbstractCookie
+class GlobalConfig extends AbstractCookie
 {
     /**
-     * Model
-     * @var CookieModel
+     * Config Model
      */
-    protected $objModel;
+    protected GlobalConfigModel $objModel;
 
     /**
      * Collection of cookie IDs which use this configuration
-     * @var array
      */
-    protected $arrCookies = array();
+    protected array $arrCookies = [];
 
     /**
      * Initialize the object
-     *
-     * @param CookieConfigModel $objConfig
      */
-    public function __construct(CookieConfigModel $objConfig)
+    public function __construct(GlobalConfigModel $objConfig)
     {
         $this->objModel = $objConfig;
 
         switch($objConfig->type)
         {
             case 'script':
-                $this->compileScript();
+                $this->addCustomScript();
                 break;
             case 'tagManager':
-                $this->compileTagManager();
+                $this->addTagManager();
                 break;
             default:
                 // HOOK: allow to compile custom types
-                if (isset($GLOBALS['TL_HOOKS']['compileCookieConfigType']) && \is_array($GLOBALS['TL_HOOKS']['compileCookieConfigType']))
+                if (isset($GLOBALS['TL_HOOKS']['addGlobalConfigType']) && \is_array($GLOBALS['TL_HOOKS']['addGlobalConfigType']))
                 {
-                    foreach ($GLOBALS['TL_HOOKS']['compileCookieConfigType'] as $callback)
+                    foreach ($GLOBALS['TL_HOOKS']['addGlobalConfigType'] as $callback)
                     {
                         System::importStatic($callback[0])->{$callback[1]}($objConfig->type, $this);
                     }
@@ -75,12 +73,8 @@ class CookieConfig extends AbstractCookie
 
     /**
      * Return an object property
-     *
-     * @param string $strKey The property name
-     *
-     * @return mixed|null The property value or null
      */
-    public function __get($strKey)
+    public function __get(string $strKey): mixed
     {
         if($this->{$strKey} ?? null)
         {
@@ -92,10 +86,8 @@ class CookieConfig extends AbstractCookie
 
     /**
      * Adds a cookie to the configuration
-     *
-     * @param CookieModel $objCookie The cookie model
      */
-    public function addCookie(CookieModel $objCookie)
+    public function addCookie(CookieModel $objCookie): void
     {
         $this->arrCookies[ $objCookie->id ] = $objCookie;
     }
@@ -103,7 +95,7 @@ class CookieConfig extends AbstractCookie
     /**
      * Compile cookie of type "script"
      */
-    private function compileScript()
+    private function addCustomScript(): void
     {
         if($src = $this->sourceUrl)
         {
@@ -123,31 +115,39 @@ class CookieConfig extends AbstractCookie
     /**
      * Compile config of type "tagManager"
      */
-    private function compileTagManager()
+    private function addTagManager(): void
     {
-        $this->addResource(
-            'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
-            ['async'],
-            self::LOAD_ALWAYS
-        );
-
         if($src = $this->scriptConfig)
         {
             $this->addScript($src, self::LOAD_ALWAYS, self::POS_HEAD);
         }
         elseif($this->googleConsentMode)
         {
-            $this->compileGoogleConsentMode();
+            $this->addGoogleConsentMode();
         }
+
+        # Determine the G-ID to ensure the opt-out (#127)
+        $this->addScript(
+            "window.addEventListener('gtm_loaded', () => { setTimeout(() => { const gid = Object.keys(window.google_tag_manager).filter(k => k.startsWith('G-'))[0]; try{ if(gid){ window['ga-disable-' + gid] = true; }   }catch(e){}}, 1000)});",
+            self::LOAD_ALWAYS,
+            self::POS_HEAD
+        );
+
+        # Standard script for integration with addition of a CustomEvent to check when the Google Tag Manager was loaded
+        $this->addScript(
+            "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; j.addEventListener('load', function() {var _ge = new CustomEvent('gtm_loaded', { bubbles: true });d.dispatchEvent(_ge);}); f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','".$this->vendorId."');",
+            self::LOAD_ALWAYS,
+            self::POS_HEAD
+        );
     }
 
     /**
-     * Compile config of type "tagManager"
+     * Compile default config of type "googleConsentMode"
      */
-    private function compileGoogleConsentMode()
+    private function addGoogleConsentMode(): void
     {
         $this->addScript(
-            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied', 'wait_for_update': 500 }); gtag('js', new Date()); gtag('config', '" . $this->vendorId . "');",
+            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied', 'functionality_storage': 'denied', 'personalization_storage': 'denied', 'security_storage': 'denied', 'wait_for_update': 500 }); gtag('js', new Date()); gtag('config', '" . $this->vendorId . "');",
             self::LOAD_ALWAYS,
             self::POS_HEAD
         );

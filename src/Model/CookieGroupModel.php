@@ -8,17 +8,18 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCookiebar;
+namespace Oveleon\ContaoCookiebar\Model;
 
 use Contao\Model;
+use Contao\Model\Collection;
 
 /**
- * Reads and writes cookiebar configurations
+ * Reads and writes cookiebar group configurations
  *
  * @property integer $id
  * @property integer $pid
  * @property integer $tstamp
- * @property integer $identifier
+ * @property string  $identifier
  * @property integer $sorting
  * @property string  $title
  * @property string  $description
@@ -34,15 +35,15 @@ use Contao\Model;
  * @method static CookieGroupModel|null findOneByTitle($val, array $opt=array())
  * @method static CookieGroupModel|null findOneByPublished($val, array $opt=array())
  *
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findByPid($val, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findByPtable($val, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findByTstamp($val, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findBySorting($val, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findByTitle($val, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findByPublished($val, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findMultipleByIds($var, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findBy($col, $val, array $opt=array())
- * @method static \Model\Collection|CookieGroupModel[]|CookieGroupModel|null findAll(array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findByPid($val, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findByPtable($val, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findByTstamp($val, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findBySorting($val, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findByTitle($val, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findByPublished($val, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findMultipleByIds($var, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findBy($col, $val, array $opt=array())
+ * @method static Collection|CookieGroupModel[]|CookieGroupModel|null findAll(array $opt=array())
  *
  * @method static integer countById($id, array $opt=array())
  * @method static integer countByTitle($val, array $opt=array())
@@ -63,13 +64,8 @@ class CookieGroupModel extends Model
 
     /**
      * Find published cookie groups by their PID
-     *
-     * @param integer $intPid     The parent ID
-     * @param array   $arrOptions An optional options array
-     *
-     * @return \Model\Collection|CookieGroupModel[]|CookieGroupModel|null A collection of models or null if there are no cookie groups
      */
-    public static function findPublishedByPid($intPid, array $arrOptions=array())
+    public static function findPublishedByPid(int $intPid, array $arrOptions=array()): Collection|array|CookieGroupModel|null
     {
         $t = static::$strTable;
 

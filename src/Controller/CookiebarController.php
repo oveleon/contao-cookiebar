@@ -14,47 +14,36 @@ use Contao\FrontendTemplate;
 use Contao\System;
 use Contao\Validator;
 use Oveleon\ContaoCookiebar\Cookiebar;
-use Oveleon\ContaoCookiebar\CookieModel;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * ContentApiController provides all routes.
  *
  * @Route(defaults={"_scope" = "frontend"})
  */
-class CookiebarController extends AbstractController
+class CookiebarController
 {
-    /**
-     * @var ContaoFramework
-     */
-    private $framework;
-
-    public function __construct(ContaoFramework $framework)
-    {
-        $this->framework = $framework;
-    }
+    public function __construct(
+        private readonly ContaoFramework $framework,
+        private readonly TranslatorInterface $translator
+    ){}
 
     /**
-     * Runs the command scheduler. (block)
+     * Block content
      *
      * @Route("/cookiebar/block/{locale}/{id}", name="cookiebar_block")
-     *
-     * @param Request $request
-     * @param         $id
-     *
-     * @return Response
-     * @throws \Exception
      */
-    public function blockAction(Request $request, $locale, $id)
+    public function block(Request $request, string $locale, int $id): Response
     {
-        $this->framework->initialize();
-
         System::loadLanguageFile('tl_cookiebar', $locale);
+
+        $this->framework->initialize();
 
         $objCookie = CookieModel::findById($id);
 
@@ -71,7 +60,6 @@ class CookiebarController extends AbstractController
             return new Response('The redirect destination must be a valid URL.', Response::HTTP_BAD_REQUEST);
         }
 
-        /** @var FrontendTemplate $objTemplate */
         $objTemplate = new FrontendTemplate($objCookie->blockTemplate ?: 'ccb_element_blocker');
 
         $objTemplate->language = $locale;
@@ -81,23 +69,17 @@ class CookiebarController extends AbstractController
         $objTemplate->iframeType = $objCookie->iframeType;
         $objTemplate->description = $objCookie->blockDescription;
         $objTemplate->redirect = $request->get('redirect');
-        $objTemplate->acceptAndDisplayLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAndDisplayLabel'];
+        $objTemplate->acceptAndDisplayLabel = $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default', $locale);
 
         return $objTemplate->getResponse();
     }
 
     /**
-     * Runs the command scheduler. (prepare)
+     * Execute various functions
      *
-     * @Route("/cookiebar/{module}/{id}", name="cookiebar_prepare", defaults={"_token_check" = false, "id" = null})
-     *
-     * @param Request $request
-     * @param $module
-     * @param $id
-     *
-     * @return JsonResponse|string
+     * @Route("/cookiebar/{module}", name="cookiebar_prepare", defaults={"_token_check" = false})
      */
-    public function prepareAction(Request $request, $module, $id)
+    public function execute(Request $request, $module): JsonResponse
     {
         $this->framework->initialize();
 
@@ -124,7 +106,7 @@ class CookiebarController extends AbstractController
                     return $error;
                 }
 
-                Cookiebar::log($request->get('configId'), $request->get('referrer'), null, $request->get('cookies'));
+                Cookiebar::log((int) $request->get('configId'), $request->get('referrer'), null, $request->get('cookies'));
                 break;
         }
 
@@ -133,25 +115,16 @@ class CookiebarController extends AbstractController
 
     /**
      * Return error
-     *
-     * @param $msg
-     *
-     * @return JsonResponse
      */
-    private function error($msg)
+    private function error(string $msg): JsonResponse
     {
         return new JsonResponse(['error' => 1, 'message' => $msg]);
     }
 
     /**
      * Return error if the given parameters are not set
-     *
-     * @param $request
-     * @param array $arrParameter
-     *
-     * @return JsonResponse
      */
-    private function errorMissingParameter($request, array $arrParameter)
+    private function errorMissingParameter($request, array $arrParameter): ?JsonResponse
     {
         foreach ($arrParameter as $parameter)
         {

@@ -26,9 +26,8 @@ class ContaoCookiebarExtension extends Extension
             new FileLocator(__DIR__ . '/../Resources/config')
         );
 
-        $loader->load('migrations.yml');
-        $loader->load('commands.yml');
-        $loader->load('services.yml');
+        $loader->load('commands.yaml');
+        $loader->load('services.yaml');
 
         $arrIframeTypes = [
             'youtube'       => ['ce_youtube'],

@@ -12,7 +12,7 @@
 ---
 
 # Create own Cookie-Types
-All cookie types are prepared by the PHP class `CookieHandler`. This class allows you to prepare the scripts to be processed by the JS plugin. See [Hooks](EXTEND_TYPE.md#hooks) for integration.
+All cookie types are prepared by the PHP class `Cookie`. This class allows you to prepare the scripts to be processed by the JS plugin. See [Hooks](EXTEND_TYPE.md#hooks) for integration.
 
 ## Functions
 
@@ -78,5 +78,5 @@ Loading-Constants | Description
 # Hooks
 Hook | Parameter | Description
 ---------- | ----------- | -----------
-`compileCookieType` | `string $type`, `CookieHandler $objCookieHandler` | Enables the integration of your own cookie types. (see Create own Cookie-Types)
+`compileCookieType` | `string $type`, `Cookie $objCookie` | Enables the integration of your own cookie types. (see Create own Cookie-Types)
 `parseCookiebarTemplate` | `FrontendTemplate $objTemplate`, `$objConfig` | Is called before parsing the cookiebar template.

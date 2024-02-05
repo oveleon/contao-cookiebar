@@ -18,15 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('contao_cookiebar');
-
-        if (\method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            // Backwards compatibility
-            $rootNode = $treeBuilder->root('contao_cookiebar');
-        }
-
-        $rootNode
+        $treeBuilder->getRootNode()
             ->children()
                 ->booleanNode('consider_dnt')
                     ->defaultFalse()
