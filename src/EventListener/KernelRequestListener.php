@@ -102,7 +102,6 @@ class KernelRequestListener
 
             $content = $this->injectGlobalJs($content);
             $response->setContent($content);
-
         }
 
         if ($request->attributes->has('contentModel'))
@@ -117,7 +116,6 @@ class KernelRequestListener
             // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
             $content = $this->parseTemplates($contentModel->typePrefix . $contentModel->type, $content);
             $response->setContent($content);
-
         }
 
         if ($request->attributes->has('moduleModel'))
@@ -132,9 +130,7 @@ class KernelRequestListener
             // renew $content because using insertTags in modules it could be that contentModel and moduleModel is set
             $content = $this->parseTemplates($moduleModel->typePrefix . $moduleModel->type, $content);
             $response->setContent($content);
-
         }
-
     }
 
     /**
@@ -187,7 +183,7 @@ class KernelRequestListener
         $mtime = (string) filemtime($this->getRealPath($javascript));
         $script = '<script src="'. $javascript . '?v=' . substr(md5($mtime), 0, 8) .'"></script>';
 
-        if ((string) $this->cookiebarModel->scriptPosition === 'body')
+        if ($this->cookiebarModel->scriptPosition === 'body')
         {
             $strHtml .= $script;
         } else {
@@ -210,7 +206,6 @@ class KernelRequestListener
         ]);
 
         $this->rootPageBuffer = $strHtml;
-
     }
 
     /**
@@ -265,8 +260,8 @@ class KernelRequestListener
                     // Overwrite href attribute
                     $buffer = preg_replace($atagRegex, 'id="splashImage_$1href="' . $strBlockUrl . urlencode($matches[2]) . '"', $buffer);
                     $buffer = str_replace('iframe.src', 'iframe.setAttribute("data-ccb-id", "' . $cookie['id'] . '"); iframe.src', $buffer);
-
-                } else
+                }
+                else
                 {
                     // Regex: Modify src attribute for iframes
                     $frameRegex = "/<iframe([\s\S]*?)src=([\\\\\"\']+)(.*?)[\\\\\"\']+/i";
@@ -275,9 +270,9 @@ class KernelRequestListener
                     preg_match_all($frameRegex, $buffer, $matches);
 
                     $matchCount = count($matches[0]);
+
                     for ($i = 0; $i < $matchCount; $i++)
                     {
-
                         $iframePattern = $matches[0][$i];
                         $quote = $matches[2][$i];
 
@@ -296,21 +291,15 @@ class KernelRequestListener
 
                             $iframe = str_replace($search, $replace, $iframePattern);
                             $buffer = str_replace($iframePattern, $iframe, $buffer);
-
                         }
-
                     }
-
                 }
-
             }
 
             break;
-
         }
 
         return $buffer;
-
     }
 
     /**
@@ -333,9 +322,9 @@ class KernelRequestListener
         }
 
         if (
-            'html' !== $request->getRequestFormat()
-            || !str_contains((string)$response->headers->get('Content-Type'), 'text/html')
-            || false !== stripos((string)$response->headers->get('Content-Disposition'), 'attachment;')
+            'html' !== $request->getRequestFormat() ||
+            !str_contains((string)$response->headers->get('Content-Type'), 'text/html') ||
+            false !== stripos((string)$response->headers->get('Content-Disposition'), 'attachment;')
         )
         {
             return false;
@@ -347,7 +336,6 @@ class KernelRequestListener
         }
 
         return true;
-
     }
 
     /**
@@ -357,7 +345,7 @@ class KernelRequestListener
      */
     private function injectGlobalJs(string $content): string
     {
-        if (is_string($this->globalJavaScript) && $this->globalJavaScript !== '')
+        if (!!$this->globalJavaScript)
         {
             $pos = strripos($content, '</head>');
 
@@ -365,11 +353,9 @@ class KernelRequestListener
             {
                 $content = substr($content, 0, $pos) . "\n" . $this->globalJavaScript . "\n" . substr($content, $pos);
             }
-
         }
 
         return $content;
-
     }
 
     private function getRealPath(string $strFile): string

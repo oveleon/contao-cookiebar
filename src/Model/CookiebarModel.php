@@ -29,8 +29,8 @@ use Contao\Model\Collection;
  * @property string  $template
  * @property string  $alignment
  * @property string  $blocking
- * @property integer $scriptPosition
- * @property integer $position
+ * @property string $scriptPosition
+ * @property string $position
  * @property integer $disableTrackingWhileLoggedIn
  * @property boolean $cssID
  *
