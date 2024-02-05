@@ -44,7 +44,7 @@ class KernelRequestListener
     {
         $request = $event->getRequest();
 
-        // if cookieBar is deactivated in rootPage this is also caught because $this->objRootPage still instanced
+        // Also handles CookieBar not being activated within rootPage
         if (
             $this->objRootPage instanceof PageModel ||
             !$this->scopeMatcher->isFrontendRequest($request) ||
@@ -309,10 +309,10 @@ class KernelRequestListener
         $response = $event->getResponse();
 
         if (
-            $request->isXmlHttpRequest()
-            || (!$response->isSuccessful() && !$response->isClientError())
-        )
-        {
+            !$this->scopeMatcher->isFrontendMainRequest($event) ||
+            $request->isXmlHttpRequest() ||
+            (!$response->isSuccessful() && !$response->isClientError())
+        ) {
             return false;
         }
 
@@ -326,12 +326,6 @@ class KernelRequestListener
         }
 
         if (false === strripos($response->getContent(), '</body>'))
-        {
-            return false;
-        }
-
-        // @TODO Maybe this can be removed
-        if (!$this->scopeMatcher->isFrontendMainRequest($event))
         {
             return false;
         }
