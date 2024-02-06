@@ -166,13 +166,24 @@ class Cookie extends AbstractCookie
         $objTemplate = new BackendTemplate($this->scriptTemplate);
         $strTemplate = $objTemplate->parse();
 
-        // Regex: Get content from script tag
-        $scriptRegex = "/<script.*>([\s\S]*)<\/script>/ms";
-        preg_match($scriptRegex, $strTemplate, $matches);
+        if (empty($strTemplate)) {
+            return;
+        }
 
-        if(isset($matches[1]))
+        $doc = new \DOMDocument();
+
+        libxml_use_internal_errors(true);
+        $doc->loadHTML($strTemplate);
+        libxml_clear_errors();
+
+        $scripts = $doc->getElementsByTagName('script');
+
+        if ($scripts->length > 0)
         {
-            $this->addScript($matches[1], self::LOAD_CONFIRMED, $this->scriptPosition);
+            foreach ($scripts as $script)
+            {
+                $this->addScript($script->nodeValue, self::LOAD_CONFIRMED, $this->scriptPosition);
+            }
         }
     }
 
@@ -195,7 +206,7 @@ class Cookie extends AbstractCookie
 
         # Determine the G-ID to ensure the opt-out (#127)
         $this->addScript(
-            "try{ let gid; for(gid in window.google_tag_data.td) { window['ga-disable-' + gid] = true; }}catch (e) {}",
+            "try{ let keys = []; Object.keys(window.google_tag_manager).forEach((key) => { if(key.indexOf('G-') === 0 || key.indexOf('GTM-') === 0){ window['ga-disable-' + key] = true; } }); }catch (e) {}",
             self::LOAD_UNCONFIRMED,
             self::POS_HEAD
         );

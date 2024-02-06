@@ -40,4 +40,21 @@ The link could look like this:
 <a href="javascript:cookiebar.show(true);">Privacy settings</a>
 ```
 
+For use in the HTML editor of Contao, javascript may need to be added as a "protocol" in config.yml
+
+```
+contao:
+    sanitizer:
+        allowed_url_protocols:
+            - https
+            - http
+            - ftp
+            - mailto
+            - tel
+            - data
+            - skype
+            - whatsapp
+            - javascript
+```
+
 See also "[Extended usage](https://github.com/oveleon/contao-cookiebar/blob/master/docs/EXTENDED_USAGE.md)".

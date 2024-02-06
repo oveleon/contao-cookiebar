@@ -59,11 +59,22 @@
             }
         </style>
         <script>
-            if(parent.cookiebar.issetCookie(<?=$this->id?>)){
-                const decoder = document.createElement('textarea');
-                decoder.innerHTML = '<?=$this->redirect?>';
+            // Check if the cookie bar is ready, otherwise respond to document load (#148)
+            if(parent.cookiebar){
+                redirectIfNecessary()
+            }else{
+                parent.addEventListener('load', () => {
+                    redirectIfNecessary()
+                })
+            }
 
-                window.location.href = decoder.value;
+            function redirectIfNecessary(){
+                if(parent.cookiebar.issetCookie(<?=$this->id?>)){
+                    const decoder = document.createElement('textarea');
+                    decoder.innerHTML = '<?=$this->redirect?>';
+
+                    window.location.href = decoder.value;
+                }
             }
         </script>
     <?php $this->endblock(); ?>

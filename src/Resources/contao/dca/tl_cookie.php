@@ -13,9 +13,9 @@ use Contao\DataContainer;
 use Oveleon\ContaoCookiebar\AbstractCookie;
 
 $GLOBALS['TL_DCA']['tl_cookie'] = [
-	// Palettes
-	'palettes' => [
-	    '__selector__'                => ['type'],
+    // Palettes
+    'palettes' => [
+        '__selector__'                => ['type'],
         'default'                     => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{description_legend:hide},description,detailDescription;published,checked,disabled;',
         'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published,checked;',
         'template'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;{template_legend},scriptTemplate,scriptPosition;{description_legend:hide},description,detailDescription;published,checked;',
@@ -29,7 +29,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
     ],
 
     // Fields
-	'fields' => [
+    'fields' => [
         'id' => [
             'sql'                     => "int(10) unsigned NOT NULL auto_increment"
         ],
@@ -220,7 +220,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'eval'                    => ['preserveTags'=>true, 'decodeEntities'=>true, 'class'=>'monospace', 'rte'=>'ace|javascript', 'tl_class'=>'clr'],
             'sql'                     => "text NULL"
         ],
-		'scriptPosition' => [
+        'scriptPosition' => [
             'exclude'                 => true,
             'inputType'               => 'select',
             'options'                 => [
@@ -242,11 +242,11 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
         ],
         'globalConfig' => [
             'exclude'                 => true,
-			'inputType'               => 'picker',
-			'foreignKey'              => 'tl_cookie_config.title',
-			'eval'                    => ['includeBlankOption'=>true, 'tl_class'=>'w50'],
-			'sql'                     => "int(10) unsigned NOT NULL default 0",
-			'relation'                => ['type'=>'hasOne', 'load'=>'lazy']
+            'inputType'               => 'picker',
+            'foreignKey'              => 'tl_cookie_config.title',
+            'eval'                    => ['includeBlankOption'=>true, 'tl_class'=>'w50'],
+            'sql'                     => "int(10) unsigned NOT NULL default 0",
+            'relation'                => ['type'=>'hasOne', 'load'=>'lazy']
         ],
         'gcmMode' => [
             'exclude'                 => true,
@@ -260,20 +260,20 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
-            'eval'                    => ['tl_class'=>'w50 m12'],
+            'eval'                    => ['tl_class'=>'w50'],
             'sql'                     => "char(1) NOT NULL default ''",
         ],
         'checked' => [
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
-            'eval'                    => ['tl_class'=>'w50 m12'],
+            'eval'                    => ['tl_class'=>'w50'],
             'sql'                     => "char(1) NOT NULL default ''"
         ],
         'blockCookies' => [
             'exclude'                 => true,
             'inputType'               => 'checkbox',
-            'eval'                    =>['tl_class'=>'w50 m12'],
+            'eval'                    =>['tl_class'=>'w50'],
             'sql'                     => "char(1) NOT NULL default ''"
         ],
         'published' => [
@@ -284,7 +284,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'eval'                    => ['doNotCopy'=>true, 'tl_class'=>'w50 m12'],
             'sql'                     => "char(1) NOT NULL default ''"
         ]
-	],
+    ],
 
     // Config
     'config' => [

@@ -35,7 +35,6 @@ class AnonymizeIpCommand extends Command
     public function __construct(ContaoFramework $contaoFramework)
     {
         $this->framework = $contaoFramework;
-        $this->framework->initialize();
 
         parent::__construct();
     }
@@ -48,6 +47,7 @@ class AnonymizeIpCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $this->framework->initialize();
         $objLog = CookieLogModel::findAll();
 
         if(null !== $objLog)

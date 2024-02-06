@@ -15,14 +15,13 @@ use Contao\System;
 System::loadLanguageFile('tl_cookiebar');
 
 $GLOBALS['TL_DCA']['tl_cookiebar'] = [
-	// Palettes
-	'palettes' => array
-	(
+    // Palettes
+    'palettes' => [
         'default'                     => '{title_legend},title,essentialCookieLanguage;{meta_legend},description,infoDescription,alignment,blocking,buttonColorScheme,template,infoUrls,excludePages;{expert_legend:hide},cssID,disableTrackingWhileLoggedIn,position,scriptPosition,version,updateVersion;'
-	),
+    ],
 
     // Fields
-	'fields' => [
+    'fields' => [
         'id' => [
             'sql'                     => "int(10) unsigned NOT NULL auto_increment"
         ],
@@ -150,7 +149,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'eval'                    => ['tl_class'=>'w50 m12'],
             'sql'                     => "char(1) NOT NULL default ''"
         ]
-	],
+    ],
 
     // Config
     'config' => [

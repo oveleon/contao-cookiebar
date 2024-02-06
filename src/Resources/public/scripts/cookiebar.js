@@ -13,6 +13,7 @@ let ContaoCookiebar = (function () {
             pageId: null,
             version: null,
             lifetime: 63072000,
+            consentLog: false,
             cookies: null,
             configs: null,
             doNotTrack: false,
@@ -215,8 +216,8 @@ let ContaoCookiebar = (function () {
 
             if(true === deleteCookies && arrDelete.length){
                 let request = new XMLHttpRequest();
-                    request.open('GET', '/cookiebar/delete?' + serialize({tokens: arrDelete}), true);
-                    request.send();
+                    request.open('POST', '/cookiebar/delete', true);
+                    request.send(serialize({tokens: arrDelete}));
             }
         };
 
@@ -635,6 +636,11 @@ let ContaoCookiebar = (function () {
         };
 
         const log = function(){
+            if(!cookiebar.settings.consentLog)
+            {
+                return;
+            }
+
             let request = new XMLHttpRequest();
 
             let parameter = {
@@ -867,7 +873,7 @@ let ContaoCookiebar = (function () {
 
             for(cookieId in cookiebar.settings.cookies){
                 if(null !== cookiebar.settings.cookies[cookieId].token && cookiebar.settings.cookies[cookieId].token.indexOf(varCookie) !== -1){
-                    return true;
+                    return arrCookies.cookies.indexOf(cookiebar.settings.cookies[cookieId].id) !== -1;
                 }
             }
 
