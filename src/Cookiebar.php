@@ -43,7 +43,7 @@ class Cookiebar
     /**
      * Create and return config object
      */
-    public static function getConfig(int $configId, ?PageModel $objMeta=null): ?CookiebarModel
+    public static function getConfig(int $configId, int $pageId, ?PageModel $objMeta=null): ?CookiebarModel
     {
         if(null !== static::$configCache)
         {
@@ -143,10 +143,8 @@ class Cookiebar
             $arrGroups[] = $objGroup;
         }
 
-        global $objPage;
-
         $objConfig->groups = $arrGroups;
-        $objConfig->pageId = $objPage->rootId;
+        $objConfig->pageId = $pageId;
         $objConfig->configs = null;
 
         // Add global configuration
@@ -176,7 +174,7 @@ class Cookiebar
             return null;
         }
 
-        return static::getConfig((int) $objPage->cookiebarConfig, !!$objPage->overwriteCookiebarMeta ? $objPage : null);
+        return static::getConfig((int) $objPage->cookiebarConfig, $objPage->id, !!$objPage->overwriteCookiebarMeta ? $objPage : null);
     }
 
     /**
@@ -209,13 +207,13 @@ class Cookiebar
     /**
      * Parse Cookiebar template
      */
-    public static function parseCookiebarTemplate(CookiebarModel $objConfig): string
+    public static function parseCookiebarTemplate(CookiebarModel $objConfig, null|string $strLanguage = null): string
     {
-        System::loadLanguageFile('tl_cookiebar');
+        System::loadLanguageFile('tl_cookiebar', $strLanguage);
 
         $objTemplate = new FrontendTemplate($objConfig->template);
 
-        $cssID = unserialize($objConfig->cssID);
+        $cssID = StringUtil::deserialize($objConfig->cssID, true) + [null, null];
         $objTemplate->cssID = $cssID[0];
         $objTemplate->class = $cssID[1] ? $objConfig->template . ' ' . $objConfig->alignment . ' ' . trim($cssID[1]) : $objConfig->template . ' ' . $objConfig->alignment;
 
