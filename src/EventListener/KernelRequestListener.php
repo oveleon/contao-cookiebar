@@ -36,6 +36,7 @@ class KernelRequestListener
         private readonly TokenChecker        $tokenChecker,
         private readonly ScopeMatcher        $scopeMatcher,
         private readonly int                 $lifetime,
+        private readonly bool                $consentLog,
         private readonly string              $storageKey,
         private readonly bool                $considerDnt
     )
@@ -202,11 +203,12 @@ class KernelRequestListener
             $this->globalJavaScript = $script;
         }
 
-        $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
+        $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
             $this->cookiebarModel->id,
             $this->cookiebarModel->pageId,
             $this->cookiebarModel->version,
             $this->lifetime,
+            $this->consentLog,
             $this->storageKey,
             $this->considerDnt ? 1 : 0,
             $this->objPage->id,
