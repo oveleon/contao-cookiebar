@@ -99,12 +99,12 @@ $GLOBALS['TL_DCA']['tl_cookie_group'] = [
         ],
         'operations' => [
             'edit' => [
-                'href'                => 'table=tl_cookie',
+                'href'                => 'act=edit',
                 'icon'                => 'edit.svg'
             ],
-            'editheader' => [
-                'href'                => 'act=edit',
-                'icon'                => 'header.svg'
+            'children' => [
+                'href'                => 'table=tl_cookie',
+                'icon'                => 'children.svg'
             ],
             'copy' => [
                 'href'                => 'act=paste&amp;mode=copy',
