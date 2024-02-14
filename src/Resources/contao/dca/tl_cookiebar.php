@@ -29,7 +29,8 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 			)
 		),
         'onload_callback'          => array(
-            array('tl_cookiebar', 'checkEssentialGroup')
+            array('tl_cookiebar', 'checkEssentialGroup'),
+            array('tl_cookiebar', 'showConsentLogInformation')
         ),
         'onsubmit_callback'          => array(
             array('tl_cookiebar', 'createEssentialGroupAndCookies')
@@ -338,6 +339,26 @@ class tl_cookiebar extends Contao\Backend
     {
         $countEssentialGroup = Oveleon\ContaoCookiebar\CookieGroupModel::countBy(['pid=?', 'identifier=?'], [$dc->id, 'lock']);
         return null !== $countEssentialGroup && $countEssentialGroup >= 1;
+    }
+
+    /**
+     * Checks if the consent log is activated / deactivated
+     *
+     * @Callback(table="tl_cookiebar", target="config.onload")
+     */
+    public function showConsentLogInformation(): void
+    {
+        $container = System::getContainer();
+
+        $consentLog = $container->getParameter('contao_cookiebar.consent_log');
+        $anonymizeIp =  $container->getParameter('contao_cookiebar.anonymize_ip');
+
+        Message::addInfo($GLOBALS['TL_LANG']['tl_cookiebar']['consentLog'][$consentLog ? 1 : 0] ?? null);
+
+        if ($consentLog && !$anonymizeIp)
+        {
+            Message::addInfo($GLOBALS['TL_LANG']['tl_cookiebar']['ipAnonymization'] ?? null);
+        }
     }
 
     /**

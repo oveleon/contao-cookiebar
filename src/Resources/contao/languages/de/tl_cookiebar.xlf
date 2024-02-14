@@ -34,6 +34,18 @@
         <source>&lt;p&gt;Saves the current PHP session.&lt;/p&gt;</source>
         <target>&lt;p&gt;Speichert die aktuelle PHP-Session.&lt;/p&gt;</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.consentLog.0">
+        <source>Consent logging is not activated</source>
+        <target>Die Zustimmungsprotokollierung ist nicht aktiviert</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.consentLog.1">
+        <source>Consent logging is activated</source>
+        <target>Die Zustimmungsprotokollierung ist aktiviert</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.ipAnonymization">
+        <source>IP anonymization is deactivated</source>
+        <target>IP-Anonymisierung ist deaktiviert</target>
+      </trans-unit>
 
       <trans-unit id="tl_cookiebar.saveLabel">
         <source>Save selection</source>

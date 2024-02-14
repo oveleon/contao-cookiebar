@@ -26,6 +26,15 @@
       <trans-unit id="tl_cookiebar.defaultPhpSessionDescription">
         <source>&lt;p&gt;Saves the current PHP session.&lt;/p&gt;</source>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.consentLog.0">
+        <source>Consent logging is not activated</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.consentLog.1">
+        <source>Consent logging is activated</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.ipAnonymization">
+        <source>IP anonymization is deactivated</source>
+      </trans-unit>
 
       <trans-unit id="tl_cookiebar.saveLabel">
         <source>Save selection</source>
