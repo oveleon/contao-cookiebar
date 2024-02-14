@@ -4,6 +4,7 @@ namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
 use Contao\Controller;
 use Contao\DataContainer;
+use Contao\Message;
 use Contao\System;
 use Doctrine\DBAL\Connection;
 use FOS\HttpCacheBundle\CacheManager;
@@ -133,6 +134,26 @@ class CookiebarCallbackListener
         }
 
         return '';
+    }
+
+    /**
+     * Checks if the consent log is activated / deactivated
+     *
+     * @Callback(table="tl_cookiebar", target="config.onload")
+     */
+    public function showConsentLogInformation(): void
+    {
+        $container = System::getContainer();
+
+        $consentLog = $container->getParameter('contao_cookiebar.consent_log');
+        $anonymizeIp =  $container->getParameter('contao_cookiebar.anonymize_ip');
+
+        Message::addInfo($this->translator->trans('tl_cookiebar.consentLog.'.$consentLog, [], 'contao_tl_cookiebar'));
+
+        if ($consentLog && !$anonymizeIp)
+        {
+            Message::addInfo($this->translator->trans('tl_cookiebar.ipAnonymization', [], 'contao_tl_cookiebar'));
+        }
     }
 
     /**

@@ -208,7 +208,7 @@ class KernelRequestListener
             $this->cookiebarModel->pageId,
             $this->cookiebarModel->version,
             $this->lifetime,
-            $this->consentLog,
+            $this->consentLog ? 1 : 0,
             $this->storageKey,
             $this->considerDnt ? 1 : 0,
             $this->objPage->id,
