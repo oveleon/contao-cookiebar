@@ -148,7 +148,7 @@ class CookiebarCallbackListener
         $consentLog = $container->getParameter('contao_cookiebar.consent_log');
         $anonymizeIp =  $container->getParameter('contao_cookiebar.anonymize_ip');
 
-        Message::addInfo($this->translator->trans('tl_cookiebar.consentLog.'.$consentLog, [], 'contao_tl_cookiebar'));
+        Message::addInfo($this->translator->trans('tl_cookiebar.consentLog.'.($consentLog ? 1 : 0), [], 'contao_tl_cookiebar'));
 
         if ($consentLog && !$anonymizeIp)
         {
