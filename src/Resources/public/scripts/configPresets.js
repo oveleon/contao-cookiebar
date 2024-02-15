@@ -88,11 +88,16 @@ var Cookiebar = {
         var t = Cookiebar.presets.token[s].slice();
         switch (s) {
             case 'googleAnalytics':
-                if (!document.getElementById('ctrl_vendorId').value.trim()) {
+                const vendorId = document.getElementById('ctrl_vendorId')?.value;
+                if (!vendorId.trim()) {
                     alert(m);
                     return false;
                 }
-                t[1] = t[1] + '_gtag_' + document.getElementById('ctrl_vendorId').value.split('-').join('_');
+                const vendorParts = vendorId.split('-');
+                t[1] = t[1] + '_gtag_' + vendorParts.join('_');
+                if ('G' === vendorParts[0]) {
+                    t.push('_ga_' + vendorParts[1])
+                }
                 break;
             default:
                 const regex = /\[\w*\]/g;
