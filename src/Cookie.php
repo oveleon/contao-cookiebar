@@ -35,6 +35,7 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
  * @property string  $sourceUrl
  * @property integer $sourceLoadingMode
  * @property string  $sourceUrlParameter
+ * @property boolean $sourceVersioning
  * @property string  $scriptConfirmed
  * @property string  $scriptUnconfirmed
  * @property string  $scriptPosition
@@ -140,6 +141,11 @@ class Cookie extends AbstractCookie
     {
         if($src = $this->sourceUrl)
         {
+            if ($this->sourceVersioning)
+            {
+                $src .= (str_contains($src, '?') ? '&' : '?') . 'v=' . substr(md5(time()),0, 8);
+            }
+
             $this->addResource(
                 $src,
                 StringUtil::deserialize($this->sourceUrlParameter) ?: null,

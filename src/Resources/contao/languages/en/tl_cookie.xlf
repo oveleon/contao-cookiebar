@@ -115,6 +115,12 @@
       <trans-unit id="tl_cookie.sourceUrlParameter.1">
         <source>Define the load parameters of the source URL to be used.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.0">
+        <source>Use versioning</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.1">
+        <source>Adds a cache busting parameter to the script.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.0">
         <source>Script (Confirmed)</source>
       </trans-unit>

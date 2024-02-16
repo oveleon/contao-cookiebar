@@ -115,7 +115,6 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'sql'                     => "char(1) NOT NULL default ''"
         ],
         'essentialCookieLanguage' => [
-            'default'                 => $GLOBALS['TL_LANGUAGE'] ?? 'en',
             'exclude'                 => true,
             'inputType'               => 'select',
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],

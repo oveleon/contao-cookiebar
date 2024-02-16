@@ -440,16 +440,33 @@ let ContaoCookiebar = (function () {
         }
 
         const registerTriggerEvents = function(){
-            let btnOpener = document.querySelectorAll('a.ccb-trigger, strong.ccb-trigger');
+            document.querySelectorAll('a.ccb-trigger, strong.ccb-trigger').forEach(function(btn){
+                applyTriggerEvent(btn)
+            });
 
-            if(btnOpener.length){
-                btnOpener.forEach(function(btn){
-                    btn.addEventListener('click', function(e){
-                        e.preventDefault();
-                        p.show(btn.classList.contains('ccb-prefill'));
-                    });
-                });
-            }
+            // See #152
+            new MutationObserver(function(mutationsList) {
+                for (const mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        mutation.addedNodes.forEach(function(element) {
+                            if (element.matches && element.matches('a.ccb-trigger, strong.ccb-trigger')) {
+                                applyTriggerEvent(element)
+                            }
+                        })
+                    }
+                }
+            }).observe(document, {
+                attributes: false,
+                childList: true,
+                subtree: true
+            });
+        }
+
+        const applyTriggerEvent = function (el) {
+            el.addEventListener('click', function(e){
+                e.preventDefault();
+                p.show(el.classList.contains('ccb-prefill'));
+            });
         }
 
         const registerEvents = function(){

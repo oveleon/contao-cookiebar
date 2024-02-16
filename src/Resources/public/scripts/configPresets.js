@@ -24,6 +24,8 @@ var Cookiebar = {
                             "// The \"granted\" values should be set in the cookie type itself.\n" +
                             "gtag('consent', 'default', {\n" +
                             "   'ad_storage': 'denied',\n" +
+                            "   'ad_user_data': 'denied',\n" +
+                            "   'ad_personalization': 'denied',\n" +
                             "   'analytics_storage': 'denied',\n" +
                             "   'functionality_storage': 'denied',\n" +
                             "   'personalization_storage': 'denied',\n" +

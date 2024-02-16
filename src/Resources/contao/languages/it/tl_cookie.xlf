@@ -137,6 +137,14 @@
         <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
         <target>L'URL sorgente viene utilizzato per integrare script che devono essere esplicitamente integrati nella sezione HEAD del sito web per fornire un servizio esterno.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.0">
+        <source>Use versioning</source>
+        <target>Usa il versioning</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.1">
+        <source>Adds a cache busting parameter to the script.</source>
+        <target>Aggiunge un parametro di uccisione della cache allo script.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.0">
         <source>Source URL loading mode</source>
         <target>Modalità di caricamento dell'URL sorgente</target>

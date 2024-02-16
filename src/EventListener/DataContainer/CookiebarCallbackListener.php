@@ -115,6 +115,28 @@ class CookiebarCallbackListener
     }
 
     /**
+     * Set the default language for essential cookies
+     *
+     * @Callback(table="tl_cookiebar", target="fields.essentialCookieLanguage.load")
+     */
+    public function addDefaultLanguage($value): string
+    {
+        if ($value)
+        {
+            return $value;
+        }
+
+        $language = $GLOBALS['TL_LANGUAGE'] ?? 'en';
+
+        if (!array_key_exists($language, $this->loadAvailableLanguages()))
+        {
+            return 'en';
+        }
+
+        return $language;
+    }
+
+    /**
      * Update version
      *
      * @Callback(table="tl_cookiebar", target="fields.updateVersion.save")
