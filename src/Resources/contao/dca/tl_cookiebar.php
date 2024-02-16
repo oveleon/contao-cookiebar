@@ -237,9 +237,12 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
         'essentialCookieLanguage' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['essentialCookieLanguage'],
-            'default'                 => $GLOBALS['TL_LANGUAGE'] ?? 'en',
             'exclude'                 => true,
             'inputType'               => 'select',
+            'load_callback' => array
+            (
+                array('tl_cookiebar', 'addDefaultLanguage')
+            ),
             'options_callback'        => array('tl_cookiebar', 'loadAvailableLanguages'),
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
             'eval'                    => array('tl_class'=>'w50'),
@@ -299,6 +302,23 @@ class tl_cookiebar extends Contao\Backend
         }
 
         return $arrReturn;
+    }
+
+    public function addDefaultLanguage($value): string
+    {
+        if ($value)
+        {
+            return $value;
+        }
+
+        $language = $GLOBALS['TL_LANGUAGE'] ?? 'en';
+
+        if (!array_key_exists($language, $this->loadAvailableLanguages()))
+        {
+            return 'en';
+        }
+
+        return $language;
     }
 
     /**
