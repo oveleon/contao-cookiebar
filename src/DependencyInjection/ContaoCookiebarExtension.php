@@ -48,6 +48,9 @@ class ContaoCookiebarExtension extends Extension
             $config['iframe_types'] = $arrIframeTypes;
         }
 
+        /**
+         * @deprecated Deprecated since Contao Cookiebar 2.0, to be removed in v 2.1
+         */
         if(!empty($config['page_templates']))
         {
             $config['page_templates'] = array_merge($arrPageTemplates, $config['page_templates']);
