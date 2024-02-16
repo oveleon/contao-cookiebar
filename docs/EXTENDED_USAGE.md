@@ -3,7 +3,7 @@
     - [Create Configuration](CONFIGURATION.md)
     - [Create Group](GROUP.md)
     - [Create Cookie (Type)](COOKIE.md)
-- [Module & Content-Element](MOD_CE.md)
+- [Module / Content-Element / Insert-tags](MOD_CE_MISC.md)
 - [Styling & Customization](CUSTOMIZATION.md)
 - [Extend iFrame-Types](EXTEND_IFRAME.md)
 - [Extend Cookie-Types](EXTEND_TYPE.md)

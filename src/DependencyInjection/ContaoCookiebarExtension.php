@@ -28,6 +28,7 @@ class ContaoCookiebarExtension extends Extension
 
         $loader->load('commands.yaml');
         $loader->load('services.yaml');
+        $loader->load('listener.yml');
 
         $arrIframeTypes = [
             'youtube'       => ['ce_youtube'],
