@@ -21,10 +21,15 @@ var Cookiebar = {
             tagManager_gcm: "window.dataLayer = window.dataLayer || [];\n" +
                             "function gtag(){dataLayer.push(arguments);}\n\n" +
                             "// Define only global settings here.\n" +
-                            "// The \"granted\" values should be set in the cookie itself.\n" +
+                            "// The \"granted\" values should be set in the cookie type itself.\n" +
                             "gtag('consent', 'default', {\n" +
                             "   'ad_storage': 'denied',\n" +
+                            "   'ad_user_data': 'denied',\n" +
+                            "   'ad_personalization': 'denied',\n" +
                             "   'analytics_storage': 'denied',\n" +
+                            "   'functionality_storage': 'denied',\n" +
+                            "   'personalization_storage': 'denied',\n" +
+                            "   'security_storage': 'denied',\n" +
                             "   'wait_for_update': 500\n" +
                             "});\n\n" +
                             "//gtag('set', 'ads_data_redaction', true);\n" +

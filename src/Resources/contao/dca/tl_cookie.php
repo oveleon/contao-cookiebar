@@ -453,7 +453,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['gcmDefaults'],
             'exclude'                 => true,
             'inputType'               => 'select',
-            'options'                 => array('ad_storage','analytics_storage'),
+            'options'                 => array('ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage', 'functionality_storage', 'personalization_storage', 'security_storage'),
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => array('tl_class'=>'w50 clr'),
             'sql'                     => "varchar(32) NOT NULL default ''"

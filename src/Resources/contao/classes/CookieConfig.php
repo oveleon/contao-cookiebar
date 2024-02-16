@@ -153,7 +153,7 @@ class CookieConfig extends AbstractCookie
     private function compileGoogleConsentMode()
     {
         $this->addScript(
-            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied', 'wait_for_update': 500 }); gtag('js', new Date()); gtag('config', '" . $this->vendorId . "');",
+            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied', 'functionality_storage': 'denied', 'personalization_storage': 'denied', 'security_storage': 'denied', 'wait_for_update': 500 }); gtag('js', new Date()); gtag('config', '" . $this->vendorId . "');",
             self::LOAD_ALWAYS,
             self::POS_HEAD
         );
