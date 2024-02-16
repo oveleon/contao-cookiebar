@@ -152,6 +152,14 @@
         <source>Define the load parameters of the source URL to be used.</source>
         <target>Definieren Sie die zu verwendenden Lade-Parameter der Source URL.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.0">
+        <source>Use versioning</source>
+        <target>Versionierung verwenden</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.1">
+        <source>Adds a cache busting parameter to the script.</source>
+        <target>Fügt dem Skript einen Cache-Busting-Parameter hinzu.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.0">
         <source>Script (Confirmed)</source>
         <target>Skript (Bestätigt)</target>

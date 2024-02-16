@@ -114,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 	(
 	    '__selector__'                => array('type'),
         'default'                     => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{description_legend:hide},description,detailDescription;published,checked,disabled;',
-        'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published,checked;',
+        'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;sourceUrl,sourceLoadingMode,sourceUrlParameter,sourceVersioning;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published,checked;',
         'template'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;{template_legend},scriptTemplate,scriptPosition;{description_legend:hide},description,detailDescription;published,checked;',
         'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
         'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,gcmMode,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
@@ -378,6 +378,15 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'options'                 => array('async', 'defer'),
             'eval'                    => array('multiple'=>true, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'sourceVersioning' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['sourceVersioning'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "char(1) NOT NULL default ''"
         ),
         'scriptConfirmed' => array
         (

@@ -24,6 +24,7 @@ use Contao\System;
  * @property string  $sourceUrl
  * @property integer $sourceLoadingMode
  * @property string  $sourceUrlParameter
+ * @property boolean $sourceVersioning
  * @property string  $scriptPosition
  * @property integer $scriptLoadingMode
  * @property string  $scriptConfig
@@ -107,6 +108,11 @@ class CookieConfig extends AbstractCookie
     {
         if($src = $this->sourceUrl)
         {
+            if ($this->sourceVersioning)
+            {
+                $src .= (strpos($src, '?') !== false ? '&' : '?') . 'v=' . substr(md5(time()),0, 8);
+            }
+
             $this->addResource(
                 $src,
                 StringUtil::deserialize($this->sourceUrlParameter) ?: null,

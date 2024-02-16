@@ -137,6 +137,14 @@
         <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
         <target>Käll-URL:en används för att integrera skript som måste uttryckligen integreras i HEAD-området på webbplatsen för att kunna tillhandahålla en extern tjänst.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.0">
+        <source>Use versioning</source>
+        <target>Använd versionshantering.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.sourceVersioning.1">
+        <source>Adds a cache busting parameter to the script.</source>
+        <target>Lägger till en cache-busting-parameter i skriptet.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.0">
         <source>Source URL loading mode</source>
         <target>Laddningsläge för käll-URL</target>
