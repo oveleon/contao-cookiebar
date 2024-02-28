@@ -42,21 +42,21 @@ class InsertTagsListener
         $this->requestStack = $requestStack;
     }
 
-	/**
-	 * @return string|false
-	 */
+    /**
+     * @return string|false
+     */
     public function __invoke(string $tag, bool $useCache, $cacheValue, array $flags)
-	{
-		$elements = explode('::', $tag);
-		$key = strtolower($elements[0]);
+    {
+        $elements = explode('::', $tag);
+        $key = strtolower($elements[0]);
 
-		if (\in_array($key, self::SUPPORTED_TAGS, true))
-		{
-			return $this->replaceCookiebarInsertTag($key, $elements, $flags);
-		}
+        if (\in_array($key, self::SUPPORTED_TAGS, true))
+        {
+            return $this->replaceCookiebarInsertTag($key, $elements, $flags);
+        }
 
-		return false;
-	}
+        return false;
+    }
 
     private function replaceCookiebarInsertTag(string $insertTag, array $elements, array $flags): string
     {
@@ -69,7 +69,7 @@ class InsertTagsListener
                 $objTemplate->rel = ' rel="noreferrer noopener"';
                 $objTemplate->link = $elements[2] ?? ($GLOBALS['TL_LANG']['tl_cookiebar']['changePrivacyLabel'] ?? '');
                 $objTemplate->linkTitle = StringUtil::specialchars($elements[3] ?? '');
-                $objTemplate->attribute = ' onclick="cookiebar.show('.(isset($elements[4]) && !$elements[4] ? 0 : 1) .');"';
+                $objTemplate->attribute = ' onclick="cookiebar.show(' . (isset($elements[4]) && !$elements[4] ? 0 : 1) . ');"';
 
                 return $objTemplate->parse();
         }
