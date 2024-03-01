@@ -10,15 +10,19 @@ services:
 
     Oveleon\ContaoCookiebar\EventListener\KernelRequestListener:
         arguments:
-            - '@contao.translation.translator'
-            - '@contao.security.token_checker'
             - '@contao.routing.scope_matcher'
-            - '%contao_cookiebar.lifetime%'
-            - '%contao_cookiebar.consent_log%'
-            - '%contao_cookiebar.storage_key%'
-            - '%contao_cookiebar.consider_dnt%'
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
             - { name: contao.hook, hook: getFrontendModule, method: onParseLegacyTemplates, priority: 0 }
             - { name: contao.hook, hook: getContentElement, method: onParseLegacyTemplates, priority: 0 }
+
+    Oveleon\ContaoCookiebar\EventListener\GeneratePageListener:
+        arguments:
+            - '@contao.translation.translator'
+            - '@contao.security.token_checker'
+            - '@contao.routing.response_context_accessor'
+            - '%contao_cookiebar.lifetime%'
+            - '%contao_cookiebar.consent_log%'
+            - '%contao_cookiebar.storage_key%'
+            - '%contao_cookiebar.consider_dnt%'

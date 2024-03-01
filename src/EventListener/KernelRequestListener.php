@@ -7,39 +7,25 @@ namespace Oveleon\ContaoCookiebar\EventListener;
 use Contao\ContentModel;
 use Contao\ContentProxy;
 use Contao\CoreBundle\Routing\ScopeMatcher;
-use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
 use Contao\Model;
 use Contao\ModuleModel;
 use Contao\ModuleProxy;
 use Contao\PageModel;
-use Contao\StringUtil;
-use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class KernelRequestListener
 {
-    private ?string $rootPageBuffer = null;
     private ?PageModel $objRootPage = null;
     private ?PageModel $objPage = null;
     private ?CookiebarModel $cookiebarModel = null;
-    private ?string $globalJavaScript = null;
 
     private ?array $types = null;
     private array $cookies = [];
 
-    public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly TokenChecker        $tokenChecker,
-        private readonly ScopeMatcher        $scopeMatcher,
-        private readonly int                 $lifetime,
-        private readonly bool                $consentLog,
-        private readonly string              $storageKey,
-        private readonly bool                $considerDnt
-    )
+    public function __construct(private readonly ScopeMatcher $scopeMatcher)
     {
     }
 
@@ -99,18 +85,6 @@ class KernelRequestListener
 
         $response = $event->getResponse();
         $content = $response->getContent();
-
-        if ($this->isPageTemplate($event) === true)
-        {
-            $content = match ($this->cookiebarModel->position)
-            {
-                'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$this->rootPageBuffer$2</body>", $content),
-                default => str_replace("</body>", "$this->rootPageBuffer</body>", $content),
-            };
-
-            $content = $this->injectGlobalJs($content);
-            $response->setContent($content);
-        }
 
         if ($request->attributes->has('contentModel'))
         {
@@ -187,39 +161,6 @@ class KernelRequestListener
 
         $this->types = Cookiebar::getIframeTypes();
         $this->cookies = Cookiebar::validateCookies($this->cookiebarModel);
-
-        $strHtml = Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language);
-
-        // Always add cache busting
-        $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
-        $mtime = (string)filemtime($this->getRealPath($javascript));
-        $script = '<script src="' . $javascript . '?v=' . substr(md5($mtime), 0, 8) . '"></script>';
-
-        if ($this->cookiebarModel->scriptPosition === 'body')
-        {
-            $strHtml .= $script;
-        } else
-        {
-            $this->globalJavaScript = $script;
-        }
-
-        $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
-            $this->cookiebarModel->id,
-            $this->cookiebarModel->pageId,
-            $this->cookiebarModel->version,
-            $this->lifetime,
-            $this->consentLog ? 1 : 0,
-            $this->storageKey,
-            $this->considerDnt ? 1 : 0,
-            $this->objPage->id,
-            json_encode(StringUtil::deserialize($this->cookiebarModel->excludePages)),
-            json_encode(Cookiebar::validateCookies($this->cookiebarModel)),
-            json_encode(Cookiebar::validateGlobalConfigs($this->cookiebarModel)),
-            $this->tokenChecker->hasBackendUser() && !!$this->cookiebarModel->disableTrackingWhileLoggedIn ? 1 : 0,
-            $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default')
-        ]);
-
-        $this->rootPageBuffer = $strHtml;
     }
 
     /**
@@ -312,81 +253,5 @@ class KernelRequestListener
         }
 
         return $buffer;
-    }
-
-    /**
-     * @param ResponseEvent $event
-     * @return bool
-     * see also Contao\CoreBundle\EventListener\PreviewToolbarListener
-     */
-    private function isPageTemplate(ResponseEvent $event): bool
-    {
-        $request = $event->getRequest();
-        $response = $event->getResponse();
-
-        if (
-            !$this->scopeMatcher->isFrontendMainRequest($event) ||
-            $request->isXmlHttpRequest() ||
-            (!$response->isSuccessful() && !$response->isClientError())
-        )
-        {
-            return false;
-        }
-
-        if (
-            'html' !== $request->getRequestFormat() ||
-            !str_contains((string)$response->headers->get('Content-Type'), 'text/html') ||
-            false !== stripos((string)$response->headers->get('Content-Disposition'), 'attachment;')
-        )
-        {
-            return false;
-        }
-
-        if (false === strripos($response->getContent(), '</body>'))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * @param string $content
-     * @return string
-     * see also Contao\CoreBundle\EventListener\PreviewToolbarListener
-     */
-    private function injectGlobalJs(string $content): string
-    {
-        if (!!$this->globalJavaScript)
-        {
-            $pos = strripos($content, '</head>');
-
-            if (false !== $pos)
-            {
-                $content = substr($content, 0, $pos) . "\n" . $this->globalJavaScript . "\n" . substr($content, $pos);
-            }
-        }
-
-        return $content;
-    }
-
-    private function getRealPath(string $strFile): string
-    {
-        $container = System::getContainer();
-        $strRootDir = $container->getParameter('kernel.project_dir');
-
-        // Check the source file
-        if (!file_exists($strRootDir . '/' . $strFile))
-        {
-            $strWebDir = StringUtil::stripRootDir($container->getParameter('contao.web_dir'));
-            $webDirPath = $strRootDir . '/' . $strWebDir . '/' . $strFile;
-
-            if (file_exists($webDirPath))
-            {
-                return $webDirPath;
-            }
-        }
-
-        return $strFile;
     }
 }
