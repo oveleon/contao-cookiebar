@@ -448,7 +448,7 @@ class KernelRequestListener
             return null;
         }
 
-        // @TODO find a regexp for this => challenge
+        // @TODO find a regexp for this => challenge because style-src can also have a nonce-
         $noncePattern = explode(' ', $cspHeader);
         foreach ($noncePattern as $value)
         {
