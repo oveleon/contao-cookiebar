@@ -8,6 +8,7 @@
 - [Extend iFrame-Types](EXTEND_IFRAME.md)
 - [Extend Cookie-Types](EXTEND_TYPE.md)
 - [Extended usage](EXTENDED_USAGE.md)
+- [Content Security Policy](CONTENT_SECURITY_POLICY.md)
 
 ---
 

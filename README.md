@@ -42,6 +42,7 @@
 - [Extend iFrame-Types](docs/EXTEND_IFRAME.md)
 - [Extend Cookie-Types](docs/EXTEND_TYPE.md)
 - [Extended usage](docs/EXTENDED_USAGE.md)
+- [Content Security Policy](docs/CONTENT_SECURITY_POLICY.md)
 
 ### Contributing
 To build JavaScript and CSS files the following commands can be used:
