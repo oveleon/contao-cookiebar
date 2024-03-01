@@ -67,7 +67,7 @@ class GeneratePageListener
         $nonce = null;
 
         // If bodyBelowContent has been selected, nonce gets added automatically
-        if ('bodyBelowContent' !== $this->cookiebarModel->position)
+        if ($this->objRootPage->enableCsp && ('bodyBelowContent' !== $this->cookiebarModel->position))
         {
             $responseContext = $this->responseContextAccessor->getResponseContext();
 
@@ -90,7 +90,7 @@ class GeneratePageListener
             default => $GLOBALS['TL_JAVASCRIPT'][] = $javascript
         };
 
-        $strHtml .= vsprintf("<script%s>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
+        $strHtml .= vsprintf("<script%s>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});</script>", [
             $nonce ? ' nonce="' . $nonce . '"' : '',
             $this->cookiebarModel->id,
             $this->cookiebarModel->pageId,

@@ -357,7 +357,7 @@ let ContaoCookiebar = (function () {
             // Load resource
             let script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.nonce = document.querySelector('script[nonce]').nonce ?? null;
+                script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
                 script.src = resource.src;
                 script.onload = () => {
                     // Mark resource as loaded
@@ -802,7 +802,7 @@ let ContaoCookiebar = (function () {
         const createScript = function(html) {
             let script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.nonce = document.querySelector('script[nonce]').nonce ?? null;
+                script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
                 script.innerHTML = html;
 
             return script;
