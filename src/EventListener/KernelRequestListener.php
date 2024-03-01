@@ -202,7 +202,7 @@ class KernelRequestListener
         $this->rootPageBuffer['template'] = Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language);
 
         // Always add cache busting
-        $javascript = 'bundles/contaocookiebar/scripts/cookiebar.js';
+        $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
         $mtime = (string)filemtime($this->getRealPath($javascript));
 
         $this->rootPageBuffer['scriptCookieBar'] = null;
