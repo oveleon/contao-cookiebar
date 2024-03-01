@@ -115,6 +115,7 @@ class KernelRequestListener
 
             $content = match ($this->cookiebarModel->position)
             {
+                // see PreviewToolbarListener::injectToolbar for better memoryHandling, use strpos
                 'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$cookieBarScript$2</body>", $content),
                 default => str_replace("</body>", "$cookieBarScript</body>", $content),
             };
