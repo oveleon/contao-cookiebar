@@ -105,22 +105,31 @@ class KernelRequestListener
 
         if ($this->isPageTemplate($event) === true)
         {
-            $nonce = null;
-
-            // If bodyBelowContent has been selected, nonce gets added automatically
-            if ('bodyBelowContent' !== $this->cookiebarModel->position)
-            {
-                $nonce = $this->getScriptNonce($response);
-            }
-
+            // @TODO maybe we can check $this->objRootPage->enableCsp but if other ResponseListener set CSP we also want to process
+            $nonce = $this->getScriptNonce($response);
             $cookieBarScript = $this->generateCookieBarScript($nonce);
 
-            $content = match ($this->cookiebarModel->position)
+            if ($this->cookiebarModel->position === 'bodyAboveContent')
             {
-                // see PreviewToolbarListener::injectToolbar for better memoryHandling, use strpos
-                'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$cookieBarScript$2</body>", $content),
-                default => str_replace("</body>", "$cookieBarScript</body>", $content),
-            };
+                preg_match('/<body([^>]*)>/', $content, $matches, PREG_OFFSET_CAPTURE);
+                if (is_array($matches) && count($matches) > 0)
+                {
+                    $posValue = ($matches[0][0] ?? null);
+                    $pos = ($matches[0][1] ?? null);
+                    if (is_int($pos) && is_string($posValue))
+                    {
+                        $pos += strlen($posValue);
+                        $content = substr($content, 0, $pos) . "\n" . $cookieBarScript . "\n" . substr($content, $pos);
+                    }
+                }
+            } else
+            {
+                $pos = strripos($content, '</body>');
+                if (false !== $pos)
+                {
+                    $content = substr($content, 0, $pos) . "\n" . $cookieBarScript . "\n" . substr($content, $pos);
+                }
+            }
 
             $content = $this->injectGlobalJs($content, $nonce);
             $response->setContent($content);
