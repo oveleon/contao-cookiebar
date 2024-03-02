@@ -6,6 +6,7 @@ namespace Oveleon\ContaoCookiebar\EventListener;
 
 use Contao\ContentModel;
 use Contao\ContentProxy;
+use Contao\CoreBundle\Csp\CspParser;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
 use Contao\Model;
@@ -36,6 +37,7 @@ class KernelRequestListener
         private readonly TranslatorInterface $translator,
         private readonly TokenChecker        $tokenChecker,
         private readonly ScopeMatcher        $scopeMatcher,
+        private readonly CspParser           $cspParser,
         private readonly int                 $lifetime,
         private readonly bool                $consentLog,
         private readonly string              $storageKey,
@@ -442,21 +444,25 @@ class KernelRequestListener
      */
     private function getScriptNonce(Response $response): ?string
     {
-        // @TODO What about Content-Security-Policy-Report-Only
         $cspHeader = $response->headers->get('Content-Security-Policy');
         if ($cspHeader === null || $cspHeader === '')
         {
             return null;
         }
 
-        // @TODO find a regexp for this => challenge because style-src can also have a nonce-
-        $noncePattern = explode(' ', $cspHeader);
-        foreach ($noncePattern as $value)
+        $directives = $this->cspParser->parseHeader($cspHeader);
+        $scriptDirective = $directives->getDirective('script-src');
+        if (is_string($scriptDirective) && str_contains($scriptDirective, 'nonce-'))
         {
-            if (str_starts_with($value, "'nonce-"))
+            $noncePattern = explode(' ', $scriptDirective);
+            foreach ($noncePattern as $value)
             {
-                return substr(str_replace("'nonce-", "", $value), 0, -1);
+                if (str_contains($value, 'nonce-'))
+                {
+                    return substr(str_replace("'nonce-", "", $value), 0, -1);
+                }
             }
+
         }
 
         return null;
