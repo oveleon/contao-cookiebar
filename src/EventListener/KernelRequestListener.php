@@ -453,6 +453,7 @@ class KernelRequestListener
      */
     private function getScriptNonce(Response $response): ?string
     {
+        // If CSP is set to readOnly the nonce has not to be set
         $cspHeader = $response->headers->get('Content-Security-Policy');
         if ($cspHeader === null || $cspHeader === '')
         {
