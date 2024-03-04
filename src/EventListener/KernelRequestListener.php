@@ -479,6 +479,7 @@ class KernelRequestListener
             {
                 if (str_contains($value, 'nonce-'))
                 {
+                    // 'nonce-fooBar' => fooBar
                     return substr(str_replace("'nonce-", "", $value), 0, -1);
                 }
             }
