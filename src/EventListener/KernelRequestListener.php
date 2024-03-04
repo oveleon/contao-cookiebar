@@ -17,6 +17,7 @@ use Contao\StringUtil;
 use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
+use Oveleon\ContaoCookiebar\Utils\ScriptUtils;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
@@ -24,12 +25,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class KernelRequestListener
 {
-    private array $rootPageBuffer = [];
     private ?PageModel $objRootPage = null;
     private ?PageModel $objPage = null;
     private ?CookiebarModel $cookiebarModel = null;
-    private ?string $globalJavaScript = null;
-
+    private ?ScriptUtils $scriptUtils = null;
     private ?array $types = null;
     private array $cookies = [];
 
@@ -200,6 +199,8 @@ class KernelRequestListener
             return;
         }
 
+        $this->scriptUtils = new ScriptUtils();
+
         $this->cookiebarModel = Cookiebar::getConfigByPage($this->objRootPage);
 
         if (!$this->cookiebarModel instanceof CookiebarModel)
@@ -211,23 +212,22 @@ class KernelRequestListener
         $this->types = Cookiebar::getIframeTypes();
         $this->cookies = Cookiebar::validateCookies($this->cookiebarModel);
 
-        $this->rootPageBuffer['template'] = Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language);
+        $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
 
         // Always add cache busting
         $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
         $mtime = (string)filemtime($this->getRealPath($javascript));
 
-        $this->rootPageBuffer['scriptCookieBar'] = null;
         if ($this->cookiebarModel->scriptPosition === 'body')
         {
-            $this->rootPageBuffer['scriptCookieBar'] = $javascript . '?v=' . substr(md5($mtime), 0, 8);
+            $this->scriptUtils->setScriptCookieBar($javascript . '?v=' . substr(md5($mtime), 0, 8));
         } else
         {
-            $this->globalJavaScript = $javascript . '?v=' . substr(md5($mtime), 0, 8);
+            $this->scriptUtils->setGlobalJavaScript($javascript . '?v=' . substr(md5($mtime), 0, 8));
         }
 
-        $this->rootPageBuffer['scriptConfigPattern'] = "var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});";
-        $this->rootPageBuffer['scriptConfigValues'] = [
+        $this->scriptUtils->setScriptConfigPattern("var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});");
+        $this->scriptUtils->setScriptConfigValues([
             $this->cookiebarModel->id,
             $this->cookiebarModel->pageId,
             $this->cookiebarModel->version,
@@ -241,7 +241,7 @@ class KernelRequestListener
             json_encode(Cookiebar::validateGlobalConfigs($this->cookiebarModel)),
             $this->tokenChecker->hasBackendUser() && !!$this->cookiebarModel->disableTrackingWhileLoggedIn ? 1 : 0,
             $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default')
-        ];
+        ]);
 
     }
 
@@ -381,15 +381,20 @@ class KernelRequestListener
      */
     private function injectGlobalJs(string $content, mixed $nonce): string
     {
-        if (!!$this->globalJavaScript)
+        if (
+            !$this->scriptUtils instanceof ScriptUtils ||
+            $this->scriptUtils->getGlobalJavaScript() === null
+        )
         {
-            $pos = strripos($content, '</head>');
+            return $content;
+        }
 
-            if (false !== $pos)
-            {
-                $script = '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->globalJavaScript . '"></script>';
-                $content = substr($content, 0, $pos) . "\n" . $script . "\n" . substr($content, $pos);
-            }
+        $pos = strripos($content, '</head>');
+
+        if (false !== $pos)
+        {
+            $script = '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->scriptUtils->getGlobalJavaScript() . '"></script>';
+            $content = substr($content, 0, $pos) . "\n" . $script . "\n" . substr($content, $pos);
         }
 
         return $content;
@@ -401,22 +406,27 @@ class KernelRequestListener
      */
     private function generateCookieBarScript(mixed $nonce): string
     {
-        $strHtml = $this->rootPageBuffer['template'];
-
-        if ($this->rootPageBuffer['scriptCookieBar'] !== null)
+        if (!$this->scriptUtils instanceof ScriptUtils)
         {
-            $strHtml .= '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->rootPageBuffer['scriptCookieBar'] . '"></script>';
+            return '';
+        }
+
+        $strHtml = ($this->scriptUtils->getOutputTemplate() ?? '');
+
+        if ($this->scriptUtils->getScriptCookieBar() !== null)
+        {
+            $strHtml .= '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->scriptUtils->getScriptCookieBar() . '"></script>';
         }
 
 
         if (is_string($nonce))
         {
-            $arrConfigValues = [' nonce="' . $nonce . '"', ...$this->rootPageBuffer['scriptConfigValues']];
-            $strHtml .= vsprintf('<script%s>' . $this->rootPageBuffer['scriptConfigPattern'] . '</script>', $arrConfigValues);
+            $arrConfigValues = [' nonce="' . $nonce . '"', ...($this->scriptUtils->getScriptConfigValues() ?? [])];
+            $strHtml .= vsprintf('<script%s>' . ($this->scriptUtils->getScriptConfigPattern() ?? '') . '</script>', $arrConfigValues);
 
         } else
         {
-            $strHtml .= vsprintf('<script>' . $this->rootPageBuffer['scriptConfigPattern'] . '</script>', $this->rootPageBuffer['scriptConfigValues']);
+            $strHtml .= vsprintf('<script>' . ($this->scriptUtils->getScriptConfigPattern() ?? '') . '</script>', ($this->scriptUtils->getScriptConfigValues() ?? []));
         }
 
         return $strHtml;
