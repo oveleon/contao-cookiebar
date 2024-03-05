@@ -24,7 +24,7 @@ class CookiebarOpenerController extends AbstractFrontendModuleController
         System::loadLanguageFile('tl_cookiebar');
 
         $template->href = 'javascript:;';
-        $template->attribute = ' onclick="cookiebar.show('.$model->prefillCookies.');"';
+        $template->linkClasses = 'ccb-trigger' . ($model->prefillCookies ? ' ccb-prefill' : '');
         $template->rel = ' rel="noreferrer noopener"';
         $template->link = $model->linkTitle ?: $this->translator->trans('tl_cookiebar.changePrivacyLabel', [], 'contao_default');
         $template->linkTitle = '';
@@ -39,7 +39,6 @@ class CookiebarOpenerController extends AbstractFrontendModuleController
         {
             $template->title = '';
             $template->linkTitle = '';
-            $template->attribute = '';
         }
 
         return $template->getResponse();

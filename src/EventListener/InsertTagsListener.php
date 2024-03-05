@@ -69,7 +69,7 @@ class InsertTagsListener
                 $objTemplate->rel = ' rel="noreferrer noopener"';
                 $objTemplate->link = $elements[2] ?? ($GLOBALS['TL_LANG']['tl_cookiebar']['changePrivacyLabel'] ?? '');
                 $objTemplate->linkTitle = StringUtil::specialchars($elements[3] ?? '');
-                $objTemplate->attribute = ' onclick="cookiebar.show(' . (isset($elements[4]) && !$elements[4] ? 0 : 1) . ');"';
+                $objTemplate->linkClasses = 'ccb-trigger' . (isset($elements[4]) && !$elements[4] ? '' : ' ccb-prefill');
 
                 return $objTemplate->parse();
         }
