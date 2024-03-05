@@ -23,7 +23,7 @@
     "ext-json":"*",
     "ext-dom": "*",
     "ext-libxml": "*",
-    "contao/core-bundle":"^5.0",
+    "contao/core-bundle":"^5.3",
     "symfony/http-foundation":"^5.4 || ^6.0",
     "symfony/serializer":"^5.4 || ^6.4 || ^7.0"
   },
