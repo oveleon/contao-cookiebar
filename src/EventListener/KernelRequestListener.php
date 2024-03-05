@@ -393,6 +393,7 @@ class KernelRequestListener
 
         if (false !== $pos)
         {
+            // @TODO Actually the nonce would not be necessary here
             $script = '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->scriptUtils->getGlobalJavaScript() . '"></script>';
             $content = substr($content, 0, $pos) . "\n" . $script . "\n" . substr($content, $pos);
         }
