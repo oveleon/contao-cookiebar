@@ -6,6 +6,7 @@ namespace Oveleon\ContaoCookiebar\EventListener;
 
 use Contao\ContentModel;
 use Contao\ContentProxy;
+use Contao\CoreBundle\Csp\CspParser;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
 use Contao\Model;
@@ -16,18 +17,18 @@ use Contao\StringUtil;
 use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
+use Oveleon\ContaoCookiebar\Utils\ScriptUtils;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class KernelRequestListener
 {
-    private ?string $rootPageBuffer = null;
     private ?PageModel $objRootPage = null;
     private ?PageModel $objPage = null;
     private ?CookiebarModel $cookiebarModel = null;
-    private ?string $globalJavaScript = null;
-
+    private ?ScriptUtils $scriptUtils = null;
     private ?array $types = null;
     private array $cookies = [];
 
@@ -35,6 +36,7 @@ class KernelRequestListener
         private readonly TranslatorInterface $translator,
         private readonly TokenChecker        $tokenChecker,
         private readonly ScopeMatcher        $scopeMatcher,
+        private readonly CspParser           $cspParser,
         private readonly int                 $lifetime,
         private readonly bool                $consentLog,
         private readonly string              $storageKey,
@@ -102,13 +104,33 @@ class KernelRequestListener
 
         if ($this->isPageTemplate($event) === true)
         {
-            $content = match ($this->cookiebarModel->position)
-            {
-                'bodyAboveContent' => preg_replace("/<body([^>]*)>(.*?)<\/body>/is", "<body$1>$this->rootPageBuffer$2</body>", $content),
-                default => str_replace("</body>", "$this->rootPageBuffer</body>", $content),
-            };
+            // @TODO maybe we can check $this->objRootPage->enableCsp but if other ResponseListener set CSP we also want to process
+            $nonce = $this->getScriptNonce($response);
+            $cookieBarScript = $this->generateCookieBarScript($nonce);
 
-            $content = $this->injectGlobalJs($content);
+            if ($this->cookiebarModel->position === 'bodyAboveContent')
+            {
+                preg_match('/<body([^>]*)>/', $content, $matches, PREG_OFFSET_CAPTURE);
+                if (is_array($matches) && count($matches) > 0)
+                {
+                    $posValue = ($matches[0][0] ?? null);
+                    $pos = ($matches[0][1] ?? null);
+                    if (is_int($pos) && is_string($posValue))
+                    {
+                        $pos += strlen($posValue);
+                        $content = substr($content, 0, $pos) . "\n" . $cookieBarScript . "\n" . substr($content, $pos);
+                    }
+                }
+            } else
+            {
+                $pos = strripos($content, '</body>');
+                if (false !== $pos)
+                {
+                    $content = substr($content, 0, $pos) . "\n" . $cookieBarScript . "\n" . substr($content, $pos);
+                }
+            }
+
+            $content = $this->injectGlobalJs($content, $nonce);
             $response->setContent($content);
         }
 
@@ -177,6 +199,8 @@ class KernelRequestListener
             return;
         }
 
+        $this->scriptUtils = new ScriptUtils();
+
         $this->cookiebarModel = Cookiebar::getConfigByPage($this->objRootPage);
 
         if (!$this->cookiebarModel instanceof CookiebarModel)
@@ -188,22 +212,22 @@ class KernelRequestListener
         $this->types = Cookiebar::getIframeTypes();
         $this->cookies = Cookiebar::validateCookies($this->cookiebarModel);
 
-        $strHtml = Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language);
+        $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
 
         // Always add cache busting
         $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
         $mtime = (string)filemtime($this->getRealPath($javascript));
-        $script = '<script src="' . $javascript . '?v=' . substr(md5($mtime), 0, 8) . '"></script>';
 
         if ($this->cookiebarModel->scriptPosition === 'body')
         {
-            $strHtml .= $script;
+            $this->scriptUtils->setScriptCookieBar($javascript . '?v=' . substr(md5($mtime), 0, 8));
         } else
         {
-            $this->globalJavaScript = $script;
+            $this->scriptUtils->setGlobalJavaScript($javascript . '?v=' . substr(md5($mtime), 0, 8));
         }
 
-        $strHtml .= vsprintf("<script>var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s, texts:{acceptAndDisplay:'%s'}});</script>", [
+        $this->scriptUtils->setScriptConfigPattern("var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});");
+        $this->scriptUtils->setScriptConfigValues([
             $this->cookiebarModel->id,
             $this->cookiebarModel->pageId,
             $this->cookiebarModel->version,
@@ -219,7 +243,6 @@ class KernelRequestListener
             $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default')
         ]);
 
-        $this->rootPageBuffer = $strHtml;
     }
 
     /**
@@ -352,24 +375,68 @@ class KernelRequestListener
 
     /**
      * @param string $content
+     * @param mixed $nonce
      * @return string
      * see also Contao\CoreBundle\EventListener\PreviewToolbarListener
      */
-    private function injectGlobalJs(string $content): string
+    private function injectGlobalJs(string $content, mixed $nonce): string
     {
-        if (!!$this->globalJavaScript)
+        if (
+            !$this->scriptUtils instanceof ScriptUtils ||
+            $this->scriptUtils->getGlobalJavaScript() === null
+        )
         {
-            $pos = strripos($content, '</head>');
+            return $content;
+        }
 
-            if (false !== $pos)
-            {
-                $content = substr($content, 0, $pos) . "\n" . $this->globalJavaScript . "\n" . substr($content, $pos);
-            }
+        $pos = strripos($content, '</head>');
+
+        if (false !== $pos)
+        {
+            $script = '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->scriptUtils->getGlobalJavaScript() . '"></script>';
+            $content = substr($content, 0, $pos) . "\n" . $script . "\n" . substr($content, $pos);
         }
 
         return $content;
     }
 
+    /**
+     * @param mixed $nonce
+     * @return string
+     */
+    private function generateCookieBarScript(mixed $nonce): string
+    {
+        if (!$this->scriptUtils instanceof ScriptUtils)
+        {
+            return '';
+        }
+
+        $strHtml = ($this->scriptUtils->getOutputTemplate() ?? '');
+
+        if ($this->scriptUtils->getScriptCookieBar() !== null)
+        {
+            $strHtml .= '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->scriptUtils->getScriptCookieBar() . '"></script>';
+        }
+
+
+        if (is_string($nonce))
+        {
+            $arrConfigValues = [' nonce="' . $nonce . '"', ...($this->scriptUtils->getScriptConfigValues() ?? [])];
+            $strHtml .= vsprintf('<script%s>' . ($this->scriptUtils->getScriptConfigPattern() ?? '') . '</script>', $arrConfigValues);
+
+        } else
+        {
+            $strHtml .= vsprintf('<script>' . ($this->scriptUtils->getScriptConfigPattern() ?? '') . '</script>', ($this->scriptUtils->getScriptConfigValues() ?? []));
+        }
+
+        return $strHtml;
+
+    }
+
+    /**
+     * @param string $strFile
+     * @return string
+     */
     private function getRealPath(string $strFile): string
     {
         $container = System::getContainer();
@@ -389,4 +456,38 @@ class KernelRequestListener
 
         return $strFile;
     }
+
+    /**
+     * @param Response $response
+     * @return string|null
+     */
+    private function getScriptNonce(Response $response): ?string
+    {
+        // If CSP is set to readOnly the nonce has not to be set
+        $cspHeader = $response->headers->get('Content-Security-Policy');
+        if ($cspHeader === null || $cspHeader === '')
+        {
+            return null;
+        }
+
+        $directives = $this->cspParser->parseHeader($cspHeader);
+        $scriptDirective = $directives->getDirective('script-src');
+        if (is_string($scriptDirective) && str_contains($scriptDirective, 'nonce-'))
+        {
+            $noncePattern = explode(' ', $scriptDirective);
+            foreach ($noncePattern as $value)
+            {
+                if (str_contains($value, 'nonce-'))
+                {
+                    // 'nonce-fooBar' => fooBar
+                    return substr(str_replace("'nonce-", "", $value), 0, -1);
+                }
+            }
+
+        }
+
+        return null;
+
+    }
+
 }

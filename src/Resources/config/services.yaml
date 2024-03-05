@@ -13,6 +13,7 @@ services:
             - '@contao.translation.translator'
             - '@contao.security.token_checker'
             - '@contao.routing.scope_matcher'
+            - '@contao.csp.parser'
             - '%contao_cookiebar.lifetime%'
             - '%contao_cookiebar.consent_log%'
             - '%contao_cookiebar.storage_key%'
