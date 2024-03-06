@@ -1,10 +1,10 @@
 services:
-  contao_cookiebar.listener.insert_tags:
-    class: Oveleon\ContaoCookiebar\EventListener\InsertTagsListener
-    arguments:
-      - '@contao.framework'
-      - '@router.default'
-      - '@request_stack'
-    tags:
-      - { name: contao.hook, hook: replaceInsertTags }
-    public: true
+    contao_cookiebar.listener.insert_tags:
+        class: Oveleon\ContaoCookiebar\EventListener\InsertTagsListener
+        arguments:
+            - '@contao.framework'
+            - '@router.default'
+            - '@request_stack'
+        tags:
+            - { name: contao.hook, hook: replaceInsertTags }
+        public: true
