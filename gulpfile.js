@@ -5,16 +5,16 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('js', function() {
-    return gulp.src(['src/Resources/public/scripts/*.js', '!src/Resources/public/scripts/*.min.js'])
+    return gulp.src(['public/scripts/*.js', '!public/scripts/*.min.js'])
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('src/Resources/public/scripts'))
+        .pipe(gulp.dest('public/scripts'))
 });
 
 gulp.task('css', function(){
-    return gulp.src(['src/Resources/public/styles/*.scss', '!src/Resources/public/styles/*.css'])
+    return gulp.src(['public/styles/*.scss', '!public/styles/*.css'])
         //.pipe(sourcemaps.init())
         .pipe(sass())
         //.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('src/Resources/public/styles'))
+        .pipe(gulp.dest('public/styles'))
 });

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_content.php" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="tl_content.prefillCookies.0">
+        <source>Prefill settings</source>
+        <target>Paramètres de pré-remplissage</target>
+      </trans-unit>
+      <trans-unit id="tl_content.prefillCookies.1">
+        <source>Activates the already selected cookies when opening the cookiebar.</source>
+        <target>Active les cookies déjà sélectionnés lors de l'ouverture du panneau Cookiebar.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

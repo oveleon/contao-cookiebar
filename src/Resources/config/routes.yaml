@@ -1,3 +1,0 @@
-cookiebar:
-    resource: '@ContaoCookiebar/Controller'
-    type: annotation

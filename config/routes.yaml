@@ -1,0 +1,3 @@
+cookiebar:
+    resource: '../src/Controller'
+    type: annotation

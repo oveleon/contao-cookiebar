@@ -1,0 +1,114 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_page.php" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="tl_page.cookiebar_legend">
+        <source>Cookiebar</source>
+        <target>Cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_page.activateCookiebar.0">
+        <source>Activate Cookiebar</source>
+        <target>Activer Cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_page.activateCookiebar.1">
+        <source>Activate the cookiebar for this and its subpages.</source>
+        <target>Activez le panneau Cookiebar pour cette page et ses sous-pages.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.triggerCookiebar.0">
+        <source>Open cookiebar</source>
+        <target>Ouverture du panneau Cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_page.triggerCookiebar.1">
+        <source>Define here whether the page should be used as a trigger for opening the cookie bar. If this page is included in a navigation, the click will not be redirected, but only the cookie bar will be opened (if JavaScript is active). This is useful, for example, for individual navigations that are placed in the footer.</source>
+        <target>Définissez ici si la page doit être utilisée comme déclencheur de l'ouverture du panneau Cookiebar. Si cette page est incluse dans une navigation, le clic ne sera pas redirigé, mais seule le panneau Cookiebar sera ouvert (si JavaScript est activé). Ceci est utile, par exemple, pour les navigations personnalisées qui sont placées dans le pied de page.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.prefillCookies.0">
+        <source>Prefill settings</source>
+        <target>Paramètres de pré-remplissage</target>
+      </trans-unit>
+      <trans-unit id="tl_page.prefillCookies.1">
+        <source>Activates the already selected cookies when opening the cookiebar.</source>
+        <target>Active les cookies déjà sélectionnés lors de l'ouverture du panneau Cookiebar.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarConfig.0">
+        <source>Cookiebar configuration</source>
+        <target>Configuration Cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarConfig.1">
+        <source>Select the cookiebar configuration you want to use.</source>
+        <target>Sélectionnez la configuration Cookiebar que vous souhaitez utiliser.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.overwriteCookiebarMeta.0">
+        <source>Overwrite metadata</source>
+        <target>Écrase les métadonnées</target>
+      </trans-unit>
+      <trans-unit id="tl_page.overwriteCookiebarMeta.1">
+        <source>Overwrite the meta information stored in the configuration.</source>
+        <target>Écraser les méta-informations stockées dans la configuration.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarDescription.0">
+        <source>Title &amp; description</source>
+        <target>Titre &amp; Description</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarDescription.1">
+        <source>Here you can describe the purpose of the cookiebar.</source>
+        <target>Vous pouvez décrire ici l'objectif du panneau Cookiebar.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.0">
+        <source>Additional information</source>
+        <target>Informations complémentaires</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoDescription.1">
+        <source>Here you can add more information, that are displayed below the buttons.</source>
+        <target>Ici, vous pouvez ajouter des informations supplémentaires, qui sertont affichées sous les boutons.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarAlignment.0">
+        <source>Alignment</source>
+        <target>Alignement</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarAlignment.1">
+        <source>Define here where the cookiebar should be displayed.</source>
+        <target>Définissez ici l'endroit où le panneau Cookiebar doit être affiché.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarBlocking.0">
+        <source>Blocking</source>
+        <target>Bloquage</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarBlocking.1">
+        <source>Blocks the use of the site until the cookiebar has been used.</source>
+        <target>Bloque l'utilisation du site jusqu'à ce que le panneau Cookiebar ait été utilisé.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoUrls.0">
+        <source>Info links</source>
+        <target>Liens d'informations</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarInfoUrls.1">
+        <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
+        <target>Veuillez saisir ici d'autres liens, par exemple vers la politique de confidentialité ou les mentions légales.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.0">
+        <source>Exclude Pages</source>
+        <target>Pages exclues</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarExcludePages.1">
+        <source>Here you can define the pages where the cookiebar should not open automatically.</source>
+        <target>Vous pouvez définir ici les pages où le panneau Cookiebar ne doit pas s'ouvrir automatiquement.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.0">
+        <source>Button color scheme</source>
+        <target>Couleurs des boutons</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarButtonColorScheme.1">
+        <source>Defines the color scheme for the available buttons.</source>
+        <target>Définit les couleurs pour les boutons disponibles.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarTemplate.0">
+        <source>Template</source>
+        <target>Modèle</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarTemplate.1">
+        <source>Here you can select a template for the cookiebar.</source>
+        <target>Ici, vous pouvez sélectionner un modèle pour panneau Cookiebar.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

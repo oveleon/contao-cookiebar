@@ -1,0 +1,143 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_cookie_config.php" source-language="en">
+    <body>
+      <trans-unit id="tl_cookie_config.title_legend">
+        <source>Configuration / Type</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.title.0">
+        <source>Title</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.title.1">
+        <source>Enter the title of the configuration here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.type.0">
+        <source>Config-Type</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.type.1">
+        <source>Select a predefined configuration type.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.sourceUrl.0">
+        <source>Source URL</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.sourceUrl.1">
+        <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.sourceLoadingMode.0">
+        <source>Source URL loading mode</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.sourceLoadingMode.1">
+        <source>Define here when the source URL may be embedded.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.sourceUrlParameter.0">
+        <source>Source URL parameter</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.sourceUrlParameter.1">
+        <source>Define the load parameters of the source URL to be used.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptPosition.0">
+        <source>Script position</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptPosition.1">
+        <source>Here you can select the position for embedding the script.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptLoadingMode.0">
+        <source>Loading mode of the configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptLoadingMode.1">
+        <source>Define here when the script / configuration may be embedded.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.vendorId.0">
+        <source>ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.vendorId.1">
+        <source>Enter your ID here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.tagManager_vendorId.0">
+        <source>ID</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.tagManager_vendorId.1">
+        <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptConfig.0">
+        <source>Configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.scriptConfig.1">
+        <source>Custom JavaScript code.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.googleConsentMode.0">
+        <source>Activate Google Consent Mode</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.googleConsentMode.1">
+        <source>Delivers a predefined configuration for Google Consent Mode. This configuration is overwritten if a custom script has been defined in the "Configuration" field.</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie_config.scriptConfig_xlabel">
+        <source>Insert advanced configuration</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie_config.tagManager.0">
+        <source>Google Tag Manager</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.tagManager.1">
+        <source>Integrate Google Tag Manager / Google Consent Mode.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.script.0">
+        <source>Custom</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.script.1">
+        <source>Configure custom script.</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie_config.bodyBelowContent">
+        <source>Below the content in the body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.bodyAboveContent">
+        <source>Above the content in the body tag</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.head">
+        <source>Head tag</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie_config.confirmed">
+        <source>Load only if one of the cookies was accepted</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.unconfirmed">
+        <source>Load only if none of the cookies was accepted</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.always">
+        <source>Load always</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie_config.new.0">
+        <source>New</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.new.1">
+        <source>Create a new configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.show.0">
+        <source>Show details</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.show.1">
+        <source>Show the details of cookie ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.edit.0">
+        <source>Edit configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.edit.1">
+        <source>Edit configuration ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.copy.0">
+        <source>Duplicate configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.copy.1">
+        <source>Duplicate configuration ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.delete.0">
+        <source>Delete cookie</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.delete.1">
+        <source>Delete cookie ID %s</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

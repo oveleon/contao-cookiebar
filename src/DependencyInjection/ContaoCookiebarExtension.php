@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Oveleon Contao Cookiebar.
  *
@@ -23,12 +24,12 @@ class ContaoCookiebarExtension extends Extension
 
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__ . '/../Resources/config')
+            new FileLocator(__DIR__ . '/../../config')
         );
 
         $loader->load('commands.yaml');
         $loader->load('services.yaml');
-        $loader->load('listener.yml');
+        $loader->load('listener.yaml');
 
         $arrIframeTypes = [
             'youtube'       => ['ce_youtube'],
@@ -39,7 +40,7 @@ class ContaoCookiebarExtension extends Extension
 
         $arrPageTemplates = ['fe_page'];
 
-        if(!empty($config['iframe_types']))
+        if (!empty($config['iframe_types']))
         {
             $config['iframe_types'] = array_merge_recursive($arrIframeTypes, $config['iframe_types']);
         }
@@ -51,7 +52,7 @@ class ContaoCookiebarExtension extends Extension
         /**
          * @deprecated Deprecated since Contao Cookiebar 2.0, to be removed in v 2.1
          */
-        if(!empty($config['page_templates']))
+        if (!empty($config['page_templates']))
         {
             $config['page_templates'] = array_merge($arrPageTemplates, $config['page_templates']);
         }

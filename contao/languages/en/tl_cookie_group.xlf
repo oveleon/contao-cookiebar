@@ -1,0 +1,76 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_cookie_group.php" source-language="en">
+    <body>
+      <trans-unit id="tl_cookie_group.title_legend">
+        <source>Cookie group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.title.0">
+        <source>Group name</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.title.1">
+        <source>Enter a group name here.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.description.0">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.description.1">
+        <source>Describe the cookie group and its purpose.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.published.0">
+        <source>Publish</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.published.1">
+        <source>Define here whether the cookie group may be used.</source>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie_group.new.0">
+        <source>New</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.new.1">
+        <source>Create a new Groupe</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.0">
+        <source>Show details</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.1">
+        <source>Show the details of group ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.0">
+        <source>Edit cookies</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.1">
+        <source>Edit cookies of group ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.0">
+        <source>Edit group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.1">
+        <source>Edit group ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.0">
+        <source>Duplicate group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.1">
+        <source>Duplicate group ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.0">
+        <source>Move group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.1">
+        <source>Move group ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.0">
+        <source>Delete group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.1">
+        <source>Delete group ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.0">
+        <source>Publish/unpublish group</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.1">
+        <source>Publish/unpublish group ID %s</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
