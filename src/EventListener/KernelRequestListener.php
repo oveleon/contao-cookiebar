@@ -130,7 +130,7 @@ class KernelRequestListener
                 }
             }
 
-            $content = $this->injectGlobalJs($content, $nonce);
+            $content = $this->injectGlobalJs($content);
             $response->setContent($content);
         }
 
@@ -375,11 +375,10 @@ class KernelRequestListener
 
     /**
      * @param string $content
-     * @param mixed $nonce
      * @return string
      * see also Contao\CoreBundle\EventListener\PreviewToolbarListener
      */
-    private function injectGlobalJs(string $content, mixed $nonce): string
+    private function injectGlobalJs(string $content): string
     {
         if (
             !$this->scriptUtils instanceof ScriptUtils ||
@@ -393,8 +392,7 @@ class KernelRequestListener
 
         if (false !== $pos)
         {
-            // @TODO Actually the nonce would not be necessary here
-            $script = '<script' . ($nonce ? ' nonce="' . $nonce . '"' : '') . ' src="' . $this->scriptUtils->getGlobalJavaScript() . '"></script>';
+            $script = '<script src="' . $this->scriptUtils->getGlobalJavaScript() . '"></script>';
             $content = substr($content, 0, $pos) . "\n" . $script . "\n" . substr($content, $pos);
         }
 
