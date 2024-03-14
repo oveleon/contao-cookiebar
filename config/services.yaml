@@ -23,3 +23,4 @@ services:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
             - { name: contao.hook, hook: getFrontendModule, method: onParseLegacyTemplates, priority: 0 }
             - { name: contao.hook, hook: getContentElement, method: onParseLegacyTemplates, priority: 0 }
+            - { name: contao.hook, hook: generatePage, method: onGeneratePage, priority: 0 }

@@ -67,6 +67,10 @@ class KernelRequestListener
                 $this->objRootPage = $rootPageObject;
                 $this->objPage = $pageModel;
 
+                // @TODO instead of use the generatePage-Hook we also can set the $objPage to get the Hooks working when parsing the template
+                // global $objPage;
+                // $objPage = $pageModel;
+
                 $this->prepareCookieBar();
             }
         }
@@ -91,7 +95,8 @@ class KernelRequestListener
         $this->cookies = Cookiebar::validateCookies($this->cookiebarModel);
 
         $this->scriptUtils = new ScriptUtils();
-        $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
+        // @TODO reactivate if globals in Contao are no longer allowed e.g. $objPage
+        // $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
 
         // Always add cache busting
         $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
@@ -447,5 +452,24 @@ class KernelRequestListener
         }
 
         return $this->parseTemplates($model, $buffer);
+    }
+
+    /**
+     * Use the generatePage Hook the parse the cookieBarTemplate
+     * At this point the Contao globals e.g. global $objPage and the GLOBALS are set
+     * @TODO remove it in future when globals are no longer allowed
+     * @return void
+     */
+    public function onGeneratePage(): void
+    {
+        if (
+            !$this->scriptUtils instanceof ScriptUtils ||
+            !$this->cookiebarModel instanceof CookiebarModel ||
+            !$this->objRootPage instanceof PageModel
+        ) {
+            return;
+        }
+
+        $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
     }
 }
