@@ -91,7 +91,6 @@ class KernelRequestListener
         $this->cookies = Cookiebar::validateCookies($this->cookiebarModel);
 
         $this->scriptUtils = new ScriptUtils();
-        $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
 
         // Always add cache busting
         $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
@@ -447,5 +446,23 @@ class KernelRequestListener
         }
 
         return $this->parseTemplates($model, $buffer);
+    }
+
+    /**
+     * Use the generatePage Hook the parse the cookieBarTemplate
+     * At this point the Contao globals e.g. global $objPage and the GLOBALS are set
+     * @return void
+     */
+    public function onGeneratePage(): void
+    {
+        if (
+            !$this->scriptUtils instanceof ScriptUtils ||
+            !$this->cookiebarModel instanceof CookiebarModel ||
+            !$this->objRootPage instanceof PageModel
+        ) {
+            return;
+        }
+
+        $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
     }
 }
