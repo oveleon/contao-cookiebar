@@ -112,6 +112,14 @@
         <source>Update the current version to force the cookiebar to be displayed again to visitors.</source>
         <target>Uppdatera den aktuella versionen för att tvinga visning av cookieboxen för besökare.</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.hideOnInit.0">
+        <source>Hide cookiebar</source>
+        <target>Dölj cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.hideOnInit.1">
+        <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
+        <target>Visa inte cookiefältet vid första besöket på sidan. Cookiefältet kan fortfarande öppnas med hjälp av öppnaren för cookiefältet.</target>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
         <source>Title &amp; description</source>
         <target>Titel &amp; beskrivning</target>

@@ -11,6 +11,7 @@ let ContaoCookiebar = (function () {
             token: 'ccb_contao_token',
             configId: null,
             pageId: null,
+            hideOnInit: false,
             version: null,
             lifetime: 63072000,
             consentLog: false,
@@ -27,7 +28,7 @@ let ContaoCookiebar = (function () {
                 onShow: 'cc-active',
                 onGroupToggle: 'cc-active',
                 onGroupSplitSelection: 'cc-group-half'
-            }
+            },
         };
 
         const init = function () {
@@ -44,6 +45,7 @@ let ContaoCookiebar = (function () {
 
             // Set visibility
             if(
+                !cookiebar.settings.hideOnInit &&
                 (parseInt(storage.version) !== parseInt(cookiebar.settings.version) ||
                  parseInt(storage.configId) !== parseInt(cookiebar.settings.configId) ||
                  isExpired(storage.saved)) &&
