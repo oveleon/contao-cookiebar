@@ -106,7 +106,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,blocking,buttonColorScheme,template,infoUrls,excludePages;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion'
+        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,buttonColorScheme,blocking,hideOnInit,template,infoUrls,excludePages;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion;'
 	),
 
     // Fields
@@ -224,14 +224,21 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
             'inputType'               => 'select',
             'options'                 => ['grayscale', 'highlight'],
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
-            'eval'                    => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50 clr'),
+            'eval'                    => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50'),
             'sql'                     => "varchar(32) NOT NULL default 'highlight'"
         ),
         'blocking' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['blocking'],
             'inputType'               => 'checkbox',
-            'eval'                    => array('tl_class'=>'w50 m12'),
+            'eval'                    => array('tl_class'=>'w50 clr'),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
+        'hideOnInit' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookiebar']['hideOnInit'],
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50'),
             'sql'                     => "char(1) NOT NULL default ''"
         ),
         'essentialCookieLanguage' => array
