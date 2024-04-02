@@ -29,8 +29,9 @@ use Contao\Model\Collection;
  * @property string  $template
  * @property string  $alignment
  * @property string  $blocking
- * @property string $scriptPosition
- * @property string $position
+ * @property string  $hideOnInit
+ * @property string  $scriptPosition
+ * @property string  $position
  * @property integer $disableTrackingWhileLoggedIn
  * @property boolean $cssID
  *
@@ -46,6 +47,7 @@ use Contao\Model\Collection;
  * @method static CookiebarModel|null findOneByTemplate($val, array $opt=array())
  * @method static CookiebarModel|null findOneByAlignment($val, array $opt=array())
  * @method static CookiebarModel|null findOneByBlocking($val, array $opt=array())
+ * @method static CookiebarModel|null findOneByHideOnInit($val, array $opt=array())
  * @method static CookiebarModel|null findOneByPosition($val, array $opt=array())
  * @method static CookiebarModel|null findOneByCssID($val, array $opt=array())
  *
@@ -58,6 +60,7 @@ use Contao\Model\Collection;
  * @method static Collection|CookiebarModel[]|CookiebarModel|null findByTemplate($val, array $opt=array())
  * @method static Collection|CookiebarModel[]|CookiebarModel|null findByAlignment($val, array $opt=array())
  * @method static Collection|CookiebarModel[]|CookiebarModel|null findByBlocking($val, array $opt=array())
+ * @method static Collection|CookiebarModel[]|CookiebarModel|null findByHideOnInit($val, array $opt=array())
  * @method static Collection|CookiebarModel[]|CookiebarModel|null findByPosition($val, array $opt=array())
  * @method static Collection|CookiebarModel[]|CookiebarModel|null findByCssID($val, array $opt=array())
  * @method static Collection|CookiebarModel[]|CookiebarModel|null findMultipleByIds($var, array $opt=array())
@@ -74,6 +77,7 @@ use Contao\Model\Collection;
  * @method static integer countByTemplate($val, array $opt=array())
  * @method static integer countByAlignment($val, array $opt=array())
  * @method static integer countByBlocking($val, array $opt=array())
+ * @method static integer countByHideOnInit($val, array $opt=array())
  * @method static integer countByPosition($val, array $opt=array())
  * @method static integer countByCssID($val, array $opt=array())
  */
