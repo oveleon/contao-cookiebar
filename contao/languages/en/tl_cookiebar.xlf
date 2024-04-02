@@ -94,6 +94,12 @@
       <trans-unit id="tl_cookiebar.updateVersion.1">
         <source>Update the current version to force the cookiebar to be displayed again to visitors.</source>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.hideOnInit.0">
+        <source>Hide cookiebar</source>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.hideOnInit.1">
+        <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
         <source>Title &amp; description</source>
       </trans-unit>

@@ -124,6 +124,14 @@
         <source>Update the current version to force the cookiebar to be displayed again to visitors.</source>
         <target>Aktualisieren Sie die aktuelle Version, um ein erneutes Anzeigen der Cookiebar für Besucher zu erzwingen.</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.hideOnInit.0">
+        <source>Hide cookiebar</source>
+        <target>Cookiebar ausblenden</target>
+      </trans-unit>
+      <trans-unit id="tl_cookiebar.hideOnInit.1">
+        <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
+        <target>Cookiebar beim Erstaufruf der Seite nicht anzeigen. Die Cookiebar kann über den Cookiebar-Öffner weiterhin geöffnet werden.</target>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
         <source>Title &amp; description</source>
         <target>Titel &amp; Beschreibung</target>

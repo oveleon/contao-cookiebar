@@ -77,6 +77,14 @@
         <source>Blocks the use of the site until the cookiebar has been used.</source>
         <target>Bloque l'utilisation du site jusqu'à ce que le panneau Cookiebar ait été utilisé.</target>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarHideOnInit.0">
+        <source>Hide cookiebar</source>
+        <target>Masquer la barre de cookies</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarHideOnInit.1">
+        <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
+        <target>Ne pas afficher la barre de cookies lors de la première visite de la page. La barre de cookies peut toujours être ouverte à l'aide de l'outil d'ouverture de la barre de cookies.</target>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoUrls.0">
         <source>Info links</source>
         <target>Liens d'informations</target>

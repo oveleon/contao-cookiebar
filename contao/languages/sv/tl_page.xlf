@@ -77,6 +77,14 @@
         <source>Blocks the use of the site until the cookiebar has been used.</source>
         <target>Blockerar användningen av webbplatsen tills cookiesboxen har använts.</target>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarHideOnInit.0">
+        <source>Hide cookiebar</source>
+        <target>Dölj cookiebar</target>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarHideOnInit.1">
+        <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
+        <target>Visa inte cookiefältet vid första besöket på sidan. Cookiefältet kan fortfarande öppnas med hjälp av öppnaren för cookiefältet.</target>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoUrls.0">
         <source>Info links</source>
         <target>Info-Länkar</target>

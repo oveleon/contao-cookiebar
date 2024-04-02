@@ -17,7 +17,7 @@ System::loadLanguageFile('tl_cookiebar');
 $GLOBALS['TL_DCA']['tl_cookiebar'] = [
     // Palettes
     'palettes' => [
-        'default'                     => '{title_legend},title,essentialCookieLanguage;{meta_legend},description,infoDescription,alignment,blocking,buttonColorScheme,template,infoUrls,excludePages;{expert_legend:hide},cssID,disableTrackingWhileLoggedIn,position,scriptPosition,version,updateVersion;'
+        'default'                     => '{title_legend},title,essentialCookieLanguage;{meta_legend},description,infoDescription,alignment,buttonColorScheme,blocking,hideOnInit,infoUrls,excludePages,template;{expert_legend:hide},cssID,disableTrackingWhileLoggedIn,position,scriptPosition,version,updateVersion;'
     ],
 
     // Fields
@@ -106,12 +106,17 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'inputType'               => 'select',
             'options'                 => ['grayscale', 'highlight'],
             'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
-            'eval'                    => ['includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50 clr'],
+            'eval'                    => ['includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50'],
             'sql'                     => "varchar(32) NOT NULL default 'highlight'"
         ],
         'blocking' => [
             'inputType'               => 'checkbox',
-            'eval'                    => ['tl_class'=>'w50 m12'],
+            'eval'                    => ['tl_class'=>'w50 clr'],
+            'sql'                     => "char(1) NOT NULL default ''"
+        ],
+        'hideOnInit' => [
+            'inputType'               => 'checkbox',
+            'eval'                    => ['tl_class'=>'w50'],
             'sql'                     => "char(1) NOT NULL default ''"
         ],
         'essentialCookieLanguage' => [

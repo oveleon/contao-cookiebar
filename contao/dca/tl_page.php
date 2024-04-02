@@ -19,7 +19,7 @@ $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'overwriteCookieba
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'triggerCookiebar';
 
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['activateCookiebar']      = 'cookiebarConfig,overwriteCookiebarMeta';
-$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarButtonColorScheme,cookiebarTemplate,cookiebarInfoUrls,cookiebarExcludePages';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarButtonColorScheme,cookiebarBlocking,cookiebarHideOnInit,cookiebarInfoUrls,cookiebarExcludePages,cookiebarTemplate';
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['triggerCookiebar']       = 'prefillCookies';
 
 // Overwrite cssClass eval
@@ -108,7 +108,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarButtonColorScheme'] = [
     'inputType'               => 'select',
     'options'                 => ['grayscale', 'highlight'],
     'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
-    'eval'                    => ['includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50 clr'],
+    'eval'                    => ['includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50'],
     'sql'                     => "varchar(32) NOT NULL default ''"
 ];
 
@@ -132,7 +132,14 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarAlignment'] = [
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarBlocking'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
-    'eval'                    => ['tl_class'=>'w50 m12'],
+    'eval'                    => ['tl_class'=>'w50 clr'],
+    'sql'                     => "char(1) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarHideOnInit'] = [
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'eval'                    => ['tl_class'=>'w50'],
     'sql'                     => "char(1) NOT NULL default ''"
 ];
 
