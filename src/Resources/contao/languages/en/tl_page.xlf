@@ -58,6 +58,12 @@
       <trans-unit id="tl_page.cookiebarBlocking.1">
         <source>Blocks the use of the site until the cookiebar has been used.</source>
       </trans-unit>
+      <trans-unit id="tl_page.cookiebarHideOnInit.0">
+        <source>Hide cookiebar</source>
+      </trans-unit>
+      <trans-unit id="tl_page.cookiebarHideOnInit.1">
+        <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
+      </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoUrls.0">
         <source>Info links</source>
       </trans-unit>

@@ -75,6 +75,7 @@ class Cookiebar
             $objConfig->template          = $objMeta->cookiebarTemplate;
             $objConfig->alignment         = $objMeta->cookiebarAlignment;
             $objConfig->blocking          = $objMeta->cookiebarBlocking;
+            $objConfig->hideOnInit        = $objMeta->cookiebarHideOnInit;
         }
 
         DataContainer::loadDataContainer('tl_cookie');

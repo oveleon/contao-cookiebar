@@ -106,7 +106,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = array
 	// Palettes
 	'palettes' => array
 	(
-        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,buttonColorScheme,blocking,hideOnInit,template,infoUrls,excludePages;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion;'
+        'default'                     => '{title_legend},title;{meta_legend},description,infoDescription,alignment,buttonColorScheme,blocking,hideOnInit,infoUrls,excludePages,template;{expert_legend:hide},cssID,essentialCookieLanguage,position,scriptPosition,version,updateVersion;'
 	),
 
     // Fields

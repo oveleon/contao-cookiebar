@@ -16,7 +16,7 @@ $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'overwriteCookieba
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'triggerCookiebar';
 
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['activateCookiebar'] = 'cookiebarConfig,overwriteCookiebarMeta';
-$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarBlocking,cookiebarButtonColorScheme,cookiebarTemplate,cookiebarInfoUrls,cookiebarExcludePages';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['overwriteCookiebarMeta'] = 'cookiebarDescription,cookiebarInfoDescription,cookiebarAlignment,cookiebarButtonColorScheme,cookiebarBlocking,cookiebarHideOnInit,cookiebarInfoUrls,cookiebarExcludePages,cookiebarTemplate';
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['triggerCookiebar'] = 'prefillCookies';
 
 // Callbacks
@@ -137,7 +137,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarButtonColorScheme'] = array
     'inputType'               => 'select',
     'options'                 => ['grayscale', 'highlight'],
     'reference'               => $GLOBALS['TL_LANG']['tl_cookiebar'],
-    'eval'                    => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50 clr'),
+    'eval'                    => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_cookiebar']['neutral'], 'tl_class'=>'w50'),
     'sql'                     => "varchar(32) NOT NULL default ''"
 );
 
@@ -165,7 +165,16 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarBlocking'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarBlocking'],
     'exclude'                 => true,
     'inputType'               => 'checkbox',
-    'eval'                    => array('tl_class'=>'w50 m12'),
+    'eval'                    => array('tl_class'=>'w50 clr'),
+    'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarHideOnInit'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['cookiebarHideOnInit'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'eval'                    => array('tl_class'=>'w50'),
     'sql'                     => "char(1) NOT NULL default ''"
 );
 
