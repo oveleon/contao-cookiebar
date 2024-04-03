@@ -33,4 +33,5 @@ contao_cookiebar:
   iframe_types:
     googlemaps: 
       - ce_my_additional_google_template
+      - content_element/html/html_googlemaps
 ```
