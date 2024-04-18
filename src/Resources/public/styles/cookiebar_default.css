@@ -50,6 +50,7 @@
 }
 .contao-cookiebar.cc-middle {
   align-items: center;
+  justify-content: center;
 }
 .contao-cookiebar.cc-middle.cc-active .cc-inner {
   animation: cookiebar-middle-in 0.5s ease-in-out forwards;
@@ -59,9 +60,6 @@
 }
 .contao-cookiebar.cc-left {
   justify-content: flex-start;
-}
-.contao-cookiebar.cc-middle {
-  justify-content: center;
 }
 .contao-cookiebar.cc-right {
   justify-content: flex-end;
