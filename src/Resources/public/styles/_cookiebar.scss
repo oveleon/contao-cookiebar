@@ -63,6 +63,7 @@
 
   &.cc-middle{
 	align-items: center;
+	justify-content: center;
 
     &.cc-active .cc-inner{
       animation: cookiebar-middle-in $cookiebar-animation-duration ease-in-out forwards;
@@ -75,10 +76,6 @@
 
   &.cc-left{
 	justify-content: flex-start;
-  }
-
-  &.cc-middle{
-	justify-content: center;
   }
 
   &.cc-right{
