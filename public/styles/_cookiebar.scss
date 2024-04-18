@@ -6,6 +6,8 @@
   bottom: 0;
   z-index: 9999;
 
+  display: flex;
+
   font-size: 0; // Required for vertical alignment (responsive)
   letter-spacing: 0;
   text-align: center;
@@ -18,13 +20,6 @@
 
   *{
     box-sizing: border-box;
-  }
-
-  &:before{
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
   }
 
   .cc-inner{
@@ -47,10 +42,7 @@
   }
 
   &.cc-top{
-
-    .cc-inner{
-      vertical-align: top;
-    }
+	align-items: flex-start;
 
     &.cc-active .cc-inner{
       animation: cookiebar-top-in $cookiebar-animation-duration ease-in-out forwards;
@@ -62,10 +54,7 @@
   }
 
   &.cc-bottom{
-
-    .cc-inner {
-      vertical-align: bottom;
-    }
+	align-items: flex-end;
 
     &.cc-active .cc-inner{
       animation: cookiebar-bottom-in $cookiebar-animation-duration ease-in-out forwards;
@@ -77,10 +66,8 @@
   }
 
   &.cc-middle{
-
-    .cc-inner {
-      vertical-align: middle;
-    }
+	align-items: center;
+	justify-content: center;
 
     &.cc-active .cc-inner{
       animation: cookiebar-middle-in $cookiebar-animation-duration ease-in-out forwards;
@@ -92,11 +79,11 @@
   }
 
   &.cc-left{
-    text-align: left;
+	justify-content: flex-start;
   }
 
   &.cc-right{
-    text-align: right;
+	justify-content: flex-end;
   }
 
   .cc-head{
