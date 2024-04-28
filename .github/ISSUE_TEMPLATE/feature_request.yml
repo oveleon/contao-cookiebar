@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest new features
+labels: [enhancement]
+body:
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Please take a couple of minutes to help our maintainers to work more efficiently.
+      options:
+        - label: I [checked](https://github.com/oveleon/contao-cookiebar/issues?q=is%3Aissue) for duplicate feature requests (open and closed)
+          required: true
+        - label: I am willing to help and contribute (financially, work or other measures) to have this feature implemented
+          required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Give us clear details about what to add, including relevant links and screenshots if available.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Explain why this change is necessary or beneficial and what problems it can solve.
+    validations:
+      required: true
