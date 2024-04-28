@@ -1,5 +1,5 @@
-name: Feature request
-description: Suggest new features
+name:
+description: Suggest new features that you are willing to contribute to
 labels: [enhancement]
 body:
   - type: checkboxes
