@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ✨ Feature Request / ideas
+    url: https://www.oveleon.de/contao-entwicklung.html#angebot-anfordern
+    about: Missing something in the contao cookiebar? Contract us to implement new features
+  - name: 📖 View documentation
+    url: https://github.com/oveleon/contao-cookiebar/tree/2.x/docs
+    about: Read the cookiebar documentation
+  - name: 💬 Question / Discussion
+    url: https://github.com/oveleon/contao-cookiebar/discussions/categories/q-a
+    about: Feel free to ask anything
