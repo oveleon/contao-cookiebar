@@ -1,103 +1,34 @@
-$cookiebar-input-checked: #399d32;
-$cookiebar-input-unchecked: #9c9b99;
-$cookiebar-input-disabled: #c8c7c5;
-
 @import "cookiebar";
-
-.cc-inner {
-  padding: 23px;
-  border-radius: 3px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-}
 
 .cc-groups {
   display: none;
   padding-top: 15px;
-
-  .cc-group {
-    position: relative;
-    border: 1px solid #d0d0d0;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    text-align: left;
-
-    > label {
-      margin: 5px 130px 5px 10px;
-    }
-  }
 }
 
-.cc-cookies {
-  background: #fbfbfb;
-  border-radius: 0 0 5px 5px;
+.cc-group {
+  text-align: left;
 
-  > p {
-    font-size: 0.875rem;
+  > label {
+    margin: 5px 130px 5px 10px;
   }
-
-  > p,
-  > .cc-cookie {
-    margin: 0;
-    padding: 15px;
-    border-top: 1px solid #e6e6e6;
-  }
-}
-
-.cc-cookie {
-
-  label.cookie + p,
-  label.cookie + .cc-cookie-info,
-  label.cookie + button.cc-detail-btn-details {
-    margin-top: 10px;
-  }
-
-  p {
-    margin: 0 0 15px;
-    font-size: 0.875rem;
-  }
-}
-
-.cc-cookie-info {
-  font-size: 0.875rem;
-  background: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #efefef;
-
-  > div > span {
-    font-weight: 600;
-  }
-
-  > div + div {
-    margin-top: 5px;
-    word-wrap: break-word;
-  }
-
-  + button.cc-detail-btn-details {
-    margin-top: 15px;
-  }
-}
-
-.cc-cookie-desc p {
-  margin-bottom: 0;
-}
-
-.cc-footer, .cc-info {
-  text-align: center;
 }
 
 .cc-detail-btn-details {
-  border: 0 none;
-  outline: 0 none;
-  background: transparent;
-  font-size: 13px;
-  letter-spacing: 0;
-  text-transform: initial;
-  cursor: pointer;
-  color: #a2a2a2;
   text-decoration: underline;
   padding: 0;
   margin: 0 0 10px;
+
+  color: var(--ccb-detail-clr, #a2a2a2);
+
+  border: 0 none;
+  outline: 0 none;
+  background: transparent;
+
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: initial;
+
+  cursor: pointer;
 
   span {
 
@@ -121,31 +52,6 @@ $cookiebar-input-disabled: #c8c7c5;
   }
 
   &:hover {
-    color: #717171;
-  }
-}
-
-.cc-info {
-  margin-top: 15px;
-
-  > p {
-    font-size: 0.875rem;
-  }
-
-  > a {
-    display: inline-block;
-    font-size: 0.813rem;
-    color: #a2a2a2;
-    text-decoration: none;
-
-    &:hover {
-      color: #717171;
-    }
-
-    + a:before {
-      display: inline-block;
-      content: '·';
-      margin-right: 5px;
-    }
+    color: var(--ccb-detail-clr-hvr, #717171);
   }
 }

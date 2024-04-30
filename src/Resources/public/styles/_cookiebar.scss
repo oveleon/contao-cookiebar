@@ -1,14 +1,11 @@
-.cc-head {
+.cc-head > * {
 
-  > * {
+  &:first-child {
+    margin-top: 0;
+  }
 
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 15px;
-    }
+  &:last-child {
+    margin-bottom: 15px;
   }
 }
 
@@ -60,6 +57,13 @@
 .contao-cookiebar {
   --ccb-backdrop: rgba(0, 0, 0, .75);
   --ccb-anim-duration: .5s;
+
+  --ccb-checked-clr: #399d32;
+  --ccb-checked-bg: #dcf3db;
+  --ccb-unchecked-clr: #9c9b99;
+  --ccb-unchecked-bg: #fff;
+  --ccb-disabled-clr: #c8c7c5;
+  --ccb-disabled-bg: #f4f4f4;
 
   position: fixed;
   inset: 0;
@@ -126,8 +130,8 @@
         margin: 0;
 
         box-sizing: content-box;
-        background: #fff;
-        border: 1px solid $cookiebar-input-unchecked;
+        background: var(--ccb-unchecked-bg);
+        border: 1px solid var(--ccb-unchecked-clr);
 
         transition: border-color .2s;
       }
@@ -139,7 +143,7 @@
 
         width: 12px;
         height: 12px;
-        background: $cookiebar-input-unchecked;
+        background: var(--ccb-unchecked-clr);
 
         transition: background .2s, margin-left .2s, padding .2s;
       }
@@ -150,13 +154,13 @@
     }
 
     &.cc-group-half + label:after {
-      background: linear-gradient(to right, $cookiebar-input-unchecked 0%, $cookiebar-input-unchecked 50%, $cookiebar-input-checked 50%, $cookiebar-input-checked 100%);
+      background: linear-gradient(to right, var(--ccb-unchecked-clr) 0%, var(--ccb-unchecked-clr) 50%, var(--ccb-checked-clr) 50%, var(--ccb-checked-clr) 100%);
     }
 
     &:checked + label {
 
       &:after {
-        background: $cookiebar-input-checked;
+        background: var(--ccb-checked-clr);
         margin-left: 17px;
       }
 
@@ -165,8 +169,8 @@
       }
 
       &:before {
-        background: lighten($cookiebar-input-checked, 50%);
-        border-color: $cookiebar-input-checked;
+        background: var(--ccb-checked-bg);
+        border-color: var(--ccb-checked-clr);
       }
     }
 
@@ -174,12 +178,12 @@
       pointer-events: none;
 
       &:after {
-        background: $cookiebar-input-disabled;
+        background: var(--ccb-disabled-clr);
       }
 
       &:before {
-        background: lighten($cookiebar-input-unchecked, 35%);
-        border-color: $cookiebar-input-disabled;
+        background: var(--ccb-disabled-bg);
+        border-color: var(--ccb-disabled-clr);
       }
     }
   }
@@ -192,6 +196,9 @@
   max-height: 100%;
   max-width: 100%;
 
+  padding: 23px;
+  border-radius: 3px;
+
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
@@ -200,8 +207,105 @@
   text-align: left;
 
   background: var(--ccb-bg, #fff);
+  box-shadow: var(--ccb-box-shadow, rgba(99, 99, 99, 0.2)) 0 2px 8px 0;
 
   animation: var(--ccb-anim, cookiebar-middle-in) var(--ccb-anim-duration) ease-in-out forwards;
+}
+
+.cc-group {
+  position: relative;
+  border: 1px solid var(--ccb-bdr, #d0d0d0);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.cc-cookie-info {
+  font-size: 0.875rem;
+  background: var(--ccb-info-bg, #fff);
+  border: 1px solid var(--ccb-info-bdr, #efefef);
+  padding: 10px;
+  border-radius: 5px;
+
+  > div {
+
+    > span {
+      font-weight: 600;
+    }
+
+    + div {
+      margin-top: 5px;
+      word-wrap: break-word;
+    }
+  }
+
+  + button.cc-detail-btn-details {
+    margin-top: 15px;
+  }
+}
+
+.cc-cookies {
+  background: var(--ccb-cookies-bg, #fbfbfb);
+  border-radius: 0 0 5px 5px;
+
+  > p {
+    font-size: 0.875rem;
+  }
+
+  > p,
+  > .cc-cookie {
+    margin: 0;
+    padding: 15px;
+    border-top: 1px solid var(--ccb-cookies-bdr, #fbfbfb);
+  }
+}
+
+.cc-cookie {
+
+  label.cookie + * {
+    margin-top: 10px;
+  }
+
+  p {
+    margin: 0 0 15px;
+    font-size: 0.875rem;
+  }
+}
+
+.cc-cookie-desc {
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.cc-footer,
+.cc-info {
+  text-align: center;
+}
+
+.cc-info {
+  margin-top: 15px;
+
+  > p {
+    font-size: 0.875rem;
+  }
+
+  > a {
+    display: inline-block;
+    font-size: 0.813rem;
+    color: var(--ccb-detail-clr, #a2a2a2);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--ccb-detail-clr-hvr, #717171);
+    }
+
+    + a:before {
+      display: inline-block;
+      content: '·';
+      margin-right: 5px;
+    }
+  }
 }
 
 .cc-active {
