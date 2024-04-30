@@ -384,9 +384,12 @@
 
 @media (min-width: 768px) {
 
-  .cc-btn {
-    width: auto;
-    margin-bottom: 0;
+  .contao-cookiebar {
+
+    .cc-btn {
+      width: auto;
+      margin-bottom: 0;
+    }
   }
 
   .cc-inner {
