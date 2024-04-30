@@ -123,6 +123,19 @@ class GlobalConfig extends AbstractCookie
      */
     private function addTagManager(): void
     {
+        # Determine the G-ID to ensure the opt-out (#127)
+        $this->addScript(
+            "window.addEventListener('gtm_loaded', () => { setTimeout(() => { const gid = Object.keys(window.google_tag_manager).filter(k => k.startsWith('G-'))[0]; try{ if(gid){ window['ga-disable-' + gid] = true; }   }catch(e){}}, 1000)});",
+            self::LOAD_ALWAYS,
+            self::POS_HEAD
+        );
+
+        $this->addScript(
+            "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','" . $this->vendorId . "');",
+            self::LOAD_ALWAYS,
+            self::POS_HEAD
+        );
+
         if($src = $this->scriptConfig)
         {
             $this->addScript($src, self::LOAD_ALWAYS, self::POS_HEAD);
@@ -131,20 +144,6 @@ class GlobalConfig extends AbstractCookie
         {
             $this->addGoogleConsentMode();
         }
-
-        # Determine the G-ID to ensure the opt-out (#127)
-        $this->addScript(
-            "window.addEventListener('gtm_loaded', () => { setTimeout(() => { const gid = Object.keys(window.google_tag_manager).filter(k => k.startsWith('G-'))[0]; try{ if(gid){ window['ga-disable-' + gid] = true; }   }catch(e){}}, 1000)});",
-            self::LOAD_ALWAYS,
-            self::POS_HEAD
-        );
-
-        # Standard script for integration with addition of a CustomEvent to check when the Google Tag Manager was loaded
-        $this->addScript(
-            "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; j.addEventListener('load', function() {var _ge = new CustomEvent('gtm_loaded', { bubbles: true });d.dispatchEvent(_ge);}); f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','".$this->vendorId."');",
-            self::LOAD_ALWAYS,
-            self::POS_HEAD
-        );
     }
 
     /**

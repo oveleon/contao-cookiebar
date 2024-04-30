@@ -14,7 +14,7 @@ gulp.task('js', function() {
 gulp.task('css', function(){
     return gulp.src(['public/styles/*.scss', '!public/styles/*.css'])
         //.pipe(sourcemaps.init())
-        .pipe(sass())
+        .pipe(sass({outputStyle: 'compressed'}))
         //.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/styles'))
 });
