@@ -229,6 +229,20 @@ class CookieHandler extends AbstractCookie
      */
     private function compileGoogleConsentMode()
     {
+        if($src = $this->sourceUrl)
+        {
+            if ($this->sourceVersioning)
+            {
+                $src .= (strpos($src, '?') !== false ? '&' : '?') . 'v=' . substr(md5(time()),0, 8);
+            }
+
+            $this->addResource(
+                $src,
+                StringUtil::deserialize($this->sourceUrlParameter) ?: null,
+                $this->sourceLoadingMode
+            );
+        }
+
         if($src = $this->scriptConfig)
         {
             $this->addScript($src, self::LOAD_CONFIRMED, self::POS_HEAD);
