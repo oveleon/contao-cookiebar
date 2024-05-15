@@ -249,7 +249,7 @@ class CookieHandler extends AbstractCookie
         }
         else
         {
-            $this->addScript("gtag('consent', 'update', { '" . $this->gcmMode . "': 'granted' });", self::LOAD_CONFIRMED, self::POS_HEAD);
+            $this->addScript("window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('consent', 'update', { '" . $this->gcmMode . "': 'granted' }); gtag('js',new Date());gtag('config','" . $this->vendorId . "');", self::LOAD_CONFIRMED, self::POS_HEAD);
         }
     }
 
