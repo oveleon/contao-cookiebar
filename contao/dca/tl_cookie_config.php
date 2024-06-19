@@ -129,7 +129,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = [
     // Config
     'config' => [
         'dataContainer'               => DC_Table::class,
-        'switchToEdit'                => true,
         'enableVersioning'            => true,
         'markAsCopy'                  => 'title',
         'sql' => [
