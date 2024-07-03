@@ -69,6 +69,9 @@ let ContaoCookiebar = (function () {
             // Register trigger events
             registerTriggerEvents();
 
+            // Sort cookies
+            sortCookiesByLoadingOrder();
+
             // Validate cookies from storage
             validateCookies(storage.cookies);
 
@@ -169,7 +172,7 @@ let ContaoCookiebar = (function () {
         const push = function(cookieId){
             let storage = getStorage();
 
-            if(storage.cookies.indexOf(cookieId) === -1)
+            if(storage.cookies.includes(cookieId))
             {
                 // Update storage
                 storage.cookies.push(parseInt(cookieId));
@@ -183,17 +186,24 @@ let ContaoCookiebar = (function () {
             }
         };
 
+        const sortCookiesByLoadingOrder = function() {
+            const arrPrioritySorted = Object.entries(cookiebar.settings.cookies ?? {}).sort(([,a],[,b]) => b.priority - a.priority);
+            // ES6 Object.fromEntries implementation with prefix on keys to keep priority order
+            cookiebar.settings.cookies = Array.from(arrPrioritySorted).reduce((acc, [k, v]) => Object.assign(acc, {[`_${k}`]: v}), {});
+        }
+
         const validateCookies = function(arrCookies, deleteCookies){
-            let id, arrDelete = [];
-            for(id in cookiebar.settings.cookies){
-                let cookieId = parseInt(id);
+            let arrDelete = [];
+
+            for(let cookieId in cookiebar.settings.cookies){
+                const intCookieId = parseInt(cookieId.replace('_',''));
 
                 if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)){
                     continue;
                 }
 
                 let previousState = !!cookiebar.settings.cookies[cookieId].confirmed;
-                let currentState = arrCookies.indexOf(cookieId) !== -1;
+                let currentState = arrCookies.includes(intCookieId);
                 let deleteCookie = previousState !== currentState && !currentState;
 
                 cookiebar.settings.cookies[cookieId].confirmed = currentState;
@@ -538,9 +548,13 @@ let ContaoCookiebar = (function () {
             if(objStorage.cookies && objStorage.cookies.length){
                 cookies = objStorage.cookies;
             }else if(objStorage.version === -1){
-                for(const cid in cookiebar.settings.cookies){
-                    if(cookiebar.settings.cookies[cid].checked){
-                        cookies.push(cid)
+                for(let cookieId in cookiebar.settings.cookies){
+                    cookieId = parseInt(cookieId.replace('_',''));
+
+                    if(cookiebar.settings.cookies[cookieId].checked){
+                        debugger;
+                        cookies.push(cookieId)
+                        debugger;
                     }
                 }
             }
