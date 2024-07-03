@@ -57,6 +57,14 @@
         <source>iFrame</source>
         <target>iFrame</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.expert_legend">
+        <source>Expert settings</source>
+        <target>Impostazioni avanzate</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.publish_legend">
+        <source>Publish settings</source>
+        <target>Impostazione di pubblicazione</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.title.0">
         <source>Title</source>
         <target>Titolo</target>
@@ -577,6 +585,14 @@
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
         <target>Pubblica/non pubblicare l'ID del cookie %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.priority.0">
+        <source>Priority</source>
+        <target>Priorità</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.priority.1">
+        <source>Optionally configure the priority to affect the order of scripts. Default: 0</source>
+        <target>In modo opzionale, configurare la priorità per l'ordine dei script. Predefinito: 0</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editGlobalConfig">
         <source>Edit global configuration</source>
