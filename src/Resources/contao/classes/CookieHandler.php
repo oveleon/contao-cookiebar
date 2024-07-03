@@ -212,7 +212,7 @@ class CookieHandler extends AbstractCookie
         );
 
         $this->addScript(
-            "window.dataLayer=window.dataLayer||[];function gtag(){dataLayerdataLayer.push(arguments)} gtag('js',new Date());gtag('config','" . $this->vendorId . "'" . ($this->scriptConfig ? ' ,' . $this->scriptConfig : '') . ")",
+            "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('js',new Date());gtag('config','" . $this->vendorId . "'" . ($this->scriptConfig ? ' ,' . $this->scriptConfig : '') . ")",
             self::LOAD_CONFIRMED,
             self::POS_HEAD
         );
