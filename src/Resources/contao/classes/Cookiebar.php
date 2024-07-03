@@ -319,6 +319,7 @@ class Cookiebar
                     'checked'   => !!$cookie->checked,
                     'token'     => static::parseToken($cookie->token),
                     'resources' => $cookie->resources,
+                    'priority'  => $cookie->priority ?? 0,
                     'scripts'   => $cookie->scripts
                 ];
 
