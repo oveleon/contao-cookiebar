@@ -250,12 +250,12 @@
         <target>Ange ditt Google Analytics-ID här.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
-        <source>Google Tag Manager ID</source>
-        <target>Google Tag Manager ID</target>
+        <source>Tag ID</source>
+        <target>Tag ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
-        <source>Enter your Google Tag Manager ID here.</source>
-        <target>Ange ditt ID för Google Tag Manager här.</target>
+        <source>Enter your Tag ID here.</source>
+        <target>Ange ditt Tag ID.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
@@ -323,12 +323,12 @@
         <target>Globala konfigurationer utförs direkt när sidan anropas och utan bekräftelse. Användbart för Google Consent Mode eller liknande skript som redan kan exekveras utan samtycke.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
-        <source>Consent mode</source>
-        <target>Läge för samtycke</target>
+        <source>Consents</source>
+        <target>Samtycken</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
-        <source>Define the consent mode here. If you want to ask for multiple consents through Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
-        <target>Definiera samtyckesläget här. Om du vill begära flera samtycken via Google Consent Mode ska du skapa en annan cookie-typ av typen Google Consent Mode.</target>
+        <source>Here you can select the consents.</source>
+        <target>Du kan välja samtyckena här.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.tokenConfig_xlabel">

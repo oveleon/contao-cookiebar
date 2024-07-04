@@ -229,19 +229,10 @@ class CookieHandler extends AbstractCookie
      */
     private function compileGoogleConsentMode()
     {
-        if($src = $this->sourceUrl)
-        {
-            if ($this->sourceVersioning)
-            {
-                $src .= (strpos($src, '?') !== false ? '&' : '?') . 'v=' . substr(md5(time()),0, 8);
-            }
-
-            $this->addResource(
-                $src,
-                StringUtil::deserialize($this->sourceUrlParameter) ?: null,
-                $this->sourceLoadingMode
-            );
-        }
+        $this->addResource(
+            'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
+            ['async']
+        );
 
         if($src = $this->scriptConfig)
         {
@@ -249,7 +240,7 @@ class CookieHandler extends AbstractCookie
         }
         else
         {
-            $this->addScript("window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('consent', 'update', { '" . $this->gcmMode . "': 'granted' }); gtag('js',new Date());gtag('config','" . $this->vendorId . "');", self::LOAD_CONFIRMED, self::POS_HEAD);
+            $this->addScript("window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('consent', 'update', { " . implode(',', array_map(fn ($mode) => "'$mode':'granted'", StringUtil::deserialize($this->gcmMode, true))) . " }); gtag('js',new Date());gtag('config','" . $this->vendorId . "');", self::LOAD_CONFIRMED, self::POS_HEAD);
         }
     }
 
