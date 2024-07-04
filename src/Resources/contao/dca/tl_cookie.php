@@ -17,7 +17,6 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
 	(
 		'dataContainer'               => DC_Table::class,
         'ptable'                      => 'tl_cookie_group',
-        'switchToEdit'                => true,
         'enableVersioning'            => true,
         'markAsCopy'                  => 'title',
         'onload_callback' => array
