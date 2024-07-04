@@ -249,12 +249,12 @@
         <target>Saisissez votre ID Google Analytics ici.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
-        <source>Google Tag Manager ID</source>
-        <target>ID Google Tag Manager</target>
+        <source>Tag ID</source>
+        <target>Tag ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
-        <source>Enter your Google Tag Manager ID here.</source>
-        <target>Saisissez votre ID Google Tag Manager ici</target>
+        <source>Enter your Tag ID here.</source>
+        <target>Saisissez votre Tag ID ici</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
@@ -321,12 +321,12 @@
         <target>En fonction des paramètres, les configurations globales sont exécutées directement en arrivant sur la page et sans aucune confirmation. Utile pour le mode Consentement de Google ou des scripts similaires, qui sont autorisés à s'exécuter sans consentement.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
-        <source>Consent mode</source>
-        <target>Mode Consentement</target>
+        <source>Consents</source>
+        <target>Consentements</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
-        <source>Define the consent mode here. If you want to ask for multiple consents through Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
-        <target>Définissez le mode de consentement ici. Si vous souhaitez demander plusieurs consentements via le mode de consentement Google, veuillez créer un autre type de cookie de mode de consentement Google.</target>
+        <source>Here you can select the consents.</source>
+        <target>Vous pouvez sélectionner ici les consentements.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>

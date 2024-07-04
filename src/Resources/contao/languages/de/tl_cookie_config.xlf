@@ -107,6 +107,14 @@
         <source>Integrate Google Tag Manager / Google Consent Mode.</source>
         <target>Google Tag Manager / Google Consent Mode einbinden.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie_config.googleConsentMode.0">
+        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.googleConsentMode.1">
+        <source>Integrate Google Consent Mode default configuration.</source>
+        <target>Google Consent Mode Standard-Konfiguration einbinden.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie_config.script.0">
         <source>Custom</source>
         <target>Benutzerdefiniert</target>
