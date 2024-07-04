@@ -16,3 +16,9 @@ services:
       - '@database_connection'
     tags:
       - { name: contao.migration, priority: 0 }
+
+  Oveleon\ContaoCookiebar\Migration\ContaoCookiebarConsentModeMigration:
+    arguments:
+      - '@database_connection'
+    tags:
+      - { name: contao.migration, priority: 0 }
