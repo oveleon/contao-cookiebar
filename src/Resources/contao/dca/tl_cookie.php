@@ -306,7 +306,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+            'eval'                    => array('rgxp'=>'httpurl', 'mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''",
             'load_callback'           => array(
                 array('tl_cookie', 'overwriteTranslation')
