@@ -186,7 +186,7 @@ let ContaoCookiebar = (function () {
                 setStorage(storage);
 
                 // Set new status
-                cookiebar.settings.cookies[cookieId].confirmed = true;
+                cookiebar.settings.cookies['_'+cookieId].confirmed = true;
 
                 // Add new log entry
                 log();
