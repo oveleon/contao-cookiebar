@@ -179,7 +179,7 @@ let ContaoCookiebar = (function () {
         const push = function(cookieId){
             let storage = getStorage();
 
-            if(storage.cookies.includes(cookieId))
+            if(!storage.cookies.includes(cookieId))
             {
                 // Update storage
                 storage.cookies.push(parseInt(cookieId));
