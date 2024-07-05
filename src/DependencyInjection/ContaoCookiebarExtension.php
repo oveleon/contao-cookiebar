@@ -32,8 +32,8 @@ class ContaoCookiebarExtension extends Extension
         $loader->load('listener.yml');
 
         $arrIframeTypes = [
-            'youtube'       => ['ce_youtube'],
-            'vimeo'         => ['ce_vimeo'],
+            'youtube'       => ['ce_youtube', 'youtube'],
+            'vimeo'         => ['ce_vimeo', 'vimeo'],
             'googlemaps'    => ['ce_html_googlemaps', 'mod_html_googlemaps'],
             'openstreetmap' => ['ce_html_openstreetmap', 'mod_html_openstreetmap'],
         ];
