@@ -8,7 +8,7 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCookiebar;
+namespace Oveleon\ContaoCookiebar\Export;
 
 use Contao\Config;
 use Contao\Database;
