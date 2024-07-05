@@ -85,14 +85,6 @@
         <source>Custom JavaScript code.</source>
         <target>Code JavaScript personnalisé.</target>
       </trans-unit>
-      <trans-unit id="tl_cookie_config.googleConsentMode.0">
-        <source>Activate Google Consent Mode</source>
-        <target>Activez le mode Consentement de Google</target>
-      </trans-unit>
-      <trans-unit id="tl_cookie_config.googleConsentMode.1">
-        <source>Delivers a predefined configuration for Google Consent Mode. This configuration is overwritten if a custom script has been defined in the "Configuration" field.</source>
-        <target>Fournit une configuration prédéfinie pour le mode Consentement de Google. Cette configuration est écrasée si un script personnalisé a été défini dans le champ "Configuration".</target>
-      </trans-unit>
 
       <trans-unit id="tl_cookie_config.scriptConfig_xlabel">
         <source>Insert advanced configuration</source>
@@ -106,6 +98,14 @@
       <trans-unit id="tl_cookie_config.tagManager.1">
         <source>Integrate Google Tag Manager / Google Consent Mode.</source>
         <target>Integrer Google Tag Manager / Mode Consentement Google</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.googleConsentMode.0">
+        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_config.googleConsentMode.1">
+        <source>Delivers a predefined configuration for Google Consent Mode. This configuration is overwritten if a custom script has been defined in the "Configuration" field.</source>
+        <target>Fournit une configuration prédéfinie pour le mode Consentement de Google. Cette configuration est écrasée si un script personnalisé a été défini dans le champ "Configuration".</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.script.0">
         <source>Custom</source>
