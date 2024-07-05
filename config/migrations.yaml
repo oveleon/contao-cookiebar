@@ -1,0 +1,6 @@
+services:
+  Oveleon\ContaoCookiebar\Migration\ContaoCookiebarConsentModeMigration:
+    arguments:
+      - '@database_connection'
+    tags:
+      - { name: contao.migration, priority: 0 }

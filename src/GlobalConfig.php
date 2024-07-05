@@ -57,6 +57,9 @@ class GlobalConfig extends AbstractCookie
             case 'script':
                 $this->addCustomScript();
                 break;
+            case 'googleConsentMode':
+                $this->addGoogleConsentMode();
+                break;
             case 'tagManager':
                 $this->addTagManager();
                 break;
@@ -143,6 +146,11 @@ class GlobalConfig extends AbstractCookie
         elseif($this->googleConsentMode)
         {
             $this->addGoogleConsentMode();
+            $this->addScript(
+                "gtag('js', new Date()); gtag('config', '" . $this->vendorId . "');",
+                self::LOAD_ALWAYS,
+                self::POS_HEAD
+            );
         }
     }
 
@@ -152,7 +160,7 @@ class GlobalConfig extends AbstractCookie
     private function addGoogleConsentMode(): void
     {
         $this->addScript(
-            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied', 'functionality_storage': 'denied', 'personalization_storage': 'denied', 'security_storage': 'denied', 'wait_for_update': 500 }); gtag('js', new Date()); gtag('config', '" . $this->vendorId . "');",
+            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied', 'functionality_storage': 'denied', 'personalization_storage': 'denied', 'security_storage': 'denied', 'wait_for_update': 500 });",
             self::LOAD_ALWAYS,
             self::POS_HEAD
         );

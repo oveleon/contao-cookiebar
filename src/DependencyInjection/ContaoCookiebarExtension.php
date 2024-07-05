@@ -27,6 +27,7 @@ class ContaoCookiebarExtension extends Extension
             new FileLocator(__DIR__ . '/../../config')
         );
 
+        $loader->load('migrations.yaml');
         $loader->load('commands.yaml');
         $loader->load('services.yaml');
         $loader->load('listener.yaml');

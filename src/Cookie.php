@@ -200,7 +200,7 @@ class Cookie extends AbstractCookie
     {
         $this->addResource(
             'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
-            null,
+            ['async'],
             self::LOAD_CONFIRMED
         );
 
@@ -223,13 +223,18 @@ class Cookie extends AbstractCookie
      */
     private function addGoogleConsentMode(): void
     {
+        $this->addResource(
+            'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
+            ['async']
+        );
+
         if($src = $this->scriptConfig)
         {
             $this->addScript($src, self::LOAD_CONFIRMED, self::POS_HEAD);
         }
         else
         {
-            $this->addScript("gtag('consent', 'update', { '" . $this->gcmMode . "': 'granted' });", self::LOAD_CONFIRMED, self::POS_HEAD);
+            $this->addScript("window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('consent', 'update', { " . implode(',', array_map(fn ($mode) => "'$mode':'granted'", StringUtil::deserialize($this->gcmMode, true))) . " }); gtag('js',new Date());gtag('config','" . $this->vendorId . "');", self::LOAD_CONFIRMED, self::POS_HEAD);
         }
     }
 

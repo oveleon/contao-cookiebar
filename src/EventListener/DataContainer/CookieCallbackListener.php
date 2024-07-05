@@ -213,7 +213,7 @@ class CookieCallbackListener
     {
         $id = 'token' . $dc->activeRecord->type;
 
-        return vsprintf(' <a href="javascript:;" id="%s" title="%s" onclick="Backend.getScrollOffset();var token=Cookiebar.getToken(\'%s\',\'%s\');if(token)document.getElementById(\'ctrl_%s\').value=token">%s</a><script>Cookiebar.issetToken(\'%s\',document.getElementById(\'%s\'));</script>', [
+        return vsprintf(' <a href="javascript:;" id="%s" title="%s" data-action="contao--scroll-offset#store" onclick="var token=Cookiebar.getToken(\'%s\',\'%s\');if(token)document.getElementById(\'ctrl_%s\').value=token">%s</a><script>Cookiebar.issetToken(\'%s\',document.getElementById(\'%s\'));</script>', [
             $id,
             $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel'],
             $dc->activeRecord->type,
@@ -232,7 +232,7 @@ class CookieCallbackListener
     {
         $id = 'script' . $dc->activeRecord->type;
 
-        $xlabel = vsprintf(' <a href="javascript:;" id="script_%s" title="%s" onclick="Backend.getScrollOffset();ace.edit(\'ctrl_%s_div\').setValue(Cookiebar.getConfig(\'%s\'))">%s</a><script>Cookiebar.issetConfig(\'%s\',document.getElementById(\'script_%s\'));</script>',[
+        $xlabel = vsprintf(' <a href="javascript:;" id="script_%s" title="%s" data-action="contao--scroll-offset#store" onclick="ace.edit(\'ctrl_%s_div\').setValue(Cookiebar.getCookieScript(\'%s\'))">%s</a><script>Cookiebar.issetCookieScript(\'%s\',document.getElementById(\'script_%s\'));</script>',[
             $id,
             $this->translator->trans('tl_cookie.scriptConfig_xlabel', [], 'contao_default'),
             $dc->field,
@@ -242,7 +242,7 @@ class CookieCallbackListener
             $id
         ]);
 
-        $xlabel .= vsprintf(' <a href="javascript:;" id="docs_%s" title="%s" onclick="Backend.getScrollOffset();window.open(Cookiebar.getDocs(\'%s\'), \'_blank\')">%s</a><script>Cookiebar.issetDocs(\'%s\',document.getElementById(\'docs_%s\'));</script>', [
+        $xlabel .= vsprintf(' <a href="javascript:;" id="docs_%s" title="%s" data-action="contao--scroll-offset#store" onclick="window.open(Cookiebar.getCookieDocs(\'%s\'), \'_blank\')">%s</a><script>Cookiebar.issetCookieDocs(\'%s\',document.getElementById(\'docs_%s\'));</script>', [
             $id,
             $this->translator->trans('tl_cookie.scriptDocs_xlabel', [], 'contao_default'),
             $dc->activeRecord->type,

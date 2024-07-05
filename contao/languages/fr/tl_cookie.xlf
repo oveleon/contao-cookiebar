@@ -56,6 +56,14 @@
         <source>iFrame</source>
         <target>iFrame</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.expert_legend">
+        <source>Expert settings</source>
+        <target>Paramètres avancés</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.publish_legend">
+        <source>Publish settings</source>
+        <target>Paramètres de publication</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.title.0">
         <source>Title</source>
         <target>Titre</target>
@@ -241,12 +249,12 @@
         <target>Saisissez votre Mess-ID, Container-ID ou Google Analytics ID ici.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
-        <source>ID</source>
-        <target>ID</target>
+        <source>Tag ID</source>
+        <target>Tag ID</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
-        <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
-        <target>Saisissez votre Mess-ID, Container-ID ou Google Analytics ID ici</target>
+        <source>Enter your Tag ID here.</source>
+        <target>Saisissez votre Tag ID ici</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
@@ -313,12 +321,12 @@
         <target>En fonction des paramètres, les configurations globales sont exécutées directement en arrivant sur la page et sans aucune confirmation. Utile pour le mode Consentement de Google ou des scripts similaires, qui sont autorisés à s'exécuter sans consentement.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
-        <source>Consent mode</source>
-        <target>Mode Consentement</target>
+        <source>Consents</source>
+        <target>Consentements</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
-        <source>Define the consent mode here. If you want to ask for multiple consents through Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
-        <target>Définissez le mode de consentement ici. Si vous souhaitez demander plusieurs consentements via le mode de consentement Google, veuillez créer un autre type de cookie de mode de consentement Google.</target>
+        <source>Here you can select the consents.</source>
+        <target>Vous pouvez sélectionner ici les consentements.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
@@ -559,7 +567,15 @@
       </trans-unit>
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
-        <target>CAfficher/Masquer le cookie ID %s</target>
+        <target>Afficher/Masquer le cookie ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.priority.0">
+        <source>Priority</source>
+        <target>Priorité</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.priority.1">
+        <source>Optionally configure the priority to affect the order of scripts. Default: 0</source>
+        <target>Configurer optionnellement la priorité afin d'affecter l'ordre des script. Par défaut : 0</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editGlobalConfig">
         <source>Edit global configuration</source>

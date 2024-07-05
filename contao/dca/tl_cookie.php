@@ -16,16 +16,16 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
     // Palettes
     'palettes' => [
         '__selector__'                => ['type'],
-        'default'                     => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{description_legend:hide},description,detailDescription;published,checked,disabled;',
-        'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;sourceUrl,sourceLoadingMode,sourceUrlParameter,sourceVersioning;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;published,checked;',
-        'template'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;{template_legend},scriptTemplate,scriptPosition;{description_legend:hide},description,detailDescription;published,checked;',
-        'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
-        'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,gcmMode,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
-        'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;published,checked;',
-        'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
-        'matomoTagManager'            => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
-        'etracker'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,blockCookies,scriptConfig;{description_legend:hide},description,detailDescription;published,checked;',
-        'iframe'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description,detailDescription;published,checked;',
+        'default'                     => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{description_legend:hide},description,detailDescription;{expert_legend:hide},disabled;{publish_legend},published,checked;',
+        'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;sourceUrl,sourceLoadingMode,sourceUrlParameter,sourceVersioning;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'template'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;{template_legend},scriptTemplate,scriptPosition;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,gcmMode,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'matomoTagManager'            => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'etracker'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,blockCookies,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'iframe'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{iframe_legend},iframeType,blockTemplate,blockDescription;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
     ],
 
     // Fields
@@ -151,7 +151,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'httpurl', 'mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''",
         ],
         'description' => [
@@ -257,11 +257,11 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
         ],
         'gcmMode' => [
             'exclude'                 => true,
-            'inputType'               => 'select',
+            'inputType'               => 'checkbox',
             'options'                 => ['ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage', 'functionality_storage', 'personalization_storage', 'security_storage'],
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
-            'eval'                    => ['tl_class'=>'w50 clr'],
-            'sql'                     => "varchar(32) NOT NULL default ''"
+            'eval'                    => ['mandatory'=>true, 'multiple'=>true,  'tl_class'=>'w50 clr'],
+            'sql'                     => "varchar(255) NOT NULL default ''"
         ],
         'disabled' => [
             'exclude'                 => true,
@@ -269,6 +269,12 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class'=>'w50'],
             'sql'                     => "char(1) NOT NULL default ''",
+        ],
+        'priority' => [
+            'exclude'                 => true,
+            'inputType'               => 'text',
+            'eval'                    => ['tl_class'=>'w50'],
+            'sql'                     => "int(10) NOT NULL default 0"
         ],
         'checked' => [
             'exclude'                 => true,
@@ -297,7 +303,6 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
     'config' => [
         'dataContainer'               => DC_Table::class,
         'ptable'                      => 'tl_cookie_group',
-        'switchToEdit'                => true,
         'enableVersioning'            => true,
         'markAsCopy'                  => 'title',
         'sql' => [
@@ -322,39 +327,15 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'format'                  => '%s'
         ],
         'global_operations' => [
-            'all' => [
-                'href'                => 'act=select',
-                'class'               => 'header_edit_all',
-                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-            ]
+            'all'
         ],
         'operations' => [
-            'edit' => [
-                'href'                => 'act=edit',
-                'icon'                => 'edit.svg'
-            ],
-            'copy' => [
-                'href'                => 'act=paste&amp;mode=copy',
-                'icon'                => 'copy.svg'
-            ],
-            'cut'  => [
-                'href'                => 'act=paste&amp;mode=cut',
-                'icon'                => 'cut.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset()"'
-            ],
-            'delete' => [
-                'href'                => 'act=delete',
-                'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"',
-            ],
-            'show' => [
-                'href'                => 'act=show',
-                'icon'                => 'show.svg'
-            ],
-            'toggle' => [
-                'href'                => 'act=toggle&amp;field=published',
-                'icon'                => 'visible.svg'
-            ]
+            'edit',
+            'copy',
+            'cut',
+            'delete',
+            'show',
+            'toggle'
         ]
     ]
 ];

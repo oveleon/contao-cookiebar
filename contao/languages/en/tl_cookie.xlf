@@ -43,6 +43,12 @@
       <trans-unit id="tl_cookie.iframe_legend">
         <source>iFrame</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.expert_legend">
+        <source>Expert settings</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.publish_legend">
+        <source>Publish settings</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.title.0">
         <source>Title</source>
       </trans-unit>
@@ -182,10 +188,10 @@
         <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
-        <source>ID</source>
+        <source>Tag ID</source>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
-        <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
+        <source>Enter your Tag ID here.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
@@ -236,10 +242,10 @@
         <source>Depending on the setting, global configurations are executed directly when entering the page and without any confirmation. Useful for Google Consent Mode or similar scripts, that are allowed to run without consent.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
-        <source>Consent mode</source>
+        <source>Consents</source>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
-        <source>Define the consent mode here. If you want to ask for multiple consents through Google Consent Mode, please create another cookie type of Google Consent Mode.</source>
+        <source>Here you can select the consents.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
@@ -434,6 +440,12 @@
       </trans-unit>
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.priority.0">
+        <source>Priority</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.priority.1">
+        <source>Optionally configure the priority to affect the order of scripts. Default: 0</source>
       </trans-unit>
       <trans-unit id="tl_cookie.editGlobalConfig">
         <source>Edit global configuration</source>

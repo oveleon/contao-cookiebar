@@ -129,7 +129,6 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = [
     // Config
     'config' => [
         'dataContainer'               => DC_Table::class,
-        'switchToEdit'                => true,
         'enableVersioning'            => true,
         'markAsCopy'                  => 'title',
         'sql' => [
@@ -153,30 +152,13 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = [
             'format'                  => '%s'
         ],
         'global_operations' => [
-            'all' => [
-                'href'                => 'act=select',
-                'class'               => 'header_edit_all',
-                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-            ]
+            'all'
         ],
         'operations' => [
-            'edit' => [
-                'href'                => 'act=edit',
-                'icon'                => 'edit.svg'
-            ],
-            'copy' => [
-                'href'                => 'act=paste&amp;mode=copy',
-                'icon'                => 'copy.svg'
-            ],
-            'delete' => [
-                'href'                => 'act=delete',
-                'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"'
-            ],
-            'show' => [
-                'href'                => 'act=show',
-                'icon'                => 'show.svg'
-            ]
+            'edit',
+            'copy',
+            'delete',
+            'show'
         ]
     ]
 ];

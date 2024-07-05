@@ -7,6 +7,7 @@ const sourcemaps = require('gulp-sourcemaps');
 gulp.task('js', function() {
     return gulp.src(['public/scripts/*.js', '!public/scripts/*.min.js'])
         .pipe(uglify())
+        //.pipe(sourcemaps.write('.'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/scripts'))
 });

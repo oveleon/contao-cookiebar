@@ -28,7 +28,7 @@ class CookieConfigCallbackListener
             $key .= '_gcm';
         }
 
-        $xlabel  = vsprintf(' <a href="javascript:;" id="script_%s" title="%s" onclick="Backend.getScrollOffset();ace.edit(\'ctrl_%s_div\').setValue(Cookiebar.getConfig(\'%s\'))">%s</a><script>Cookiebar.issetConfig(\'%s\',document.getElementById(\'script_%s\'));</script>', [
+        $xlabel  = vsprintf(' <a href="javascript:;" id="script_%s" title="%s" data-action="contao--scroll-offset#store" onclick="ace.edit(\'ctrl_%s_div\').setValue(Cookiebar.getCookieScript(\'%s\'))">%s</a><script>Cookiebar.issetCookieScript(\'%s\',document.getElementById(\'script_%s\'));</script>', [
             $id,
             $GLOBALS['TL_LANG']['tl_cookie']['scriptConfig_xlabel'] ?? '',
             $dc->field,
@@ -38,7 +38,7 @@ class CookieConfigCallbackListener
             $id
         ]);
 
-        $xlabel .= vsprintf(' <a href="javascript:;" id="docs_%s" title="%s" onclick="Backend.getScrollOffset();window.open(Cookiebar.getDocs(\'%s\'), \'_blank\')">%s</a><script>Cookiebar.issetDocs(\'%s\',document.getElementById(\'docs_%s\'));</script>', [
+        $xlabel .= vsprintf(' <a href="javascript:;" id="docs_%s" title="%s" data-action="contao--scroll-offset#store" onclick="window.open(Cookiebar.getCookieDocs(\'%s\'), \'_blank\')">%s</a><script>Cookiebar.issetCookieDocs(\'%s\',document.getElementById(\'docs_%s\'));</script>', [
             $id,
             ($GLOBALS['TL_LANG']['tl_cookie']['scriptDocs_xlabel'] ?? ''),
             $key,
