@@ -8,7 +8,9 @@
  * @copyright   Oveleon <https://www.oveleon.de/>
  */
 
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\DC_Table;
+use Contao\StringUtil;
 
 $GLOBALS['TL_DCA']['tl_cookie'] = array
 (
@@ -116,7 +118,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;sourceUrl,sourceLoadingMode,sourceUrlParameter,sourceVersioning;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'template'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;{template_legend},scriptTemplate,scriptPosition;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
-        'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,vendorId,gcmMode,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,vendorId,gcmMode,alwaysLoadTagJS,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'matomoTagManager'            => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
@@ -296,7 +298,8 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''",
             'load_callback'           => array(
-                array('tl_cookie', 'overwriteTranslation')
+                array('tl_cookie', 'overwriteTranslation'),
+                array('tl_cookie', 'updateMandatoryState')
             )
         ),
         'vendorUrl' => array
@@ -432,6 +435,9 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             (
                 array('tl_cookie', 'selectScriptPreset')
             ),
+            'load_callback'           => array(
+                array('tl_cookie', 'overwriteTranslation')
+            )
         ),
         'globalConfig' => array
         (
@@ -454,8 +460,20 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'inputType'               => 'checkbox',
             'options'                 => array('ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage', 'functionality_storage', 'personalization_storage', 'security_storage'),
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
-            'eval'                    => array('mandatory'=>true, 'multiple'=>true, 'tl_class'=>'w50 clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'eval'                    => array('submitOnChange'=>true, 'multiple'=>true, 'tl_class'=>'w50 clr'),
+            'sql'                     => "varchar(255) NOT NULL default ''",
+            'load_callback'           => array
+            (
+                array('tl_cookie', 'adjustScriptConfigField')
+            )
+        ),
+        'alwaysLoadTagJS' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_cookie']['alwaysLoadTagJS'],
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "char(1) NOT NULL default ''"
         ),
         'disabled' => array
         (
@@ -675,6 +693,24 @@ class tl_cookie extends Contao\Backend
     }
 
     /**
+     * Remove mandatory flag for google tag consent mode
+     *
+     * @param $varValue
+     * @param $dc
+     *
+     * @return mixed
+     */
+    public function updateMandatoryState($varValue, $dc)
+    {
+        if ('googleConsentMode' === $dc->activeRecord->type)
+        {
+            $GLOBALS['TL_DCA']['tl_cookie']['fields'][$dc->field]['eval']['mandatory'] = false;
+        }
+
+        return $varValue;
+    }
+
+    /**
      * Add button for adding default token configurations
      *
      * @param $dc
@@ -783,6 +819,33 @@ class tl_cookie extends Contao\Backend
         if($dc->activeRecord->type === 'googleConsentMode')
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['mandatory'] = true;
+        }
+
+        return $varValue;
+    }
+
+    /**
+     * Show global config field
+     *
+     * @param $varValue
+     * @param $dc
+     *
+     * @return string
+     */
+    public function adjustScriptConfigField($varValue, $dc)
+    {
+        if ($dc->activeRecord->type !== 'googleConsentMode')
+        {
+            return $varValue;
+        }
+
+        if (!empty(StringUtil::deserialize($varValue, true)))
+        {
+            // ToDo: Remove script configuration when a mode is set
+            PaletteManipulator::create()
+                ->removeField('scriptConfig')
+                ->applyToPalette('googleConsentMode', $dc->table)
+            ;
         }
 
         return $varValue;

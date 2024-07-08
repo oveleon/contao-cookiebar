@@ -16,6 +16,8 @@ var Cookiebar = {
 
                 googleConsentMode: "window.dataLayer = window.dataLayer || [];\n" +
                     "function gtag(){dataLayer.push(arguments);}\n" +
+                    "gtag('js', new Date());\n" +
+                    "gtag('config', 'Insert container id here');\n" +
                     "gtag('consent', 'update', {\n" +
                     "  'ad_storage': 'granted',\n" +
                     "  'ad_user_data': 'granted',\n" +
@@ -24,9 +26,7 @@ var Cookiebar = {
                     "  'functionality_storage': 'granted',\n" +
                     "  'personalization_storage': 'granted',\n" +
                     "  'security_storage': 'granted',\n" +
-                    "});\n" +
-                    "gtag('js', new Date());\n" +
-                    "gtag('config', 'Insert container id here');",
+                    "});",
 
                 matomo: "_paq.push(['disableCookies']);\n" +
                     "_paq.push(['trackPageView']);\n" +
