@@ -3,10 +3,12 @@
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
 use Contao\Controller;
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\CoreBundle\ServiceAnnotation\Callback;
 use Contao\DataContainer;
 use Contao\Image;
 use Contao\Message;
+use Contao\StringUtil;
 use Contao\System;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
@@ -92,11 +94,13 @@ class CookieCallbackListener
     }
 
     /**
-     * Adjust locked DCA's (necessary cookies)
+     * Adjust the palettes
+     * Locked DCAs (necessary cookies)
+     * Consent mode script configuration
      *
      * @Callback(table="tl_cookie", target="config.onload")
      */
-    public function handleLockedDca(DataContainer $dc): void
+    public function adjustPalettes(DataContainer $dc): void
     {
         $objCookie = CookieModel::findById($dc->id);
 
@@ -107,6 +111,16 @@ class CookieCallbackListener
             if($objCookie->identifier === 'lock' || $objGroup->identifier === 'lock')
             {
                 $GLOBALS['TL_DCA']['tl_cookie']['palettes']['default'] = str_replace(',type', '', $GLOBALS['TL_DCA']['tl_cookie']['palettes']['default']);
+            }
+
+            if (
+                'googleConsentMode' === $objCookie->type
+                && !empty(StringUtil::deserialize($objCookie->gcmMode, true))
+            ) {
+                PaletteManipulator::create()
+                    ->removeField('scriptConfig')
+                    ->applyToPalette('googleConsentMode', $dc->table)
+                ;
             }
         }
     }
@@ -320,10 +334,26 @@ class CookieCallbackListener
      *
      * @Callback(table="tl_cookie", target="fields.vendorId.load")
      * @Callback(table="tl_cookie", target="fields.vendorUrl.load")
+     * @Callback(table="tl_cookie", target="fields.scriptConfig.load")
      */
     public function overwriteTranslation(string $value, DataContainer $dc): string
     {
-        return $this->setVendorTranslation($value, $dc);
+        return $this->setTranslationByType($value, $dc);
+    }
+
+    /**
+     * Updates the mandatory state
+     *
+     * @Callback(table="tl_cookie", target="fields.vendorId.load")
+     */
+    public function updateMandatoryState(string $value, DataContainer $dc): string
+    {
+        if ('googleConsentMode' === $dc->activeRecord->type)
+        {
+            $GLOBALS['TL_DCA']['tl_cookie']['fields'][$dc->field]['eval']['mandatory'] = false;
+        }
+
+        return $value;
     }
 
     /**

@@ -20,7 +20,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
         'script'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;sourceUrl,sourceLoadingMode,sourceUrlParameter,sourceVersioning;scriptConfirmed,scriptUnconfirmed,scriptPosition;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'template'                    => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{global_config_legend:hide},globalConfig;{template_legend},scriptTemplate,scriptPosition;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'googleAnalytics'             => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_analytics_legend},vendorId,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
-        'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,vendorId,gcmMode,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
+        'googleConsentMode'           => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{google_consent_mode_legend},globalConfig,vendorId,gcmMode,alwaysLoadTagJS,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'facebookPixel'               => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{facebook_pixel_legend},vendorId;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'matomo'                      => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
         'matomoTagManager'            => '{title_legend},title,type,token,showTokens,expireTime,showExpireTime,provider,showProvider;{matomo_legend},vendorId,vendorUrl,scriptConfig;{description_legend:hide},description,detailDescription;{expert_legend:hide},priority;{publish_legend},published,checked;',
@@ -260,8 +260,14 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'inputType'               => 'checkbox',
             'options'                 => ['ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage', 'functionality_storage', 'personalization_storage', 'security_storage'],
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
-            'eval'                    => ['mandatory'=>true, 'multiple'=>true,  'tl_class'=>'w50 clr'],
+            'eval'                    => ['submitOnChange'=>true, 'multiple'=>true, 'tl_class'=>'w50 clr'],
             'sql'                     => "varchar(255) NOT NULL default ''"
+        ],
+        'alwaysLoadTagJS' => [
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => ['tl_class'=>'w50'],
+            'sql'                     => "char(1) NOT NULL default ''"
         ],
         'disabled' => [
             'exclude'                 => true,

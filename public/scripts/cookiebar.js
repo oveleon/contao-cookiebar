@@ -573,12 +573,10 @@ let ContaoCookiebar = (function () {
                 cookies = objStorage.cookies;
             }else if(objStorage.version === -1){
                 for(let cookieId in cookiebar.settings.cookies){
-                    cookieId = parseInt(cookieId.replace('_',''));
+                    const cid = parseInt(cookieId.replace('_',''));
 
                     if(cookiebar.settings.cookies[cookieId].checked){
-                        debugger;
-                        cookies.push(cookieId)
-                        debugger;
+                        cookies.push(cid)
                     }
                 }
             }

@@ -235,6 +235,12 @@
       <trans-unit id="tl_cookie.scriptConfig.1">
         <source>Here you can enter additional parameters that will be considered when loading the script.</source>
       </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_scriptConfig.0">
+        <source>Overwrite default configuration</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_scriptConfig.1">
+        <source>Here you can overwrite the default configuration created by the system. If &lt;em&gt;always load gtag.js&lt;/em&gt; is activated, the &lt;em&gt;gtag.js&lt;/em&gt; script initialisation is not necessary in this configuration.</source>
+      </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.0">
         <source>Global configuration</source>
       </trans-unit>
@@ -246,6 +252,12 @@
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
         <source>Here you can select the consents.</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.alwaysLoadTagJS.0">
+        <source>Always load gtag.js</source>
+      </trans-unit>
+      <trans-unit id="tl_cookie.alwaysLoadTagJS.1">
+        <source>Always load the gtag.js without asking for consent. This activates anonymous tracking before consent has been given.</source>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
@@ -452,7 +464,7 @@
       </trans-unit>
 
       <trans-unit id="tl_cookie.msgGoogleConsentMode">
-        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
+        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the selection of consent modes.</source>
       </trans-unit>
     </body>
   </file>

@@ -312,6 +312,14 @@
         <source>Here you can enter additional parameters that will be considered when loading the script.</source>
         <target>Tragen Sie hier weitere Parameter ein, welche beim Laden des Skriptes berücksichtigt werden sollen.</target>
       </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_scriptConfig.0">
+        <source>Overwrite default configuration</source>
+        <target>Standard Konfiguration überschreiben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.googleConsentMode_scriptConfig.1">
+        <source>Here you can overwrite the default configuration created by the system. If &lt;em&gt;always load gtag.js&lt;/em&gt; is activated, the &lt;em&gt;gtag.js&lt;/em&gt; script initialisation is not necessary in this configuration.</source>
+        <target>Hier können Sie die vom System erstellte Standardkonfiguration überschreiben. Sofern &lt;em&gt;gtag.js immer laden&lt;/em&gt; aktiviert ist, ist die &lt;em&gt;gtag.js&lt;/em&gt;-Skript-Initialisierung in dieser Konfiguration nicht notwendig.</target>
+      </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.0">
         <source>Global configuration</source>
         <target>Globale Konfiguration</target>
@@ -327,6 +335,14 @@
       <trans-unit id="tl_cookie.gcmMode.1">
         <source>Here you can select the consents.</source>
         <target>Hier können Sie die Einwilligungen auswählen.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.alwaysLoadTagJS.0">
+        <source>Always load gtag.js</source>
+        <target>gtag.js immer laden</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie.alwaysLoadTagJS.1">
+        <source>Always load the gtag.js without asking for consent. This activates anonymous tracking before consent has been given.</source>
+        <target>Die gtag.js immer laden, ohne dass eine Zustimmung eingeholt wird. Dies aktiviert das anonyme Tracking, bevor eine Zustimmung erteilt wurde.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
@@ -599,8 +615,8 @@
       </trans-unit>
 
       <trans-unit id="tl_cookie.msgGoogleConsentMode">
-        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
-        <target>Cookies vom Typ "Google Consent Mode" können abhängig vom Einwilligungsmodus mehrfach angelegt werden.</target>
+        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the selection of consent modes.</source>
+        <target>Cookies vom Typ "Google Consent Mode" können je nach Auswahl der Zustimmungsmodi mehrfach angelegt werden.</target>
       </trans-unit>
     </body>
   </file>

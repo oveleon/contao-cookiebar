@@ -44,6 +44,7 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
  * @property string  $blockTemplate
  * @property string  $gcmMode
  * @property integer $globalConfig
+ * @property boolean $alwaysLoadTagJS
  * @property boolean $disabled
  * @property boolean $published
  */
@@ -223,19 +224,49 @@ class Cookie extends AbstractCookie
      */
     private function addGoogleConsentMode(): void
     {
-        $this->addResource(
-            'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
-            ['async']
-        );
+        $gtagInit = '';
 
-        if($src = $this->scriptConfig)
+        if ($this->vendorId)
         {
-            $this->addScript($src, self::LOAD_CONFIRMED, self::POS_HEAD);
+            $this->addResource(
+                'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
+                ['async'],
+                $this->alwaysLoadTagJS ? self::LOAD_ALWAYS : self::LOAD_CONFIRMED
+            );
+
+            $gtagInit = "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('js',new Date()); gtag('config','" . $this->vendorId . "'); ";
+        }
+
+        if ($this->alwaysLoadTagJS)
+        {
+            if ($this->vendorId)
+            {
+                $this->addScript($gtagInit, self::LOAD_ALWAYS, self::POS_HEAD);
+                // Reset init as it's been pushed already
+                $gtagInit = '';
+            }
+            else
+            {
+                $this->addScript("console.warn('Using the setting alwaysLoad is invalid without setting a Tag ID')", self::LOAD_ALWAYS);
+            }
+        }
+
+        if (!empty($modes = StringUtil::deserialize($this->gcmMode)))
+        {
+            $consent = "gtag('consent', 'update', { " . implode(', ', array_map(fn ($mode) => "'$mode':'granted'", $modes)) . " });";
+            $script = $gtagInit . $consent;
+        }
+        else if ($this->scriptConfig)
+        {
+            $script = $this->scriptConfig;
         }
         else
         {
-            $this->addScript("window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)} gtag('consent', 'update', { " . implode(',', array_map(fn ($mode) => "'$mode':'granted'", StringUtil::deserialize($this->gcmMode, true))) . " }); gtag('js',new Date());gtag('config','" . $this->vendorId . "');", self::LOAD_CONFIRMED, self::POS_HEAD);
+            $this->addScript("console.warn('Using consent mode without selected modes or custom script configuration is invalid')", self::LOAD_ALWAYS);
+            return;
         }
+
+        $this->addScript($script, self::LOAD_CONFIRMED, self::POS_HEAD);
     }
 
     /**

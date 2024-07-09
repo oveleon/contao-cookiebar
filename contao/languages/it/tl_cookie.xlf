@@ -600,8 +600,8 @@
       </trans-unit>
 
       <trans-unit id="tl_cookie.msgGoogleConsentMode">
-        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the consent mode.</source>
-        <target>I cookie del tipo "Modalità di consenso Google" possono essere creati più volte a seconda della modalità di consenso.</target>
+        <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the selection of consent modes.</source>
+        <target>I cookie del tipo "Modalità di consenso Google" possono essere creati più volte a seconda della selezione delle modalità di consenso.</target>
       </trans-unit>
     </body>
   </file>
