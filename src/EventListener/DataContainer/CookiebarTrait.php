@@ -56,7 +56,7 @@ trait CookiebarTrait
     /**
      * Overwrite field translations by type
      */
-    protected function setTranslationByType(string $value, DataContainer $dc): string
+    protected function setTranslationByType(mixed $value, DataContainer $dc): mixed
     {
         System::loadLanguageFile($dc->table);
 

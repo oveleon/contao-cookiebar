@@ -175,7 +175,7 @@ class CookieCallbackListener
      * @Callback(table="tl_cookie", target="fields.disabled.load")
      * @Callback(table="tl_cookie", target="fields.token.load")
      */
-    public function disableLockedField(mixed $varValue, DataContainer $dc): string
+    public function disableLockedField(mixed $varValue, DataContainer $dc): mixed
     {
         if($dc->activeRecord->identifier === 'lock')
         {
@@ -190,7 +190,7 @@ class CookieCallbackListener
      *
      * @Callback(table="tl_cookie", target="fields.token.load")
      */
-    public function requireField(mixed $varValue, DataContainer $dc): string
+    public function requireField(mixed $varValue, DataContainer $dc): mixed
     {
         $disableRequire = [
             'default',
@@ -273,7 +273,7 @@ class CookieCallbackListener
      *
      * @Callback(table="tl_cookie", target="fields.type.load")
      */
-    public function addTypeMessage(mixed $varValue, DataContainer $dc): string
+    public function addTypeMessage(mixed $varValue, DataContainer $dc): mixed
     {
         if($varValue === 'googleConsentMode')
         {
@@ -319,7 +319,7 @@ class CookieCallbackListener
      *
      * @Callback(table="tl_cookie", target="fields.globalConfig.load")
      */
-    public function requireConsentMode(mixed $varValue, DataContainer $dc)
+    public function requireConsentMode(mixed $varValue, DataContainer $dc): mixed
     {
         if($dc->activeRecord->type === 'googleConsentMode')
         {
@@ -336,7 +336,7 @@ class CookieCallbackListener
      * @Callback(table="tl_cookie", target="fields.vendorUrl.load")
      * @Callback(table="tl_cookie", target="fields.scriptConfig.load")
      */
-    public function overwriteTranslation(string $value, DataContainer $dc): string
+    public function overwriteTranslation(mixed $value, DataContainer $dc): mixed
     {
         return $this->setTranslationByType($value, $dc);
     }
@@ -346,7 +346,7 @@ class CookieCallbackListener
      *
      * @Callback(table="tl_cookie", target="fields.vendorId.load")
      */
-    public function updateMandatoryState(string $value, DataContainer $dc): string
+    public function updateMandatoryState(mixed $value, DataContainer $dc): mixed
     {
         if ('googleConsentMode' === $dc->activeRecord->type)
         {

@@ -55,9 +55,9 @@ class CookieConfigCallbackListener
      *
      * @Callback(table="tl_cookie_config", target="fields.vendorId.load")
      */
-    public function overwriteTranslation(string $value, DataContainer $dc): string
+    public function overwriteTranslation(mixed $value, DataContainer $dc): mixed
     {
-        return $this->setVendorTranslation($value, $dc);
+        return $this->setTranslationByType($value, $dc);
     }
 
     /**
