@@ -257,14 +257,19 @@ class CookieHandler extends AbstractCookie
             }
         }
 
-        if ($this->scriptConfig)
+        if (!empty($modes = StringUtil::deserialize($this->gcmMode)))
+        {
+            $consent = "gtag('consent', 'update', { " . implode(', ', array_map(fn ($mode) => "'$mode':'granted'", $modes)) . " });";
+            $script = $gtagInit . $consent;
+        }
+        else if ($this->scriptConfig)
         {
             $script = $this->scriptConfig;
         }
         else
         {
-            $consent = "gtag('consent', 'update', { " . implode(', ', array_map(fn ($mode) => "'$mode':'granted'", StringUtil::deserialize($this->gcmMode, true))) . " });";
-            $script = $gtagInit . $consent;
+            $this->addScript("console.warn('Using consent mode without selected modes or custom script configuration is invalid')", self::LOAD_ALWAYS);
+            return;
         }
 
         $this->addScript($script, self::LOAD_CONFIRMED, self::POS_HEAD);

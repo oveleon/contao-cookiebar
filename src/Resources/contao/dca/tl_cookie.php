@@ -24,7 +24,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
         'onload_callback' => array
         (
             array('tl_cookie', 'checkPermission'),
-            array('tl_cookie', 'adjustDcaByIdentifier'),
+            array('tl_cookie', 'adjustPalettes'),
         ),
 		'sql' => array
 		(
@@ -461,11 +461,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'options'                 => array('ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage', 'functionality_storage', 'personalization_storage', 'security_storage'),
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie'],
             'eval'                    => array('submitOnChange'=>true, 'multiple'=>true, 'tl_class'=>'w50 clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''",
-            'load_callback'           => array
-            (
-                array('tl_cookie', 'adjustScriptConfigField')
-            )
+            'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'alwaysLoadTagJS' => array
         (
@@ -610,7 +606,7 @@ class tl_cookie extends Contao\Backend
      *
      * @param $dc
      */
-    public function adjustDcaByIdentifier($dc)
+    public function adjustPalettes($dc)
     {
         $objCookie = \Oveleon\ContaoCookiebar\CookieModel::findById($dc->id);
 
@@ -621,6 +617,16 @@ class tl_cookie extends Contao\Backend
             if($objCookie->identifier === 'lock' || $objGroup->identifier === 'lock')
             {
                 $GLOBALS['TL_DCA']['tl_cookie']['palettes']['default'] = str_replace(',type', '', $GLOBALS['TL_DCA']['tl_cookie']['palettes']['default']);
+            }
+
+            if (
+                'googleConsentMode' === $objCookie->type
+                && !empty(StringUtil::deserialize($objCookie->gcmMode, true))
+            ) {
+                PaletteManipulator::create()
+                    ->removeField('scriptConfig')
+                    ->applyToPalette('googleConsentMode', $dc->table)
+                ;
             }
         }
     }
@@ -819,33 +825,6 @@ class tl_cookie extends Contao\Backend
         if($dc->activeRecord->type === 'googleConsentMode')
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['mandatory'] = true;
-        }
-
-        return $varValue;
-    }
-
-    /**
-     * Show global config field
-     *
-     * @param $varValue
-     * @param $dc
-     *
-     * @return string
-     */
-    public function adjustScriptConfigField($varValue, $dc)
-    {
-        if ($dc->activeRecord->type !== 'googleConsentMode')
-        {
-            return $varValue;
-        }
-
-        if (!empty(StringUtil::deserialize($varValue, true)))
-        {
-            // ToDo: Remove script configuration when a mode is set
-            PaletteManipulator::create()
-                ->removeField('scriptConfig')
-                ->applyToPalette('googleConsentMode', $dc->table)
-            ;
         }
 
         return $varValue;
