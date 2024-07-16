@@ -10,6 +10,7 @@
 
 namespace Oveleon\ContaoCookiebar\Controller;
 
+use Contao\CoreBundle\Exception\PageNotFoundException;
 use Contao\FrontendTemplate;
 use Contao\System;
 use Contao\Validator;
@@ -47,9 +48,9 @@ class CookiebarController
 
         $objCookie = CookieModel::findById($id);
 
-        if(null === $objCookie)
+        if (null === $objCookie || null === $request->headers->get('referer'))
         {
-            return new Response('');
+            throw new PageNotFoundException();
         }
 
         $strUrl = $request->get('redirect');
