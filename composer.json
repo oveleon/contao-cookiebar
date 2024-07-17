@@ -28,7 +28,15 @@
     "ext-json": "*",
     "ext-dom": "*",
     "ext-libxml": "*",
-    "contao/core-bundle": "^4.9"
+    "contao/core-bundle": "^4.9",
+    "symfony/http-foundation": "^4.4 || ^5.4",
+    "symfony/config": "4.4.* || ^5.4",
+    "doctrine/dbal": "^2.11 || ^3.3",
+    "symfony/console": "4.4.* || ^5.4",
+    "symfony/dependency-injection": "~4.4.23 || ^5.4",
+    "symfony/framework-bundle": "4.4.* || ^5.4",
+    "symfony/http-kernel": "4.4.* || ^5.4",
+    "symfony/routing": "4.4.* || ^5.4"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",
