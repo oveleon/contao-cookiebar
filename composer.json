@@ -1,21 +1,26 @@
 {
-  "name":"oveleon/contao-cookiebar",
-  "type":"contao-bundle",
-  "description":"Contao Cookiebar",
-  "keywords":["contao","cookie","consent","opt in"],
-  "homepage":"https://www.oveleon.de/cookiebar.html",
-  "license":"AGPL-3.0-or-later",
-  "authors":[
+  "name": "oveleon/contao-cookiebar",
+  "type": "contao-bundle",
+  "description": "Contao Cookiebar",
+  "keywords": [
+    "contao",
+    "cookie",
+    "consent",
+    "opt in"
+  ],
+  "homepage": "https://www.oveleon.de/cookiebar.html",
+  "license": "AGPL-3.0-or-later",
+  "authors": [
     {
-      "name":"Oveleon",
+      "name": "Oveleon",
       "email": "info@oveleon.de",
-      "homepage":"https://www.oveleon.de",
-      "role":"Developer"
+      "homepage": "https://www.oveleon.de",
+      "role": "Developer"
     },
     {
-      "name":"Daniele Sciannimanica",
-      "homepage":"https://github.com/doishub",
-      "role":"Developer"
+      "name": "Daniele Sciannimanica",
+      "homepage": "https://github.com/doishub",
+      "role": "Developer"
     }
   ],
   "require":{
@@ -24,15 +29,24 @@
     "ext-dom": "*",
     "ext-libxml": "*",
     "contao/core-bundle":"^5.3",
-    "symfony/http-foundation":"^5.4 || ^6.0"
+    "symfony/http-foundation":"^6.4",
+    "symfony/config": "^6.4",
+    "doctrine/dbal": "^3.6",
+    "symfony/console": "^6.4",
+    "symfony/dependency-injection": "^6.4",
+    "symfony/http-kernel": "^6.4",
+    "symfony/routing": "^6.4",
+    "symfony/event-dispatcher": "^6.4",
+    "symfony/translation-contracts": "^3.0"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.0"
+    "contao/manager-plugin": "^2.0",
+    "shipmonk/composer-dependency-analyser": "^1.4"
   },
   "conflict": {
     "contao/core": "*"
   },
-  "autoload":{
+  "autoload": {
     "psr-4": {
       "Oveleon\\ContaoCookiebar\\": "src/"
     },
@@ -46,7 +60,7 @@
       "contao/templates/"
     ]
   },
-  "extra":{
+  "extra": {
     "branch-alias": {
       "dev-master": "2.1.x-dev"
     },
@@ -56,5 +70,14 @@
     "issues": "https://github.com/oveleon/contao-cookiebar/issues",
     "source": "https://github.com/oveleon/contao-cookiebar",
     "docs": "https://github.com/oveleon/contao-cookiebar"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": false,
+      "contao/manager-plugin": false
+    }
+  },
+  "scripts": {
+    "depcheck": "@php vendor/bin/composer-dependency-analyser --config=depcheck.php"
   }
 }
