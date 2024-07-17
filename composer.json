@@ -1,39 +1,52 @@
 {
-  "name":"oveleon/contao-cookiebar",
-  "type":"contao-bundle",
-  "description":"Contao Cookiebar",
-  "keywords":["contao","cookie","consent","opt in"],
-  "homepage":"https://www.oveleon.de/cookiebar.html",
-  "license":"AGPL-3.0-or-later",
-  "authors":[
+  "name": "oveleon/contao-cookiebar",
+  "type": "contao-bundle",
+  "description": "Contao Cookiebar",
+  "keywords": [
+    "contao",
+    "cookie",
+    "consent",
+    "opt in"
+  ],
+  "homepage": "https://www.oveleon.de/cookiebar.html",
+  "license": "AGPL-3.0-or-later",
+  "authors": [
     {
-      "name":"Oveleon",
+      "name": "Oveleon",
       "email": "info@oveleon.de",
-      "homepage":"https://www.oveleon.de",
-      "role":"Developer"
+      "homepage": "https://www.oveleon.de",
+      "role": "Developer"
     },
     {
-      "name":"Daniele Sciannimanica",
-      "homepage":"https://github.com/doishub",
-      "role":"Developer"
+      "name": "Daniele Sciannimanica",
+      "homepage": "https://github.com/doishub",
+      "role": "Developer"
     }
   ],
-  "require":{
+  "require": {
     "php": "^7.4 || ^8.0",
-    "ext-json":"*",
+    "ext-json": "*",
     "ext-dom": "*",
     "ext-libxml": "*",
-    "contao/core-bundle":"^4.9",
-    "symfony/http-foundation":"^4.4 || ^5.2"
+    "contao/core-bundle": "^4.9",
+    "symfony/http-foundation": "^4.4 || ^5.4",
+    "symfony/config": "4.4.* || ^5.4",
+    "doctrine/dbal": "^2.11 || ^3.3",
+    "symfony/console": "4.4.* || ^5.4",
+    "symfony/dependency-injection": "~4.4.23 || ^5.4",
+    "symfony/framework-bundle": "4.4.* || ^5.4",
+    "symfony/http-kernel": "4.4.* || ^5.4",
+    "symfony/routing": "4.4.* || ^5.4"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.0"
+    "contao/manager-plugin": "^2.0",
+    "shipmonk/composer-dependency-analyser": "^1.4"
   },
   "conflict": {
     "contao/core": "*",
     "contao/manager-plugin": "<2.0 || >=3.0"
   },
-  "autoload":{
+  "autoload": {
     "psr-4": {
       "Oveleon\\ContaoCookiebar\\": "src/"
     },
@@ -47,7 +60,7 @@
       "src/Resources/contao/templates/"
     ]
   },
-  "extra":{
+  "extra": {
     "branch-alias": {
       "dev-master": "1.16.x-dev"
     },
@@ -57,5 +70,14 @@
     "issues": "https://github.com/oveleon/contao-cookiebar/issues",
     "source": "https://github.com/oveleon/contao-cookiebar",
     "docs": "https://github.com/oveleon/contao-cookiebar"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": false,
+      "contao/manager-plugin": false
+    }
+  },
+  "scripts": {
+    "depcheck": "@php vendor/bin/composer-dependency-analyser --config=depcheck.php"
   }
 }
