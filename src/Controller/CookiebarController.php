@@ -64,6 +64,11 @@ class CookiebarController extends AbstractController
             throw new PageNotFoundException();
         }
 
+        if(!Validator::isLocale($locale))
+        {
+            return new Response('The URL must contain a valid locale.', Response::HTTP_BAD_REQUEST);
+        }
+
         $strUrl = $request->get('redirect');
 
         // Protect against XSS attacks
