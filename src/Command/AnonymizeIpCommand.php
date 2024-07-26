@@ -15,6 +15,7 @@ namespace Oveleon\ContaoCookiebar\Command;
 
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Oveleon\ContaoCookiebar\Model\CookieLogModel;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -26,22 +27,15 @@ use Symfony\Component\HttpFoundation\IpUtils;
  *
  * @internal
  */
+#[AsCommand(
+    name: 'cookiebar:anonymizeip',
+    description: 'Anonymizes all IP addresses in the log',
+)]
 class AnonymizeIpCommand extends Command
 {
-    protected static $defaultName = 'cookiebar:anonymizeip';
-
-    protected $framework;
-
-    public function __construct(ContaoFramework $contaoFramework)
+    public function __construct(private readonly ContaoFramework $framework)
     {
-        $this->framework = $contaoFramework;
-
         parent::__construct();
-    }
-
-    protected function configure(): void
-    {
-        $this->setDescription('Anonymizes all IP addresses in the log');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
