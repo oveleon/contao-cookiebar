@@ -72,7 +72,7 @@
                 if(parent.cookiebar.issetCookie(<?=$this->id?>)){
                     const decoder = document.createElement('textarea');
                     decoder.innerHTML = '<?=$this->redirect?>';
-
+                    window.frameElement.src = '<?=$this->redirect?>';
                     window.location.href = decoder.value;
                 }
             }
