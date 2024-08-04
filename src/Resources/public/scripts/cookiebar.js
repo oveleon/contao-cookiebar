@@ -143,12 +143,12 @@ let ContaoCookiebar = (function () {
             if(arrCookies.length){
                 arrCookies.forEach(function(cookieId){
                     // Iframes
-                    if(cookiebar.settings.cookies.hasOwnProperty(cookieId) && cookiebar.settings.cookies[cookieId].type === 'iframe'){
+                    if(cookiebar.settings.cookies.hasOwnProperty('_'+cookieId) && cookiebar.settings.cookies['_'+cookieId].type === 'iframe'){
                         unblockIframe(cookieId);
                     }
 
                     // Modules
-                    if(cookiebar.modules.hasOwnProperty(cookieId)){
+                    if(cookiebar.modules.hasOwnProperty('_'+cookieId)){
                         callModule(cookieId);
                     }
                 });
