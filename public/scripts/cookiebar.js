@@ -507,10 +507,10 @@ let ContaoCookiebar = (function () {
         };
 
         const registerModule = function(cookieId, callback){
-            if(cookiebar.modules.hasOwnProperty(cookieId)){
-                cookiebar.modules[cookieId].push(callback);
+            if(cookiebar.modules.hasOwnProperty('_'+cookieId)){
+                cookiebar.modules['_'+cookieId].push(callback);
             }else{
-                cookiebar.modules[cookieId] = [callback];
+                cookiebar.modules['_'+cookieId] = [callback];
             }
         };
 
@@ -523,11 +523,11 @@ let ContaoCookiebar = (function () {
                 });
             }
 
-            cookiebar.modules[cookieId].forEach(function(callback){
+            cookiebar.modules['_'+cookieId].forEach(function(callback){
                 callback();
             });
 
-            delete cookiebar.modules[cookieId];
+            delete cookiebar.modules['_'+cookieId];
 
             restoreCookieStatus();
         };
