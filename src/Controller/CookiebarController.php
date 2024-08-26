@@ -81,7 +81,7 @@ class CookiebarController
     /**
      * Execute various functions
      */
-    #[Route('/{module}', name: 'cookiebar_prepare', defaults: ['token_check' => 'false'])]
+    #[Route('/{module}', name: 'cookiebar_prepare', defaults: ['_token_check' = false])]
     public function execute(Request $request, $module): JsonResponse
     {
         $this->framework->initialize();
