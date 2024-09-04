@@ -101,7 +101,7 @@
           g.src=u+'matomo.js';
           s.parentNode.insertBefore(g,s);})();
           &lt;/pre&gt;
-          Sollten keine eigenen Parameter definiert wurden sein, werden folgende Zeilen automatisch hinzugefügt:
+          Om inga anpassade parametrar har definierats läggs följande rader till automatiskt:
           &lt;pre&gt;
           &lt;code class="tl_red"&gt;_paq.push(['trackPageView']);&lt;/code&gt;
           &lt;code class="tl_red"&gt;_paq.push(['enableLinkTracking']);&lt;/code&gt;&lt;pre&gt;</target>
@@ -113,7 +113,7 @@
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.1.1">
         <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note that these settings are already implemented without confirmation of the cookiebar in the HEAD of the website.</source>
-        <target>Aktiverar integrationen av Google Tag Manager. Dessutom kan ett anpassat skript läggas in. Observera att dessa inställningar redan är implementerade utan bekräftelse av cookiebaren i webbplatsens HEAD.</target>
+        <target>Möjliggör integrering av Google Tag Manager. Ett användardefinierat skript kan också anges. Observera att dessa inställningar redan är implementerade utan bekräftelse av cookiefältet i sidhuvudet på webbplatsen.</target>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.2.0">
         <source>Tag Manager + Google Consent Mode</source>
@@ -127,53 +127,39 @@
 
           gtag('consent', 'default', {
           'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
           'analytics_storage': 'denied',
+          'functionality_storage': 'denied',
+          'personalization_storage': 'denied',
           'wait_for_update': 500
           });
 
           gtag('js', new Date());
-          gtag('config', '&lt;code class="tl_red"&gt;ID&lt;/code&gt;');
+          gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
           &lt;/pre&gt;
 
-          Please note that you have to enter this code yourself if you want to create your own configuration.
-          The integration of the Google Tag Manager is done automatically via the following code:
-
-          &lt;pre&gt;
-
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','ID');
-          &lt;/pre&gt;
-        </source>
-        <target>Om du inte definierar en egen konfiguration för Google Consent Mode ställs följande inställningar in automatiskt: &lt;pre&gt;
+          Please note that you have to enter this code yourself if you want to create your own configuration.</source>
+        <target>Om ingen anpassad konfiguration har sparats för Google Consent Mode, ställs följande inställningar in automatiskt: &lt;pre&gt;
 
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
 
           gtag('consent', 'default', {
           'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
           'analytics_storage': 'denied',
+          'functionality_storage': 'denied',
+          'personalization_storage': 'denied',
           'wait_for_update': 500
           });
 
           gtag('js', new Date());
-          gtag('config', '&lt;code class="tl_red"&gt;ID&lt;/code&gt;');
+          gtag('config', '&lt;code class="tl_red"&gt;CONTAINER ID&lt;/code&gt;');
           &lt;/pre&gt;
 
-          Observera att du måste ange denna kod själv om du vill skapa din egen konfiguration.
-          Integrationen av Google Tag Manager sker automatiskt via följande kod:
-
-          &lt;pre&gt;
-
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','ID');
-          &lt;/pre&gt;
-        </target>
+          Observera att du måste ange denna kod själv om du har lagrat din egen konfiguration.</target>
       </trans-unit>
     </body>
   </file>

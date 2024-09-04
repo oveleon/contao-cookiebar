@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.etracker_vendorId.1">
         <source>Enter your etracker secure code here.</source>
-        <target>Ange din säkra etracker-kod här.</target>
+        <target>Ange din etracker secure kod här.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
         <source>Additional configuration</source>
@@ -328,7 +328,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
         <source>Here you can select the consents.</source>
-        <target>Du kan välja samtyckena här.</target>
+        <target>Här kan du välja samtycken.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
@@ -357,7 +357,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.checked.1">
         <source>Activates the checkbox when opening the cookiebar for the first time.</source>
-        <target>Aktiverar kryssrutan när kakfältet öppnas för första gången.</target>
+        <target>Aktiverar checkboxen när cookieboxen öppnas för första gången.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
@@ -454,7 +454,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.template.1">
         <source>Include a custom script via a template. Remember that only the script tag inside the template will be used during processing.</source>
-        <target>Integrera ett användardefinierat skript via en template. Observera att endast skripttaggen i den tas med i beräkningen under bearbetningen.</target>
+        <target>Integrera ett användardefinierat skript via en template. Observera att endast skripttaggen i mallen (template) kommer att användas under bearbetningen.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.0">
         <source>iFrame</source>
@@ -570,7 +570,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.priority.1">
         <source>Optionally configure the priority to affect the order of scripts. Default: 0</source>
-        <target>Alternativt konfigurera prioriteten för att påverka ordningen på skripten. Standard: 0</target>
+        <target>Konfigurera optionalt prioriteten för att påverka ordningen på skripten. Standard: 0</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editGlobalConfig">
         <source>Edit global configuration</source>

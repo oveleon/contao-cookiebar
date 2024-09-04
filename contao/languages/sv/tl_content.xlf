@@ -3,7 +3,7 @@
     <body>
       <trans-unit id="tl_content.prefillCookies.0">
         <source>Prefill settings</source>
-        <target>Förfylla inställningar</target>
+        <target>Prefill-inställningar</target>
       </trans-unit>
       <trans-unit id="tl_content.prefillCookies.1">
         <source>Activates the already selected cookies when opening the cookiebar.</source>
