@@ -47,7 +47,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptPosition.0">
         <source>Script position</source>
-        <target>Position för manuskriptet</target>
+        <target>Position för skript</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptPosition.1">
         <source>Here you can select the position for embedding the script.</source>
@@ -59,7 +59,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie_config.scriptLoadingMode.1">
         <source>Define here when the script / configuration may be embedded.</source>
-        <target>Ange här när konfigurationen/skriptet får bäddas in.</target>
+        <target>Ange här när skriptet / konfigurationen får bäddas in.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.vendorId.0">
         <source>ID</source>
@@ -105,7 +105,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie_config.googleConsentMode.1">
         <source>Delivers a predefined configuration for Google Consent Mode. This configuration is overwritten if a custom script has been defined in the "Configuration" field.</source>
-        <target>Levererar en färdig konfiguration för Google Consent Mode. Denna konfiguration skrivs över om ett separat skript har definierats i fältet "Configuration".</target>
+        <target>Levererar en färdig konfiguration för Google Consent Mode. Denna konfiguration skrivs över om ett separat skript har definierats i fältet "Konfiguration".</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.script.0">
         <source>Custom</source>
@@ -131,11 +131,11 @@
 
       <trans-unit id="tl_cookie_config.confirmed">
         <source>Load only if one of the cookies was accepted</source>
-        <target>Ladda endast om en av kakorna har accepterats</target>
+        <target>Ladda endast om en av cookies har accepterats</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.unconfirmed">
         <source>Load only if none of the cookies was accepted</source>
-        <target>Ladda endast om ingen av kakorna har accepterats</target>
+        <target>Ladda endast om ingen av cookies har accepterats</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.always">
         <source>Load always</source>
@@ -168,11 +168,11 @@
       </trans-unit>
       <trans-unit id="tl_cookie_config.copy.0">
         <source>Duplicate configuration</source>
-        <target>Duplicerat konfigurations-ID %s</target>
+        <target>Duplicera konfigurations-ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.copy.1">
         <source>Duplicate configuration ID %s</source>
-        <target>Duplicerat konfigurations-ID %s</target>
+        <target>Duplicera konfigurations-ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_config.delete.0">
         <source>Delete cookie</source>

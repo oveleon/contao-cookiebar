@@ -94,7 +94,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.title.1">
         <source>Please enter a unique cookiebar title.</source>
-        <target>Ange en intern titel för cookieboxen här.</target>
+        <target>Vänligen ange en unik cookiebar-titel.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.0">
         <source>Version</source>
@@ -118,7 +118,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.hideOnInit.1">
         <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
-        <target>Visa inte cookiefältet vid första besöket på sidan. Cookiefältet kan fortfarande öppnas med hjälp av öppnaren för cookiefältet.</target>
+        <target>Visa inte cookieboxen vid första besöket på sidan. Cookieboxen kan fortfarande öppnas med hjälp av öppnaren för cookieboxen.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
         <source>Title &amp; description</source>
@@ -126,15 +126,15 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.1">
         <source>Describe the purpose of the cookiebar.</source>
-        <target>Beskriv syftet med cookiespanelen här.</target>
+        <target>Beskriv syftet med cookiesboxen här.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.0">
         <source>Additional information</source>
-        <target>Info-beskrivning</target>
+        <target>Ytterligare information</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.1">
         <source>Here you can add more information, that are displayed below the buttons.</source>
-        <target>Definiera ytterligare information här, som matas ut under knapparna.</target>
+        <target>Definiera ytterligare information här, som visas under knapparna.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.0">
         <source>Info links</source>
@@ -142,7 +142,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.1">
         <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
-        <target>Ange ytterligare länkar här, t.ex. till dataskyddsdeklarationen, avtryck eller juridisk information.</target>
+        <target>Ange ytterligare länkar här, t.ex. till dataskyddsdeklarationen, impressum eller juridisk information.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.0">
         <source>Exclude pages</source>
@@ -150,7 +150,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.1">
         <source>Here you can define the pages where the cookiebar should not open automatically.</source>
-        <target>Definiera de sidor där cookiespanelen inte ska öppnas automatiskt.</target>
+        <target>Här kan du definiera de sidorna där cookieboxen inte ska öppnas automatiskt.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.0">
         <source>Template</source>
@@ -158,7 +158,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.1">
         <source>Here you can select a template for the cookiebar.</source>
-        <target>Välj en template.</target>
+        <target>Här kan du välja en mall (template) för cookieboxen.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.buttonColorScheme.0">
         <source>Button color scheme</source>
@@ -174,7 +174,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.1">
         <source>Here you can define the position &amp; orientation of the cookiebar.</source>
-        <target>Här kan du definiera kaklistans position &amp; inriktning.</target>
+        <target>Här kan du definiera cookieboxens position &amp; orientering.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.0">
         <source>Blocking</source>
@@ -218,11 +218,11 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.essentialCookieLanguage.0">
         <source>Language of the essential cookie group</source>
-        <target>Spraket i den viktiga cookie-grupp</target>
+        <target>Språk för den väsentliga cookiegruppen</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.essentialCookieLanguage.1">
         <source>Specify in which language the descriptions of the essential cookies should be created.</source>
-        <target>Ange på vilket språk beskrivningarna av de väsentliga kakorna ska skapas.</target>
+        <target>Ange på vilket språk beskrivningarna av de väsentliga cookies ska skapas.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
@@ -292,11 +292,11 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.show.0">
         <source>Cookiebar configuration details</source>
-        <target>Visa konfigurationsinformation för cookieboxen</target>
+        <target>Konfigurationsdetaljer för cookieboxen</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.show.1">
         <source>Show the details of configuration ID %s</source>
-        <target>Visa konfigurationsinformation för cookieboxen ID %s</target>
+        <target>Visa konfigurationsdetaljer för cookieboxen ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.edit.0">
         <source>Edit groups</source>
@@ -308,27 +308,27 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.editheader.0">
         <source>Edit cookiebar configuration</source>
-        <target>Redigera konfiguration</target>
+        <target>Redigera cookieboxens konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.editheader.1">
         <source>Edit cookiebar configuration ID %s</source>
-        <target>Redigera konfiguration ID %s</target>
+        <target>Redigera cookieboxens konfiguration ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.copy.0">
         <source>Duplicate cookiebar configuration</source>
-        <target>Duplicera konfiguration</target>
+        <target>Duplicera cookieboxens konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.copy.1">
         <source>Duplicate cookiebar configuration ID %s</source>
-        <target>Duplicera konfiguration ID %s</target>
+        <target>Duplicera cookieboxens konfiguration ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.delete.0">
         <source>Delete cookiebar configuration</source>
-        <target>Ta bort konfiguration</target>
+        <target>Ta bort cookieboxens konfiguration</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.delete.1">
         <source>Delete cookiebar configuration ID %s</source>
-        <target>Ta bort konfiguration ID %s</target>
+        <target>Ta bort cookieboxens konfiguration ID %s</target>
       </trans-unit>
     </body>
   </file>
