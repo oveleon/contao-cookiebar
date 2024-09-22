@@ -318,7 +318,7 @@ class CookieHandler extends AbstractCookie
 
         $url = str_ends_with($this->vendorUrl, '/') ? $this->vendorUrl : $this->vendorUrl . '/';
 
-        if (!str_starts_with($url, 'http')) 
+        if (!str_starts_with($url, 'http'))
         {
             $url = 'https://'.$url;
         }
