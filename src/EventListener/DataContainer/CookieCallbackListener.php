@@ -357,6 +357,21 @@ class CookieCallbackListener
     }
 
     /**
+     * Removes the protocol regex
+     *
+     * @Callback(table="tl_cookie", target="fields.vendorId.load")
+    */
+    public function updateProtocolRegex($varValue, $dc)
+    {
+        if ('matomoTagManager' === $dc->activeRecord->type)
+        {
+            unset($GLOBALS['TL_DCA']['tl_cookie']['fields'][$dc->field]['eval']['rgxp']);
+        }
+
+        return $varValue;
+    }
+
+    /**
      * Check if a button needs to be disabled
      *
      * @Callback(table="tl_cookie", target="list.operations.copy.button")
