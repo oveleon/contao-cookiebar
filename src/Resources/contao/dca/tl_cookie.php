@@ -311,7 +311,8 @@ $GLOBALS['TL_DCA']['tl_cookie'] = array
             'eval'                    => array('rgxp'=>'httpurl', 'mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''",
             'load_callback'           => array(
-                array('tl_cookie', 'overwriteTranslation')
+                array('tl_cookie', 'overwriteTranslation'),
+                array('tl_cookie', 'updateProtocolRegex')
             )
         ),
         'description' => array
@@ -711,6 +712,24 @@ class tl_cookie extends Contao\Backend
         if ('googleConsentMode' === $dc->activeRecord->type)
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][$dc->field]['eval']['mandatory'] = false;
+        }
+
+        return $varValue;
+    }
+
+    /**
+     * Removes the protocol regex
+     *
+     * @param $varValue
+     * @param $dc
+     *
+     * @return mixed
+     */
+    public function updateProtocolRegex($varValue, $dc)
+    {
+        if ('matomoTagManager' === $dc->activeRecord->type)
+        {
+            unset($GLOBALS['TL_DCA']['tl_cookie']['fields'][$dc->field]['eval']['rgxp']);
         }
 
         return $varValue;
