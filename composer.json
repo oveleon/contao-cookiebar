@@ -36,7 +36,8 @@
     "symfony/dependency-injection": "~4.4.23 || ^5.4",
     "symfony/framework-bundle": "4.4.* || ^5.4",
     "symfony/http-kernel": "4.4.* || ^5.4",
-    "symfony/routing": "4.4.* || ^5.4"
+    "symfony/routing": "4.4.* || ^5.4",
+    "symfony/polyfill-php80": "*"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",

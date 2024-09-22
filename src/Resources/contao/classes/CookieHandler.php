@@ -292,7 +292,7 @@ class CookieHandler extends AbstractCookie
      */
     private function compileMatomo()
     {
-        $url = substr($this->vendorUrl, -1) === '/' ? $this->vendorUrl : $this->vendorUrl . '/';
+        $url = str_ends_with($this->vendorUrl, '/') ? $this->vendorUrl : $this->vendorUrl . '/';
 
         $this->addScript(
             "var _paq = window._paq = window._paq || []; " . ($this->scriptConfig ?: "_paq.push(['trackPageView']); _paq.push(['enableLinkTracking']);") . " (function() { var u='" . $url . "'; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', " . $this->vendorId . "]); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);})();",
@@ -316,10 +316,15 @@ class CookieHandler extends AbstractCookie
             );
         }
 
-        $url = substr($this->vendorUrl, -1) === '/' ? $this->vendorUrl : $this->vendorUrl . '/';
+        $url = str_ends_with($this->vendorUrl, '/') ? $this->vendorUrl : $this->vendorUrl . '/';
+
+        if (!str_starts_with($url, 'http'))
+        {
+            $url = 'https://'.$url;
+        }
 
         $this->addScript(
-            " var _mtm = window._mtm = window._mtm || []; _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'}); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src='https://".$url."js/container_".$this->vendorId.".js'; s.parentNode.insertBefore(g,s);",
+            " var _mtm = window._mtm = window._mtm || []; _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'}); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src='".$url."js/container_".$this->vendorId.".js'; s.parentNode.insertBefore(g,s);",
             self::LOAD_CONFIRMED,
             self::POS_HEAD
         );
