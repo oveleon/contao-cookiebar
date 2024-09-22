@@ -62,7 +62,7 @@ trait CookiebarTrait
 
         $field = $dc->activeRecord->type . '_' . $dc->field;
 
-        if($tl = $GLOBALS['TL_LANG'][$dc->table][$field])
+        if([] !== ($tl = $GLOBALS['TL_LANG'][$dc->table][$field] ?? []))
         {
             $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['label'] = $tl;
         }
