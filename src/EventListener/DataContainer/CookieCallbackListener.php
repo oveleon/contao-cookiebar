@@ -359,7 +359,7 @@ class CookieCallbackListener
     /**
      * Removes the protocol regex
      *
-     * @Callback(table="tl_cookie", target="fields.vendorId.load")
+     * @Callback(table="tl_cookie", target="fields.vendorUrl.load")
     */
     public function updateProtocolRegex($varValue, $dc)
     {
