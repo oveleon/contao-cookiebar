@@ -83,6 +83,10 @@
         <source>Hide more details</source>
         <target>Mehr Details ausblenden</target>
       </trans-unit>
+      <trans-unit id="tl_cookiebar.forInfix">
+        <source> for </source>
+        <target> für </target>
+      </trans-unit>
       <trans-unit id="tl_cookiebar.providerLabel">
         <source>Provider</source>
         <target>Anbieter</target>

@@ -86,7 +86,7 @@
                 <div class="cc-icon <?=$this->iframeType?>"></div>
                 <div class="cc-title"><?=$this->title?></div>
                 <div class="cc-description"><?=$this->description?></div>
-                <button class="cc-btn" onclick="parent.cookiebar.unblock(window.frames.frameElement, <?=$this->id?>, '<?=$this->redirect?>')"><?=$this->acceptAndDisplayLabel?></button>
+                <button class="cc-btn cc-focus" onclick="parent.cookiebar.unblock(window.frames.frameElement, <?=$this->id?>, '<?=$this->redirect?>')"><?=$this->acceptAndDisplayLabel?></button>
             <?php $this->endblock(); ?>
         </div>
     <?php $this->endblock(); ?>

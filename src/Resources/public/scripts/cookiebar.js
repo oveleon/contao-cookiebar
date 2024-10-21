@@ -109,6 +109,8 @@ let ContaoCookiebar = (function () {
                 mode = 2;
             }
 
+            inert(false)
+
             cookiebar.inputs.forEach(function(input){
                 if(mode === 2){
                     input.checked = false;
@@ -600,12 +602,24 @@ let ContaoCookiebar = (function () {
             }
         };
 
+        const inert = function(state) {
+            document.querySelectorAll('body>*:not(script)')?.forEach(el => {
+                if (!el.matches('.cc-wrap')) {
+                    state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
+                }
+            })
+        }
+
         const checkVisibility = function(){
-            if(cookiebar.show) {
+            if (cookiebar.show) {
                 cookiebar.dom.classList.remove(cookiebar.settings.classes.onSave);
                 cookiebar.dom.classList.add(cookiebar.settings.classes.onShow);
+                inert(true)
             }
-            else cookiebar.dom.classList.remove(cookiebar.settings.classes.onShow);
+            else {
+                cookiebar.dom.classList.remove(cookiebar.settings.classes.onShow);
+                inert(false)
+            }
         };
 
         const toggleCookies = function(){
@@ -625,6 +639,8 @@ let ContaoCookiebar = (function () {
 
         const toggleGroup = function(){
             let state = !this.classList.contains(cookiebar.settings.classes.onGroupToggle);
+
+            this.setAttribute('aria-expanded', state ? 'true' : 'false');
 
             try{
                 let groups = this.parentElement.querySelectorAll(':scope > .toggle-group');

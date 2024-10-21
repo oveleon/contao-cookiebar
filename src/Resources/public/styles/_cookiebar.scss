@@ -19,6 +19,7 @@
   --ccb-unchecked-bg: #fff;
   --ccb-disabled-clr: #c8c7c5;
   --ccb-disabled-bg: #f4f4f4;
+  --ccb-focus-clr: #00a4f4;
 
   position: fixed;
   inset: 0;
@@ -141,6 +142,17 @@
         border-color: var(--ccb-disabled-clr);
       }
     }
+
+    &:focus-visible {
+
+      + label {
+
+        &:before {
+          outline: 3px dashed var(--ccb-focus-clr);
+          outline-offset: 2px;
+        }
+      }
+    }
   }
 
   .cc-btn {
@@ -159,7 +171,8 @@
     color: var(--ccb-btn-clr, #444);
     background: var(--ccb-btn-bg, #f5f5f5);
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: var(--ccb-btn-bg-hvr, #ececec);
     }
 
@@ -187,6 +200,26 @@
       --ccb-btn-clr: #fff;
     }
   }
+}
+
+.cc-focus {
+
+  &:focus-visible {
+    outline: 3px dashed var(--ccb-focus-clr);
+    outline-offset: -3px;
+  }
+}
+
+.cc-invisible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  float: left
 }
 
 .cc-inner {
@@ -394,6 +427,37 @@
 
   .cc-inner {
     max-width: var(--ccb-max-width, 750px);
+  }
+}
+
+@media (forced-colors) {
+
+  .contao-cookiebar {
+
+    input {
+
+      + label {
+
+        &:after {
+          border: 1px solid currentColor;
+        }
+      }
+    }
+  }
+
+  .cc-inner {
+    border: 1px solid currentColor;
+  }
+
+  input.cc-group-half + label:after {
+    margin-left: 9px;
+  }
+}
+
+@media print {
+
+  .contao-cookiebar {
+    opacity: 0;
   }
 }
 

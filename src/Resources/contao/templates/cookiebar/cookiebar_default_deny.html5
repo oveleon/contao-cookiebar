@@ -5,5 +5,5 @@
 
 <?php $this->block('actions'); ?>
     <?php $this->parent(); ?>
-    <button class="cc-btn deny" data-deny-all><?=$this->denyAllLabel?></button>
+    <button class="cc-btn cc-focus deny" data-deny-all><?=$this->denyAllLabel?></button>
 <?php $this->endblock() ?>

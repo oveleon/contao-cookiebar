@@ -255,6 +255,7 @@ class Cookiebar
         $objTemplate->providerLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['providerLabel'];
         $objTemplate->expireLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['expireLabel'];
         $objTemplate->tokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['tokenLabel'];
+        $objTemplate->forInfix = $GLOBALS['TL_LANG']['tl_cookiebar']['forInfix'];
 
         // Collect info links
         $arrLinks = [];
