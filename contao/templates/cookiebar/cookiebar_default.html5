@@ -1,8 +1,8 @@
 <?php
-    $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_default.css|static';
+$GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_default.css|static';
 ?>
 <!-- indexer::stop -->
-<div <?=$this->cssID ? 'id="' . $this->cssID . '"' : ''?> class="contao-cookiebar<?=$this->class ? ' ' . $this->class : ''?>" role="complementary" aria-describedby="cookiebar-desc" data-nosnippet>
+<div <?=$this->cssID ? 'id="' . $this->cssID . '"' : ''?> class="contao-cookiebar cc-wrap<?=$this->class ? ' ' . $this->class : ''?>" role="complementary" aria-describedby="cookiebar-desc" data-nosnippet>
     <div class="cc-inner" aria-live="assertive" role="alert">
         <div id="cookiebar-desc" class="cc-head">
             <?php $this->block('header'); ?>
@@ -18,11 +18,11 @@
                             <input type="checkbox" name="group[]" id="g<?=$group->id?>" value="<?=$group->id?>" data-toggle-cookies<?=$group->isLocked ? ' disabled checked' : ''?>>
                         <?php endif; ?>
                         <label <?php if($group->hasCookies): ?>for="g<?=$group->id?>"<?php endif; ?> class="group"><?=$group->title?></label>
-                        <button class="cc-detail-btn" data-toggle-group>
-                            <span><?=$this->showDetailsLabel?></span>
-                            <span><?=$this->hideDetailsLabel?></span>
+                        <button class="cc-detail-btn cc-focus" data-toggle-group aria-expanded="false" aria-controls="cg<?=$group->id?>">
+                            <span><?=$this->showDetailsLabel?><span class="cc-invisible"><?=$this->forInfix?><?=$group->title?></span></span>
+                            <span><?=$this->hideDetailsLabel?><span class="cc-invisible"><?=$this->forInfix?><?=$group->title?></span></span>
                         </button>
-                        <div class="cc-cookies toggle-group">
+                        <div id="cg<?=$group->id?>" class="cc-cookies toggle-group">
                             <?=$group->description?>
                             <?php foreach ($group->cookies as $cookie): ?>
                                 <div class="cc-cookie">
@@ -43,11 +43,11 @@
                                         </div>
                                     <?php endif; ?>
                                     <?php if($cookie->detailDescription): ?>
-                                        <button class="cc-detail-btn-details" data-toggle-group>
-                                            <span><?=$this->showMoreDetailsLabel?></span>
-                                            <span><?=$this->hideMoreDetailsLabel?></span>
+                                        <button class="cc-detail-btn-details cc-focus" data-toggle-group aria-expanded="false" aria-controls="cc<?=$cookie->id?>">
+                                            <span><?=$this->showMoreDetailsLabel?><span class="cc-invisible"><?=$this->forInfix?><?=$cookie->title?></span></span>
+                                            <span><?=$this->hideMoreDetailsLabel?><span class="cc-invisible"><?=$this->forInfix?><?=$cookie->title?></span></span>
                                         </button>
-                                        <div class="cc-cookie-desc toggle-group" style="display: none">
+                                        <div id="cc<?=$cookie->id?>" class="cc-cookie-desc toggle-group" style="display: none">
                                             <?=$cookie->detailDescription?>
                                         </div>
                                     <?php endif; ?>
@@ -61,8 +61,8 @@
 
         <div class="cc-footer <?=$this->buttonColorScheme?>">
             <?php $this->block('actions'); ?>
-                <button class="cc-btn save" data-save><?=$this->saveLabel?></button>
-                <button class="cc-btn success" data-accept-all><?=$this->acceptAllLabel?></button>
+                <button class="cc-btn cc-focus save" data-save><?=$this->saveLabel?></button>
+                <button class="cc-btn cc-focus success" data-accept-all><?=$this->acceptAllLabel?></button>
             <?php $this->endblock() ?>
         </div>
 
@@ -70,7 +70,7 @@
             <?php $this->block('info'); ?>
                 <?=$this->infoDescription?>
                 <?php foreach ($this->infoUrls as $name => $link): ?>
-                    <a href="<?=$link?>"><?=$name?></a>
+                    <a class="cc-focus" href="<?=$link?>"><?=$name?></a>
                 <?php endforeach; ?>
             <?php $this->endblock() ?>
         </div>
