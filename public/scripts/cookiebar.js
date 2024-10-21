@@ -76,6 +76,9 @@ let ContaoCookiebar = (function () {
             // Register trigger events
             registerTriggerEvents();
 
+            // Register inert observer
+            registerInertObserver();
+
             // Sort cookies
             sortCookiesByLoadingOrder();
 
@@ -627,11 +630,32 @@ let ContaoCookiebar = (function () {
         };
 
         const inert = function(state) {
-            document.querySelectorAll('body>*:not(script)')?.forEach(el => {
-                if (!el.matches('.cc-wrap')) {
-                    state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
-                }
+            document.querySelectorAll('body>*:not(script):not(.cc-wrap)')?.forEach(el => {
+                state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
             })
+        }
+
+        // Check for children that are added whilst the page builds (race-condition)
+        const registerInertObserver = function() {
+            new MutationObserver(list => {
+                for (const mutation of list) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        mutation.addedNodes.forEach(node => {
+                            if (
+                              cookiebar.show
+                              && node.nodeType === Node.ELEMENT_NODE
+                              && !node.matches('.cc-wrap')
+                              && !node.hasAttribute('inert')
+                            ) {
+                                node.setAttribute('inert', '');
+                            }
+                        });
+                    }
+                }
+            }).observe(document.body, {
+                childList: true,
+                subtree: false
+            });
         }
 
         const checkVisibility = function(){
