@@ -454,6 +454,12 @@
   }
 }
 
+@media (prefers-reduced-motion) {
+  .contao-cookiebar {
+    --ccb-anim-duration: 2s;
+  }
+}
+
 @media print {
 
   .contao-cookiebar {

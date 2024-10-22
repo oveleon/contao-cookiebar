@@ -69,6 +69,9 @@ let ContaoCookiebar = (function () {
             // Register trigger events
             registerTriggerEvents();
 
+            // Initialize focus trap
+            initFocusTrap();
+
             // Register inert observer
             registerInertObserver();
 
@@ -605,10 +608,57 @@ let ContaoCookiebar = (function () {
             }
         };
 
+        const isFocusable = function(element) {
+            while (element) {
+                const style = window.getComputedStyle(element);
+
+                if (style.display === 'none') {
+                    return false;
+                }
+
+                element = element.parentElement;
+            }
+
+            return true;
+        };
+
+        const initFocusTrap = function() {
+            const focusable = cookiebar.dom.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), input[type="checkbox"]:not([disabled])');
+
+            cookiebar.toggleOpener = cookiebar.dom.querySelector('[data-ft-opener]');
+            cookiebar.firstFocus = focusable[0];
+            cookiebar.lastFocus = focusable[focusable.length - 1];
+        }
+
+        const focusTrap = function(e) {
+            if (!(e.key === 'Tab' || e.keyCode === 9))
+                return;
+
+            if (document.activeElement === cookiebar.lastFocus && !e.shiftKey) {
+                e.preventDefault();
+                cookiebar.firstFocus?.focus()
+            }
+
+            if (document.activeElement === cookiebar.firstFocus && e.shiftKey) {
+                e.preventDefault()
+                cookiebar.lastFocus?.focus()
+            }
+
+            if (document.activeElement === cookiebar.toggleOpener && !isFocusable(cookiebar.lastFocus) && cookiebar.toggleOpener.ariaExpanded === 'false' && !e.shiftKey) {
+                e.preventDefault();
+                cookiebar.firstFocus?.focus()
+            }
+        }
+
         const inert = function(state) {
             document.querySelectorAll('body>*:not(script):not(.cc-wrap)')?.forEach(el => {
                 state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
             })
+
+            if (state)
+                document.addEventListener('keydown', focusTrap);
+            else
+                document.removeEventListener('keydown', focusTrap)
         }
 
         // Check for children that are added whilst the page builds (race-condition)

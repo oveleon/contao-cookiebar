@@ -13,7 +13,7 @@ $GLOBALS['TL_CSS'][] = 'bundles/contaocookiebar/styles/cookiebar_simple.css|stat
             <?php $this->block('actions'); ?>
                 <button class="cc-btn cc-focus success" data-accept-all><?=$this->acceptAllLabel?></button>
                 <button class="cc-btn cc-focus deny" data-deny-all><?=$this->denyAllLabel?></button>
-                <button class="cc-btn cc-focus info" data-toggle-group aria-expanded="false" aria-controls="cg<?=$this->id?>"><?=$this->infoLabel?></button>
+                <button class="cc-btn cc-focus info" data-toggle-group aria-expanded="false" data-ft-opener aria-controls="cg<?=$this->id?>"><?=$this->infoLabel?></button>
             <?php $this->endblock() ?>
             <div id="cg<?=$this->id?>" class="cc-groups toggle-group">
                 <?php $this->block('groups'); ?>
