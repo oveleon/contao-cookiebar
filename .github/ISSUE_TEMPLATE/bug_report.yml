@@ -11,6 +11,10 @@ body:
           required: true
         - label: I am using the latest stable [version/release](https://packagist.org/packages/oveleon/contao-cookiebar) of the Contao Cookiebar
           required: true
+        - label: I made sure that my own template changes, CSS or JS do not interfere with the Contao Cookiebar
+          required: true
+        - label: This issue contains only one bug.
+          required: true
         - label: This issue is not a question, not a feature request and I have read the documentation and pinned issues
           required: true
   - type: dropdown
@@ -18,11 +22,38 @@ body:
     attributes:
       label: Please select the topic(s) that most closely match your concern
       options:
+        - Frontend (CSS/JS)
         - Template (HTML/Twig)
         - Backend (PHP)
         - Other (Specify within description)
     validations:
       required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: What operating system(s) are you seeing the problem on?
+      multiple: true
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Android
+        - iOS
+        - Other (Specify within description)
+    validations:
+        required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browser(s) are you experiencing the problem on?
+      multiple: true
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Microsoft Edge
+        - Opera
+        - Other
   - type: textarea
     id: description
     attributes:
