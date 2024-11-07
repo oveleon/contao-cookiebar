@@ -651,7 +651,7 @@ let ContaoCookiebar = (function () {
         }
 
         const inert = function(state) {
-            document.querySelectorAll('body>*:not(script):not(.cc-wrap)')?.forEach(el => {
+            cookiebar.dom?.parentElement.querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')?.forEach(el => {
                 state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
             })
 
@@ -670,7 +670,7 @@ let ContaoCookiebar = (function () {
                             if (
                               cookiebar.show
                               && node.nodeType === Node.ELEMENT_NODE
-                              && !node.matches('.cc-wrap')
+                              && !node.classList.contains('.contao-cookiebar')
                               && !node.hasAttribute('inert')
                             ) {
                                 node.setAttribute('inert', '');
@@ -678,7 +678,7 @@ let ContaoCookiebar = (function () {
                         });
                     }
                 }
-            }).observe(document.body, {
+            }).observe(cookiebar.dom, {
                 childList: true,
                 subtree: false
             });
