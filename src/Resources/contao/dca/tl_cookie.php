@@ -691,7 +691,7 @@ class tl_cookie extends Contao\Backend
     {
         $field = $dc->activeRecord->type . '_' . $dc->field;
 
-        if($tl = $GLOBALS['TL_LANG']['tl_cookie'][$field])
+        if($tl = ($GLOBALS['TL_LANG']['tl_cookie'][$field] ?? null))
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][$dc->field]['label'] = $tl;
         }
