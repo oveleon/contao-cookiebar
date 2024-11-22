@@ -140,8 +140,11 @@ class Cookie extends AbstractCookie
      */
     private function addCustomScript(): void
     {
-        if($src = $this->sourceUrl)
+        if ($src = $this->sourceUrl)
         {
+            // Replace the env::url insert tag inline #234
+            $src = System::getContainer()->get('contao.insert_tag.parser')->replaceInline($src);
+
             if ($this->sourceVersioning)
             {
                 $src .= (str_contains($src, '?') ? '&' : '?') . 'v=' . substr(md5(time()),0, 8);
