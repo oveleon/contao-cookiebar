@@ -103,11 +103,12 @@ class KernelRequestListener
             default => $this->scriptUtils->setGlobalJavaScript($javascript),
         };
 
-        $this->scriptUtils->setScriptConfigPattern("var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,hideOnInit:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});");
+        $this->scriptUtils->setScriptConfigPattern("var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,hideOnInit:%s,blocking:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});");
         $this->scriptUtils->setScriptConfigValues([
             $this->cookiebarModel->id,
             $this->cookiebarModel->pageId,
             $this->cookiebarModel->hideOnInit ? 1 : 0,
+            $this->cookiebarModel->blocking ? 1 : 0,
             $this->cookiebarModel->version,
             $this->lifetime,
             $this->consentLog ? 1 : 0,

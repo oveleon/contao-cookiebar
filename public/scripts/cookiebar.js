@@ -12,6 +12,7 @@ let ContaoCookiebar = (function () {
             configId: null,
             pageId: null,
             hideOnInit: false,
+            blocking: false,
             version: null,
             lifetime: 63072000,
             consentLog: false,
@@ -79,8 +80,10 @@ let ContaoCookiebar = (function () {
             // Initialize focus trap
             initFocusTrap();
 
-            // Register inert observer
-            registerInertObserver();
+            if (cookiebar.settings.blocking) {
+                // Register inert observer
+                registerInertObserver();
+            }
 
             // Sort cookies
             sortCookiesByLoadingOrder();
@@ -675,9 +678,14 @@ let ContaoCookiebar = (function () {
         }
 
         const inert = function(state) {
-            cookiebar.dom?.parentElement.querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')?.forEach(el => {
-                state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
-            })
+            if (cookiebar.settings.blocking) {
+                cookiebar.dom?.parentElement.querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')?.forEach(el => {
+                    state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
+                })
+            }
+
+            // Focus the first element when opening the cookiebar
+            cookiebar.firstFocus.focus()
 
             if (state)
                 document.addEventListener('keydown', focusTrap);
