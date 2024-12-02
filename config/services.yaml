@@ -6,7 +6,7 @@ services:
 
     Oveleon\ContaoCookiebar\:
         resource: '../src/'
-        exclude: '../src/{Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,GlobalConfig.php,Cookie.php}'
+        exclude: '../src/{ContaoManager,Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,GlobalConfig.php,Cookie.php}'
 
     Oveleon\ContaoCookiebar\EventListener\KernelRequestListener:
         arguments:
