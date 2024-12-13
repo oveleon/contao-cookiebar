@@ -13,6 +13,7 @@ let ContaoCookiebar = (function () {
             pageId: null,
             hideOnInit: false,
             blocking: false,
+            focusTrap: true,
             version: null,
             lifetime: 63072000,
             consentLog: false,
@@ -70,8 +71,11 @@ let ContaoCookiebar = (function () {
             // Register trigger events
             registerTriggerEvents();
 
-            // Initialize focus trap
-            initFocusTrap();
+
+            if (cookiebar.settings.focusTrap) {
+                // Initialize focus trap
+                initFocusTrap();
+            }
 
             if (cookiebar.settings.blocking) {
                 // Register inert observer
@@ -664,6 +668,9 @@ let ContaoCookiebar = (function () {
                     state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
                 })
             }
+
+            if (!cookiebar.settings.focusTrap)
+                return;
 
             if (state) {
                 document.addEventListener('keydown', focusTrap);
