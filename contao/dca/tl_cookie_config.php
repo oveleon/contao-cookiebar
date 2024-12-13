@@ -18,6 +18,7 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = [
 	    '__selector__'                => ['type'],
         'default'                     => '{title_legend},title,type;',
         'script'                      => '{title_legend},title,type;sourceUrl,sourceLoadingMode,sourceUrlParameter;scriptConfig,scriptPosition,scriptLoadingMode;',
+        'googleConsentMode'           => '{title_legend},title,type;scriptConfig;',
         'tagManager'                  => '{title_legend},title,type;vendorId,googleConsentMode,scriptConfig;'
 	],
 
@@ -42,7 +43,7 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = [
             'search'                  => true,
             'default'                 => 'script',
             'inputType'               => 'select',
-            'options'                 => ['script','tagManager'],
+            'options'                 => ['script','googleConsentMode','tagManager'],
             'reference'               => &$GLOBALS['TL_LANG']['tl_cookie_config'],
             'eval'                    => ['helpwizard'=>true, 'submitOnChange'=>true, 'tl_class'=>'w50'],
             'sql'                     => ['name'=>'type', 'type'=>'string', 'length'=>64, 'default'=>'text']

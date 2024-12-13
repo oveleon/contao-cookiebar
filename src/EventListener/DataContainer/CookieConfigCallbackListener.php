@@ -23,12 +23,7 @@ class CookieConfigCallbackListener
         $key = $dc->activeRecord->type;
         $id  = 'script' . $dc->activeRecord->type;
 
-        if($dc->activeRecord->googleConsentMode)
-        {
-            $key .= '_gcm';
-        }
-
-        $xlabel  = vsprintf(' <a href="javascript:;" id="script_%s" title="%s" data-action="contao--scroll-offset#store" onclick="ace.edit(\'ctrl_%s_div\').setValue(Cookiebar.getCookieScript(\'%s\'))">%s</a><script>Cookiebar.issetCookieScript(\'%s\',document.getElementById(\'script_%s\'));</script>', [
+        $xlabel  = vsprintf(' <a href="javascript:;" id="script_%s" title="%s" data-action="contao--scroll-offset#store" onclick="ace.edit(\'ctrl_%s_div\').setValue(Cookiebar.getConfigScript(\'%s\'))">%s</a><script>Cookiebar.issetConfigScript(\'%s\',document.getElementById(\'script_%s\'));</script>', [
             $id,
             $GLOBALS['TL_LANG']['tl_cookie']['scriptConfig_xlabel'] ?? '',
             $dc->field,
