@@ -677,7 +677,7 @@ let ContaoCookiebar = (function () {
                 cookiebar.dom.querySelector('.cc-inner').onanimationend = () => {
                     cookiebar.focused = false
                     cookiebar.firstFocus?.classList.add('cc-hide-focus')
-                    cookiebar.firstFocus?.focus()
+                    cookiebar.firstFocus?.focus({ preventScroll: true })
                 }
             } else {
                 document.removeEventListener('keydown', focusTrap)
