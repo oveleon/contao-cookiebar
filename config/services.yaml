@@ -18,6 +18,7 @@ services:
             - '%contao_cookiebar.consent_log%'
             - '%contao_cookiebar.storage_key%'
             - '%contao_cookiebar.consider_dnt%'
+            - '%contao_cookiebar.disable_focustrap%'
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

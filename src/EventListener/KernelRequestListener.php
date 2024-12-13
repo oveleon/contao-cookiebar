@@ -40,7 +40,8 @@ class KernelRequestListener
         private readonly int                 $lifetime,
         private readonly bool                $consentLog,
         private readonly string              $storageKey,
-        private readonly bool                $considerDnt
+        private readonly bool                $considerDnt,
+        private readonly bool                $disableFocusTrap,
     ){}
 
     public function onKernelRequest(RequestEvent $event): void
@@ -103,12 +104,13 @@ class KernelRequestListener
             default => $this->scriptUtils->setGlobalJavaScript($javascript),
         };
 
-        $this->scriptUtils->setScriptConfigPattern("var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,hideOnInit:%s,blocking:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});");
+        $this->scriptUtils->setScriptConfigPattern("var cookiebar = new ContaoCookiebar({configId:%s,pageId:%s,hideOnInit:%s,blocking:%s,focusTrap:%s,version:%s,lifetime:%s,consentLog:%s,token:'%s',doNotTrack:%s,currentPageId:%s,excludedPageIds:%s,cookies:%s,configs:%s,disableTracking:%s,texts:{acceptAndDisplay:'%s'}});");
         $this->scriptUtils->setScriptConfigValues([
             $this->cookiebarModel->id,
             $this->cookiebarModel->pageId,
             $this->cookiebarModel->hideOnInit ? 1 : 0,
             $this->cookiebarModel->blocking ? 1 : 0,
+            $this->disableFocusTrap ? 0 : 1,
             $this->cookiebarModel->version,
             $this->lifetime,
             $this->consentLog ? 1 : 0,

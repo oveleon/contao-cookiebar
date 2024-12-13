@@ -45,6 +45,9 @@ class Configuration implements ConfigurationInterface
                         ->prototype('scalar')->end()
                     ->end()
                 ->end()
+                ->booleanNode('disable_focustrap')
+                    ->defaultFalse()
+                ->end()
             ->end()
         ;
 

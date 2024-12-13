@@ -87,5 +87,6 @@ class ContaoCookiebarExtension extends Extension
         $container->setParameter('contao_cookiebar.storage_key', $config['storage_key']);
         $container->setParameter('contao_cookiebar.iframe_types', $config['iframe_types']);
         $container->setParameter('contao_cookiebar.page_templates', $config['page_templates']);
+        $container->setParameter('contao_cookiebar.disable_focustrap', $config['disable_focustrap']);
     }
 }

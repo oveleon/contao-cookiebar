@@ -13,6 +13,7 @@ let ContaoCookiebar = (function () {
             pageId: null,
             hideOnInit: false,
             blocking: false,
+            focusTrap: true,
             version: null,
             lifetime: 63072000,
             consentLog: false,
@@ -77,8 +78,11 @@ let ContaoCookiebar = (function () {
             // Register trigger events
             registerTriggerEvents();
 
-            // Initialize focus trap
-            initFocusTrap();
+
+            if (cookiebar.settings.focusTrap) {
+                // Initialize focus trap
+                initFocusTrap();
+            }
 
             if (cookiebar.settings.blocking) {
                 // Register inert observer
@@ -661,6 +665,11 @@ let ContaoCookiebar = (function () {
             if (!(e.key === 'Tab' || e.keyCode === 9))
                 return;
 
+            if (!cookiebar.focused) {
+                cookiebar.focused = true;
+                cookiebar.firstFocus?.classList.remove('cc-hide-focus')
+            }
+
             if (document.activeElement === cookiebar.lastFocus && !e.shiftKey) {
                 e.preventDefault();
                 cookiebar.firstFocus?.focus()
@@ -684,13 +693,18 @@ let ContaoCookiebar = (function () {
                 })
             }
 
-            // Focus the first element when opening the cookiebar
-            cookiebar.firstFocus.focus()
+            if (!cookiebar.settings.focusTrap)
+                return;
 
-            if (state)
+            if (state) {
                 document.addEventListener('keydown', focusTrap);
-            else
+                cookiebar.dom.querySelector('.cc-inner').onanimationend = () => {
+                    cookiebar.firstFocus?.classList.add('cc-hide-focus')
+                    cookiebar.firstFocus?.focus()
+                }
+            } else {
                 document.removeEventListener('keydown', focusTrap)
+            }
         }
 
         // Check for children that are added whilst the page builds (race-condition)
