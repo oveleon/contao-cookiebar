@@ -660,13 +660,14 @@ let ContaoCookiebar = (function () {
                 })
             }
 
-            // Focus the first element when opening the cookiebar
-            cookiebar.firstFocus.focus()
-
-            if (state)
+            if (state) {
                 document.addEventListener('keydown', focusTrap);
-            else
+                cookiebar.dom.querySelector('.cc-inner').onanimationend = () => {
+                    cookiebar.firstFocus?.focus()
+                }
+            } else {
                 document.removeEventListener('keydown', focusTrap)
+            }
         }
 
         // Check for children that are added whilst the page builds (race-condition)
