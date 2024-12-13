@@ -637,6 +637,11 @@ let ContaoCookiebar = (function () {
             if (!(e.key === 'Tab' || e.keyCode === 9))
                 return;
 
+            if (!cookiebar.focused) {
+                cookiebar.focused = true;
+                cookiebar.firstFocus?.classList.remove('cc-hide-focus')
+            }
+
             if (document.activeElement === cookiebar.lastFocus && !e.shiftKey) {
                 e.preventDefault();
                 cookiebar.firstFocus?.focus()
@@ -663,6 +668,7 @@ let ContaoCookiebar = (function () {
             if (state) {
                 document.addEventListener('keydown', focusTrap);
                 cookiebar.dom.querySelector('.cc-inner').onanimationend = () => {
+                    cookiebar.firstFocus?.classList.add('cc-hide-focus')
                     cookiebar.firstFocus?.focus()
                 }
             } else {

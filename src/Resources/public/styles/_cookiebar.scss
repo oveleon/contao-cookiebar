@@ -202,7 +202,7 @@
   }
 }
 
-.cc-focus {
+.cc-focus:not(.cc-hide-focus) {
 
   &:focus-visible {
     outline: 3px dashed var(--ccb-focus-clr);
