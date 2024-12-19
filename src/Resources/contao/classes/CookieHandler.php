@@ -257,7 +257,7 @@ class CookieHandler extends AbstractCookie
             }
         }
 
-        if (!empty($modes = StringUtil::deserialize($this->gcmMode)))
+        if (!empty($modes = StringUtil::deserialize($this->gcmMode, true)))
         {
             $consent = "gtag('consent', 'update', { " . implode(', ', array_map(fn ($mode) => "'$mode':'granted'", $modes)) . " });";
             $script = $gtagInit . $consent;
