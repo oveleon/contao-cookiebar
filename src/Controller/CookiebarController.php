@@ -87,7 +87,7 @@ class CookiebarController extends AbstractController
         $objTemplate->type = $objCookie->type;
         $objTemplate->iframeType = $objCookie->iframeType;
         $objTemplate->description = $objCookie->blockDescription;
-        $objTemplate->redirect = $request->get('redirect');
+        $objTemplate->redirect = $strUrl;
         $objTemplate->acceptAndDisplayLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAndDisplayLabel'];
 
         return $objTemplate->getResponse();
