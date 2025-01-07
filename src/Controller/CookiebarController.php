@@ -12,6 +12,7 @@ namespace Oveleon\ContaoCookiebar\Controller;
 
 use Contao\CoreBundle\Exception\PageNotFoundException;
 use Contao\FrontendTemplate;
+use Contao\Input;
 use Contao\System;
 use Contao\Validator;
 use Oveleon\ContaoCookiebar\Cookiebar;
@@ -69,9 +70,9 @@ class CookiebarController extends AbstractController
             return new Response('The URL must contain a valid locale.', Response::HTTP_BAD_REQUEST);
         }
 
-        $strUrl = $request->get('redirect');
-
         // Protect against XSS attacks
+        $strUrl = Input::get('redirect');
+
         if(!Validator::isUrl($strUrl))
         {
             return new Response('The redirect destination must be a valid URL.', Response::HTTP_BAD_REQUEST);
