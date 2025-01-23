@@ -13,6 +13,7 @@ namespace Oveleon\ContaoCookiebar\Controller;
 use Contao\CoreBundle\Exception\PageNotFoundException;
 use Contao\FrontendTemplate;
 use Contao\Input;
+use Contao\StringUtil;
 use Contao\System;
 use Contao\Validator;
 use Oveleon\ContaoCookiebar\Cookiebar;
@@ -58,7 +59,7 @@ class CookiebarController
         }
 
         // Protect against XSS attacks
-        $strUrl = Input::get('redirect');
+        $strUrl = StringUtil::stripInsertTags(StringUtil::specialchars($request->get('redirect')));
 
         if(!Validator::isUrl($strUrl))
         {
