@@ -64,10 +64,11 @@ $GLOBALS['TL_DCA']['tl_cookie_log'] = [
 
     // Config
     'config' => [
-        'dataContainer'  => DC_Table::class,
-        'notCopyable'    => true,
-        'notEditable'    => true,
-        'notCreatable'   => true,
+        'dataContainer'         => DC_Table::class,
+        'notCopyable'           => true,
+        'notEditable'           => true,
+        'notCreatable'          => true,
+        'backendSearchIgnore'   => true,
         'sql' => [
             'keys' => [
                 'id' => 'primary',
