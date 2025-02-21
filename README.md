@@ -18,6 +18,14 @@
 
 ---
 
+## Contao 4.13 / Version 1.x
+
+> [!IMPORTANT]
+> Version 1.x of contao-cookiebar is no longer actively maintained and will only receive critical security fixes if
+> required. Bug reports for 1.x will no longer be addressed and worked on.
+
+---
+
 ## Support
 
 If you like the Contao cookie bar, we'd love your support in keeping the open-source spirit alive.
