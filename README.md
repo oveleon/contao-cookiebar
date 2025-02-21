@@ -18,7 +18,7 @@
 
 ---
 
-## Contao 4.13 / Version 1.x
+## Version 1.x (Contao 4.13)
 
 > [!IMPORTANT]
 > Version 1.x of contao-cookiebar is no longer actively maintained and will only receive critical security fixes if
