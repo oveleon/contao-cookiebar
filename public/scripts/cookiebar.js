@@ -257,7 +257,10 @@ let ContaoCookiebar = (function () {
                 }
 
                 let config = cookiebar.settings.configs[ configId ];
-                let confirmed = checkCookieConfirmation(config.cookies);
+
+                const prefixed = Object.fromEntries(Object.entries(config.cookies).map(([k, v]) => [`_${k}`, v]));
+
+                let confirmed = checkCookieConfirmation(prefixed);
 
                 if(null !== config.resources){
                     config.resources.forEach(function(resource, index){
