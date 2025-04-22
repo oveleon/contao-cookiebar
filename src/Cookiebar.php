@@ -330,11 +330,15 @@ class Cookiebar
 
         foreach ($objConfig->configs as $config)
         {
+            $resources = $config->resources;
+
+            self::parseGlobalResources($resources);
+
             $arrConfig = [
                 'id'        => $config->id,
                 'type'      => $config->type,
                 'cookies'   => array_combine(array_keys($config->arrCookies), array_keys($config->arrCookies)),
-                'resources' => $config->resources,
+                'resources' => $resources,
                 'scripts'   => $config->scripts
             ];
 
@@ -387,6 +391,24 @@ class Cookiebar
             foreach ($arrDomains as $domain)
             {
                 setcookie(trim($token), "", time() - 3600, '/', $domain);
+            }
+        }
+    }
+
+    private static function parseGlobalResources(array|null &$resources): void
+    {
+        if (null === $resources)
+        {
+            return;
+        }
+
+        $insertTagParser = System::getContainer()->get('contao.insert_tag.parser');
+
+        foreach ($resources as &$resource)
+        {
+            if (isset($resource['src']))
+            {
+                $resource['src'] = $insertTagParser->replaceInline($resource['src']);
             }
         }
     }
