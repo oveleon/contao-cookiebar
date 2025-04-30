@@ -240,7 +240,8 @@ class KernelRequestListener
         if (
             !$this->scopeMatcher->isFrontendMainRequest($event) ||
             $request->isXmlHttpRequest() ||
-            (!$response->isSuccessful() && !$response->isClientError())
+            (!$response->isSuccessful() && !$response->isClientError()) ||
+            (!$response->isSuccessful() && $request->attributes->get('pageModel')?->type === 'regular') // symfony 404 page and missing auto_item redirect
         ) {
             return false;
         }
