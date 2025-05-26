@@ -13,13 +13,14 @@
 ---
 
 # Cookie bar Templates
-There are already two templates for a different presentation of the cookie bar.
+There are already three templates for a different presentation of the cookie bar.
 
 <img src="https://www.oveleon.de/share/github-assets/contao-cookiebar/cookiebar_example.jpg">
 
 Template | Description
 ---------- | ----------
 `cookiebar_default.html5` | Returns the cookie bar directly with an overview of the different cookie groups.
+`cookiebar_default_deny.html5` | Also returns the cookie bar with an overview of the different cookie groups, including the “Deny all” button.
 `cookiebar_simple.html5` | Returns the cookie bar without an overview of the different cookie groups and offers the possibility to display them via an additional button.
 
 ### Styling
