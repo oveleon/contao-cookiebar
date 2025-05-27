@@ -9,8 +9,8 @@
  */
 
 namespace Oveleon\ContaoCookiebar;
-use Contao\Environment;
 
+use Contao\Environment;
 use Contao\FrontendTemplate;
 use Contao\StringUtil;
 use Contao\System;
