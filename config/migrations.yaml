@@ -4,3 +4,9 @@ services:
       - '@database_connection'
     tags:
       - { name: contao.migration, priority: 0 }
+
+  Oveleon\ContaoCookiebar\Migration\ContaoCookiebarOpenerMigration:
+      arguments:
+          - '@database_connection'
+      tags:
+          - { name: contao.migration, priority: 0 }
