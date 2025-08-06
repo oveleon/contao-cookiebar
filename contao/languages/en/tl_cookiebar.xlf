@@ -27,7 +27,7 @@
         <source>&lt;p&gt;Saves the current PHP session.&lt;/p&gt;</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.consentLog.0">
-        <source>Consent logging is not activated</source>
+        <source>Consent logging is not activated. You can find out how to activate logging in the &lt;a href="https://github.com/oveleon/contao-cookiebar/blob/c3c3a0ed514ae558b74ec0866217a7c0d368713f/docs/BASICS.md#basic-configuration" target="_blank"&gt;documentation&lt;/a&gt;.</source>
       </trans-unit>
       <trans-unit id="tl_cookiebar.consentLog.1">
         <source>Consent logging is activated</source>

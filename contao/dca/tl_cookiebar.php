@@ -180,11 +180,12 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'format'                  => '%s'
         ],
         'global_operations' => [
+            'all',
+            '-',
             'cookieLog' => [
                 'href'                => 'table=tl_cookie_log',
                 'icon'                => 'diff.svg'
-            ],
-            'all'
+            ]
         ],
         'operations' => [
             'edit',
