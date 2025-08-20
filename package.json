@@ -1,15 +1,28 @@
 {
-  "license": "MIT",
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-uglify": "^3.0.2",
-    "sass": "^1.75.0"
-  },
-  "scripts": {
-    "buildjs": "gulp js",
-    "buildcss": "gulp css"
-  }
+    "license": "MIT",
+    "devDependencies": {
+        "@biomejs/biome": "^2.2",
+        "@symfony/webpack-encore": "^5.1",
+        "postcss": "^8.5",
+        "postcss-loader": "^8.1",
+        "postcss-preset-env": "^10.2",
+        "sass": "^1.90",
+        "sass-loader": "^16.0",
+        "stylelint": "^16.23",
+        "stylelint-config-standard": "^39.0",
+        "webpack-dev-server": "^5.2",
+        "webpack-notifier": "^1.15"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress",
+        "lint:js": "biome check --write --unsafe assets/accessibility/scripts",
+        "lint:css": "stylelint --fix assets/accessibility/styles",
+        "lint": "run-s lint:js lint:css"
+    }
 }
