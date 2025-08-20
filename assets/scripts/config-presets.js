@@ -1,7 +1,7 @@
 var Cookiebar = {
     presets: {
         token: {
-            googleAnalytics: ['_ga','_gat','_gid'],
+            googleAnalytics: ['_ga', '_gat', '_gid'],
             etracker: ['et_allow_cookies']
         },
         cookie: {
@@ -47,11 +47,11 @@ var Cookiebar = {
                     "// var et_basket = '';"
             },
             docs: {
-                googleAnalytics:   "https://developers.google.com/analytics/devguides/collection/ga4/cookies-user-id",
+                googleAnalytics: "https://developers.google.com/analytics/devguides/collection/ga4/cookies-user-id",
                 googleConsentMode: "https://developers.google.com/gtagjs/devguide/consent",
-                tagManager:        "https://support.google.com/tagmanager/answer/6102821",
-                matomo:            "https://developer.matomo.org/guides/tracking-javascript-guide",
-                etracker:          "https://www.etracker.com/docs/integration-setup/tracking-code-sdks/tracking-code-integration/parameter-setzen/"
+                tagManager: "https://support.google.com/tagmanager/answer/6102821",
+                matomo: "https://developer.matomo.org/guides/tracking-javascript-guide",
+                etracker: "https://www.etracker.com/docs/integration-setup/tracking-code-sdks/tracking-code-integration/parameter-setzen/"
             }
         },
         config: {
@@ -92,41 +92,41 @@ var Cookiebar = {
             },
             docs: {
                 googleConsentMode: "https://developers.google.com/gtagjs/devguide/consent",
-                tagManager:        "https://developers.google.com/gtagjs/devguide/consent#implementation_example"
+                tagManager: "https://developers.google.com/gtagjs/devguide/consent#implementation_example"
             }
         }
     },
-    issetToken: function(s, e){
-        if(!Cookiebar.presets.token[s]){
+    issetToken: function (s, e) {
+        if (!Cookiebar.presets.token[s]) {
             e.style.display = 'none';
             return false;
         }
     },
-    issetCookieScript: function(s, e){
-        if(!Cookiebar.presets.cookie.scripts[s]){
+    issetCookieScript: function (s, e) {
+        if (!Cookiebar.presets.cookie.scripts[s]) {
             e.style.display = 'none';
             return false;
         }
     },
-    issetCookieDocs: function(s, e){
-        if(!Cookiebar.presets.cookie.docs[s]){
+    issetCookieDocs: function (s, e) {
+        if (!Cookiebar.presets.cookie.docs[s]) {
             e.style.display = 'none';
             return false;
         }
     },
-    issetConfigScript: function(s, e){
-        if(!Cookiebar.presets.config.scripts[s]){
+    issetConfigScript: function (s, e) {
+        if (!Cookiebar.presets.config.scripts[s]) {
             e.style.display = 'none';
             return false;
         }
     },
-    issetConfigDocs: function(s, e){
-        if(!Cookiebar.presets.config.docs[s]){
+    issetConfigDocs: function (s, e) {
+        if (!Cookiebar.presets.config.docs[s]) {
             e.style.display = 'none';
             return false;
         }
     },
-    getToken: function(s, m){
+    getToken: function (s, m) {
         var t = Cookiebar.presets.token[s].slice();
         switch (s) {
             case 'googleAnalytics':
@@ -143,13 +143,13 @@ var Cookiebar = {
                 break;
             default:
                 const regex = /\[\w*\]/g;
-                for (let i=0; i<t.length; i++) {
+                for (let i = 0; i < t.length; i++) {
                     while ((match = regex.exec(t[i])) !== null) {
                         if (match.index === regex.lastIndex) {
                             regex.lastIndex++;
                         }
                         match.forEach((match, groupIndex) => {
-                            v = document.getElementById(match.substr(1, match.length-2)).value.trim();
+                            v = document.getElementById(match.substr(1, match.length - 2)).value.trim();
                             if (v) {
                                 t = [];
                                 alert(m);
@@ -163,24 +163,24 @@ var Cookiebar = {
         }
         return t.join(',');
     },
-    getCookieScript: function(s){
-        if(typeof Cookiebar.presets.cookie.scripts[s] === "object"){
+    getCookieScript: function (s) {
+        if (typeof Cookiebar.presets.cookie.scripts[s] === "object") {
             return JSON.stringify(Cookiebar.presets.cookie.scripts[s], null, "\t");
         }
 
         return Cookiebar.presets.cookie.scripts[s];
     },
-    getCookieDocs: function(s){
+    getCookieDocs: function (s) {
         return Cookiebar.presets.cookie.docs[s];
     },
-    getConfigScript: function(s){
-        if(typeof Cookiebar.presets.config.scripts[s] === "object"){
+    getConfigScript: function (s) {
+        if (typeof Cookiebar.presets.config.scripts[s] === "object") {
             return JSON.stringify(Cookiebar.presets.cookie.scripts[s], null, "\t");
         }
 
         return Cookiebar.presets.config.scripts[s];
     },
-    getConfigDocs: function(s){
+    getConfigDocs: function (s) {
         return Cookiebar.presets.config.docs[s];
     }
 };

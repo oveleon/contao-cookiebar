@@ -47,28 +47,27 @@ let ContaoCookiebar = (function () {
             let storage = getStorage();
 
             // Set visibility
-            if(
+            if (
                 !cookiebar.settings.hideOnInit &&
                 (parseInt(storage.version) !== parseInt(cookiebar.settings.version) ||
-                 parseInt(storage.configId) !== parseInt(cookiebar.settings.configId) ||
-                 isExpired(storage.saved)) &&
+                    parseInt(storage.configId) !== parseInt(cookiebar.settings.configId) ||
+                    isExpired(storage.saved)) &&
                 isTrackingAllowed() &&
                 isPageAllowed()
-            ){
+            ) {
                 cookiebar.show = true;
             }
 
             // Inputs
             cookiebar.inputs = [];
-            cookiebar.dom.querySelectorAll('input[name="cookie[]"]').forEach(function(input, index){
-                if(!input.disabled){
-                    cookiebar.inputs.push( input );
+            cookiebar.dom.querySelectorAll('input[name="cookie[]"]').forEach(function (input, index) {
+                if (!input.disabled) {
+                    cookiebar.inputs.push(input);
                 }
             });
 
             // Trigger logger info
-            if(cookiebar.settings.disableTracking)
-            {
+            if (cookiebar.settings.disableTracking) {
                 logger('The execution of scripts is prevented. Please log out of the backend to test scripts, or disable the setting within the cookiebar config.');
             }
 
@@ -118,23 +117,23 @@ let ContaoCookiebar = (function () {
             window.dispatchEvent(event);
         };
 
-        const save = function(e){
+        const save = function (e) {
             let arrCookies = [];
             let btn = e.currentTarget;
             let mode = 0;
 
-            if(btn.hasAttribute('data-accept-all')){
+            if (btn.hasAttribute('data-accept-all')) {
                 mode = 1;
-            }else if(btn.hasAttribute('data-deny-all')){
+            } else if (btn.hasAttribute('data-deny-all')) {
                 mode = 2;
             }
 
             inert(false)
 
-            cookiebar.inputs.forEach(function(input){
-                if(mode === 2){
+            cookiebar.inputs.forEach(function (input) {
+                if (mode === 2) {
                     input.checked = false;
-                }else if(mode === 1 || input.checked) {
+                } else if (mode === 1 || input.checked) {
                     arrCookies.push(parseInt(input.value));
                     input.checked = true;
                 }
@@ -162,15 +161,15 @@ let ContaoCookiebar = (function () {
             log();
 
             // Show iframes and call modules
-            if(arrCookies.length){
-                arrCookies.forEach(function(cookieId){
+            if (arrCookies.length) {
+                arrCookies.forEach(function (cookieId) {
                     // Iframes
-                    if(cookiebar.settings.cookies.hasOwnProperty('_'+cookieId) && cookiebar.settings.cookies['_'+cookieId].type === 'iframe'){
+                    if (cookiebar.settings.cookies.hasOwnProperty('_' + cookieId) && cookiebar.settings.cookies['_' + cookieId].type === 'iframe') {
                         unblockIframe(cookieId);
                     }
 
                     // Modules
-                    if(cookiebar.modules.hasOwnProperty('_'+cookieId)){
+                    if (cookiebar.modules.hasOwnProperty('_' + cookieId)) {
                         callModule(cookieId);
                     }
                 });
@@ -191,36 +190,35 @@ let ContaoCookiebar = (function () {
             restoreCookieStatus(true);
         };
 
-        const push = function(cookieId){
+        const push = function (cookieId) {
             let storage = getStorage();
 
-            if(!storage.cookies.includes(cookieId))
-            {
+            if (!storage.cookies.includes(cookieId)) {
                 // Update storage
                 storage.cookies.push(parseInt(cookieId));
                 setStorage(storage);
 
                 // Set new status
-                cookiebar.settings.cookies['_'+cookieId].confirmed = true;
+                cookiebar.settings.cookies['_' + cookieId].confirmed = true;
 
                 // Add new log entry
                 log();
             }
         };
 
-        const sortCookiesByLoadingOrder = function() {
-            const arrPrioritySorted = Object.entries(cookiebar.settings.cookies ?? {}).sort(([,a],[,b]) => b.priority - a.priority);
+        const sortCookiesByLoadingOrder = function () {
+            const arrPrioritySorted = Object.entries(cookiebar.settings.cookies ?? {}).sort(([, a], [, b]) => b.priority - a.priority);
             // ES6 Object.fromEntries implementation with prefix on keys to keep priority order
             cookiebar.settings.cookies = Array.from(arrPrioritySorted).reduce((acc, [k, v]) => Object.assign(acc, {[`_${k}`]: v}), {});
         }
 
-        const validateCookies = function(arrCookies, deleteCookies){
+        const validateCookies = function (arrCookies, deleteCookies) {
             let arrDelete = [];
 
-            for(let cookieId in cookiebar.settings.cookies){
-                const intCookieId = parseInt(cookieId.replace('_',''));
+            for (let cookieId in cookiebar.settings.cookies) {
+                const intCookieId = parseInt(cookieId.replace('_', ''));
 
-                if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)){
+                if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
                     continue;
                 }
 
@@ -230,49 +228,49 @@ let ContaoCookiebar = (function () {
 
                 cookiebar.settings.cookies[cookieId].confirmed = currentState;
 
-                if(true === deleteCookies && deleteCookie){
+                if (true === deleteCookies && deleteCookie) {
                     let token = cookiebar.settings.cookies[cookieId].token;
 
-                    if(null !== token){
-                        token.forEach(function(token){
+                    if (null !== token) {
+                        token.forEach(function (token) {
                             arrDelete.push(token);
                         });
                     }
                 }
             }
 
-            if(true === deleteCookies && arrDelete.length){
+            if (true === deleteCookies && arrDelete.length) {
                 let request = new XMLHttpRequest();
-                    request.open('POST', '/cookiebar/delete', true);
-                    request.send(serialize({tokens: arrDelete}));
+                request.open('POST', '/cookiebar/delete', true);
+                request.send(serialize({tokens: arrDelete}));
             }
         };
 
-        const setConfigs = function(){
+        const setConfigs = function () {
             let configId;
-            for(configId in cookiebar.settings.configs){
+            for (configId in cookiebar.settings.configs) {
 
-                if(!cookiebar.settings.configs.hasOwnProperty(configId)){
+                if (!cookiebar.settings.configs.hasOwnProperty(configId)) {
                     continue;
                 }
 
-                let config = cookiebar.settings.configs[ configId ];
+                let config = cookiebar.settings.configs[configId];
 
                 const prefixed = Object.fromEntries(Object.entries(config.cookies).map(([k, v]) => [`_${k}`, v]));
 
                 let confirmed = checkCookieConfirmation(prefixed);
 
-                if(null !== config.resources){
-                    config.resources.forEach(function(resource, index){
+                if (null !== config.resources) {
+                    config.resources.forEach(function (resource, index) {
                         // 1. load script only if one of the cookies was confirmed
                         // 2. load script only if one of the cookies was not confirmed
                         // 3. load script always
-                        if(
+                        if (
                             (resource.mode === 1 && confirmed) ||
                             (resource.mode === 2 && !confirmed) ||
                             (resource.mode === 3)
-                        ){
-                            if(cache(getChacheToken(config, index), 'config_resource')){
+                        ) {
+                            if (cache(getChacheToken(config, index), 'config_resource')) {
                                 return;
                             }
 
@@ -281,17 +279,17 @@ let ContaoCookiebar = (function () {
                     });
                 }
 
-                if(null !== config.scripts){
-                    config.scripts.forEach(function(script, index){
+                if (null !== config.scripts) {
+                    config.scripts.forEach(function (script, index) {
                         // 1. load script only if one of the cookies was confirmed
                         // 2. load script only if one of the cookies was not confirmed
                         // 3. load script always
-                        if(
+                        if (
                             (script.mode === 1 === confirmed) ||
                             (script.mode === 2 === !confirmed) ||
                             (script.mode === 3)
-                        ){
-                            if(cache(getChacheToken(config, index), 'config_script')){
+                        ) {
+                            if (cache(getChacheToken(config, index), 'config_script')) {
                                 return;
                             }
 
@@ -302,27 +300,27 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        const setScripts = function(){
+        const setScripts = function () {
             let cookieId;
-            for(cookieId in cookiebar.settings.cookies){
+            for (cookieId in cookiebar.settings.cookies) {
 
-                if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)){
+                if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
                     continue;
                 }
 
-                let cookie = cookiebar.settings.cookies[ cookieId ];
+                let cookie = cookiebar.settings.cookies[cookieId];
 
-                if(null !== cookie.resources){
-                    cookie.resources.forEach(function(resource, index){
+                if (null !== cookie.resources) {
+                    cookie.resources.forEach(function (resource, index) {
                         // 1. load script if cookie confirmed
                         // 2. load script if cookie not confirmed
                         // 3. load script always
-                        if(
+                        if (
                             (resource.mode === 1 && cookie.confirmed) ||
                             (resource.mode === 2 && !cookie.confirmed) ||
                             (resource.mode === 3)
-                        ){
-                            if(cache(getChacheToken(cookie, index), 'resource')){
+                        ) {
+                            if (cache(getChacheToken(cookie, index), 'resource')) {
                                 return;
                             }
 
@@ -331,17 +329,17 @@ let ContaoCookiebar = (function () {
                     });
                 }
 
-                if(null !== cookie.scripts){
-                    cookie.scripts.forEach(function(script, index){
+                if (null !== cookie.scripts) {
+                    cookie.scripts.forEach(function (script, index) {
                         // 1. load script if cookie confirmed
                         // 2. load script if cookie not confirmed
                         // 3. load script always
-                        if(
+                        if (
                             (script.mode === 1 === cookie.confirmed) ||
                             (script.mode === 2 === !cookie.confirmed) ||
                             (script.mode === 3)
-                        ){
-                            if(cache(getChacheToken(cookie, index), 'script')){
+                        ) {
+                            if (cache(getChacheToken(cookie, index), 'script')) {
                                 return;
                             }
 
@@ -352,9 +350,8 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        const addScript = function(script){
-            if(cookiebar.settings.disableTracking)
-            {
+        const addScript = function (script) {
+            if (cookiebar.settings.disableTracking) {
                 logger('Script execution was stopped.');
                 return;
             }
@@ -366,42 +363,42 @@ let ContaoCookiebar = (function () {
             insertAtPosition(script.script, script.position);
         };
 
-        const addResource = function(resource){
-            if(cookiebar.settings.disableTracking)
-            {
+        const addResource = function (resource) {
+            if (cookiebar.settings.disableTracking) {
                 logger('Adding a resource was stopped.');
                 return;
             }
 
             // Skip resources that are already available
-            try{
+            try {
                 let scripts = document.querySelectorAll('script[src]');
                 let host = getHostname(resource.src);
                 for (let i = scripts.length; i--;) {
-                    if (scripts[i].src.indexOf(host) !== -1 && host !== window.location.host){
+                    if (scripts[i].src.indexOf(host) !== -1 && host !== window.location.host) {
                         return false;
                     }
                 }
-            }catch (e) {}
+            } catch (e) {
+            }
 
             // Load resource
             let script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
-                script.src = resource.src;
-                script.onload = () => {
-                    // Mark resource as loaded
-                    cookiebar.loadedResources.push(resource.src);
+            script.type = 'text/javascript';
+            script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
+            script.src = resource.src;
+            script.onload = () => {
+                // Mark resource as loaded
+                cookiebar.loadedResources.push(resource.src);
 
-                    // Process resource events
-                    processResourceEvents();
-                };
+                // Process resource events
+                processResourceEvents();
+            };
 
-            if(null !== resource.flags && resource.flags.length){
-                resource.flags.forEach(function(flag){
-                    if(typeof flag === 'object'){
+            if (null !== resource.flags && resource.flags.length) {
+                resource.flags.forEach(function (flag) {
+                    if (typeof flag === 'object') {
                         script.setAttribute(flag[0], flag[1]);
-                    }else{
+                    } else {
                         script[flag] = true;
                     }
                 });
@@ -410,8 +407,8 @@ let ContaoCookiebar = (function () {
             document.head.append(script);
         };
 
-        const insertAtPosition = function(strContent, pos){
-            switch(pos){
+        const insertAtPosition = function (strContent, pos) {
+            switch (pos) {
                 case 1:
                     // below content body
                     document.body.append(strContent);
@@ -427,19 +424,19 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        const checkCookieConfirmation = function(cookies){
+        const checkCookieConfirmation = function (cookies) {
             let confirmed = false;
             let cookieId;
 
-            for(cookieId in cookies){
+            for (cookieId in cookies) {
 
-                if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)){
+                if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
                     continue;
                 }
 
-                let cookie = cookiebar.settings.cookies[ cookieId ];
+                let cookie = cookiebar.settings.cookies[cookieId];
 
-                if(cookie.confirmed){
+                if (cookie.confirmed) {
                     confirmed = true;
                     break;
                 }
@@ -448,38 +445,38 @@ let ContaoCookiebar = (function () {
             return confirmed;
         };
 
-        const cache = function(token, type){
+        const cache = function (token, type) {
             // Create new cache bag
-            if(!cookiebar.cache[type]){
-                cookiebar.cache[ type ] = [];
+            if (!cookiebar.cache[type]) {
+                cookiebar.cache[type] = [];
             }
 
-            if(cookiebar.cache[ type ].indexOf(token) !== -1){
+            if (cookiebar.cache[type].indexOf(token) !== -1) {
                 return true;
             }
 
-            cookiebar.cache[ type ].push(token);
+            cookiebar.cache[type].push(token);
             return false;
         };
 
-        const getChacheToken = function(cookie, index){
-            return cookie.id  + '' + index;
+        const getChacheToken = function (cookie, index) {
+            return cookie.id + '' + index;
         }
 
-        const logger = function(message){
+        const logger = function (message) {
             console.info('%cContao Cookiebar:', 'background: #fff09b; color: #222; padding: 3px', '\n' + message)
         }
 
-        const registerTriggerEvents = function(){
-            document.querySelectorAll('a.ccb-trigger, strong.ccb-trigger').forEach(function(btn){
+        const registerTriggerEvents = function () {
+            document.querySelectorAll('a.ccb-trigger, strong.ccb-trigger').forEach(function (btn) {
                 applyTriggerEvent(btn)
             });
 
             // See #152
-            new MutationObserver(function(mutationsList) {
+            new MutationObserver(function (mutationsList) {
                 for (const mutation of mutationsList) {
                     if (mutation.type === 'childList') {
-                        mutation.addedNodes.forEach(function(element) {
+                        mutation.addedNodes.forEach(function (element) {
                             if (element.matches && element.matches('a.ccb-trigger, strong.ccb-trigger')) {
                                 applyTriggerEvent(element)
                             }
@@ -494,69 +491,69 @@ let ContaoCookiebar = (function () {
         }
 
         const applyTriggerEvent = function (el) {
-            el.addEventListener('click', function(e){
+            el.addEventListener('click', function (e) {
                 e.preventDefault();
                 p.show(el.classList.contains('ccb-prefill'));
             });
         }
 
-        const registerEvents = function(){
+        const registerEvents = function () {
             let btnToggleCookies = cookiebar.dom.querySelectorAll('[data-toggle-cookies]');
-            let btnToggleGroups  = cookiebar.dom.querySelectorAll('[data-toggle-group]');
-            let btnAction        = cookiebar.dom.querySelectorAll('[data-save],[data-accept-all],[data-deny-all]');
+            let btnToggleGroups = cookiebar.dom.querySelectorAll('[data-toggle-group]');
+            let btnAction = cookiebar.dom.querySelectorAll('[data-save],[data-accept-all],[data-deny-all]');
 
-            if(btnAction.length){
-                btnAction.forEach(function(btn){
+            if (btnAction.length) {
+                btnAction.forEach(function (btn) {
                     btn.addEventListener('click', save);
                 });
             }
 
-            if(btnToggleCookies.length){
-                btnToggleCookies.forEach(function(btn){
+            if (btnToggleCookies.length) {
+                btnToggleCookies.forEach(function (btn) {
                     btn.addEventListener('click', toggleCookies);
                 });
             }
 
-            if(btnToggleGroups.length){
-                btnToggleGroups.forEach(function(btn){
+            if (btnToggleGroups.length) {
+                btnToggleGroups.forEach(function (btn) {
                     btn.addEventListener('click', toggleGroup);
                 });
             }
         };
 
-        const registerModule = function(cookieId, callback){
-            if(cookiebar.modules.hasOwnProperty('_'+cookieId)){
-                cookiebar.modules['_'+cookieId].push(callback);
-            }else{
-                cookiebar.modules['_'+cookieId] = [callback];
+        const registerModule = function (cookieId, callback) {
+            if (cookiebar.modules.hasOwnProperty('_' + cookieId)) {
+                cookiebar.modules['_' + cookieId].push(callback);
+            } else {
+                cookiebar.modules['_' + cookieId] = [callback];
             }
         };
 
-        const callModule = function(cookieId){
+        const callModule = function (cookieId) {
             let modules = document.querySelectorAll('.cc-module[data-ccb-id="' + cookieId + '"]');
 
-            if(!!modules){
-                modules.forEach(function(module){
+            if (!!modules) {
+                modules.forEach(function (module) {
                     module.parentNode.removeChild(module);
                 });
             }
 
-            cookiebar.modules['_'+cookieId].forEach(function(callback){
+            cookiebar.modules['_' + cookieId].forEach(function (callback) {
                 callback();
             });
 
-            delete cookiebar.modules['_'+cookieId];
+            delete cookiebar.modules['_' + cookieId];
 
             restoreCookieStatus();
         };
 
-        const processResourceEvents = function(){
-            if(!cookiebar.resourcesEvents.length) {
+        const processResourceEvents = function () {
+            if (!cookiebar.resourcesEvents.length) {
                 return false;
             }
 
-            cookiebar.resourcesEvents.forEach(function(event, index) {
-                if(cookiebar.loadedResources.indexOf(event.src) === -1) {
+            cookiebar.resourcesEvents.forEach(function (event, index) {
+                if (cookiebar.loadedResources.indexOf(event.src) === -1) {
                     return false;
                 }
 
@@ -566,11 +563,11 @@ let ContaoCookiebar = (function () {
             });
         };
 
-        const unblockIframe = function(cookieId){
+        const unblockIframe = function (cookieId) {
             let iframes = document.querySelectorAll('iframe[data-ccb-id="' + cookieId + '"]');
 
-            if(iframes.length){
-                iframes.forEach(function(iframe){
+            if (iframes.length) {
+                iframes.forEach(function (iframe) {
                     iframe.src = iframe.src;
                     iframe.removeAttribute('data-ccb-id');
                 });
@@ -579,31 +576,31 @@ let ContaoCookiebar = (function () {
             restoreCookieStatus();
         };
 
-        const restoreCookieStatus = function(force){
+        const restoreCookieStatus = function (force) {
             let objStorage = getStorage();
             let cookies = [];
 
-            if(!cookiebar.show && force !== true){
+            if (!cookiebar.show && force !== true) {
                 return;
             }
 
-            if(objStorage.cookies && objStorage.cookies.length){
+            if (objStorage.cookies && objStorage.cookies.length) {
                 cookies = objStorage.cookies;
-            }else if(objStorage.version === -1){
-                for(let cookieId in cookiebar.settings.cookies){
-                    const cid = parseInt(cookieId.replace('_',''));
+            } else if (objStorage.version === -1) {
+                for (let cookieId in cookiebar.settings.cookies) {
+                    const cid = parseInt(cookieId.replace('_', ''));
 
-                    if(cookiebar.settings.cookies[cookieId].checked){
+                    if (cookiebar.settings.cookies[cookieId].checked) {
                         cookies.push(cid)
                     }
                 }
             }
 
-            if(cookies.length){
-                cookies.forEach(function(cookieId, index){
+            if (cookies.length) {
+                cookies.forEach(function (cookieId, index) {
                     let input = cookiebar.dom.querySelector('[id="c' + cookieId + '"]');
 
-                    if(!!input) {
+                    if (!!input) {
                         input.checked = true;
                     }
                 });
@@ -611,9 +608,9 @@ let ContaoCookiebar = (function () {
 
             let arrGroupInputs = cookiebar.dom.querySelectorAll('input[name="group[]"]');
 
-            if(!!arrGroupInputs){
-                arrGroupInputs.forEach(function(groupInput){
-                    if(groupInput.disabled){
+            if (!!arrGroupInputs) {
+                arrGroupInputs.forEach(function (groupInput) {
+                    if (groupInput.disabled) {
                         return;
                     }
 
@@ -623,18 +620,16 @@ let ContaoCookiebar = (function () {
                     let inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
                     let arrGroup = [];
 
-                    if(!!inputs) {
-                        inputs.forEach(function(input){
-                            if(!input.disabled){
+                    if (!!inputs) {
+                        inputs.forEach(function (input) {
+                            if (!input.disabled) {
                                 arrGroup.push(!!input.checked);
                             }
                         });
 
-                        if(arrGroup.indexOf(false) === -1)
-                        {
+                        if (arrGroup.indexOf(false) === -1) {
                             groupInput.checked = true;
-                        }
-                        else if(arrGroup.indexOf(true) !== -1 && arrGroup.indexOf(false) !== -1){
+                        } else if (arrGroup.indexOf(true) !== -1 && arrGroup.indexOf(false) !== -1) {
                             groupInput.classList.add(cookiebar.settings.classes.onGroupSplitSelection);
                         }
                     }
@@ -642,7 +637,7 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        const isFocusable = function(element) {
+        const isFocusable = function (element) {
             while (element) {
                 const style = window.getComputedStyle(element);
 
@@ -656,7 +651,7 @@ let ContaoCookiebar = (function () {
             return true;
         };
 
-        const initFocusTrap = function() {
+        const initFocusTrap = function () {
             const focusable = cookiebar.dom.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), input[type="checkbox"]:not([disabled])');
 
             cookiebar.toggleOpener = cookiebar.dom.querySelector('[data-ft-opener]');
@@ -664,7 +659,7 @@ let ContaoCookiebar = (function () {
             cookiebar.lastFocus = focusable[focusable.length - 1];
         }
 
-        const focusTrap = function(e) {
+        const focusTrap = function (e) {
             if (!(e.key === 'Tab' || e.keyCode === 9))
                 return;
 
@@ -689,7 +684,7 @@ let ContaoCookiebar = (function () {
             }
         }
 
-        const inert = function(state) {
+        const inert = function (state) {
             if (cookiebar.settings.blocking) {
                 cookiebar.dom?.parentElement.querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')?.forEach(el => {
                     state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
@@ -704,7 +699,7 @@ let ContaoCookiebar = (function () {
                 cookiebar.dom.querySelector('.cc-inner').onanimationend = () => {
                     cookiebar.focused = false
                     cookiebar.firstFocus?.classList.add('cc-hide-focus')
-                    cookiebar.firstFocus?.focus({ preventScroll: true })
+                    cookiebar.firstFocus?.focus({preventScroll: true})
                 }
             } else {
                 document.removeEventListener('keydown', focusTrap)
@@ -712,16 +707,16 @@ let ContaoCookiebar = (function () {
         }
 
         // Check for children that are added whilst the page builds (race-condition)
-        const registerInertObserver = function() {
+        const registerInertObserver = function () {
             new MutationObserver(list => {
                 for (const mutation of list) {
                     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
                         mutation.addedNodes.forEach(node => {
                             if (
-                              cookiebar.show
-                              && node.nodeType === Node.ELEMENT_NODE
-                              && !node.classList.contains('.contao-cookiebar')
-                              && !node.hasAttribute('inert')
+                                cookiebar.show
+                                && node.nodeType === Node.ELEMENT_NODE
+                                && !node.classList.contains('.contao-cookiebar')
+                                && !node.hasAttribute('inert')
                             ) {
                                 node.setAttribute('inert', '');
                             }
@@ -734,25 +729,24 @@ let ContaoCookiebar = (function () {
             });
         }
 
-        const checkVisibility = function(){
+        const checkVisibility = function () {
             if (cookiebar.show) {
                 cookiebar.dom.classList.remove(cookiebar.settings.classes.onSave);
                 cookiebar.dom.classList.add(cookiebar.settings.classes.onShow);
                 inert(true)
-            }
-            else {
+            } else {
                 cookiebar.dom.classList.remove(cookiebar.settings.classes.onShow);
                 inert(false)
             }
         };
 
-        const toggleCookies = function(){
-            let state  = this.checked;
+        const toggleCookies = function () {
+            let state = this.checked;
             let inputs = this.parentElement.querySelectorAll('input[name="cookie[]"]');
 
-            if(inputs){
-                inputs.forEach(function(input, index){
-                    if(!input.disabled){
+            if (inputs) {
+                inputs.forEach(function (input, index) {
+                    if (!input.disabled) {
                         input.checked = state;
                     }
                 });
@@ -761,20 +755,20 @@ let ContaoCookiebar = (function () {
             this.classList.remove(cookiebar.settings.classes.onGroupSplitSelection);
         };
 
-        const toggleGroup = function(){
+        const toggleGroup = function () {
             let state = !this.classList.contains(cookiebar.settings.classes.onGroupToggle);
 
             this.setAttribute('aria-expanded', state ? 'true' : 'false');
 
-            try{
+            try {
                 let groups = this.parentElement.querySelectorAll(':scope > .toggle-group');
 
-                if(groups){
-                    groups.forEach(function(group, index){
+                if (groups) {
+                    groups.forEach(function (group, index) {
                         group.style.display = state ? 'block' : 'none';
                     });
                 }
-            }catch(err){
+            } catch (err) {
                 // IE11 Fallback
                 let group = this.parentElement.querySelector('[data-toggle-group] ~ .toggle-group');
                 group.style.display = state ? 'block' : 'none';
@@ -783,9 +777,8 @@ let ContaoCookiebar = (function () {
             this.classList.toggle(cookiebar.settings.classes.onGroupToggle);
         };
 
-        const log = function(){
-            if(!cookiebar.settings.consentLog)
-            {
+        const log = function () {
+            if (!cookiebar.settings.consentLog) {
                 return;
             }
 
@@ -794,18 +787,17 @@ let ContaoCookiebar = (function () {
             let parameter = {
                 referrer: window.location.pathname,
                 configId: cookiebar.settings.configId,
-                pageId:   cookiebar.settings.pageId,
-                cookies:  getStorage().cookies
+                pageId: cookiebar.settings.pageId,
+                cookies: getStorage().cookies
             };
 
             request.open('GET', '/cookiebar/log?' + serialize(parameter), true);
             request.send();
         };
 
-        const polyfill = function(){
+        const polyfill = function () {
             // execute only for ie
-            if(!window.document.documentMode)
-            {
+            if (!window.document.documentMode) {
                 return;
             }
 
@@ -862,12 +854,12 @@ let ContaoCookiebar = (function () {
             })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 
             (function () {
-                if ( typeof window.CustomEvent === "function" ) return false;
+                if (typeof window.CustomEvent === "function") return false;
 
-                function CustomEvent ( event, params ) {
-                    params = params || { bubbles: false, cancelable: false, detail: undefined };
+                function CustomEvent(event, params) {
+                    params = params || {bubbles: false, cancelable: false, detail: undefined};
                     var evt = document.createEvent('CustomEvent');
-                    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+                    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
                     return evt;
                 }
 
@@ -899,17 +891,17 @@ let ContaoCookiebar = (function () {
             let i = 0;
             let length = arguments.length;
 
-            if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+            if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
                 deep = arguments[0];
                 i++;
             }
 
             let merge = function (obj) {
-                for ( let prop in obj ) {
-                    if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+                for (let prop in obj) {
+                    if (Object.prototype.hasOwnProperty.call(obj, prop)) {
                         // If deep merge and property is an object, merge properties
-                        if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
-                            extended[prop] = extend( true, extended[prop], obj[prop] );
+                        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+                            extended[prop] = extend(true, extended[prop], obj[prop]);
                         } else {
                             extended[prop] = obj[prop];
                         }
@@ -917,7 +909,7 @@ let ContaoCookiebar = (function () {
                 }
             };
 
-            for ( ; i < length; i++ ) {
+            for (; i < length; i++) {
                 let obj = arguments[i];
                 merge(obj);
             }
@@ -925,27 +917,27 @@ let ContaoCookiebar = (function () {
             return extended;
         };
 
-        const generateToken = function(){
+        const generateToken = function () {
             return cookiebar.settings.token + '_' + cookiebar.settings.configId;
         };
 
-        const createScript = function(html) {
+        const createScript = function (html) {
             let script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
-                script.innerHTML = html;
+            script.type = 'text/javascript';
+            script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
+            script.innerHTML = html;
 
             return script;
         };
 
-        const setStorage = function(objStorage){
+        const setStorage = function (objStorage) {
             localStorage.setItem(generateToken(), JSON.stringify(objStorage));
         };
 
-        const getStorage = function() {
+        const getStorage = function () {
             let objStorage = localStorage.getItem(generateToken());
 
-            if(null === objStorage){
+            if (null === objStorage) {
                 objStorage = {
                     configId: cookiebar.settings.configId,
                     pageId: cookiebar.settings.pageId,
@@ -955,28 +947,28 @@ let ContaoCookiebar = (function () {
                 };
 
                 localStorage.setItem(generateToken(), JSON.stringify(objStorage));
-            }else{
+            } else {
                 objStorage = JSON.parse(objStorage);
             }
 
             return objStorage;
         };
 
-        const getHostname = function(url){
+        const getHostname = function (url) {
             let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
             return matches && matches[1];
         };
 
-        const getTime = function(){
-            return Math.floor(+new Date()/1000);
+        const getTime = function () {
+            return Math.floor(+new Date() / 1000);
         };
 
-        const isPageAllowed = function(){
+        const isPageAllowed = function () {
             return !(cookiebar.settings.currentPageId && cookiebar.settings.excludedPageIds && cookiebar.settings.excludedPageIds.indexOf(cookiebar.settings.currentPageId) !== -1);
         };
 
-        const isTrackingAllowed = function(){
-            if(!cookiebar.settings.doNotTrack){
+        const isTrackingAllowed = function () {
+            if (!cookiebar.settings.doNotTrack) {
                 return true;
             }
 
@@ -987,11 +979,11 @@ let ContaoCookiebar = (function () {
             return true;
         };
 
-        const isExpired = function(time){
+        const isExpired = function (time) {
             let st = parseInt(time);
             let lt = parseInt(cookiebar.settings.lifetime);
 
-            if(isNaN(st) || st === -1 || lt === 0){
+            if (isNaN(st) || st === -1 || lt === 0) {
                 return false;
             }
 
@@ -1000,28 +992,28 @@ let ContaoCookiebar = (function () {
 
         /** Public methods */
 
-        p.get = function(){
+        p.get = function () {
             return cookiebar;
         };
 
-        p.getStorage = function(){
+        p.getStorage = function () {
             return getStorage();
         };
 
-        p.issetCookie = function(varCookie){
+        p.issetCookie = function (varCookie) {
             let cookieId;
             let arrCookies = getStorage();
 
-            if(!arrCookies.cookies){
+            if (!arrCookies.cookies) {
                 return false;
             }
 
-            if(typeof varCookie == 'number'){
+            if (typeof varCookie == 'number') {
                 return arrCookies.cookies.indexOf(varCookie) !== -1;
             }
 
-            for(cookieId in cookiebar.settings.cookies){
-                if(null !== cookiebar.settings.cookies[cookieId].token && cookiebar.settings.cookies[cookieId].token.indexOf(varCookie) !== -1){
+            for (cookieId in cookiebar.settings.cookies) {
+                if (null !== cookiebar.settings.cookies[cookieId].token && cookiebar.settings.cookies[cookieId].token.indexOf(varCookie) !== -1) {
                     return arrCookies.cookies.indexOf(cookiebar.settings.cookies[cookieId].id) !== -1;
                 }
             }
@@ -1029,10 +1021,10 @@ let ContaoCookiebar = (function () {
             return arrCookies.cookies.indexOf(varCookie.toString()) !== -1;
         };
 
-        p.unblock = function(element, cookieId, url){
-            if(element.tagName.toLowerCase() === 'iframe'){
+        p.unblock = function (element, cookieId, url) {
+            if (element.tagName.toLowerCase() === 'iframe') {
                 element.src = url;
-            }else if(element.tagName.toLowerCase()){
+            } else if (element.tagName.toLowerCase()) {
                 window.location.href = url;
             }
 
@@ -1040,42 +1032,42 @@ let ContaoCookiebar = (function () {
             unblockIframe(cookieId);
         };
 
-        p.addModule = function(cookieId, callback, objContent){
+        p.addModule = function (cookieId, callback, objContent) {
             registerModule(cookieId, callback);
 
-            if(p.issetCookie(cookieId)){
+            if (p.issetCookie(cookieId)) {
                 callModule(cookieId);
                 return false;
             }
 
-            if(objContent && typeof objContent === 'object' && objContent.selector){
+            if (objContent && typeof objContent === 'object' && objContent.selector) {
                 let container = null;
 
-                if(typeof objContent.selector === 'string'){
+                if (typeof objContent.selector === 'string') {
                     container = document.querySelector(objContent.selector);
-                }else{
+                } else {
                     container = objContent.selector;
                 }
 
-                if(!!container){
+                if (!!container) {
                     let html = document.createElement("div");
-                        html.setAttribute('data-ccb-id', cookieId);
-                        html.classList.add('cc-module');
+                    html.setAttribute('data-ccb-id', cookieId);
+                    html.classList.add('cc-module');
 
-                        if (!!objContent.message) {
-                            html.innerHTML = '<p>' + objContent.message + '</p>';
-                        }
+                    if (!!objContent.message) {
+                        html.innerHTML = '<p>' + objContent.message + '</p>';
+                    }
 
-                    if(typeof objContent.button === 'object' && true === objContent.button.show){
+                    if (typeof objContent.button === 'object' && true === objContent.button.show) {
                         var btn = document.createElement("button");
-                            btn.innerHTML = objContent.button.text || cookiebar.settings.texts.acceptAndDisplay;
-                            btn.type = objContent.button.type || 'button';
+                        btn.innerHTML = objContent.button.text || cookiebar.settings.texts.acceptAndDisplay;
+                        btn.type = objContent.button.type || 'button';
 
-                        if(objContent.button.classes){
+                        if (objContent.button.classes) {
                             btn.className = objContent.button.classes;
                         }
 
-                        btn.addEventListener('click', function(){
+                        btn.addEventListener('click', function () {
                             push(cookieId);
                             callModule(cookieId);
                         });
@@ -1088,13 +1080,13 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        p.onResourceLoaded = function(cookieId, callback){
-            if(!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
+        p.onResourceLoaded = function (cookieId, callback) {
+            if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
                 logger.warn(`Cookie ID ${cookieId} does not exists.`)
                 return false;
             }
 
-            if(!cookiebar.settings.cookies[cookieId].resources.length) {
+            if (!cookiebar.settings.cookies[cookieId].resources.length) {
                 logger.warn(`The cookie ID ${cookieId} does not contain any resources.`)
                 return false;
             }
@@ -1103,9 +1095,9 @@ let ContaoCookiebar = (function () {
             const resource = cookiebar.settings.cookies[cookieId].resources[0].src;
 
             // Check if resource already loaded
-            if(cookiebar.loadedResources.indexOf(resource) !== -1) {
+            if (cookiebar.loadedResources.indexOf(resource) !== -1) {
                 callback();
-            }else{
+            } else {
                 cookiebar.resourcesEvents.push({
                     src: resource,
                     callback: callback
@@ -1113,16 +1105,16 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        p.show = function(restore){
+        p.show = function (restore) {
             cookiebar.show = true;
             checkVisibility();
 
-            if(!!restore){
+            if (!!restore) {
                 restoreCookieStatus();
             }
         };
 
-        p.hide = function(){
+        p.hide = function () {
             cookiebar.show = false;
             checkVisibility();
         };
