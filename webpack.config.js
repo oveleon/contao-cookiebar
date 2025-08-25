@@ -9,7 +9,9 @@ Encore
     .setPublicPath(Encore.isDevServer() ? '/public/' : '/bundles/contaocookiebar/')
     .setManifestKeyPrefix('')
 
-    .cleanupOutputBeforeBuild()
+    .cleanupOutputBeforeBuild((options) => {
+        options.keep = (filename) => filename.startsWith('images/');
+    })
     .disableSingleRuntimeChunk()
     .enableBuildNotifications()
 
@@ -31,6 +33,7 @@ Encore
         client: {
             overlay: false
         }
-    }));
+    }))
+;
 
 module.exports = Encore.getWebpackConfig();
