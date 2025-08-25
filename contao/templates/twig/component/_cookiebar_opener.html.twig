@@ -1,0 +1,4 @@
+{% block opener %}
+    {% set cookiebar_attrs = attrs().mergeWith(attributes|default) %}
+    <a{{ cookiebar_attrs }}>{{ data.linkTitle|default('cookiebar.change_privacy_label'|trans([], 'cookiebar')) }}</a>
+{% endblock %}
