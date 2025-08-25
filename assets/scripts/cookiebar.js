@@ -1127,3 +1127,5 @@ let ContaoCookiebar = (function () {
 
     return Constructor;
 })();
+
+window.ContaoCookiebar = ContaoCookiebar;

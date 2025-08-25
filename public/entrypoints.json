@@ -1,0 +1,30 @@
+{
+  "entrypoints": {
+    "config": {
+      "js": [
+        "/bundles/contaocookiebar/config.d4780269.js"
+      ]
+    },
+    "cookiebar": {
+      "js": [
+        "/bundles/contaocookiebar/cookiebar.15ce5b60.js"
+      ]
+    },
+    "default": {
+      "css": [
+        "/bundles/contaocookiebar/default.10351006.css"
+      ],
+      "js": [
+        "/bundles/contaocookiebar/default.31d6cfe0.js"
+      ]
+    },
+    "simple": {
+      "css": [
+        "/bundles/contaocookiebar/simple.1c79c9d3.css"
+      ],
+      "js": [
+        "/bundles/contaocookiebar/simple.31d6cfe0.js"
+      ]
+    }
+  }
+}

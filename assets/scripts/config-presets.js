@@ -184,3 +184,5 @@ var Cookiebar = {
         return Cookiebar.presets.config.docs[s];
     }
 };
+
+window.Cookiebar = Cookiebar;
