@@ -2,6 +2,16 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener;
 
 use Contao\ContentModel;
@@ -26,11 +36,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class KernelRequestListener
 {
-    private ?PageModel $objRootPage = null;
-    private ?PageModel $objPage = null;
-    private ?CookiebarModel $cookiebarModel = null;
-    private ?ScriptUtils $scriptUtils = null;
-    private ?array $types = null;
+    private PageModel|null $objRootPage = null;
+    private PageModel|null $objPage = null;
+    private CookiebarModel|null $cookiebarModel = null;
+    private ScriptUtils|null $scriptUtils = null;
+    private array|null $types = null;
     private array $cookies = [];
 
     public function __construct(
@@ -266,7 +276,7 @@ class KernelRequestListener
         return true;
     }
 
-    private function getScriptNonce(Response $response): ?string
+    private function getScriptNonce(Response $response): string|null
     {
         $cspHeader = $response->headers->get('Content-Security-Policy');
 
@@ -385,7 +395,7 @@ class KernelRequestListener
                 $strBlockUrl = '/cookiebar/block/' . $this->objPage->language . '/' . $cookie['id'] . '?redirect=';
 
                 // Check if the element is delivered with a preview image
-                if (false !== strpos($buffer, 'id="splashImage'))
+                if (str_contains($buffer, 'id="splashImage'))
                 {
                     // Regex: Modify href attribute for splash images
                     $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
@@ -460,6 +470,7 @@ class KernelRequestListener
     /**
      * Use the generatePage Hook the parse the cookieBarTemplate
      * At this point the Contao globals e.g. global $objPage and the GLOBALS are set
+     *
      * @return void
      */
     public function onGeneratePage(): void

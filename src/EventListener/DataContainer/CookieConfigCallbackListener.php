@@ -1,8 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
-use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Contao\Image;
 use Contao\System;
@@ -13,9 +25,8 @@ class CookieConfigCallbackListener
 
     /**
      * Add button for adding default script configurations
-     *
-     * @Callback(table="tl_cookie_config", target="fields.scriptConfig.xlabel")
      */
+    #[AsCallback(table: 'tl_cookie_config', target: 'fields.scriptConfig.xlabel')]
     public function selectScriptPreset(DataContainer $dc)
     {
         System::loadLanguageFile('tl_cookie');
@@ -47,9 +58,8 @@ class CookieConfigCallbackListener
 
     /**
      * Overwrite vendor* field translation by type
-     *
-     * @Callback(table="tl_cookie_config", target="fields.vendorId.load")
      */
+    #[AsCallback(table: 'tl_cookie_config', target: 'fields.vendorId.load')]
     public function overwriteTranslation(mixed $value, DataContainer $dc): mixed
     {
         return $this->setTranslationByType($value, $dc);
@@ -57,9 +67,8 @@ class CookieConfigCallbackListener
 
     /**
      * Add host prefix for source URLs from the same origin
-     *
-     * @Callback(table="tl_cookie_config", target="fields.sourceUrl.save")
      */
+    #[AsCallback(table: 'tl_cookie_config', target: 'fields.sourceUrl.save')]
     public function addHostPrefix(string $varValue): string
     {
         return $this->setHostPrefix($varValue);

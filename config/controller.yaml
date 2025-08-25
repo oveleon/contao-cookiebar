@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    Oveleon\ContaoCookiebar\Controller\ContentElement\CookiebarOpenerController: ~
+
+    Oveleon\ContaoCookiebar\Controller\FrontendModule\CookiebarOpenerController: ~

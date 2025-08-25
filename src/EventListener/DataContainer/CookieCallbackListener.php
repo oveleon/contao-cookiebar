@@ -1,10 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
 use Contao\Controller;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
-use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Contao\Image;
 use Contao\Message;
@@ -31,10 +43,10 @@ class CookieCallbackListener
     /**
      * Handle multiple edit
      *
-     * @Callback(table="tl_cookie", target="config.onload")
      *
      * @throws Exception
      */
+    #[AsCallback(table: 'tl_cookie', target: 'config.onload')]
     public function handleMultipleEdit(): void
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -71,13 +83,13 @@ class CookieCallbackListener
                         }
                     }
 
-                    if($action == 'deleteAll')
+                    if ($action == 'deleteAll')
                     {
                         $sessionFields['CURRENT']['IDS'] = $arrIds;
                     }
                     else
                     {
-                        if(empty($arrIds))
+                        if (empty($arrIds))
                         {
                             $sessionFields['CLIPBOARD']['tl_cookie'] = $arrIds;
                         }
@@ -97,18 +109,17 @@ class CookieCallbackListener
      * Adjust the palettes
      * Locked DCAs (necessary cookies)
      * Consent mode script configuration
-     *
-     * @Callback(table="tl_cookie", target="config.onload")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'config.onload')]
     public function adjustPalettes(DataContainer $dc): void
     {
         $objCookie = CookieModel::findById($dc->id);
 
-        if($objCookie)
+        if ($objCookie)
         {
             $objGroup = CookieGroupModel::findById($objCookie->pid);
 
-            if($objCookie->identifier === 'lock' || $objGroup->identifier === 'lock')
+            if ($objCookie->identifier === 'lock' || $objGroup->identifier === 'lock')
             {
                 $GLOBALS['TL_DCA']['tl_cookie']['palettes']['default'] = str_replace(',type', '', $GLOBALS['TL_DCA']['tl_cookie']['palettes']['default']);
             }
@@ -127,9 +138,8 @@ class CookieCallbackListener
 
     /**
      * Customize a cookie list item
-     *
-     * @Callback(table="tl_cookie", target="list.sorting.child_record")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'list.sorting.child_record')]
     public function listCookieItem(array $arrRow): string
     {
         $vendorIdAdditionFields = [
@@ -147,7 +157,7 @@ class CookieCallbackListener
 
         $getConfigTitle = static function($id): string
         {
-            if(null !== $objConfig = GlobalConfigModel::findById($id))
+            if (null !== $objConfig = GlobalConfigModel::findById($id))
             {
                 return $objConfig->title;
             }
@@ -171,13 +181,12 @@ class CookieCallbackListener
 
     /**
      * Disable locked fields
-     *
-     * @Callback(table="tl_cookie", target="fields.disabled.load")
-     * @Callback(table="tl_cookie", target="fields.token.load")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.disabled.load')]
+    #[AsCallback(table: 'tl_cookie', target: 'fields.token.load')]
     public function disableLockedField(mixed $varValue, DataContainer $dc): mixed
     {
-        if($dc->activeRecord->identifier === 'lock')
+        if ($dc->activeRecord->identifier === 'lock')
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['disabled'] = true;
         }
@@ -187,9 +196,8 @@ class CookieCallbackListener
 
     /**
      * Check if a field need to be mandatory
-     *
-     * @Callback(table="tl_cookie", target="fields.token.load")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.token.load')]
     public function requireField(mixed $varValue, DataContainer $dc): mixed
     {
         $disableRequire = [
@@ -202,7 +210,7 @@ class CookieCallbackListener
             'googleConsentMode'
         ];
 
-        if(in_array($dc->activeRecord->type, $disableRequire))
+        if (in_array($dc->activeRecord->type, $disableRequire))
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['mandatory'] = false;
         }
@@ -212,22 +220,19 @@ class CookieCallbackListener
 
     /**
      * Remove white spaces from tokens
-     *
-     * @Callback(table="tl_cookie", target="fields.token.save")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.token.save')]
     public function cleanupToken(mixed $varValue, DataContainer $dc): string
     {
         return str_replace(" ", "", $varValue);
     }
 
-    /**
-     * @Callback(table="tl_cookie", target="fields.token.xlabel")
-     */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.token.xlabel')]
     public function selectTokenPreset(DataContainer $dc): string
     {
         $id = 'token' . $dc->activeRecord->type;
 
-        return vsprintf(' <a href="javascript:;" id="%s" title="%s" data-action="contao--scroll-offset#store" onclick="var token=Cookiebar.getToken(\'%s\',\'%s\');if(token)document.getElementById(\'ctrl_%s\').value=token">%s</a><script>Cookiebar.issetToken(\'%s\',document.getElementById(\'%s\'));</script>', [
+        return vsprintf(' <a href="javascript:;" id="%s" title="%s" data-action="contao--scroll-offset#store" onclick="var token=Cookiebar.getToken(\'%s\',\'%s\');if (token)document.getElementById(\'ctrl_%s\').value=token">%s</a><script>Cookiebar.issetToken(\'%s\',document.getElementById(\'%s\'));</script>', [
             $id,
             $GLOBALS['TL_LANG']['tl_cookie']['tokenConfig_xlabel'],
             $dc->activeRecord->type,
@@ -239,9 +244,7 @@ class CookieCallbackListener
         ]);
     }
 
-    /**
-     * @Callback(table="tl_cookie", target="fields.scriptConfig.xlabel")
-     */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.scriptConfig.xlabel')]
     public function selectScriptPreset(DataContainer $dc): string
     {
         $id = 'script' . $dc->activeRecord->type;
@@ -270,12 +273,11 @@ class CookieCallbackListener
 
     /**
      * Add info messages for cookies accept multiple usage
-     *
-     * @Callback(table="tl_cookie", target="fields.type.load")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.type.load')]
     public function addTypeMessage(mixed $varValue, DataContainer $dc): mixed
     {
-        if($varValue === 'googleConsentMode')
+        if ($varValue === 'googleConsentMode')
         {
             Message::addInfo($GLOBALS['TL_LANG']['tl_cookie']['msgGoogleConsentMode']);
         }
@@ -285,9 +287,8 @@ class CookieCallbackListener
 
     /**
      * Return all iframe types
-     *
-     * @Callback(table="tl_cookie", target="fields.iframeType.options")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.iframeType.options')]
     public function getIframeTypes(): array
     {
         $arrTypes = System::getContainer()->getParameter('contao_cookiebar.iframe_types');
@@ -296,9 +297,8 @@ class CookieCallbackListener
 
     /**
      * Return all block templates
-     *
-     * @Callback(table="tl_cookie", target="fields.blockTemplate.options")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.blockTemplate.options')]
     public function getBlockTemplates(): array
     {
         return Controller::getTemplateGroup('ccb_element_');
@@ -306,9 +306,8 @@ class CookieCallbackListener
 
     /**
      * Return all analytic templates
-     *
-     * @Callback(table="tl_cookie", target="fields.scriptTemplate.options")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.scriptTemplate.options')]
     public function getAnalyticTemplates(): array
     {
         return Controller::getTemplateGroup('analytics_');
@@ -316,12 +315,11 @@ class CookieCallbackListener
 
     /**
      * Makes the global config field mandatory for google consent mode
-     *
-     * @Callback(table="tl_cookie", target="fields.globalConfig.load")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.globalConfig.load')]
     public function requireConsentMode(mixed $varValue, DataContainer $dc): mixed
     {
-        if($dc->activeRecord->type === 'googleConsentMode')
+        if ($dc->activeRecord->type === 'googleConsentMode')
         {
             $GLOBALS['TL_DCA']['tl_cookie']['fields'][ $dc->field ]['eval']['mandatory'] = true;
         }
@@ -331,11 +329,10 @@ class CookieCallbackListener
 
     /**
      * Overwrite vendor* field translation by cookie type
-     *
-     * @Callback(table="tl_cookie", target="fields.vendorId.load")
-     * @Callback(table="tl_cookie", target="fields.vendorUrl.load")
-     * @Callback(table="tl_cookie", target="fields.scriptConfig.load")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.vendorId.load')]
+    #[AsCallback(table: 'tl_cookie', target: 'fields.vendorUrl.load')]
+    #[AsCallback(table: 'tl_cookie', target: 'fields.scriptConfig.load')]
     public function overwriteTranslation(mixed $value, DataContainer $dc): mixed
     {
         return $this->setTranslationByType($value, $dc);
@@ -343,9 +340,8 @@ class CookieCallbackListener
 
     /**
      * Updates the mandatory state
-     *
-     * @Callback(table="tl_cookie", target="fields.vendorId.load")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.vendorId.load')]
     public function updateMandatoryState(mixed $value, DataContainer $dc): mixed
     {
         if ('googleConsentMode' === $dc->activeRecord->type)
@@ -358,9 +354,8 @@ class CookieCallbackListener
 
     /**
      * Removes the protocol regex
-     *
-     * @Callback(table="tl_cookie", target="fields.vendorUrl.load")
-    */
+     */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.vendorUrl.load')]
     public function updateProtocolRegex($varValue, $dc)
     {
         if ('matomoTagManager' === $dc->activeRecord->type)
@@ -373,21 +368,19 @@ class CookieCallbackListener
 
     /**
      * Check if a button needs to be disabled
-     *
-     * @Callback(table="tl_cookie", target="list.operations.copy.button")
-     * @Callback(table="tl_cookie", target="list.operations.cut.button")
-     * @Callback(table="tl_cookie", target="list.operations.delete.button")
      */
-    public function disableButton(array $row, ?string $href, string $label, string $title, ?string $icon, string $attributes): string
+    #[AsCallback(table: 'tl_cookie', target: 'list.operations.copy.button')]
+    #[AsCallback(table: 'tl_cookie', target: 'list.operations.cut.button')]
+    #[AsCallback(table: 'tl_cookie', target: 'list.operations.delete.button')]
+    public function disableButton(array $row, string|null $href, string $label, string $title, string|null $icon, string $attributes): string
     {
         return $this->disableButtonOnLocked($row, $href, $label, $title, $icon, $attributes);
     }
 
     /**
      * Adds a host prefix if none was specified
-     *
-     * @Callback(table="tl_cookie", target="fields.sourceUrl.save")
      */
+    #[AsCallback(table: 'tl_cookie', target: 'fields.sourceUrl.save')]
     public function addHostPrefix(string $varValue): string
     {
         return $this->setHostPrefix($varValue);

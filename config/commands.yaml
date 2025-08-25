@@ -1,8 +1,7 @@
 services:
     _defaults:
         autoconfigure: true
-        public: false
 
-    cookiebar.anonymizeip:
+    cookiebar.anonymize_ip:
         class: Oveleon\ContaoCookiebar\Command\AnonymizeIpCommand
         arguments: ['@contao.framework']

@@ -1,14 +1,16 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
-
-declare(strict_types=1);
 
 namespace Oveleon\ContaoCookiebar;
 
@@ -59,6 +61,7 @@ class ContaoCookiebar extends AbstractBundle
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->import('../config/commands.yaml');
+        $container->import('../config/controller.yaml');
         $container->import('../config/listener.yaml');
         $container->import('../config/migrations.yaml');
         $container->import('../config/services.yaml');

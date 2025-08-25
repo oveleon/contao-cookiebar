@@ -1,10 +1,55 @@
 services:
-    contao_cookiebar.listener.insert_tags:
-        class: Oveleon\ContaoCookiebar\EventListener\InsertTagsListener
+    _defaults:
+        autoconfigure: true
+
+    contao_cookiebar.listener.add_assets:
+        class: Oveleon\ContaoCookiebar\EventListener\AddAssetsListener
         arguments:
-            - '@contao.framework'
-            - '@router.default'
+            - '@contao.routing.scope_matcher'
+            - '@assets.packages'
+
+    contao_cookiebar.listener.data_container.cookiebar_callback:
+        class: Oveleon\ContaoCookiebar\EventListener\DataContainer\CookiebarCallbackListener
+        arguments:
+            - '@database_connection'
+            - '@translator'
+
+    contao_cookiebar.listener.data_container.cookie_callback:
+        class: Oveleon\ContaoCookiebar\EventListener\DataContainer\CookieCallbackListener
+
+    contao_cookiebar.listener.data_container.cookie_config_callback:
+        class: Oveleon\ContaoCookiebar\EventListener\DataContainer\CookieConfigCallbackListener
+        arguments:
             - '@request_stack'
+            - '@database_connection'
+            - '@translator'
+
+    contao_cookiebar.listener.data_container.cookie_group_callback:
+        class: Oveleon\ContaoCookiebar\EventListener\DataContainer\CookieGroupCallbackListener
+        arguments:
+            - '@request_stack'
+            - '@database_connection'
+
+    contao_cookiebar.listener.data_container.page_callback:
+        class: Oveleon\ContaoCookiebar\EventListener\DataContainer\PageCallbackListener
+
+    contao_cookiebar.listener.kernel_request:
+        class: Oveleon\ContaoCookiebar\EventListener\KernelRequestListener
+        public: true;
+        arguments:
+            - '@contao.translation.translator'
+            - '@contao.security.token_checker'
+            - '@contao.routing.scope_matcher'
+            - '@contao.csp.parser'
+            - '@assets.packages'
+            - '%contao_cookiebar.lifetime%'
+            - '%contao_cookiebar.consent_log%'
+            - '%contao_cookiebar.storage_key%'
+            - '%contao_cookiebar.consider_dnt%'
+            - '%contao_cookiebar.disable_focustrap%'
         tags:
-            - { name: contao.hook, hook: replaceInsertTags }
-        public: true
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+            - { name: contao.hook, hook: getFrontendModule, method: onParseLegacyTemplates, priority: 0 }
+            - { name: contao.hook, hook: getContentElement, method: onParseLegacyTemplates, priority: 0 }
+            - { name: contao.hook, hook: generatePage, method: onGeneratePage, priority: 0 }

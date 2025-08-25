@@ -1,11 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Contao\CoreBundle\ServiceAnnotation\Callback;
 
 class CookieGroupCallbackListener
 {
@@ -19,10 +31,10 @@ class CookieGroupCallbackListener
     /**
      * Handle multiple edit
      *
-     * @Callback(table="tl_cookie_group", target="config.onload")
      *
      * @throws Exception
      */
+    #[AsCallback(table: 'tl_cookie_group', target: 'config.onload')]
     public function handleMultipleEdit(): void
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -59,13 +71,13 @@ class CookieGroupCallbackListener
                         }
                     }
 
-                    if($action == 'deleteAll')
+                    if ($action == 'deleteAll')
                     {
                         $sessionFields['CURRENT']['IDS'] = $arrIds;
                     }
                     else
                     {
-                        if(empty($arrIds))
+                        if (empty($arrIds))
                         {
                             $sessionFields['CLIPBOARD']['tl_cookie'] = $arrIds;
                         }
@@ -83,12 +95,11 @@ class CookieGroupCallbackListener
 
     /**
      * Check if a button needs to be disabled
-     *
-     * @Callback(table="tl_cookie_group", target="list.operations.copy.button")
-     * @Callback(table="tl_cookie_group", target="list.operations.cut.button")
-     * @Callback(table="tl_cookie_group", target="list.operations.delete.button")
      */
-    public function disableButton(array $row, ?string $href, string $label, string $title, ?string $icon, string $attributes): string
+    #[AsCallback(table: 'tl_cookie_group', target: 'list.operations.copy.button')]
+    #[AsCallback(table: 'tl_cookie_group', target: 'list.operations.cut.button')]
+    #[AsCallback(table: 'tl_cookie_group', target: 'list.operations.delete.button')]
+    public function disableButton(array $row, string|null $href, string $label, string $title, string|null $icon, string $attributes): string
     {
         return $this->disableButtonOnLocked($row, $href, $label, $title, $icon, $attributes);
     }
