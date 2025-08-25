@@ -1,11 +1,15 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar\Export;
@@ -15,14 +19,13 @@ use Contao\Database;
 use Contao\File;
 use Contao\StringUtil;
 use Contao\System;
-use Exception;
 
 class LogExport
 {
     /**
      * Export log
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function export(): void
     {
@@ -32,7 +35,7 @@ class LogExport
         $dateFormat = $this->convertToSQLDateFormat(Config::get('dateFormat')); // d.m.Y
         $timeFormat = $this->convertToSQLDateFormat(Config::get('timeFormat')); // H:i
 
-        $objFile = new File('system/tmp/' . md5(uniqid(mt_rand(), true)));
+        $objFile = new File('system/tmp/' . md5(uniqid((string) mt_rand(), true)));
         $objFile->write('');
         $objFile->close();
 

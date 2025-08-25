@@ -17,14 +17,14 @@ There are already three templates for a different presentation of the cookie bar
 
 <img src="https://www.oveleon.de/share/github-assets/contao-cookiebar/cookiebar_example.jpg">
 
-Template | Description
----------- | ----------
-`cookiebar_default.html5` | Returns the cookie bar directly with an overview of the different cookie groups.
-`cookiebar_default_deny.html5` | Also returns the cookie bar with an overview of the different cookie groups, including the “Deny all” button.
-`cookiebar_simple.html5` | Returns the cookie bar without an overview of the different cookie groups and offers the possibility to display them via an additional button.
+| Template                       | Description                                                                                                                                    |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| `cookiebar_default.html5`      | Returns the cookie bar directly with an overview of the different cookie groups.                                                               |
+| `cookiebar_default_deny.html5` | Also returns the cookie bar with an overview of the different cookie groups, including the “Deny all” button.                                  |
+| `cookiebar_simple.html5`       | Returns the cookie bar without an overview of the different cookie groups and offers the possibility to display them via an additional button. |
 
 ### Styling
-A separate stylesheet is output for each template. These are made available via the template itself, and can be removed and or replaced by your own if required via the template editor. 
+A separate stylesheet is output for each template. These are made available via the template itself, and can be removed and or replaced by your own if required via the template editor.
 
 The `_cookiebar.scss` included in the package contains all default stylings, responsive settings as well as animations can be integrated into your own style sheet.
 

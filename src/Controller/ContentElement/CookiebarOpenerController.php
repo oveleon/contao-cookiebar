@@ -1,46 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\Controller\ContentElement;
 
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
-use Contao\ContentModel;
-use Contao\StringUtil;
-use Contao\System;
-use Contao\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Oveleon\ContaoCookiebar\Controller\CookiebarOpenerTrait;
 
-#[AsContentElement(category:'links', template:'ccb_opener_default')]
+#[AsContentElement(category: 'links')]
 class CookiebarOpenerController extends AbstractContentElementController
 {
-    public function __construct(
-        private readonly TranslatorInterface $translator
-    ){}
-
-    protected function getResponse(Template $template, ContentModel $model, Request $request): Response
-    {
-        System::loadLanguageFile('tl_cookiebar');
-
-        $template->href = 'javascript:;';
-        $template->linkClasses = 'ccb-trigger' . ($model->prefillCookies ? ' ccb-prefill' : '');
-        $template->rel = ' rel="noreferrer noopener"';
-        $template->link = $model->linkTitle ?: $this->translator->trans('tl_cookiebar.changePrivacyLabel', [], 'contao_default');
-        $template->linkTitle = '';
-
-        if ($model->titleText)
-        {
-            $template->linkTitle = StringUtil::specialchars($model->titleText);
-        }
-
-        // Unset the title attributes in the back end (see #6258)
-        if(System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
-        {
-            $template->title = '';
-            $template->linkTitle = '';
-        }
-
-        return $template->getResponse();
-    }
+    use CookiebarOpenerTrait;
 }

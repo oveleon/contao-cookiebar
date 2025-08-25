@@ -1,11 +1,15 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar;
@@ -51,11 +55,6 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
 class Cookie extends AbstractCookie
 {
     /**
-     * Model
-     */
-    protected CookieModel $objModel;
-
-    /**
      * Locked state
      */
     protected bool $isLocked = false;
@@ -68,55 +67,61 @@ class Cookie extends AbstractCookie
     /**
      * Initialize the object
      *
-     * @param CookieModel $objCookie
+     * @param CookieModel $objModel
      */
-    public function __construct(CookieModel $objCookie)
+    public function __construct(protected CookieModel $objModel)
     {
-        $this->objModel = $objCookie;
-
-        if($objCookie->identifier === 'lock')
+        if ($this->objModel->identifier === 'lock')
         {
             $this->isLocked = true;
         }
 
-        if(!!$objCookie->disabled)
+        if (!!$this->objModel->disabled)
         {
             $this->isDisabled = true;
         }
 
-        switch($objCookie->type)
+        switch($this->objModel->type)
         {
             case 'script':
                 $this->addCustomScript();
                 break;
+
             case 'template':
                 $this->addCustomTemplate();
                 break;
+
             case 'googleAnalytics':
                 $this->addGoogleAnalytics();
                 break;
+
             case 'googleConsentMode':
                 $this->addGoogleConsentMode();
                 break;
+
             case 'facebookPixel':
                 $this->addFacebookPixel();
                 break;
+
             case 'matomo':
                 $this->addMatomo();
                 break;
+
             case 'matomoTagManager':
                 $this->addMatomoTagManager();
                 break;
+
             case 'etracker':
                 $this->addEtracker();
                 break;
+
             default:
                 // HOOK: allow to compile custom types
                 if (isset($GLOBALS['TL_HOOKS']['addCookieType']) && \is_array($GLOBALS['TL_HOOKS']['addCookieType']))
                 {
                     foreach ($GLOBALS['TL_HOOKS']['addCookieType'] as $callback)
                     {
-                        System::importStatic($callback[0])->{$callback[1]}($objCookie->type, $this);
+                        System::importStatic($callback[0])->{$callback[1]}($this->objModel->type, $this);
                     }
                 }
         }
@@ -127,12 +132,7 @@ class Cookie extends AbstractCookie
      */
     public function __get(string $strKey): mixed
     {
-        if(isset($this->{$strKey}))
-        {
-            return $this->{$strKey};
-        }
-
-        return $this->objModel->{$strKey} ?? null;
+        return $this->{$strKey} ?? $this->objModel->{$strKey} ?? null;
     }
 
     /**
@@ -147,7 +147,7 @@ class Cookie extends AbstractCookie
 
             if ($this->sourceVersioning)
             {
-                $src .= (str_contains($src, '?') ? '&' : '?') . 'v=' . substr(md5(time()),0, 8);
+                $src .= (str_contains((string) $src, '?') ? '&' : '?') . 'v=' . substr(md5((string) time()), 0, 8);
             }
 
             $this->addResource(
@@ -157,12 +157,12 @@ class Cookie extends AbstractCookie
             );
         }
 
-        if($src = $this->scriptConfirmed)
+        if ($src = $this->scriptConfirmed)
         {
             $this->addScript($src, self::LOAD_CONFIRMED, $this->scriptPosition);
         }
 
-        if($src = $this->scriptUnconfirmed)
+        if ($src = $this->scriptUnconfirmed)
         {
             $this->addScript($src, self::LOAD_UNCONFIRMED, $this->scriptPosition);
         }
@@ -216,7 +216,7 @@ class Cookie extends AbstractCookie
 
         # Determine the G-ID to ensure the opt-out (#127)
         $this->addScript(
-            "try{ let keys = []; Object.keys(window.google_tag_manager).forEach((key) => { if(key.indexOf('G-') === 0 || key.indexOf('GTM-') === 0){ window['ga-disable-' + key] = true; } }); }catch (e) {}",
+            "try{ let keys = []; Object.keys(window.google_tag_manager).forEach((key) => { if (key.indexOf('G-') === 0 || key.indexOf('GTM-') === 0){ window['ga-disable-' + key] = true; } }); }catch (e) {}",
             self::LOAD_UNCONFIRMED,
             self::POS_HEAD
         );
@@ -278,7 +278,7 @@ class Cookie extends AbstractCookie
     private function addFacebookPixel(): void
     {
         $this->addScript(
-            "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '" . $this->vendorId . "');fbq('track', 'PageView');",
+            "!function(f,b,e,v,n,t,s){if (f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if (!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '" . $this->vendorId . "');fbq('track', 'PageView');",
             self::LOAD_CONFIRMED,
             self::POS_HEAD
         );
@@ -304,7 +304,7 @@ class Cookie extends AbstractCookie
     private function addMatomoTagManager(): void
     {
         // Custom config
-        if($src = $this->scriptConfig)
+        if ($src = $this->scriptConfig)
         {
             $this->addScript(
                 $src,
@@ -333,7 +333,7 @@ class Cookie extends AbstractCookie
     private function addEtracker(): void
     {
         // Custom config
-        if($src = $this->scriptConfig)
+        if ($src = $this->scriptConfig)
         {
             $this->addScript(
                 $src,
@@ -354,14 +354,12 @@ class Cookie extends AbstractCookie
             self::LOAD_ALWAYS
         );
 
-        if(!$this->blockCookies)
+        if (!$this->blockCookies)
         {
             $script = "cookiebar.onResourceLoaded(".$this->id.", function(){ _etracker.enableCookies('".Environment::get('host')."');});";
 
             $this->addScript(
-                "if(cookiebar && typeof cookiebar.onResourceLoaded === 'function'){ $script } else { document.addEventListener('DOMContentLoaded',function(){ $script }); }",
-                self::LOAD_CONFIRMED,
-                self::POS_BELOW
+                "if (cookiebar && typeof cookiebar.onResourceLoaded === 'function'){ $script } else { document.addEventListener('DOMContentLoaded',function(){ $script }); }"
             );
         }
     }

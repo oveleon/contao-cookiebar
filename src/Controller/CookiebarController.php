@@ -1,18 +1,22 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar\Controller;
 
 use Contao\CoreBundle\Exception\PageNotFoundException;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\FrontendTemplate;
-use Contao\Input;
 use Contao\StringUtil;
 use Contao\System;
 use Contao\Validator;
@@ -21,7 +25,6 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Contao\CoreBundle\Framework\ContaoFramework;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -29,11 +32,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * ContentApiController provides all routes.
  */
 #[Route('/cookiebar', defaults: ['_scope' => 'frontend'])]
-class CookiebarController
+readonly class CookiebarController
 {
     public function __construct(
-        private readonly ContaoFramework $framework,
-        private readonly TranslatorInterface $translator
+        private ContaoFramework $framework,
+        private TranslatorInterface $translator,
     ){}
 
     /**
@@ -53,7 +56,7 @@ class CookiebarController
             throw new PageNotFoundException();
         }
 
-        if(!Validator::isLocale($locale))
+        if (!Validator::isLocale($locale))
         {
             return new Response('The URL must contain a valid locale.', Response::HTTP_BAD_REQUEST);
         }
@@ -61,7 +64,7 @@ class CookiebarController
         // Protect against XSS attacks
         $strUrl = StringUtil::stripInsertTags(StringUtil::specialchars($request->get('redirect')));
 
-        if(!Validator::isUrl($strUrl))
+        if (!Validator::isUrl($strUrl))
         {
             return new Response('The redirect destination must be a valid URL.', Response::HTTP_BAD_REQUEST);
         }
@@ -96,7 +99,7 @@ class CookiebarController
                 $queryString = urldecode($request->getContent());
                 parse_str($queryString, $request);
 
-                if($error = $this->errorMissingParameter($request, ['tokens']))
+                if ($error = $this->errorMissingParameter($request, ['tokens']))
                 {
                     return $error;
                 }
@@ -106,7 +109,7 @@ class CookiebarController
 
             // Add new log entry
             case 'log':
-                if($error = $this->errorMissingParameter($request, ['configId']))
+                if ($error = $this->errorMissingParameter($request, ['configId']))
                 {
                     return $error;
                 }
@@ -129,18 +132,18 @@ class CookiebarController
     /**
      * Return error if the given parameters are not set
      */
-    private function errorMissingParameter($request, array $arrParameter): ?JsonResponse
+    private function errorMissingParameter($request, array $arrParameter): JsonResponse|null
     {
         foreach ($arrParameter as $parameter)
         {
-            if(is_array($request))
+            if (is_array($request))
             {
-                if(!isset($request[$parameter]))
+                if (!isset($request[$parameter]))
                 {
                     return $this->error('Missing parameter: ' . $parameter);
                 }
             }
-            elseif(!$request->get($parameter))
+            elseif (!$request->get($parameter))
             {
                 return $this->error('Missing parameter: ' . $parameter);
             }

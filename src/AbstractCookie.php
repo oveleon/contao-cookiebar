@@ -1,11 +1,15 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar;
@@ -57,12 +61,8 @@ abstract class AbstractCookie
 
     /**
      * Add a script
-     *
-     * @param string $strScript
-     * @param int $mode
-     * @param int $pos
      */
-    public function addScript(string $strScript, int $mode = self::LOAD_CONFIRMED, int $pos = self::POS_BELOW): void
+    public function addScript(string $strScript, int|string $mode = self::LOAD_CONFIRMED, int|string $pos = self::POS_BELOW): void
     {
         $this->scripts[] = [
             'script'    => $strScript,
@@ -73,12 +73,8 @@ abstract class AbstractCookie
 
     /**
      * Add a resource
-     *
-     * @param string $strSrc
-     * @param array|null $flags
-     * @param int $mode
      */
-    public function addResource(string $strSrc, array $flags=null, int $mode = self::LOAD_CONFIRMED): void
+    public function addResource(string $strSrc, array $flags = null, int|string $mode = self::LOAD_CONFIRMED): void
     {
         $this->resources[] = [
             'src'   => $strSrc,

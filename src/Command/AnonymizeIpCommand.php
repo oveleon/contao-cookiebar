@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-/**
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar\Command;
@@ -44,11 +45,11 @@ class AnonymizeIpCommand extends Command
         $this->framework->initialize();
         $objLog = CookieLogModel::findAll();
 
-        if(null !== $objLog)
+        if (null !== $objLog)
         {
             $io->progressStart($objLog->count());
 
-            while($objLog->next())
+            while ($objLog->next())
             {
                 $objLog->ip = IPUtils::anonymize($objLog->ip);
                 $objLog->save();
@@ -60,6 +61,6 @@ class AnonymizeIpCommand extends Command
             $io->success(sprintf('%s ip addresses were successfully anonymized.', $objLog->count()));
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

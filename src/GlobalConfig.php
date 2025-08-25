@@ -1,19 +1,23 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar;
 
 use Contao\StringUtil;
 use Contao\System;
-use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
+use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 
 /**
  * Arranges the properties and resources of a config
@@ -36,11 +40,6 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
 class GlobalConfig extends AbstractCookie
 {
     /**
-     * Config Model
-     */
-    protected GlobalConfigModel $objModel;
-
-    /**
      * Collection of cookie IDs which use this configuration
      */
     protected array $arrCookies = [];
@@ -48,28 +47,32 @@ class GlobalConfig extends AbstractCookie
     /**
      * Initialize the object
      */
-    public function __construct(GlobalConfigModel $objConfig)
+    public function __construct(/**
+     * Config Model
+     */
+    protected GlobalConfigModel $objModel)
     {
-        $this->objModel = $objConfig;
-
-        switch($objConfig->type)
+        switch($this->objModel->type)
         {
             case 'script':
                 $this->addCustomScript();
                 break;
+
             case 'googleConsentMode':
                 $this->addGoogleConsentMode();
                 break;
+
             case 'tagManager':
                 $this->addTagManager();
                 break;
+
             default:
                 // HOOK: allow to compile custom types
                 if (isset($GLOBALS['TL_HOOKS']['addGlobalConfigType']) && \is_array($GLOBALS['TL_HOOKS']['addGlobalConfigType']))
                 {
                     foreach ($GLOBALS['TL_HOOKS']['addGlobalConfigType'] as $callback)
                     {
-                        System::importStatic($callback[0])->{$callback[1]}($objConfig->type, $this);
+                        System::importStatic($callback[0])->{$callback[1]}($this->objModel->type, $this);
                     }
                 }
         }
@@ -80,7 +83,7 @@ class GlobalConfig extends AbstractCookie
      */
     public function __get(string $strKey): mixed
     {
-        if($this->{$strKey} ?? null)
+        if ($this->{$strKey} ?? null)
         {
             return $this->{$strKey};
         }
@@ -101,11 +104,11 @@ class GlobalConfig extends AbstractCookie
      */
     private function addCustomScript(): void
     {
-        if($src = $this->sourceUrl)
+        if ($src = $this->sourceUrl)
         {
             if ($this->sourceVersioning)
             {
-                $src .= (str_contains($src, '?') ? '&' : '?') . 'v=' . substr(md5(time()),0, 8);
+                $src .= (str_contains($src, '?') ? '&' : '?') . 'v=' . substr(md5((string) time()),0, 8);
             }
 
             $this->addResource(
@@ -115,7 +118,7 @@ class GlobalConfig extends AbstractCookie
             );
         }
 
-        if($src = $this->scriptConfig)
+        if ($src = $this->scriptConfig)
         {
             $this->addScript($src, $this->scriptLoadingMode, $this->scriptPosition);
         }
@@ -128,7 +131,7 @@ class GlobalConfig extends AbstractCookie
     {
         # Determine the G-ID to ensure the opt-out (#127)
         $this->addScript(
-            "window.addEventListener('gtm_loaded', () => { setTimeout(() => { const gid = Object.keys(window.google_tag_manager).filter(k => k.startsWith('G-'))[0]; try{ if(gid){ window['ga-disable-' + gid] = true; }   }catch(e){}}, 1000)});",
+            "window.addEventListener('gtm_loaded', () => { setTimeout(() => { const gid = Object.keys(window.google_tag_manager).filter(k => k.startsWith('G-'))[0]; try{ if (gid){ window['ga-disable-' + gid] = true; }   }catch(e){}}, 1000)});",
             self::LOAD_ALWAYS,
             self::POS_HEAD
         );
@@ -139,11 +142,11 @@ class GlobalConfig extends AbstractCookie
             self::POS_HEAD
         );
 
-        if($src = $this->scriptConfig)
+        if ($src = $this->scriptConfig)
         {
             $this->addScript($src, self::LOAD_ALWAYS, self::POS_HEAD);
         }
-        elseif($this->googleConsentMode)
+        elseif ($this->googleConsentMode)
         {
             $this->addGoogleConsentMode();
             $this->addScript(

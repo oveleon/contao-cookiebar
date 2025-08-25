@@ -1,11 +1,15 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar;
@@ -18,14 +22,15 @@ use Contao\FrontendTemplate;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
+use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use FOS\HttpCache\ResponseTagger;
 use Oveleon\ContaoCookiebar\Exception\NoCookiebarSpecifiedException;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
-use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
 use Oveleon\ContaoCookiebar\Model\CookieLogModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
+use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 class Cookiebar
@@ -38,24 +43,24 @@ class Cookiebar
     /**
      * Config cache
      */
-    static private ?CookiebarModel $configCache = null;
+    static private CookiebarModel|null $configCache = null;
 
     /**
      * Create and return config object
      */
-    public static function getConfig(int $configId, int $pageId, ?PageModel $objMeta=null): ?CookiebarModel
+    public static function getConfig(int $configId, int $pageId, PageModel|null $objMeta = null): CookiebarModel|null
     {
-        if(null !== static::$configCache)
+        if (null !== static::$configCache)
         {
             return static::$configCache;
         }
 
-        if(null === $objCookiebar = CookiebarModel::findById($configId))
+        if (null === $objCookiebar = CookiebarModel::findById($configId))
         {
             throw new NoCookiebarSpecifiedException('No cookiebar specified');
         }
 
-        if(null === $objCookieGroups = CookieGroupModel::findPublishedByPid($objCookiebar->id))
+        if (null === $objCookieGroups = CookieGroupModel::findPublishedByPid($objCookiebar->id))
         {
             return null;
         }
@@ -64,7 +69,7 @@ class Cookiebar
         $arrGroups = [];
 
         // Overwrite metadata
-        if(null !== $objMeta)
+        if (null !== $objMeta)
         {
             $objConfig->description       = $objMeta->cookiebarDescription;
             $objConfig->infoDescription   = $objMeta->cookiebarInfoDescription;
@@ -79,18 +84,18 @@ class Cookiebar
 
         DataContainer::loadDataContainer('tl_cookie');
 
-        while($objCookieGroups->next())
+        while ($objCookieGroups->next())
         {
             $objGroup = $objCookieGroups->current();
             $arrCookies = [];
 
             $objCookies = CookieModel::findPublishedByPid($objCookieGroups->id);
 
-            if(null !== $objCookies)
+            if (null !== $objCookies)
             {
-                while($objCookies->next())
+                while ($objCookies->next())
                 {
-                    if(
+                    if (
                         ($objCookies->token === 'csrf_contao_csrf_token' && Environment::get('ssl')) ||
                         ($objCookies->token === 'csrf_https-contao_csrf_token' && !Environment::get('ssl'))
                     )
@@ -101,17 +106,17 @@ class Cookiebar
                     // Adding the global configuration with checking whether this may be used
                     $strTypePalette = $GLOBALS['TL_DCA']['tl_cookie']['palettes'][$objCookies->type] ?? false;
 
-                    if($objCookies->globalConfig && $strTypePalette && str_contains($strTypePalette, 'globalConfig'))
+                    if ($objCookies->globalConfig && $strTypePalette && str_contains((string) $strTypePalette, 'globalConfig'))
                     {
                         $intConfigKey = $objCookies->globalConfig;
                         $arrConfigs   = Config::has(self::GLOBAL_CONFIG_KEY) ? Config::get(self::GLOBAL_CONFIG_KEY) : null;
 
-                        if(null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
+                        if (null === $arrConfigs || !array_key_exists($intConfigKey, $arrConfigs))
                         {
                             /** @var GlobalConfigModel $objConfigModel */
                             $objConfigModel = GlobalConfigModel::findById($intConfigKey);
 
-                            if(null !== $objConfigModel)
+                            if (null !== $objConfigModel)
                             {
                                 $objGlobalConfig = new GlobalConfig($objConfigModel);
                                 $objGlobalConfig->addCookie( $objCookies->current() );
@@ -149,7 +154,7 @@ class Cookiebar
         $objConfig->configs = null;
 
         // Add global configuration
-        if(Config::has(self::GLOBAL_CONFIG_KEY))
+        if (Config::has(self::GLOBAL_CONFIG_KEY))
         {
             $objConfig->configs = Config::get(self::GLOBAL_CONFIG_KEY);
         }
@@ -163,14 +168,14 @@ class Cookiebar
     /**
      * Return config by page
      */
-    public static function getConfigByPage(int|PageModel $varPage): ?CookiebarModel
+    public static function getConfigByPage(int|PageModel $varPage): CookiebarModel|null
     {
-        if(!($varPage instanceof PageModel))
+        if (!($varPage instanceof PageModel))
         {
               $objPage = PageModel::findById( $varPage );
         }else $objPage = $varPage;
 
-        if(!$objPage->activateCookiebar)
+        if (!$objPage->activateCookiebar)
         {
             return null;
         }
@@ -186,9 +191,9 @@ class Cookiebar
         $objCookiebars = CookiebarModel::findAll();
         $arrCookiebars = [];
 
-        if(null != $objCookiebars)
+        if (null != $objCookiebars)
         {
-            while($objCookiebars->next())
+            while ($objCookiebars->next())
             {
                 $arrCookiebars[ $objCookiebars->id ] = $objCookiebars->title;
             }
@@ -200,7 +205,7 @@ class Cookiebar
     /**
      * Return all iFrame-Types
      */
-    public static function getIframeTypes(): ?array
+    public static function getIframeTypes(): array|null
     {
         return System::getContainer()->getParameter('contao_cookiebar.iframe_types');
     }
@@ -216,9 +221,9 @@ class Cookiebar
 
         $cssID = StringUtil::deserialize($objConfig->cssID, true) + [null, null];
         $objTemplate->cssID = $cssID[0];
-        $objTemplate->class = $cssID[1] ? $objConfig->template . ' ' . $objConfig->alignment . ' ' . trim($cssID[1]) : $objConfig->template . ' ' . $objConfig->alignment;
+        $objTemplate->class = $cssID[1] ? $objConfig->template . ' ' . $objConfig->alignment . ' ' . trim((string) $cssID[1]) : $objConfig->template . ' ' . $objConfig->alignment;
 
-        if($objConfig->blocking)
+        if ($objConfig->blocking)
         {
             $objTemplate->class .= ' cc-blocked';
         }
@@ -228,28 +233,28 @@ class Cookiebar
         $objTemplate->infoDescription = $objConfig->infoDescription;
         $objTemplate->groups = $objConfig->groups;
 
-        $objTemplate->saveLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['saveLabel'];
-        $objTemplate->acceptAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAllLabel'];
-        $objTemplate->denyAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['denyAllLabel'];
-        $objTemplate->infoLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['infoLabel'];
-        $objTemplate->showDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showDetailsLabel'];
-        $objTemplate->hideDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideDetailsLabel'];
-        $objTemplate->showMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showMoreDetailsLabel'];
-        $objTemplate->hideMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideMoreDetailsLabel'];
-        $objTemplate->providerLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['providerLabel'];
-        $objTemplate->expireLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['expireLabel'];
-        $objTemplate->tokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['tokenLabel'];
-        $objTemplate->forInfix = $GLOBALS['TL_LANG']['tl_cookiebar']['forInfix'];
+        //$objTemplate->saveLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['saveLabel'];
+        //$objTemplate->acceptAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAllLabel'];
+        //$objTemplate->denyAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['denyAllLabel'];
+        //$objTemplate->infoLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['infoLabel'];
+        //$objTemplate->showDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showDetailsLabel'];
+        //$objTemplate->hideDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideDetailsLabel'];
+        //$objTemplate->showMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showMoreDetailsLabel'];
+        //$objTemplate->hideMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideMoreDetailsLabel'];
+        //$objTemplate->providerLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['providerLabel'];
+        //$objTemplate->expireLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['expireLabel'];
+        //$objTemplate->tokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['tokenLabel'];
+        //$objTemplate->forInfix = $GLOBALS['TL_LANG']['tl_cookiebar']['forInfix'];
 
         // Collect info links
         $arrLinks = [];
 
-        if($varLinks = StringUtil::deserialize($objConfig->infoUrls))
+        if ($varLinks = StringUtil::deserialize($objConfig->infoUrls))
         {
             foreach ($varLinks as $link) {
                 $objPage = PageModel::findById($link);
 
-                if(null !== $objPage)
+                if (null !== $objPage)
                 {
                     $arrLinks[ $objPage->title ] = $objPage->getAbsoluteUrl();
                 }
@@ -272,7 +277,7 @@ class Cookiebar
         {
             /** @var ResponseTagger $responseTagger */
             $responseTagger = System::getContainer()->get('fos_http_cache.http.symfony_response_tagger');
-            $responseTagger->addTags(array('oveleon.cookiebar.' . $objConfig->id));
+            $responseTagger->addTags(['oveleon.cookiebar.' . $objConfig->id]);
         }
 
         return $objTemplate->parse();
@@ -289,7 +294,7 @@ class Cookiebar
         {
             foreach ($group->cookies as $cookie)
             {
-                if($cookie->isLocked)
+                if ($cookie->isLocked)
                 {
                     continue;
                 }
@@ -304,7 +309,7 @@ class Cookiebar
                     'scripts'   => $cookie->scripts
                 ];
 
-                if($cookie->type === 'iframe')
+                if ($cookie->type === 'iframe')
                 {
                     $arrCookie['iframeType'] = $cookie->iframeType;
                 }
@@ -323,7 +328,7 @@ class Cookiebar
     {
         $arrResponse = [];
 
-        if(null === $objConfig->configs)
+        if (null === $objConfig->configs)
         {
             return $arrResponse;
         }
@@ -351,23 +356,19 @@ class Cookiebar
     /**
      * Parse token string and return their as array
      */
-    public static function parseToken(array|string $varToken): ?array
+    public static function parseToken(array|string $varToken): array|null
     {
-        if(is_array($varToken))
+        if (is_array($varToken))
         {
             return $varToken;
         }
 
-        if($varToken === ''){
+        if ($varToken === '')
+        {
             return null;
         }
 
-        if(str_contains($varToken, ','))
-        {
-              $varToken = explode(",", $varToken);
-        }else $varToken = [$varToken];
-
-        return $varToken;
+        return str_contains($varToken, ',') ? explode(",", $varToken) : [$varToken];
     }
 
     /**
@@ -377,7 +378,7 @@ class Cookiebar
     {
         $varToken = static::parseToken($varToken);
 
-        if(null === $varToken)
+        if (null === $varToken)
         {
             return;
         }
@@ -386,11 +387,11 @@ class Cookiebar
 
         foreach ($varToken as $token)
         {
-            setcookie(trim($token), "", time() - 3600, '/');
+            setcookie(trim((string) $token), "", ['expires' => time() - 3600, 'path' => '/']);
 
             foreach ($arrDomains as $domain)
             {
-                setcookie(trim($token), "", time() - 3600, '/', $domain);
+                setcookie(trim((string) $token), "", ['expires' => time() - 3600, 'path' => '/', 'domain' => $domain]);
             }
         }
     }
@@ -434,18 +435,20 @@ class Cookiebar
 
     /**
      * Create and save new log entry
+     *
+     * @throws \Exception
      */
-    public static function log(int $configId, ?string $url=null, ?string $ip=null, ?array $data=null): void
+    public static function log(int $configId, string|null $url = null, string|null $ip = null, array|null $data = null): void
     {
         $strIp = $ip ?? Environment::get('ip');
 
-        if(System::getContainer()->getParameter('contao_cookiebar.anonymize_ip'))
+        if (System::getContainer()->getParameter('contao_cookiebar.anonymize_ip'))
         {
             $strIp = IpUtils::anonymize($strIp);
         }
 
         // Check if the cookie bar exists (#128)
-        if(!$cookieBar = CookiebarModel::findById($configId))
+        if (!$cookieBar = CookiebarModel::findById($configId))
         {
             throw new \InvalidArgumentException("Cookie bar configuration could not be found, the log entry was skipped");
         }
@@ -464,12 +467,12 @@ class Cookiebar
         $objLog->ip = $strIp;
         $objLog->tstamp = time();
 
-        if(null !== $data)
+        if (null !== $data)
         {
             // Remove values which are not of type integer (#128)
             foreach ($data as $index => $cookieId)
             {
-                if(!((int) $cookieId == $cookieId))
+                if (!((int) $cookieId == $cookieId))
                 {
                     unset($data[$index]);
                 }
@@ -477,7 +480,7 @@ class Cookiebar
 
             /** @var Connection $db */
             $db = System::getContainer()->get('database_connection');
-            $result = $db->fetchAllAssociative("SELECT id, title, token FROM tl_cookie WHERE id IN (?)", [$data], [Connection::PARAM_INT_ARRAY]);
+            $result = $db->fetchAllAssociative("SELECT id, title, token FROM tl_cookie WHERE id IN (?)", [$data], [ArrayParameterType::INTEGER]);
             $objLog->config = serialize($result);
         }
 
