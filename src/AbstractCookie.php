@@ -22,32 +22,32 @@ abstract class AbstractCookie
     /**
      * Position flag: Below the content within the body tag
      */
-    const POS_BELOW = 1;
+    const int POS_BELOW = 1;
 
     /**
      * Position flag: Above the content within the body tag
      */
-    const POS_ABOVE = 2;
+    const int POS_ABOVE = 2;
 
     /**
      * Position flag: Within the head tag
      */
-    const POS_HEAD = 3;
+    const int POS_HEAD = 3;
 
     /**
      * Loading flag: Load only after confirmation
      */
-    const LOAD_CONFIRMED = 1;
+    const int LOAD_CONFIRMED = 1;
 
     /**
      * Loading flag: Load only if not confirmed
      */
-    const LOAD_UNCONFIRMED = 2;
+    const int LOAD_UNCONFIRMED = 2;
 
     /**
      * Loading flag: Load always
      */
-    const LOAD_ALWAYS = 3;
+    const int LOAD_ALWAYS = 3;
 
     /**
      * Resource scripts

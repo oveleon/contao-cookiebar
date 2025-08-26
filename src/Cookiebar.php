@@ -33,12 +33,17 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
 use Symfony\Component\HttpFoundation\IpUtils;
 
+/**
+ * ToDo: Rewrite this as a service in the future...
+ *
+ * @internal
+ */
 class Cookiebar
 {
     /**
      * Config key
      */
-    const GLOBAL_CONFIG_KEY = 'ccb_global_config';
+    const string GLOBAL_CONFIG_KEY = 'ccb_global_config';
 
     /**
      * Config cache
@@ -170,10 +175,7 @@ class Cookiebar
      */
     public static function getConfigByPage(int|PageModel $varPage): CookiebarModel|null
     {
-        if (!($varPage instanceof PageModel))
-        {
-              $objPage = PageModel::findById( $varPage );
-        }else $objPage = $varPage;
+        $objPage = !($varPage instanceof PageModel) ? PageModel::findById($varPage) : $varPage;
 
         if (!$objPage->activateCookiebar)
         {
@@ -191,11 +193,11 @@ class Cookiebar
         $objCookiebars = CookiebarModel::findAll();
         $arrCookiebars = [];
 
-        if (null != $objCookiebars)
+        if (null !== $objCookiebars)
         {
-            while ($objCookiebars->next())
+            foreach ($objCookiebars as $objCookiebar)
             {
-                $arrCookiebars[ $objCookiebars->id ] = $objCookiebars->title;
+                $arrCookiebars[$objCookiebar->id] = $objCookiebar->title;
             }
         }
 
@@ -233,25 +235,26 @@ class Cookiebar
         $objTemplate->infoDescription = $objConfig->infoDescription;
         $objTemplate->groups = $objConfig->groups;
 
-        //$objTemplate->saveLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['saveLabel'];
-        //$objTemplate->acceptAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAllLabel'];
-        //$objTemplate->denyAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['denyAllLabel'];
-        //$objTemplate->infoLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['infoLabel'];
-        //$objTemplate->showDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showDetailsLabel'];
-        //$objTemplate->hideDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideDetailsLabel'];
-        //$objTemplate->showMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showMoreDetailsLabel'];
-        //$objTemplate->hideMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideMoreDetailsLabel'];
-        //$objTemplate->providerLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['providerLabel'];
-        //$objTemplate->expireLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['expireLabel'];
-        //$objTemplate->tokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['tokenLabel'];
-        //$objTemplate->forInfix = $GLOBALS['TL_LANG']['tl_cookiebar']['forInfix'];
+        /*$objTemplate->saveLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['saveLabel'];
+        $objTemplate->acceptAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAllLabel'];
+        $objTemplate->denyAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['denyAllLabel'];
+        $objTemplate->infoLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['infoLabel'];
+        $objTemplate->showDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showDetailsLabel'];
+        $objTemplate->hideDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideDetailsLabel'];
+        $objTemplate->showMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showMoreDetailsLabel'];
+        $objTemplate->hideMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideMoreDetailsLabel'];
+        $objTemplate->providerLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['providerLabel'];
+        $objTemplate->expireLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['expireLabel'];
+        $objTemplate->tokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['tokenLabel'];
+        $objTemplate->forInfix = $GLOBALS['TL_LANG']['tl_cookiebar']['forInfix'];*/
 
         // Collect info links
         $arrLinks = [];
 
-        if ($varLinks = StringUtil::deserialize($objConfig->infoUrls))
+        if ([] !== ($varLinks = StringUtil::deserialize($objConfig->infoUrls, true)))
         {
-            foreach ($varLinks as $link) {
+            foreach ($varLinks as $link)
+            {
                 $objPage = PageModel::findById($link);
 
                 if (null !== $objPage)
@@ -263,24 +266,38 @@ class Cookiebar
 
         $objTemplate->infoUrls = $arrLinks;
 
+        /**
+         * @deprecated Deprecated since Cookiebar 2.3, to be removed in Cookiebar 3.0
+         *             use the event instead.
+         */
         // HOOK: parseCookiebarTemplate
         if (isset($GLOBALS['TL_HOOKS']['parseCookiebarTemplate']) && \is_array($GLOBALS['TL_HOOKS']['parseCookiebarTemplate']))
         {
             foreach ($GLOBALS['TL_HOOKS']['parseCookiebarTemplate'] as $callback)
             {
+                trigger_deprecation('oveleon/contao-cookiebar', '2.3', 'Using the parseCookiebarTemplate Hook is deprecated, use the event instead.');
                 System::importStatic($callback[0])->{$callback[1]}($objTemplate, $objConfig);
             }
         }
 
+        // Transform the data - BC layer due to the parseCookiebarTemplate-Hook
+        $data = $objTemplate->getData();
+
+
+        $container = System::getContainer();
+
         // Tag the response
-        if (System::getContainer()->has('fos_http_cache.http.symfony_response_tagger'))
+        if ($container->has('fos_http_cache.http.symfony_response_tagger'))
         {
             /** @var ResponseTagger $responseTagger */
-            $responseTagger = System::getContainer()->get('fos_http_cache.http.symfony_response_tagger');
+            $responseTagger = $container->get('fos_http_cache.http.symfony_response_tagger');
             $responseTagger->addTags(['oveleon.cookiebar.' . $objConfig->id]);
         }
 
-        return $objTemplate->parse();
+        return $container->get('twig')->render(
+            $objConfig->template,
+            $data,
+        );
     }
 
     /**

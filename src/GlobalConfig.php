@@ -36,6 +36,8 @@ use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
  * @property string  $scriptConfig
  * @property boolean $googleConsentMode
  * @property boolean $published
+ *
+ * @internal
  */
 class GlobalConfig extends AbstractCookie
 {
