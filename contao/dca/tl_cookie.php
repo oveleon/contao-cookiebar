@@ -70,7 +70,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['doNotCopy' => true, 'tl_class' => 'w50 m12'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'expireTime' => [
             'exclude'                 => true,
@@ -84,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['doNotCopy' => true, 'tl_class' => 'w50 m12'],
-            'sql'                     => "char(1) NOT NULL default '1'",
+            'sql'                     => ['type' => 'boolean', 'default' => true],
         ],
         'provider' => [
             'exclude'                 => true,
@@ -98,7 +98,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['doNotCopy' => true, 'tl_class' => 'w50 m12'],
-            'sql'                     => "char(1) NOT NULL default '1'",
+            'sql'                     => ['type' => 'boolean', 'default' => true],
         ],
         'type' => [
             'exclude'                 => true,
@@ -130,7 +130,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'sql'                     => ['name' => 'iframeType', 'type' => 'string', 'length' => 64, 'default' => ''],
         ],
         'blockTemplate' => [
-            'default'                 => 'ccb_element_blocker',
+            'default'                 => 'ccb/element_blocker',
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'select',
@@ -215,7 +215,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'search'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'scriptConfirmed' => [
             'exclude'                 => true,
@@ -271,14 +271,14 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'exclude'                 => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'disabled' => [
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'priority' => [
             'exclude'                 => true,
@@ -291,13 +291,13 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'blockCookies' => [
             'exclude'                 => true,
             'inputType'               => 'checkbox',
             'eval'                    =>['tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'published' => [
             'exclude'                 => true,
@@ -305,7 +305,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'toggle'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['doNotCopy' => true, 'tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
     ],
 

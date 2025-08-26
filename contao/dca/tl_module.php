@@ -36,5 +36,5 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['prefillCookies'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => ['tl_class' => 'w50 m12'],
-    'sql'                     => "char(1) NOT NULL default ''",
+    'sql'                     => ['type' => 'boolean', 'default' => false],
 ];

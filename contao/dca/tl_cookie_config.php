@@ -120,14 +120,14 @@ $GLOBALS['TL_DCA']['tl_cookie_config'] = [
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50 m12', 'submitOnChange' => true],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'published' => [
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50 m12'],
-            'sql'                     => "char(1) NOT NULL default '1'", // ToDo Boolean field migration
+            'sql'                     => ['type' => 'boolean', 'default' => true],
         ]
 	],
 

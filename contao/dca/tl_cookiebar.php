@@ -64,7 +64,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
         'updateVersion' => [
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50 m12'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'infoUrls' => [
             'exclude'                 => true,
@@ -87,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
             'search'                  => true,
             'inputType'               => 'select',
             'eval'                    => ['tl_class' => 'w50'],
-            'sql'                     => "varchar(64) NOT NULL default 'cookiebar_default_deny'",
+            'sql'                     => "varchar(64) NOT NULL default 'cookiebar/default/deny'",
         ],
         'alignment' => [
             'exclude'                 => true,
@@ -116,12 +116,12 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
         'blocking' => [
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50 clr'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'hideOnInit' => [
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
         'essentialCookieLanguage' => [
             'exclude'                 => true,
@@ -155,7 +155,7 @@ $GLOBALS['TL_DCA']['tl_cookiebar'] = [
         'disableTrackingWhileLoggedIn' => [
             'inputType'               => 'checkbox',
             'eval'                    => ['tl_class' => 'w50 m12'],
-            'sql'                     => "char(1) NOT NULL default ''",
+            'sql'                     => ['type' => 'boolean', 'default' => false],
         ],
     ],
 

@@ -34,21 +34,21 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['activateCookiebar'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => ['tl_class' => 'w50', 'submitOnChange' => true],
-    'sql'                     => "char(1) NOT NULL default ''",
+    'sql'                     => ['type' => 'boolean', 'default' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['triggerCookiebar'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => ['tl_class' => 'w50', 'submitOnChange' => true],
-    'sql'                     => "char(1) NOT NULL default ''",
+    'sql'                     => ['type' => 'boolean', 'default' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['prefillCookies'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => ['tl_class' => 'w50'],
-    'sql'                     => "char(1) NOT NULL default ''",
+    'sql'                     => ['type' => 'boolean', 'default' => false],
 ];
 
 
@@ -56,7 +56,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['overwriteCookiebarMeta'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => ['tl_class' => 'w50 m12', 'submitOnChange' => true],
-    'sql'                     => "char(1) NOT NULL default ''",
+    'sql'                     => ['type' => 'boolean', 'default' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarConfig'] = [
@@ -137,14 +137,14 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarBlocking'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => ['tl_class' => 'w50 clr'],
-    'sql'                     => "char(1) NOT NULL default ''",
+    'sql'                     => ['type' => 'boolean', 'default' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['cookiebarHideOnInit'] = [
     'exclude'                 => true,
     'inputType'               => 'checkbox',
     'eval'                    => ['tl_class' => 'w50'],
-    'sql'                     => "char(1) NOT NULL default ''",
+    'sql'                     => ['type' => 'boolean', 'default' => false],
 ];
 
 // Extend the default palettes
