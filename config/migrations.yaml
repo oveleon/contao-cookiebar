@@ -15,3 +15,10 @@ services:
             - '@database_connection'
         tags:
             - { name: contao.migration, priority: 0 }
+
+    contao_cookiebar.migration.cookiebar_twig_templates_migration:
+        class: Oveleon\ContaoCookiebar\Migration\CookiebarTwigTemplatesMigration
+        arguments:
+            - '@database_connection'
+        tags:
+            - { name: contao.migration, priority: 0 }

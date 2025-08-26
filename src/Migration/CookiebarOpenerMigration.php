@@ -43,8 +43,6 @@ class CookiebarOpenerMigration extends AbstractMigration
             return false;
         }
 
-        $columns = $schemaManager->listTableColumns('tl_content');
-
         $total = $this->connection->fetchOne('SELECT COUNT(*) FROM tl_content WHERE type=?', ['cookiebarOpener']);
         $total += $this->connection->fetchOne('SELECT COUNT(*) FROM tl_module WHERE type=?', ['cookiebarOpener']);
 
