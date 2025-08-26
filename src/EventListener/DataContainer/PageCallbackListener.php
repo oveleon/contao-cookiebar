@@ -14,22 +14,25 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
-use Contao\Controller;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
+use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
 use Oveleon\ContaoCookiebar\Cookiebar;
 
-class PageCallbackListener
+readonly class PageCallbackListener
 {
     /**
      * Cookiebar opener trigger CSS Class
      */
-    const CLASS_TRIGGER = 'ccb-trigger';
+    const string CLASS_TRIGGER = 'ccb-trigger';
 
     /**
      * Cookiebar prefill settings CSS Class
      */
-    const CLASS_PREFILL = 'ccb-prefill';
+    const string CLASS_PREFILL = 'ccb-prefill';
+
+    public function __construct(private FinderFactory $finderFactory)
+    {}
 
     /**
      * Attach trigger CSS Class
@@ -73,11 +76,17 @@ class PageCallbackListener
     #[AsCallback(table: 'tl_page', target: 'fields.cookiebarTemplate.options')]
     public function getCookiebarTemplates(): array
     {
-        return Controller::getTemplateGroup('cookiebar_');
+        return $this->finderFactory
+            ->create()
+            ->identifier('cookiebar')
+            ->extension('html.twig')
+            ->withVariants()
+            ->asTemplateOptions()
+        ;
     }
 
     /**
-     * Return all cookiebar templates
+     * Return all cookiebar configurations
      */
     #[AsCallback(table: 'tl_page', target: 'fields.cookiebarConfig.options')]
     public function getCookiebarConfigurations(): array

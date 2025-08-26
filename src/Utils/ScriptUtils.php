@@ -74,6 +74,4 @@ class ScriptUtils
     {
         $this->globalJavaScript = $globalJavaScript;
     }
-
-
 }

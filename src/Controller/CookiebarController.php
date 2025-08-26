@@ -28,9 +28,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * ContentApiController provides all routes.
- */
 #[Route('/cookiebar', defaults: ['_scope' => 'frontend'])]
 readonly class CookiebarController
 {

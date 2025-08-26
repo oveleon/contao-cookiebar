@@ -17,6 +17,7 @@ namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 use Contao\Controller;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
+use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
 use Contao\Image;
 use Contao\Message;
@@ -30,14 +31,15 @@ use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class CookieCallbackListener
+readonly class CookieCallbackListener
 {
     use CookiebarTrait;
 
     public function __construct(
-        private readonly RequestStack        $requestStack,
-        private readonly Connection          $connection,
-        private readonly TranslatorInterface $translator
+        private RequestStack $requestStack,
+        private Connection $connection,
+        private TranslatorInterface $translator,
+        private FinderFactory $finderFactory,
     ){}
 
     /**
@@ -301,7 +303,13 @@ class CookieCallbackListener
     #[AsCallback(table: 'tl_cookie', target: 'fields.blockTemplate.options')]
     public function getBlockTemplates(): array
     {
-        return Controller::getTemplateGroup('ccb_element_');
+        return $this->finderFactory
+            ->create()
+            ->identifier('ccb/element_blocker')
+            ->extension('html.twig')
+            ->withVariants()
+            ->asTemplateOptions()
+        ;
     }
 
     /**

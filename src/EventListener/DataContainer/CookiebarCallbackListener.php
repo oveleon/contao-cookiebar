@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
-use Contao\Controller;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
+use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
 use Contao\Message;
 use Contao\System;
@@ -25,12 +25,14 @@ use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class CookiebarCallbackListener
+readonly class CookiebarCallbackListener
 {
     public function __construct(
-        private readonly Connection          $connection,
-        private readonly TranslatorInterface $translator
-    ){}
+        private Connection $connection,
+        private TranslatorInterface $translator,
+        private FinderFactory $finderFactory,
+    ) {
+    }
 
     /**
      * Create essential group and cookies
@@ -103,7 +105,13 @@ class CookiebarCallbackListener
     #[AsCallback(table: 'tl_cookiebar', target: 'fields.template.options')]
     public function getCookiebarTemplates(): array
     {
-        return Controller::getTemplateGroup('cookiebar_');
+        return $this->finderFactory
+            ->create()
+            ->identifier('cookiebar')
+            ->extension('html.twig')
+            ->withVariants()
+            ->asTemplateOptions()
+        ;
     }
 
     /**
