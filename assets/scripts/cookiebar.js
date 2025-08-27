@@ -270,7 +270,7 @@ let ContaoCookiebar = (function () {
                             (resource.mode === 2 && !confirmed) ||
                             (resource.mode === 3)
                         ) {
-                            if (cache(getChacheToken(config, index), 'config_resource')) {
+                            if (cache(getCacheToken(config, index), 'config_resource')) {
                                 return;
                             }
 
@@ -289,7 +289,7 @@ let ContaoCookiebar = (function () {
                             (script.mode === 2 === !confirmed) ||
                             (script.mode === 3)
                         ) {
-                            if (cache(getChacheToken(config, index), 'config_script')) {
+                            if (cache(getCacheToken(config, index), 'config_script')) {
                                 return;
                             }
 
@@ -320,7 +320,7 @@ let ContaoCookiebar = (function () {
                             (resource.mode === 2 && !cookie.confirmed) ||
                             (resource.mode === 3)
                         ) {
-                            if (cache(getChacheToken(cookie, index), 'resource')) {
+                            if (cache(getCacheToken(cookie, index), 'resource')) {
                                 return;
                             }
 
@@ -339,7 +339,7 @@ let ContaoCookiebar = (function () {
                             (script.mode === 2 === !cookie.confirmed) ||
                             (script.mode === 3)
                         ) {
-                            if (cache(getChacheToken(cookie, index), 'script')) {
+                            if (cache(getCacheToken(cookie, index), 'script')) {
                                 return;
                             }
 
@@ -459,7 +459,7 @@ let ContaoCookiebar = (function () {
             return false;
         };
 
-        const getChacheToken = function (cookie, index) {
+        const getCacheToken = function (cookie, index) {
             return cookie.id + '' + index;
         }
 

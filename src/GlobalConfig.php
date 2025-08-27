@@ -116,13 +116,13 @@ class GlobalConfig extends AbstractCookie
             $this->addResource(
                 $src,
                 StringUtil::deserialize($this->sourceUrlParameter) ?: null,
-                $this->sourceLoadingMode
+                (int) $this->sourceLoadingMode
             );
         }
 
         if ($src = $this->scriptConfig)
         {
-            $this->addScript($src, $this->scriptLoadingMode, $this->scriptPosition);
+            $this->addScript($src, (int) $this->scriptLoadingMode, (int) $this->scriptPosition);
         }
     }
 

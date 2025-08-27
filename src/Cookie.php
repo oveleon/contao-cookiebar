@@ -158,18 +158,18 @@ class Cookie extends AbstractCookie
             $this->addResource(
                 $src,
                 StringUtil::deserialize($this->sourceUrlParameter) ?: null,
-                $this->sourceLoadingMode
+                (int) $this->sourceLoadingMode
             );
         }
 
         if ($src = $this->scriptConfirmed)
         {
-            $this->addScript($src, self::LOAD_CONFIRMED, $this->scriptPosition);
+            $this->addScript($src, self::LOAD_CONFIRMED, (int) $this->scriptPosition);
         }
 
         if ($src = $this->scriptUnconfirmed)
         {
-            $this->addScript($src, self::LOAD_UNCONFIRMED, $this->scriptPosition);
+            $this->addScript($src, self::LOAD_UNCONFIRMED, (int) $this->scriptPosition);
         }
     }
 
@@ -197,7 +197,7 @@ class Cookie extends AbstractCookie
         {
             foreach ($scripts as $script)
             {
-                $this->addScript($script->nodeValue, self::LOAD_CONFIRMED, $this->scriptPosition);
+                $this->addScript($script->nodeValue, self::LOAD_CONFIRMED, (int) $this->scriptPosition);
             }
         }
     }
@@ -209,8 +209,7 @@ class Cookie extends AbstractCookie
     {
         $this->addResource(
             'https://www.googletagmanager.com/gtag/js?id=' . $this->vendorId,
-            ['async'],
-            self::LOAD_CONFIRMED
+            ['async']
         );
 
         $this->addScript(

@@ -38,11 +38,11 @@ Since version `1.14.0` it is possible to add open the cookie bar with following 
 
 The following parameters can be added to further customize the text, title and prefill options
 
-| Option             | Example                                                 | Default                                                     |
-|--------------------|---------------------------------------------------------|-------------------------------------------------------------|
-| `Link text`        | `{{cookiebar::show::My link name}}`                     | `$GLOBALS['TL_LANG']['tl_cookiebar']['changePrivacyLabel']` |
-| `Link title`       | `{{cookiebar::show::My link name::This is a title}}`    | empty                                                       |
-| `Prefill settings` | `{{cookiebar::show::My link name::This is a title::0}}` | 1 (true)                                                    |
+| Option             | Example                                                 | Default                          |
+|--------------------|---------------------------------------------------------|----------------------------------|
+| `Link text`        | `{{cookiebar::show::My link name}}`                     | `cookiebar.change_privacy_label` |
+| `Link title`       | `{{cookiebar::show::My link name::This is a title}}`    | empty                            |
+| `Prefill settings` | `{{cookiebar::show::My link name::This is a title::0}}` | 1 (true)                         |
 
 
 ## Create your own links to open the cookie bar
