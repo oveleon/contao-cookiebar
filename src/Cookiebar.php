@@ -31,6 +31,7 @@ use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
 use Oveleon\ContaoCookiebar\Model\CookieLogModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Oveleon\ContaoCookiebar\Model\GlobalConfigModel;
+use Oveleon\ContaoCookiebar\Utils\TwigRenderTrait;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 /**
@@ -40,6 +41,8 @@ use Symfony\Component\HttpFoundation\IpUtils;
  */
 class Cookiebar
 {
+    use TwigRenderTrait;
+
     /**
      * Config key
      */
@@ -215,7 +218,7 @@ class Cookiebar
     /**
      * Parse Cookiebar template
      */
-    public static function parseCookiebarTemplate(CookiebarModel $objConfig, null|string $strLanguage = null): string
+    public static function parseCookiebarTemplate(CookiebarModel $objConfig, string|null $strLanguage = null): string
     {
         System::loadLanguageFile('tl_cookiebar', $strLanguage);
 
@@ -223,7 +226,7 @@ class Cookiebar
 
         $cssID = StringUtil::deserialize($objConfig->cssID, true) + [null, null];
         $objTemplate->cssID = $cssID[0];
-        $objTemplate->class = $cssID[1] ? $objConfig->template . ' ' . $objConfig->alignment . ' ' . trim((string) $cssID[1]) : $objConfig->template . ' ' . $objConfig->alignment;
+        $objTemplate->class = $cssID[1] ? $objConfig->alignment . ' ' . trim((string) $cssID[1]) : $objConfig->alignment;
 
         if ($objConfig->blocking)
         {
@@ -234,19 +237,6 @@ class Cookiebar
         $objTemplate->buttonColorScheme = $objConfig->buttonColorScheme;
         $objTemplate->infoDescription = $objConfig->infoDescription;
         $objTemplate->groups = $objConfig->groups;
-
-        /*$objTemplate->saveLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['saveLabel'];
-        $objTemplate->acceptAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['acceptAllLabel'];
-        $objTemplate->denyAllLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['denyAllLabel'];
-        $objTemplate->infoLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['infoLabel'];
-        $objTemplate->showDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showDetailsLabel'];
-        $objTemplate->hideDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideDetailsLabel'];
-        $objTemplate->showMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['showMoreDetailsLabel'];
-        $objTemplate->hideMoreDetailsLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['hideMoreDetailsLabel'];
-        $objTemplate->providerLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['providerLabel'];
-        $objTemplate->expireLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['expireLabel'];
-        $objTemplate->tokenLabel = $GLOBALS['TL_LANG']['tl_cookiebar']['tokenLabel'];
-        $objTemplate->forInfix = $GLOBALS['TL_LANG']['tl_cookiebar']['forInfix'];*/
 
         // Collect info links
         $arrLinks = [];
@@ -283,7 +273,6 @@ class Cookiebar
         // Transform the data - BC layer due to the parseCookiebarTemplate-Hook
         $data = $objTemplate->getData();
 
-
         $container = System::getContainer();
 
         // Tag the response
@@ -294,10 +283,7 @@ class Cookiebar
             $responseTagger->addTags(['oveleon.cookiebar.' . $objConfig->id]);
         }
 
-        return $container->get('twig')->render(
-            $objConfig->template,
-            $data,
-        );
+        return self::renderTwigTemplate($objConfig->template, $data);
     }
 
     /**
@@ -413,43 +399,6 @@ class Cookiebar
         }
     }
 
-    private static function parseGlobalResources(array|null &$resources): void
-    {
-        if (null === $resources)
-        {
-            return;
-        }
-
-        $insertTagParser = System::getContainer()->get('contao.insert_tag.parser');
-
-        foreach ($resources as &$resource)
-        {
-            if (isset($resource['src']))
-            {
-                $resource['src'] = $insertTagParser->replaceInline($resource['src']);
-            }
-        }
-    }
-
-    /**
-     * Return a collection of possible domains
-     */
-    private static function getDomainCollection(string $domain): array
-    {
-        $arrCollection = [$domain, '.' . $domain];
-
-        preg_match("/[^\.\/]+\.[^\.\/]+$/", $domain, $matches);
-        $strDomain = $matches[0];
-
-        // Add domain without subdomains
-        $arrCollection[] = $strDomain;
-
-        // Add domain without subdomains and starting dot
-        $arrCollection[] = '.' . $strDomain;
-
-        return array_unique($arrCollection);
-    }
-
     /**
      * Create and save new log entry
      *
@@ -502,5 +451,42 @@ class Cookiebar
         }
 
         $objLog->save();
+    }
+
+    private static function parseGlobalResources(array|null &$resources): void
+    {
+        if (null === $resources)
+        {
+            return;
+        }
+
+        $insertTagParser = System::getContainer()->get('contao.insert_tag.parser');
+
+        foreach ($resources as &$resource)
+        {
+            if (isset($resource['src']))
+            {
+                $resource['src'] = $insertTagParser->replaceInline($resource['src']);
+            }
+        }
+    }
+
+    /**
+     * Return a collection of possible domains
+     */
+    private static function getDomainCollection(string $domain): array
+    {
+        $arrCollection = [$domain, '.' . $domain];
+
+        preg_match("/[^\.\/]+\.[^\.\/]+$/", $domain, $matches);
+        $strDomain = $matches[0];
+
+        // Add domain without subdomains
+        $arrCollection[] = $strDomain;
+
+        // Add domain without subdomains and starting dot
+        $arrCollection[] = '.' . $strDomain;
+
+        return array_unique($arrCollection);
     }
 }

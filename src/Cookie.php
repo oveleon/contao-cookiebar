@@ -135,6 +135,11 @@ class Cookie extends AbstractCookie
         return $this->{$strKey} ?? $this->objModel->{$strKey} ?? null;
     }
 
+    public function __call(string $strKey, array $arguments): mixed
+    {
+        return $this->{$strKey} ?? $this->objModel->{$strKey} ?? null;
+    }
+
     /**
      * Compile cookie of type "script"
      */

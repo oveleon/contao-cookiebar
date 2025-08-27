@@ -22,6 +22,7 @@ use Contao\System;
 use Contao\Validator;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
+use Oveleon\ContaoCookiebar\Utils\TwigRenderTrait;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +32,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/cookiebar', defaults: ['_scope' => 'frontend'])]
 readonly class CookiebarController
 {
+    use TwigRenderTrait;
+
     public function __construct(
         private ContaoFramework $framework,
         private TranslatorInterface $translator,
@@ -66,18 +69,11 @@ readonly class CookiebarController
             return new Response('The redirect destination must be a valid URL.', Response::HTTP_BAD_REQUEST);
         }
 
-        $objTemplate = new FrontendTemplate($objCookie->blockTemplate ?: 'ccb_element_blocker');
-
-        $objTemplate->language = $locale;
-        $objTemplate->id = $objCookie->id;
-        $objTemplate->title = $objCookie->title;
-        $objTemplate->type = $objCookie->type;
-        $objTemplate->iframeType = $objCookie->iframeType;
-        $objTemplate->description = $objCookie->blockDescription;
-        $objTemplate->redirect = $strUrl;
-        $objTemplate->acceptAndDisplayLabel = $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default', $locale);
-
-        return $objTemplate->getResponse();
+        return new Response($this->renderTwigTemplate($objCookie->blockTemplate ?: 'ccb/element_blocker', [
+            'locale' => $locale,
+            'cookie' => $objCookie,
+            'redirect' => $strUrl,
+        ]));
     }
 
     /**
