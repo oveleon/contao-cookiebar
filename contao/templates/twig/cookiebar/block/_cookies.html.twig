@@ -1,4 +1,5 @@
 {% trans_default_domain "contao_default" %}
+{% use "@Contao_ContaoCookiebar/cookiebar/block/_info.html.twig" %}
 
 {% block cookies %}
     {{ group.description|default|insert_tag_raw|raw }}
@@ -9,9 +10,9 @@
             {{ cookie.description|default|insert_tag_raw|raw }}
             {% apply spaceless %}
                 <div class="cc-cookie-info">
-                    {{- _self.cookie_info(cookie.provider, cookie.showProvider, 'providerLabel') -}}
-                    {{- _self.cookie_info(cookie.expireTime, cookie.showExpireTime, 'expireLabel') -}}
-                    {{- _self.cookie_info(cookie.token, cookie.showTokens, 'tokenLabel') -}}
+                    {% with {label: cookie.provider, show: cookie.showProvider, translation_key: 'providerLabel'} %}{{ block('cookie_info') }}{% endwith %}
+                    {% with {label: cookie.expireTime, show: cookie.showExpireTime, translation_key: 'expireLabel'} %}{{ block('cookie_info') }}{% endwith %}
+                    {% with {label: cookie.token, show: cookie.showTokens, translation_key: 'tokenLabel'} %}{{ block('cookie_info') }}{% endwith %}
                 </div>
             {% endapply %}
             {% if cookie.detailDescription %}
@@ -26,9 +27,3 @@
         </div>
     {% endfor %}
 {% endblock %}
-
-{% macro cookie_info(label, show, translation) %}
-    {% if label|default and show %}
-        <div><span>{{ ('tl_cookiebar.' ~ translation)|trans }}:</span> {{ label }}</div>
-    {% endif %}
-{% endmacro %}

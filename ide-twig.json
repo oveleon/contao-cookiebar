@@ -1,0 +1,8 @@
+{
+  "namespaces": [
+    {
+      "namespace": "Contao_ContaoCookiebar",
+      "path": "contao/templates/twig"
+    }
+  ]
+}
