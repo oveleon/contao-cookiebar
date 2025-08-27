@@ -107,7 +107,7 @@ readonly class CookiebarCallbackListener
     {
         return $this->finderFactory
             ->create()
-            ->identifier('cookiebar')
+            ->identifier('cookiebar/default')
             ->extension('html.twig')
             ->withVariants()
             ->asTemplateOptions()

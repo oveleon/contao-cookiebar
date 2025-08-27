@@ -1,105 +1,24 @@
-{% trans_default_domain "contao_default" %}
+{% use "@Contao_ContaoCookiebar/ccb/_script.html.twig" %}
+{% use "@Contao_ContaoCookiebar/ccb/_styles.html.twig" %}
+
 <!DOCTYPE html>
-<html lang="{{ language  }}">
+<html lang="{{ locale }}">
 <head>
 {% block head %}
+    <title>{{ cookie.title }}</title>
     <meta name="robots" content="noindex,nofollow" />
-    <style>
-    {%- block styles %}
-        .ccb-element-blocker {
-            font-size: 14px;
-            font-family: sans-serif;
-            text-align: center;
-            color: #6f6f6f;
-
-            .cc-icon {
-                position: relative;
-                width: 220px;
-                height: 110px;
-                margin: 0 auto 8px;
-
-                &::after {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    bottom: 0;
-                    right: 0;
-                    background-position: center center;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-image: url("/bundles/contaocookiebar/images/default.png");
-                }
-
-                &.vimeo::after {
-                    background-image: url("/bundles/contaocookiebar/images/vimeo.png");
-                }
-
-                &.youtube::after {
-                    background-image: url("/bundles/contaocookiebar/images/youtube.png");
-                }
-
-                &.googlemaps::after {
-                    background-image: url("/bundles/contaocookiebar/images/googlemaps.png");
-                }
-
-                &.openstreetmap::after {
-                    background-image: url("/bundles/contaocookiebar/images/openstreetmap.png");
-                }
-            }
-
-            .cc-title {
-                font-weight: bold;
-            }
-
-            .cc-btn {
-                display: inline-block;
-                cursor: pointer;
-                padding: 8px 14px;
-                font-size: 15px;
-                outline: 0 none;
-                border: 1px solid #cfcfcf;
-                border-radius: 4px;
-                color: #444;
-                background: #f5f5f5;
-
-                &:hover {
-                    background: #ececec;
-                }
-            }
-        }
-    {%- endblock -%}
-    </style>
-    <script>
-    {%- block script %}
-    // Check if the cookie bar is ready, otherwise respond to document load (#148)
-    if (parent.cookiebar) {
-        redirectIfNecessary()
-    } else {
-        parent.addEventListener('load', () => {
-            redirectIfNecessary()
-        })
-    }
-    function redirectIfNecessary() {
-        if (parent.cookiebar.issetCookie({{ id }})) {
-            const decoder = document.createElement('textarea');
-            decoder.innerHTML = '{{ redirect }}';
-            window.frameElement.src = '{{ redirect }}';
-            window.location.href = decoder.value;
-        }
-    }
-    {%- endblock -%}
-    </script>
+    {{ block('script') }}
+    {{ block('styles') }}
 {% endblock %}
 </head>
 <body>
 {% block body %}
-    <div class="ccb-element-blocker <?=$this->type?>">
+    <div class="ccb-element-blocker {{ cookie.type }}">
         {% block blocker_content %}
-            <div class="cc-icon <?=$this->iframeType?>"></div>
-            <div class="cc-title"><?=$this->title?></div>
-            <div class="cc-description"><?=$this->description?></div>
-            <button class="cc-btn cc-focus" onclick="parent.cookiebar.unblock(window.frames.frameElement, {{ id }}, '{{ redirect }}')">{{ 'tl_cookiebar.acceptAndDisplayLabel'|trans }}</button>
+            <div class="cc-icon {{ cookie.iframeType }}"></div>
+            <div class="cc-title">{{ cookie.title }}</div>
+            <div class="cc-description">{{ cookie.blockDescription|default|csp_inline_styles|insert_tag|encode_email|raw }}</div>
+            <button class="cc-btn cc-focus" onclick="parent.cookiebar.unblock(window.frames.frameElement, {{ cookie.id }}, '{{ redirect }}')">{{ 'tl_cookiebar.acceptAndDisplayLabel'|trans({}, 'contao_default', locale) }}</button>
         {% endblock %}
     </div>
 {% endblock %}

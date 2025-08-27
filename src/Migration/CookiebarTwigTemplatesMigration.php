@@ -60,9 +60,9 @@ class CookiebarTwigTemplatesMigration extends AbstractMigration
         foreach ($cookiebarTemplates as $cookiebar)
         {
             $replacement = match ($cookiebar['template'] ?? null) {
+                'cookiebar_default' => '',
                 'cookiebar_default_deny' => 'cookiebar/default/deny',
-                'cookiebar_default' => 'cookiebar/default',
-                'cookiebar_simple' => 'cookiebar/simple/deny',
+                'cookiebar_simple' => 'cookiebar/default/simple',
                 default => null,
             };
 
@@ -76,7 +76,7 @@ class CookiebarTwigTemplatesMigration extends AbstractMigration
         {
             if ('ccb_element_blocker' === ($cookie['blockTemplate'] ?? null))
 
-            $this->connection->update('tl_cookie', ['blockTemplate' => 'ccb/element_blocker'], ['id' => $cookie['id']]);
+            $this->connection->update('tl_cookie', ['blockTemplate' => ''], ['id' => $cookie['id']]);
         }
 
         return $this->createResult(true);

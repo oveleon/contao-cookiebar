@@ -1,0 +1,34 @@
+{% trans_default_domain "contao_default" %}
+
+{% block cookies %}
+    {{ group.description|default|insert_tag_raw|raw }}
+    {% for cookie in group.cookies %}
+        <div class="cc-cookie">
+            <input type="checkbox" name="cookie[]" id="{{ 'c' ~ cookie.id }}" value="{{ cookie.id }}" {% if cookie.isLocked or cookie.isDisbaled %} disabled checked{% endif %}>
+            <label for="{{ 'c' ~ cookie.id }}" class="cookie">{{ cookie.title }}</label>
+            {{ cookie.description|default|insert_tag_raw|raw }}
+            {% apply spaceless %}
+                <div class="cc-cookie-info">
+                    {{- _self.cookie_info(cookie.provider, cookie.showProvider, 'providerLabel') -}}
+                    {{- _self.cookie_info(cookie.expireTime, cookie.showExpireTime, 'expireLabel') -}}
+                    {{- _self.cookie_info(cookie.token, cookie.showTokens, 'tokenLabel') -}}
+                </div>
+            {% endapply %}
+            {% if cookie.detailDescription %}
+                <button class="cc-detail-btn cc-focus" data-toggle-group aria-expanded="false" aria-controls="{{ 'cc' ~ group.id }}">
+                    <span>{{ 'tl_cookiebar.showMoreDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ cookie.title}}</span></span>
+                    <span>{{ 'tl_cookiebar.hideMoreDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ cookie.title}}</span></span>
+                </button>
+                <div id="{{ 'cc' ~ cookie.id }}" class="cc-cookie-desc toggle-group" style="display: none">
+                    {{ cookie.detailDescription|default|insert_tag_raw|raw }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% macro cookie_info(label, show, translation) %}
+    {% if label|default and show %}
+        <div><span>{{ ('tl_cookiebar.' ~ translation)|trans }}:</span> {{ label }}</div>
+    {% endif %}
+{% endmacro %}

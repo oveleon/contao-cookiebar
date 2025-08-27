@@ -1,5 +1,6 @@
 {% trans_default_domain "contao_default" %}
 {% use "@Contao/component/_stylesheet.html.twig" %}
+{% use "@Contao_ContaoCookiebar/cookiebar/_groups.html.twig" %}
 
 {%- set wrapper_attributes = attrs()
     .setIfExists('id', cssID)
@@ -11,11 +12,9 @@
 -%}
 
 {%- set inner_attributes = attrs()
-    .setIfExists('id', cssID)
-    .addClass(['contao-cookiebar', 'cc-wrap', class])
-    .set('role', 'complementary')
-    .set('aria-describedby', 'cookiebar-desc')
-    .set('data-nosnippet')
+    .addClass('cc-inner')
+    .set('aria-live', 'assertive')
+    .set('role', 'alert')
     .mergeWith(inner_attributes|default)
 -%}
 
@@ -24,69 +23,27 @@
     <div{{ inner_attributes }}>
         <div id="cookiebar-desc" class="cc-head">
             {% block header %}
-                {{ description }}
+                {{ description|default|insert_tag_raw|raw }}
             {% endblock %}
         </div>
 
-        <div class="cc-groups">
-            {% block groups %}
-                {% for group in groups %}
-                    <div class="cc-group">
-                        {% if group.hasCookies %}
-                            <input type="checkbox" name="group[]" id="{{ 'g' ~ group.id }}" value="{{ group.id }}" data-toggle-cookies{% if group.isLocked %} disabled checked{% endif %}>
-                        {% endif %}
-                        <label{% if group.hasCookies %} for="{{ 'g' ~ group.id }}"{% endif %} class="group">{{ group.title }}</label>
-                        <button class="cc-detail-btn cc-focus" data-toggle-group aria-expanded="false" aria-controls="{{ 'cg' ~ group.id }}">
-                            <span>{{ 'tl_cookiebar.showDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ group.title}}</span></span>
-                            <span>{{ 'tl_cookiebar.hideDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ group.title}}</span></span>
-                        </button>
-                        <div id="{{ 'cg' ~ group.id }}" class="cc-cookies toggle-group">
-                            {{ group.description }}
-                            {% for cookie in group.cookies %}
-                                <div class="cc-cookie">
-                                    <input type="checkbox" name="cookie[]" id="{{ 'c' ~ cookie.id }}" value="{{ cookie.id }}" {% if cookie.isLocked or cookie.isDisbaled %} disabled checked{% endif %}>
-                                    <label for="{{ 'c' ~ cookie.id }}" class="cookie">{{ cookie.title }}</label>
-                                    {{ cookie.description }}
-                                    {% if (cookie.provider and cookie.showProvider) or (cookie.expireTime and cookie.showExpireTime) or (cookie.token and cookie.showTokens) %}
-                                        <div class="cc-cookie-info">
-                                            {% if cookie.provider and cookie.showProvider %}
-                                                <div><span>{{ 'tl_cookiebar.providerLabel'|trans }}:</span> {{ cookie.provider }}</div>
-                                            {% endif %}
-                                            {% if cookie.expireTime and cookie.showExpireTime %}
-                                                <div><span>{{ 'tl_cookiebar.expireLabel'|trans }}:</span> {{ cookie.expireTime }}</div>
-                                            {% endif %}
-                                            {% if cookie.token and cookie.showTokens %}
-                                                <div><span>{{ 'tl_cookiebar.tokenLabel'|trans }}:</span> {{ cookie.token }}</div>
-                                            {% endif %}
-                                        </div>
-                                    {% endif %}
-                                    {% if cookie.detailDescription %}
-                                        <button class="cc-detail-btn cc-focus" data-toggle-group aria-expanded="false" aria-controls="{{ 'cc' ~ group.id }}">
-                                            <span>{{ 'tl_cookiebar.showMoreDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ cookie.title}}</span></span>
-                                            <span>{{ 'tl_cookiebar.hideMoreDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ cookie.title}}</span></span>
-                                        </button>
-                                        <div id="{{ 'cc' ~ cookie.id }}" class="cc-cookie-desc toggle-group" style="display: none">
-                                            {{ cookie.detailDescription }}
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endblock %}
-        </div>
+        {% block groups_outer %}
+            <div class="cc-groups">
+                {{ block('groups') }}
+            </div>
+        {% endblock %}
 
         <div class="cc-footer {{ buttonColorScheme }}">
             {% block actions %}
                 <button class="cc-btn cc-focus save" data-save>{{ 'tl_cookiebar.saveLabel'|trans }}</button>
                 <button class="cc-btn cc-focus success" data-accept-all>{{ 'tl_cookiebar.acceptAllLabel'|trans }}</button>
             {% endblock %}
+            {% block footer %}{% endblock %}
         </div>
 
         <div class="cc-info">
             {% block info %}
-                {{ infoDescription }}
+                {{ infoDescription|default|insert_tag_raw|raw }}
                 {% for name, link in infoUrls %}
                     <a class="cc-focus" href="{{ link }}">{{ name }}</a>
                 {% endfor %}
@@ -98,7 +55,7 @@
 
 {% block style %}
     {% add "contao_cookiebar" to stylesheets %}
-        {% with {file: contao_cookiebar|default(asset('default.css', 'contao_cookiebar'))} %}
+        {% with {file: contao_cookiebar|default(asset('default.css', 'contao_cookiebar' ))} %}
             {{ block('stylesheet_component') }}
         {% endwith %}
     {% endadd %}
