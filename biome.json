@@ -1,8 +1,8 @@
 {
-    "$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
     "files": {
         "ignoreUnknown": true,
-        "includes": ["public/**", "!**/*.min.js", "!**/*.min.css"],
+        "includes": ["assets/**", "public/**", "!**/*.min.js", "!**/*.min.css"]
     },
     "formatter": {
         "indentStyle": "space",

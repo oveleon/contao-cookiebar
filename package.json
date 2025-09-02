@@ -3,6 +3,7 @@
     "devDependencies": {
         "@biomejs/biome": "^2.2",
         "@symfony/webpack-encore": "^5.1",
+        "npm-run-all": "^4.1",
         "postcss": "^8.5",
         "postcss-loader": "^8.1",
         "postcss-preset-env": "^10.2",
@@ -21,8 +22,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
-        "lint:js": "biome check --write --unsafe assets/accessibility/scripts",
-        "lint:css": "stylelint --fix assets/accessibility/styles",
+        "lint:js": "biome check --write --unsafe assets/scripts/",
+        "lint:css": "stylelint --fix assets/styles",
         "lint": "run-s lint:js lint:css"
     }
 }
