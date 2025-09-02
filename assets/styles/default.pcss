@@ -1,10 +1,9 @@
-@import "cookiebar.pcss";
+@import url("cookiebar.pcss");
 
 .cc-group {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
+    place-content: center space-between;
 
     > label {
         flex-grow: 1;
@@ -30,30 +29,23 @@
 
 :is(.cc-detail-btn, .cc-detail-btn-details) {
     display: inline-block;
-
     color: var(--ccb-detail-clr, #a2a2a2);
-
     border: 0 none;
     outline: 0 none;
     background: transparent;
-
     font-size: 13px;
     letter-spacing: 0;
     text-transform: initial;
-
     cursor: pointer;
 
     span {
-
         &:nth-child(2) {
             display: none;
         }
     }
 
     &.cc-active {
-
         span {
-
             &:nth-child(1) {
                 display: none;
             }

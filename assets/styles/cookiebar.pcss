@@ -1,18 +1,6 @@
-.cc-head > * {
-
-    &:first-child {
-        margin-top: 0;
-    }
-
-    &:last-child {
-        margin-bottom: 15px;
-    }
-}
-
 .contao-cookiebar {
-    --ccb-backdrop: rgba(0, 0, 0, .75);
+    --ccb-backdrop: rgb(0 0 0 / 75%);
     --ccb-anim-duration: .5s;
-
     --ccb-checked-clr: #399d32;
     --ccb-checked-bg: #dcf3db;
     --ccb-unchecked-clr: #9c9b99;
@@ -24,19 +12,15 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-
     display: flex;
     align-items: var(--ccb-align, center);
     justify-content: var(--ccb-justify, center);
-
     letter-spacing: 0;
     padding: 15px;
     max-height: 100dvh;
-
     box-sizing: border-box;
     pointer-events: none;
     overflow: hidden;
-
     color: var(--ccb-clr, #444);
 
     * {
@@ -80,15 +64,12 @@
             &::before {
                 top: 7px;
                 left: 0;
-
                 width: 35px;
                 height: 18px;
                 margin: 0;
-
                 box-sizing: content-box;
                 background: var(--ccb-unchecked-bg);
                 border: 1px solid var(--ccb-unchecked-clr);
-
                 transition: border-color .2s;
             }
 
@@ -96,11 +77,9 @@
                 display: block;
                 top: 11px;
                 left: 4px;
-
                 width: 12px;
                 height: 12px;
                 background: var(--ccb-unchecked-clr);
-
                 transition: background .2s, margin-left .2s, padding .2s;
             }
 
@@ -114,7 +93,6 @@
         }
 
         &:checked + label {
-
             &::after {
                 background: var(--ccb-checked-clr);
                 margin-left: 17px;
@@ -144,9 +122,7 @@
         }
 
         &:focus-visible:not(.cc-hide-focus) {
-
             + label {
-
                 &::before {
                     outline: 3px dashed var(--ccb-focus-clr);
                     outline-offset: 2px;
@@ -158,16 +134,13 @@
     .cc-btn {
         display: inline-block;
         cursor: pointer;
-
         width: 100%;
         padding: 8px 14px;
         margin-bottom: 8px;
         font-size: 15px;
-
         outline: 0 none;
         border: 1px solid var(--ccb-btn-bdr, #cfcfcf);
         border-radius: 4px;
-
         color: var(--ccb-btn-clr, #444);
         background: var(--ccb-btn-bg, #f5f5f5);
 
@@ -192,7 +165,6 @@
     }
 
     .highlight {
-
         .success {
             --ccb-btn-bg: #4e9e3e;
             --ccb-btn-bg-hvr: #4c933f;
@@ -202,8 +174,17 @@
     }
 }
 
-.cc-focus:not(.cc-hide-focus) {
+.cc-head > * {
+    &:first-child {
+        margin-top: 0;
+    }
 
+    &:last-child {
+        margin-bottom: 15px;
+    }
+}
+
+.cc-focus:not(.cc-hide-focus) {
     &:focus-visible {
         outline: 3px dashed var(--ccb-focus-clr);
         outline-offset: -3px;
@@ -212,7 +193,7 @@
 
 .cc-invisible {
     border: 0;
-    clip: rect(0 0 0 0);
+    clip: rect(0 0 0 0); /* stylelint-disable-line property-no-deprecated */
     height: 1px;
     margin: -1px;
     overflow: hidden;
@@ -225,23 +206,17 @@
 .cc-inner {
     display: inline-block;
     overflow-y: auto;
-
     max-height: 100%;
     max-width: 100%;
-
     padding: 23px;
     border-radius: 3px;
-
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-
     font-size: 1rem;
     text-align: left;
-
     background: var(--ccb-bg, #fff);
-    box-shadow: var(--ccb-box-shadow, rgba(99, 99, 99, 0.2)) 0 2px 8px 0;
-
+    box-shadow: var(--ccb-box-shadow, rgb(99 99 99 / 20%)) 0 2px 8px 0;
     animation: var(--ccb-anim, cookiebar-middle-in) var(--ccb-anim-duration) ease-in-out forwards;
 }
 
@@ -264,14 +239,13 @@
     }
 
     > div {
-
         > span {
             font-weight: 600;
         }
 
         + div {
             margin-top: 5px;
-            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
     }
 
@@ -297,7 +271,6 @@
 }
 
 .cc-cookie {
-
     label.cookie + * {
         margin-top: 10px;
     }
@@ -309,7 +282,6 @@
 }
 
 .cc-cookie-desc {
-
     p {
         margin-bottom: 0;
     }
@@ -346,7 +318,6 @@
 }
 
 .cc-active {
-
     .cc-inner {
         opacity: 1;
         pointer-events: auto;
@@ -360,7 +331,6 @@
 }
 
 .cc-saved {
-
     &.cc-inner {
         opacity: 0;
         pointer-events: none;
@@ -394,7 +364,6 @@
 }
 
 .cc-middle {
-
     &.cc-active {
         --ccb-anim: cookiebar-middle-in;
     }
@@ -420,7 +389,6 @@
 
 @media (width >= 768px) {
     .contao-cookiebar {
-
         .cc-btn {
             width: auto;
             margin-bottom: 0;
@@ -434,20 +402,17 @@
 
 @media (forced-colors) {
     .contao-cookiebar {
-
         input {
-
             + label {
-
                 &::after {
-                    border: 1px solid currentColor;
+                    border: 1px solid currentcolor;
                 }
             }
         }
     }
 
     .cc-inner {
-        border: 1px solid currentColor;
+        border: 1px solid currentcolor;
     }
 
     input.cc-group-half + label::after {
@@ -469,9 +434,10 @@
 
 @keyframes cookiebar-overlay-in {
     0% {
-        background: rgba(0, 0, 0, 0);
+        background: rgb(0 0 0 / 0%);
     }
-    to {
+
+    100% {
         background: var(--ccb-backdrop);
     }
 }
@@ -480,8 +446,9 @@
     0% {
         background: var(--ccb-backdrop);
     }
-    to {
-        background: rgba(0, 0, 0, 0);
+
+    100% {
+        background: rgb(0 0 0 / 0%);
         visibility: hidden;
     }
 }
@@ -491,7 +458,8 @@
         opacity: 0;
         transform: translateY(-100%);
     }
-    to {
+
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
@@ -503,7 +471,8 @@
         visibility: visible;
         transform: translateY(0);
     }
-    to {
+
+    100% {
         opacity: 0;
         visibility: hidden;
         transform: translateY(-100%);
@@ -515,7 +484,8 @@
         opacity: 0;
         transform: scale(0);
     }
-    to {
+
+    100% {
         opacity: 1;
         transform: scale(1);
     }
@@ -527,7 +497,8 @@
         visibility: visible;
         transform: scale(1);
     }
-    to {
+
+    100% {
         opacity: 0;
         visibility: hidden;
         transform: scale(0);
@@ -539,7 +510,8 @@
         opacity: 0;
         transform: translateY(100%);
     }
-    to {
+
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
@@ -551,7 +523,8 @@
         visibility: visible;
         transform: translateY(0);
     }
-    to {
+
+    100% {
         opacity: 0;
         visibility: hidden;
         transform: translateY(100%);
