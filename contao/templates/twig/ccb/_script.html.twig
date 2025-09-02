@@ -9,7 +9,7 @@ if (parent.cookiebar) {
     })
 }
 function redirectIfNecessary() {
-    if (parent.cookiebar.issetCookie({{ cookie.id }})) {
+    if (parent.cookiebar.cookieExists({{ cookie.id }})) {
         const decoder = document.createElement('textarea');
         decoder.innerHTML = '{{ redirect }}';
         window.frameElement.src = '{{ redirect }}';

@@ -1,42 +1,36 @@
-/**
- * Contao Cookiebar
- */
-let ContaoCookiebar = (function () {
+import { syncPreferences } from './components/cookiebar';
+import { DEFAULT_CONFIG } from './data/defaults';
+import { cookiebarInitEvent, cookiebarSaveEvent } from './events/cookiebarEvents';
+import { extend } from './lib/extend.js';
+import { serialize } from './lib/serialize.js';
+import {
+    createScript,
+    getHostname,
+    getTime,
+    insertAtPosition,
+    isExpired,
+    isFocusable,
+    isPageAllowed,
+    isTrackingAllowed,
+    logger,
+    onResourceLoaded,
+    sortCookiesByLoadingOrder,
+} from './lib/utils';
+import { log } from './modules/log.js';
+import { add as addModule, call as callModule } from './modules/module';
+import { cache, getToken as getCacheToken } from './store/cache';
+import { cookieExists, getStorage, setStorage } from './store/store';
 
+const ContaoCookiebar = (function () {
     'use strict';
 
-    let Constructor = function (settings) {
-        let p = {}, cookiebar = {}, defaults = {
-            selector: '.contao-cookiebar',
-            token: 'ccb_contao_token',
-            configId: null,
-            pageId: null,
-            hideOnInit: false,
-            blocking: false,
-            focusTrap: true,
-            version: null,
-            lifetime: 63072000,
-            consentLog: false,
-            cookies: null,
-            configs: null,
-            doNotTrack: false,
-            currentPageId: 0,
-            excludedPageIds: null,
-            disableTracking: false,
-            texts: {
-                acceptAndDisplay: 'Accept'
-            },
-            classes: {
-                onSave: 'cc-saved',
-                onShow: 'cc-active',
-                onGroupToggle: 'cc-active',
-                onGroupSplitSelection: 'cc-group-half'
-            },
-        };
+    return function (settings) {
+        let p = {},
+            cookiebar = {};
 
         const init = function () {
             // Defaults
-            cookiebar.settings = extend(true, defaults, settings);
+            cookiebar.settings = extend(true, DEFAULT_CONFIG, settings);
             cookiebar.dom = document.querySelector(cookiebar.settings.selector);
             cookiebar.cache = {};
             cookiebar.modules = {};
@@ -44,16 +38,16 @@ let ContaoCookiebar = (function () {
             cookiebar.resourcesEvents = [];
             cookiebar.show = false;
 
-            let storage = getStorage();
+            let storage = getStorage(cookiebar);
 
             // Set visibility
             if (
                 !cookiebar.settings.hideOnInit &&
                 (parseInt(storage.version) !== parseInt(cookiebar.settings.version) ||
                     parseInt(storage.configId) !== parseInt(cookiebar.settings.configId) ||
-                    isExpired(storage.saved)) &&
-                isTrackingAllowed() &&
-                isPageAllowed()
+                    isExpired(storage.saved, cookiebar)) &&
+                isTrackingAllowed(cookiebar) &&
+                isPageAllowed(cookiebar)
             ) {
                 cookiebar.show = true;
             }
@@ -68,53 +62,32 @@ let ContaoCookiebar = (function () {
 
             // Trigger logger info
             if (cookiebar.settings.disableTracking) {
-                logger('The execution of scripts is prevented. Please log out of the backend to test scripts, or disable the setting within the cookiebar config.');
+                logger(
+                    'The execution of scripts is prevented. Please log out of the backend to test scripts, or disable the setting within the cookiebar config.',
+                );
             }
 
-            // Register events
-            registerEvents();
-
-            // Register trigger events
-            registerTriggerEvents();
-
+            registerEvents(); // Register events
+            registerTriggerEvents(); // Register trigger events
 
             if (cookiebar.settings.focusTrap) {
-                // Initialize focus trap
                 initFocusTrap();
             }
 
             if (cookiebar.settings.blocking) {
-                // Register inert observer
                 registerInertObserver();
             }
 
-            // Sort cookies
-            sortCookiesByLoadingOrder();
-
-            // Validate cookies from storage
+            sortCookiesByLoadingOrder(cookiebar);
             validateCookies(storage.cookies);
-
-            // Check visibility
             checkVisibility();
-
-            // Load global config
-            setConfigs();
-
-            // Load scripts
-            setScripts();
+            setConfigurations();
+            loadScripts();
 
             // Restore temporary status
-            restoreCookieStatus();
+            syncPreferences(cookiebar);
 
-            // Custom event (init)
-            let event = new CustomEvent("cookiebar_init", {
-                detail: {
-                    visibility: cookiebar.show,
-                    cookiebar: cookiebar
-                }
-            });
-
-            window.dispatchEvent(event);
+            window.dispatchEvent(cookiebarInitEvent(cookiebar));
         };
 
         const save = function (e) {
@@ -128,7 +101,7 @@ let ContaoCookiebar = (function () {
                 mode = 2;
             }
 
-            inert(false)
+            inert(false);
 
             cookiebar.inputs.forEach(function (input) {
                 if (mode === 2) {
@@ -140,37 +113,40 @@ let ContaoCookiebar = (function () {
             });
 
             // Overwrite current storage
-            setStorage({
-                configId: cookiebar.settings.configId,
-                pageId: cookiebar.settings.pageId,
-                version: cookiebar.settings.version,
-                saved: getTime(),
-                cookies: arrCookies
-            });
+            setStorage(
+                {
+                    configId: cookiebar.settings.configId,
+                    pageId: cookiebar.settings.pageId,
+                    version: cookiebar.settings.version,
+                    saved: getTime(),
+                    cookies: arrCookies,
+                },
+                cookiebar,
+            );
 
             // Validate new set of cookies
             validateCookies(arrCookies, true);
 
-            // Set configs
-            setConfigs();
-
-            // Set scripts
-            setScripts();
+            setConfigurations();
+            loadScripts();
 
             // Add new log entry
-            log();
+            log(cookiebar, getStorage(cookiebar));
 
             // Show iframes and call modules
             if (arrCookies.length) {
                 arrCookies.forEach(function (cookieId) {
                     // Iframes
-                    if (cookiebar.settings.cookies.hasOwnProperty('_' + cookieId) && cookiebar.settings.cookies['_' + cookieId].type === 'iframe') {
+                    if (
+                        cookiebar.settings.cookies.hasOwnProperty('_' + cookieId) &&
+                        cookiebar.settings.cookies['_' + cookieId].type === 'iframe'
+                    ) {
                         unblockIframe(cookieId);
                     }
 
                     // Modules
                     if (cookiebar.modules.hasOwnProperty('_' + cookieId)) {
-                        callModule(cookieId);
+                        callModule(cookiebar, cookieId);
                     }
                 });
             }
@@ -178,39 +154,26 @@ let ContaoCookiebar = (function () {
             // Add CSS class
             cookiebar.dom.classList.add(cookiebar.settings.classes.onSave);
 
-            // Custom event (save)
-            let event = new CustomEvent("cookiebar_save", {
-                detail: {
-                    cookiebar: cookiebar
-                }
-            });
+            window.dispatchEvent(cookiebarSaveEvent(cookiebar));
 
-            window.dispatchEvent(event);
-
-            restoreCookieStatus(true);
+            syncPreferences(cookiebar, true);
         };
 
         const push = function (cookieId) {
-            let storage = getStorage();
+            let storage = getStorage(cookiebar);
 
             if (!storage.cookies.includes(cookieId)) {
                 // Update storage
                 storage.cookies.push(parseInt(cookieId));
-                setStorage(storage);
+                setStorage(storage, cookiebar);
 
                 // Set new status
                 cookiebar.settings.cookies['_' + cookieId].confirmed = true;
 
                 // Add new log entry
-                log();
+                log(cookiebar, storage);
             }
         };
-
-        const sortCookiesByLoadingOrder = function () {
-            const arrPrioritySorted = Object.entries(cookiebar.settings.cookies ?? {}).sort(([, a], [, b]) => b.priority - a.priority);
-            // ES6 Object.fromEntries implementation with prefix on keys to keep priority order
-            cookiebar.settings.cookies = Array.from(arrPrioritySorted).reduce((acc, [k, v]) => Object.assign(acc, {[`_${k}`]: v}), {});
-        }
 
         const validateCookies = function (arrCookies, deleteCookies) {
             let arrDelete = [];
@@ -242,14 +205,13 @@ let ContaoCookiebar = (function () {
             if (true === deleteCookies && arrDelete.length) {
                 let request = new XMLHttpRequest();
                 request.open('POST', '/cookiebar/delete', true);
-                request.send(serialize({tokens: arrDelete}));
+                request.send(serialize({ tokens: arrDelete }));
             }
         };
 
-        const setConfigs = function () {
+        const setConfigurations = function () {
             let configId;
             for (configId in cookiebar.settings.configs) {
-
                 if (!cookiebar.settings.configs.hasOwnProperty(configId)) {
                     continue;
                 }
@@ -268,9 +230,9 @@ let ContaoCookiebar = (function () {
                         if (
                             (resource.mode === 1 && confirmed) ||
                             (resource.mode === 2 && !confirmed) ||
-                            (resource.mode === 3)
+                            resource.mode === 3
                         ) {
-                            if (cache(getCacheToken(config, index), 'config_resource')) {
+                            if (cache(getCacheToken(config, index), 'config_resource', cookiebar)) {
                                 return;
                             }
 
@@ -285,11 +247,11 @@ let ContaoCookiebar = (function () {
                         // 2. load script only if one of the cookies was not confirmed
                         // 3. load script always
                         if (
-                            (script.mode === 1 === confirmed) ||
-                            (script.mode === 2 === !confirmed) ||
-                            (script.mode === 3)
+                            (script.mode === 1) === confirmed ||
+                            (script.mode === 2) === !confirmed ||
+                            script.mode === 3
                         ) {
-                            if (cache(getCacheToken(config, index), 'config_script')) {
+                            if (cache(getCacheToken(config, index), 'config_script', cookiebar)) {
                                 return;
                             }
 
@@ -300,10 +262,9 @@ let ContaoCookiebar = (function () {
             }
         };
 
-        const setScripts = function () {
+        const loadScripts = function () {
             let cookieId;
             for (cookieId in cookiebar.settings.cookies) {
-
                 if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
                     continue;
                 }
@@ -318,9 +279,9 @@ let ContaoCookiebar = (function () {
                         if (
                             (resource.mode === 1 && cookie.confirmed) ||
                             (resource.mode === 2 && !cookie.confirmed) ||
-                            (resource.mode === 3)
+                            resource.mode === 3
                         ) {
-                            if (cache(getCacheToken(cookie, index), 'resource')) {
+                            if (cache(getCacheToken(cookie, index), 'resource', cookiebar)) {
                                 return;
                             }
 
@@ -335,11 +296,11 @@ let ContaoCookiebar = (function () {
                         // 2. load script if cookie not confirmed
                         // 3. load script always
                         if (
-                            (script.mode === 1 === cookie.confirmed) ||
-                            (script.mode === 2 === !cookie.confirmed) ||
-                            (script.mode === 3)
+                            (script.mode === 1) === cookie.confirmed ||
+                            (script.mode === 2) === !cookie.confirmed ||
+                            script.mode === 3
                         ) {
-                            if (cache(getCacheToken(cookie, index), 'script')) {
+                            if (cache(getCacheToken(cookie, index), 'script', cookiebar)) {
                                 return;
                             }
 
@@ -373,13 +334,12 @@ let ContaoCookiebar = (function () {
             try {
                 let scripts = document.querySelectorAll('script[src]');
                 let host = getHostname(resource.src);
-                for (let i = scripts.length; i--;) {
+                for (let i = scripts.length; i--; ) {
                     if (scripts[i].src.indexOf(host) !== -1 && host !== window.location.host) {
                         return false;
                     }
                 }
-            } catch (e) {
-            }
+            } catch (e) {}
 
             // Load resource
             let script = document.createElement('script');
@@ -407,29 +367,11 @@ let ContaoCookiebar = (function () {
             document.head.append(script);
         };
 
-        const insertAtPosition = function (strContent, pos) {
-            switch (pos) {
-                case 1:
-                    // below content body
-                    document.body.append(strContent);
-                    break;
-                case 2:
-                    // above content body
-                    document.body.prepend(strContent);
-                    break;
-                case 3:
-                    // head
-                    document.head.append(strContent);
-                    break;
-            }
-        };
-
         const checkCookieConfirmation = function (cookies) {
             let confirmed = false;
             let cookieId;
 
             for (cookieId in cookies) {
-
                 if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
                     continue;
                 }
@@ -445,31 +387,9 @@ let ContaoCookiebar = (function () {
             return confirmed;
         };
 
-        const cache = function (token, type) {
-            // Create new cache bag
-            if (!cookiebar.cache[type]) {
-                cookiebar.cache[type] = [];
-            }
-
-            if (cookiebar.cache[type].indexOf(token) !== -1) {
-                return true;
-            }
-
-            cookiebar.cache[type].push(token);
-            return false;
-        };
-
-        const getCacheToken = function (cookie, index) {
-            return cookie.id + '' + index;
-        }
-
-        const logger = function (message) {
-            console.info('%cContao Cookiebar:', 'background: #fff09b; color: #222; padding: 3px', '\n' + message)
-        }
-
         const registerTriggerEvents = function () {
             document.querySelectorAll('a.ccb-trigger, strong.ccb-trigger').forEach(function (btn) {
-                applyTriggerEvent(btn)
+                applyTriggerEvent(btn);
             });
 
             // See #152
@@ -478,24 +398,24 @@ let ContaoCookiebar = (function () {
                     if (mutation.type === 'childList') {
                         mutation.addedNodes.forEach(function (element) {
                             if (element.matches && element.matches('a.ccb-trigger, strong.ccb-trigger')) {
-                                applyTriggerEvent(element)
+                                applyTriggerEvent(element);
                             }
-                        })
+                        });
                     }
                 }
             }).observe(document, {
                 attributes: false,
                 childList: true,
-                subtree: true
+                subtree: true,
             });
-        }
+        };
 
         const applyTriggerEvent = function (el) {
             el.addEventListener('click', function (e) {
                 e.preventDefault();
                 p.show(el.classList.contains('ccb-prefill'));
             });
-        }
+        };
 
         const registerEvents = function () {
             let btnToggleCookies = cookiebar.dom.querySelectorAll('[data-toggle-cookies]');
@@ -519,32 +439,6 @@ let ContaoCookiebar = (function () {
                     btn.addEventListener('click', toggleGroup);
                 });
             }
-        };
-
-        const registerModule = function (cookieId, callback) {
-            if (cookiebar.modules.hasOwnProperty('_' + cookieId)) {
-                cookiebar.modules['_' + cookieId].push(callback);
-            } else {
-                cookiebar.modules['_' + cookieId] = [callback];
-            }
-        };
-
-        const callModule = function (cookieId) {
-            let modules = document.querySelectorAll('.cc-module[data-ccb-id="' + cookieId + '"]');
-
-            if (!!modules) {
-                modules.forEach(function (module) {
-                    module.parentNode.removeChild(module);
-                });
-            }
-
-            cookiebar.modules['_' + cookieId].forEach(function (callback) {
-                callback();
-            });
-
-            delete cookiebar.modules['_' + cookieId];
-
-            restoreCookieStatus();
         };
 
         const processResourceEvents = function () {
@@ -573,150 +467,82 @@ let ContaoCookiebar = (function () {
                 });
             }
 
-            restoreCookieStatus();
+            syncPreferences(cookiebar);
         };
 
-        const restoreCookieStatus = function (force) {
-            let objStorage = getStorage();
-            let cookies = [];
-
-            if (!cookiebar.show && force !== true) {
-                return;
-            }
-
-            if (objStorage.cookies && objStorage.cookies.length) {
-                cookies = objStorage.cookies;
-            } else if (objStorage.version === -1) {
-                for (let cookieId in cookiebar.settings.cookies) {
-                    const cid = parseInt(cookieId.replace('_', ''));
-
-                    if (cookiebar.settings.cookies[cookieId].checked) {
-                        cookies.push(cid)
-                    }
-                }
-            }
-
-            if (cookies.length) {
-                cookies.forEach(function (cookieId, index) {
-                    let input = cookiebar.dom.querySelector('[id="c' + cookieId + '"]');
-
-                    if (!!input) {
-                        input.checked = true;
-                    }
-                });
-            }
-
-            let arrGroupInputs = cookiebar.dom.querySelectorAll('input[name="group[]"]');
-
-            if (!!arrGroupInputs) {
-                arrGroupInputs.forEach(function (groupInput) {
-                    if (groupInput.disabled) {
-                        return;
-                    }
-
-                    groupInput.checked = false;
-                    groupInput.classList.remove(cookiebar.settings.classes.onGroupSplitSelection);
-
-                    let inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
-                    let arrGroup = [];
-
-                    if (!!inputs) {
-                        inputs.forEach(function (input) {
-                            if (!input.disabled) {
-                                arrGroup.push(!!input.checked);
-                            }
-                        });
-
-                        if (arrGroup.indexOf(false) === -1) {
-                            groupInput.checked = true;
-                        } else if (arrGroup.indexOf(true) !== -1 && arrGroup.indexOf(false) !== -1) {
-                            groupInput.classList.add(cookiebar.settings.classes.onGroupSplitSelection);
-                        }
-                    }
-                });
-            }
-        };
-
-        const isFocusable = function (element) {
-            while (element) {
-                const style = window.getComputedStyle(element);
-
-                if (style.display === 'none') {
-                    return false;
-                }
-
-                element = element.parentElement;
-            }
-
-            return true;
-        };
-
-        const initFocusTrap = function () {
-            const focusable = cookiebar.dom.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), input[type="checkbox"]:not([disabled])');
+        const initFocusTrap = function (cookiebar) {
+            const focusable = cookiebar.dom.querySelectorAll(
+                'a[href]:not([disabled]), button:not([disabled]), input[type="checkbox"]:not([disabled])',
+            );
 
             cookiebar.toggleOpener = cookiebar.dom.querySelector('[data-ft-opener]');
             cookiebar.firstFocus = focusable[0];
             cookiebar.lastFocus = focusable[focusable.length - 1];
-        }
+        };
 
         const focusTrap = function (e) {
-            if (!(e.key === 'Tab' || e.keyCode === 9))
-                return;
+            if (!(e.key === 'Tab' || e.keyCode === 9)) return;
 
             if (!cookiebar.focused) {
                 cookiebar.focused = true;
-                cookiebar.firstFocus?.classList.remove('cc-hide-focus')
+                cookiebar.firstFocus?.classList.remove('cc-hide-focus');
             }
 
             if (document.activeElement === cookiebar.lastFocus && !e.shiftKey) {
                 e.preventDefault();
-                cookiebar.firstFocus?.focus()
+                cookiebar.firstFocus?.focus();
             }
 
             if (document.activeElement === cookiebar.firstFocus && e.shiftKey) {
-                e.preventDefault()
-                cookiebar.lastFocus?.focus()
+                e.preventDefault();
+                cookiebar.lastFocus?.focus();
             }
 
-            if (document.activeElement === cookiebar.toggleOpener && !isFocusable(cookiebar.lastFocus) && cookiebar.toggleOpener.ariaExpanded === 'false' && !e.shiftKey) {
+            if (
+                document.activeElement === cookiebar.toggleOpener &&
+                !isFocusable(cookiebar.lastFocus) &&
+                cookiebar.toggleOpener.ariaExpanded === 'false' &&
+                !e.shiftKey
+            ) {
                 e.preventDefault();
-                cookiebar.firstFocus?.focus()
+                cookiebar.firstFocus?.focus();
             }
-        }
+        };
 
         const inert = function (state) {
             if (cookiebar.settings.blocking) {
-                cookiebar.dom?.parentElement.querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')?.forEach(el => {
-                    state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
-                })
+                cookiebar.dom?.parentElement
+                    .querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')
+                    ?.forEach((el) => {
+                        state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
+                    });
             }
 
-            if (!cookiebar.settings.focusTrap)
-                return;
+            if (!cookiebar.settings.focusTrap) return;
 
             if (state) {
                 document.addEventListener('keydown', focusTrap);
                 cookiebar.dom.querySelector('.cc-inner').onanimationend = () => {
-                    cookiebar.focused = false
-                    cookiebar.firstFocus?.classList.add('cc-hide-focus')
-                    cookiebar.firstFocus?.focus({preventScroll: true})
-                }
+                    cookiebar.focused = false;
+                    cookiebar.firstFocus?.classList.add('cc-hide-focus');
+                    cookiebar.firstFocus?.focus({ preventScroll: true });
+                };
             } else {
-                document.removeEventListener('keydown', focusTrap)
+                document.removeEventListener('keydown', focusTrap);
             }
-        }
+        };
 
         // Check for children that are added whilst the page builds (race-condition)
         const registerInertObserver = function () {
-            new MutationObserver(list => {
+            new MutationObserver((list) => {
                 for (const mutation of list) {
                     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                        mutation.addedNodes.forEach(node => {
+                        mutation.addedNodes.forEach((node) => {
                             if (
-                                cookiebar.show
-                                && node.nodeType === Node.ELEMENT_NODE
-                                && !node.classList.contains('.contao-cookiebar')
-                                && !node.hasAttribute('inert')
+                                cookiebar.show &&
+                                node.nodeType === Node.ELEMENT_NODE &&
+                                !node.classList.contains('.contao-cookiebar') &&
+                                !node.hasAttribute('inert')
                             ) {
                                 node.setAttribute('inert', '');
                             }
@@ -725,18 +551,18 @@ let ContaoCookiebar = (function () {
                 }
             }).observe(cookiebar.dom, {
                 childList: true,
-                subtree: false
+                subtree: false,
             });
-        }
+        };
 
         const checkVisibility = function () {
             if (cookiebar.show) {
                 cookiebar.dom.classList.remove(cookiebar.settings.classes.onSave);
                 cookiebar.dom.classList.add(cookiebar.settings.classes.onShow);
-                inert(true)
+                inert(true);
             } else {
                 cookiebar.dom.classList.remove(cookiebar.settings.classes.onShow);
-                inert(false)
+                inert(false);
             }
         };
 
@@ -760,265 +586,39 @@ let ContaoCookiebar = (function () {
 
             this.setAttribute('aria-expanded', state ? 'true' : 'false');
 
-            try {
-                let groups = this.parentElement.querySelectorAll(':scope > .toggle-group');
+            let groups = this.parentElement.querySelectorAll(':scope > .toggle-group');
 
-                if (groups) {
-                    groups.forEach(function (group, index) {
-                        group.style.display = state ? 'block' : 'none';
-                    });
-                }
-            } catch (err) {
-                // IE11 Fallback
-                let group = this.parentElement.querySelector('[data-toggle-group] ~ .toggle-group');
-                group.style.display = state ? 'block' : 'none';
+            if (groups) {
+                groups.forEach(function (group, index) {
+                    group.style.display = state ? 'block' : 'none';
+                });
             }
 
             this.classList.toggle(cookiebar.settings.classes.onGroupToggle);
         };
 
-        const log = function () {
-            if (!cookiebar.settings.consentLog) {
-                return;
-            }
-
-            let request = new XMLHttpRequest();
-
-            let parameter = {
-                referrer: window.location.pathname,
-                configId: cookiebar.settings.configId,
-                pageId: cookiebar.settings.pageId,
-                cookies: getStorage().cookies
-            };
-
-            request.open('GET', '/cookiebar/log?' + serialize(parameter), true);
-            request.send();
-        };
-
-        const polyfill = function () {
-            // execute only for ie
-            if (!window.document.documentMode) {
-                return;
-            }
-
-            if (window.NodeList && !NodeList.prototype.forEach) {
-                NodeList.prototype.forEach = Array.prototype.forEach;
-            }
-
-            (function (arr) {
-                arr.forEach(function (item) {
-                    if (item.hasOwnProperty('append')) {
-                        return;
-                    }
-                    Object.defineProperty(item, 'append', {
-                        configurable: true,
-                        enumerable: true,
-                        writable: true,
-                        value: function append() {
-                            var argArr = Array.prototype.slice.call(arguments),
-                                docFrag = document.createDocumentFragment();
-
-                            argArr.forEach(function (argItem) {
-                                var isNode = argItem instanceof Node;
-                                docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-                            });
-
-                            this.appendChild(docFrag);
-                        }
-                    });
-                });
-            })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
-
-            (function (arr) {
-                arr.forEach(function (item) {
-                    if (item.hasOwnProperty('prepend')) {
-                        return;
-                    }
-                    Object.defineProperty(item, 'prepend', {
-                        configurable: true,
-                        enumerable: true,
-                        writable: true,
-                        value: function prepend() {
-                            var argArr = Array.prototype.slice.call(arguments),
-                                docFrag = document.createDocumentFragment();
-
-                            argArr.forEach(function (argItem) {
-                                var isNode = argItem instanceof Node;
-                                docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-                            });
-
-                            this.insertBefore(docFrag, this.firstChild);
-                        }
-                    });
-                });
-            })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
-
-            (function () {
-                if (typeof window.CustomEvent === "function") return false;
-
-                function CustomEvent(event, params) {
-                    params = params || {bubbles: false, cancelable: false, detail: undefined};
-                    var evt = document.createEvent('CustomEvent');
-                    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-                    return evt;
-                }
-
-                CustomEvent.prototype = window.Event.prototype;
-                window.CustomEvent = CustomEvent;
-            })();
-        };
-
-        /** Helper methods */
-
-        const serialize = function (obj, prefix) {
-            let str = [],
-                p;
-            for (p in obj) {
-                if (obj.hasOwnProperty(p)) {
-                    let k = prefix ? prefix + "[" + p + "]" : p,
-                        v = obj[p];
-                    str.push((v !== null && typeof v === "object") ?
-                        serialize(v, k) :
-                        encodeURIComponent(k) + "=" + encodeURIComponent(v));
-                }
-            }
-            return str.join("&");
-        };
-
-        const extend = function () {
-            let extended = {};
-            let deep = false;
-            let i = 0;
-            let length = arguments.length;
-
-            if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
-                deep = arguments[0];
-                i++;
-            }
-
-            let merge = function (obj) {
-                for (let prop in obj) {
-                    if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-                        // If deep merge and property is an object, merge properties
-                        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
-                            extended[prop] = extend(true, extended[prop], obj[prop]);
-                        } else {
-                            extended[prop] = obj[prop];
-                        }
-                    }
-                }
-            };
-
-            for (; i < length; i++) {
-                let obj = arguments[i];
-                merge(obj);
-            }
-
-            return extended;
-        };
-
-        const generateToken = function () {
-            return cookiebar.settings.token + '_' + cookiebar.settings.configId;
-        };
-
-        const createScript = function (html) {
-            let script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
-            script.innerHTML = html;
-
-            return script;
-        };
-
-        const setStorage = function (objStorage) {
-            localStorage.setItem(generateToken(), JSON.stringify(objStorage));
-        };
-
-        const getStorage = function () {
-            let objStorage = localStorage.getItem(generateToken());
-
-            if (null === objStorage) {
-                objStorage = {
-                    configId: cookiebar.settings.configId,
-                    pageId: cookiebar.settings.pageId,
-                    version: -1,
-                    saved: -1,
-                    cookies: []
-                };
-
-                localStorage.setItem(generateToken(), JSON.stringify(objStorage));
-            } else {
-                objStorage = JSON.parse(objStorage);
-            }
-
-            return objStorage;
-        };
-
-        const getHostname = function (url) {
-            let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
-            return matches && matches[1];
-        };
-
-        const getTime = function () {
-            return Math.floor(+new Date() / 1000);
-        };
-
-        const isPageAllowed = function () {
-            return !(cookiebar.settings.currentPageId && cookiebar.settings.excludedPageIds && cookiebar.settings.excludedPageIds.indexOf(cookiebar.settings.currentPageId) !== -1);
-        };
-
-        const isTrackingAllowed = function () {
-            if (!cookiebar.settings.doNotTrack) {
-                return true;
-            }
-
-            if (window.doNotTrack || navigator.doNotTrack || navigator.msDoNotTrack) {
-                return !(window.doNotTrack == "1" || navigator.doNotTrack == "yes" || navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1");
-            }
-
-            return true;
-        };
-
-        const isExpired = function (time) {
-            let st = parseInt(time);
-            let lt = parseInt(cookiebar.settings.lifetime);
-
-            if (isNaN(st) || st === -1 || lt === 0) {
-                return false;
-            }
-
-            return st + lt < getTime();
-        }
-
-        /** Public methods */
-
+        /**
+         * Public methods
+         *
+         */
         p.get = function () {
             return cookiebar;
         };
 
         p.getStorage = function () {
-            return getStorage();
+            return getStorage(cookiebar);
         };
 
+        /**
+         * @deprecated issetCookie() has been deprecated, use cookieExists() instead
+         */
         p.issetCookie = function (varCookie) {
-            let cookieId;
-            let arrCookies = getStorage();
+            console.warn('cookiebar.issetCookie() is deprecated. Use cookiebar.cookieExists() instead.');
+            return p.cookieExists(varCookie);
+        };
 
-            if (!arrCookies.cookies) {
-                return false;
-            }
-
-            if (typeof varCookie == 'number') {
-                return arrCookies.cookies.indexOf(varCookie) !== -1;
-            }
-
-            for (cookieId in cookiebar.settings.cookies) {
-                if (null !== cookiebar.settings.cookies[cookieId].token && cookiebar.settings.cookies[cookieId].token.indexOf(varCookie) !== -1) {
-                    return arrCookies.cookies.indexOf(cookiebar.settings.cookies[cookieId].id) !== -1;
-                }
-            }
-
-            return arrCookies.cookies.indexOf(varCookie.toString()) !== -1;
+        p.cookieExists = function (varCookie) {
+            return cookieExists(varCookie, cookiebar);
         };
 
         p.unblock = function (element, cookieId, url) {
@@ -1033,76 +633,11 @@ let ContaoCookiebar = (function () {
         };
 
         p.addModule = function (cookieId, callback, objContent) {
-            registerModule(cookieId, callback);
-
-            if (p.issetCookie(cookieId)) {
-                callModule(cookieId);
-                return false;
-            }
-
-            if (objContent && typeof objContent === 'object' && objContent.selector) {
-                let container = null;
-
-                if (typeof objContent.selector === 'string') {
-                    container = document.querySelector(objContent.selector);
-                } else {
-                    container = objContent.selector;
-                }
-
-                if (!!container) {
-                    let html = document.createElement("div");
-                    html.setAttribute('data-ccb-id', cookieId);
-                    html.classList.add('cc-module');
-
-                    if (!!objContent.message) {
-                        html.innerHTML = '<p>' + objContent.message + '</p>';
-                    }
-
-                    if (typeof objContent.button === 'object' && true === objContent.button.show) {
-                        var btn = document.createElement("button");
-                        btn.innerHTML = objContent.button.text || cookiebar.settings.texts.acceptAndDisplay;
-                        btn.type = objContent.button.type || 'button';
-
-                        if (objContent.button.classes) {
-                            btn.className = objContent.button.classes;
-                        }
-
-                        btn.addEventListener('click', function () {
-                            push(cookieId);
-                            callModule(cookieId);
-                        });
-
-                        html.append(btn);
-                    }
-
-                    container.appendChild(html);
-                }
-            }
+            return addModule(cookieId, callback, objContent, cookiebar);
         };
 
         p.onResourceLoaded = function (cookieId, callback) {
-            if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
-                logger.warn(`Cookie ID ${cookieId} does not exists.`)
-                return false;
-            }
-
-            if (!cookiebar.settings.cookies[cookieId].resources.length) {
-                logger.warn(`The cookie ID ${cookieId} does not contain any resources.`)
-                return false;
-            }
-
-            // Get resource by cookie id
-            const resource = cookiebar.settings.cookies[cookieId].resources[0].src;
-
-            // Check if resource already loaded
-            if (cookiebar.loadedResources.indexOf(resource) !== -1) {
-                callback();
-            } else {
-                cookiebar.resourcesEvents.push({
-                    src: resource,
-                    callback: callback
-                });
-            }
+            onResourceLoaded(cookieId, callback, cookiebar);
         };
 
         p.show = function (restore) {
@@ -1110,7 +645,7 @@ let ContaoCookiebar = (function () {
             checkVisibility();
 
             if (!!restore) {
-                restoreCookieStatus();
+                syncPreferences(cookiebar);
             }
         };
 
@@ -1119,13 +654,10 @@ let ContaoCookiebar = (function () {
             checkVisibility();
         };
 
-        polyfill();
         init();
 
         return p;
     };
-
-    return Constructor;
 })();
 
 window.ContaoCookiebar = ContaoCookiebar;
