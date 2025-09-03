@@ -1,11 +1,11 @@
-import { syncPreferences } from '../components/cookiebar';
+import { updateUserInterface } from '../components/cookiebar';
 import { cookieExists } from '../store/store';
 
-export function add(cookieId, callback, objContent, cookiebar) {
+export function add(cookieId, callback, objContent, cookiebar, dom) {
     _registerModule(cookiebar, cookieId, callback);
 
     if (cookieExists(cookieId, cookiebar)) {
-        callModule(cookieId);
+        call(cookiebar, dom, cookieId);
         return false;
     }
 
@@ -37,8 +37,9 @@ export function add(cookieId, callback, objContent, cookiebar) {
                 }
 
                 btn.addEventListener('click', function () {
-                    push(cookieId);
-                    callModule(cookieId);
+                    // ToDo: find a better alternative
+                    cookiebar.push(cookieId);
+                    call(cookiebar, dom, cookieId);
                 });
 
                 html.append(btn);
@@ -49,7 +50,7 @@ export function add(cookieId, callback, objContent, cookiebar) {
     }
 }
 
-export function call(cookiebar, cookieId) {
+export function call(cookiebar, dom, cookieId) {
     let modules = document.querySelectorAll('.cc-module[data-ccb-id="' + cookieId + '"]');
 
     if (!!modules) {
@@ -64,7 +65,7 @@ export function call(cookiebar, cookieId) {
 
     delete cookiebar.modules['_' + cookieId];
 
-    syncPreferences(cookiebar);
+    updateUserInterface(cookiebar, dom);
 }
 
 function _registerModule(cookiebar, cookieId, callback) {

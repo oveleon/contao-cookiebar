@@ -1,6 +1,6 @@
 import { getStorage } from '../store/store';
 
-export function syncPreferences(cookiebar, force) {
+export function updateUserInterface(cookiebar, dom, force) {
     if (!cookiebar.show && force !== true) {
         return;
     }
@@ -21,8 +21,8 @@ export function syncPreferences(cookiebar, force) {
     }
 
     if (cookies.length) {
-        cookies.forEach(function (cookieId, index) {
-            let input = cookiebar.dom.querySelector('[id="c' + cookieId + '"]');
+        cookies.forEach((cookieId) => {
+            let input = dom.querySelector('[id="c' + cookieId + '"]');
 
             if (!!input) {
                 input.checked = true;
@@ -30,7 +30,7 @@ export function syncPreferences(cookiebar, force) {
         });
     }
 
-    let arrGroupInputs = cookiebar.dom.querySelectorAll('input[name="group[]"]');
+    let arrGroupInputs = dom.querySelectorAll('input[name="group[]"]');
 
     if (!!arrGroupInputs) {
         arrGroupInputs.forEach(function (groupInput) {

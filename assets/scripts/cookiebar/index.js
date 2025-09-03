@@ -1,4 +1,4 @@
-import { syncPreferences } from './components/cookiebar';
+import { updateUserInterface } from './components/cookiebar';
 import { DEFAULT_CONFIG } from './data/defaults';
 import { cookiebarInitEvent, cookiebarSaveEvent } from './events/customEvents';
 import { extend } from './lib/extend.js';
@@ -21,17 +21,19 @@ import { add as addModule, call as callModule } from './modules/module';
 import { cache, getToken as getCacheToken } from './store/cache';
 import { cookieExists, getStorage, setStorage } from './store/store';
 
-class ContaoCookiebar {
+export class ContaoCookiebar {
     'use strict';
+    settings;
+    cache = {};
+    visible = false;
+    #dom;
+    #modules = {};
+    #loadedResources = [];
+    #resourcesEvents = [];
 
     constructor(settings) {
         this.settings = extend(true, DEFAULT_CONFIG, settings);
-        this.dom = document.querySelector(this.settings.selector);
-        this.cache = {};
-        this.modules = {};
-        this.loadedResources = [];
-        this.resourcesEvents = [];
-        this.visible = false;
+        this.#dom = document.querySelector(this.settings.selector);
 
         let storage = getStorage(this);
 
@@ -49,7 +51,7 @@ class ContaoCookiebar {
 
         // Inputs
         this.inputs = [];
-        this.dom.querySelectorAll('input[name="cookie[]"]').forEach((input) => {
+        this.#dom.querySelectorAll('input[name="cookie[]"]').forEach((input) => {
             if (!input.disabled) {
                 this.inputs.push(input);
             }
@@ -80,7 +82,7 @@ class ContaoCookiebar {
         this.#loadScripts();
 
         // Restore temporary status
-        syncPreferences(this);
+        updateUserInterface(this, this.#dom);
 
         window.dispatchEvent(cookiebarInitEvent(this));
     }
@@ -124,7 +126,7 @@ class ContaoCookiebar {
             window.location.href = url;
         }
 
-        this.#push(cookieId);
+        this.push(cookieId);
         this.#unblockIframe(cookieId);
     }
 
@@ -141,7 +143,7 @@ class ContaoCookiebar {
         this.#checkVisibility();
 
         if (!!restore) {
-            syncPreferences(this);
+            updateUserInterface(this, this.#dom);
         }
     }
 
@@ -205,21 +207,21 @@ class ContaoCookiebar {
                 }
 
                 // Modules
-                if (this.modules.hasOwnProperty('_' + cookieId)) {
-                    callModule(this, cookieId);
+                if (this.#modules.hasOwnProperty('_' + cookieId)) {
+                    callModule(this, this.#dom, cookieId);
                 }
             });
         }
 
         // Add CSS class
-        this.dom.classList.add(this.settings.classes.onSave);
+        this.#dom.classList.add(this.settings.classes.onSave);
 
         window.dispatchEvent(cookiebarSaveEvent(this));
 
-        syncPreferences(this, true);
+        updateUserInterface(this, this.#dom, true);
     }
 
-    #push(cookieId) {
+    push(cookieId) {
         let storage = getStorage(this);
 
         if (!storage.cookies.includes(cookieId)) {
@@ -403,7 +405,7 @@ class ContaoCookiebar {
         script.src = resource.src;
         script.onload = () => {
             // Mark resource as loaded
-            this.loadedResources.push(resource.src);
+            this.#loadedResources.push(resource.src);
 
             // Process resource events
             this.#processResourceEvents();
@@ -473,9 +475,9 @@ class ContaoCookiebar {
     }
 
     #registerEvents() {
-        let btnToggleCookies = this.dom.querySelectorAll('[data-toggle-cookies]');
-        let btnToggleGroups = this.dom.querySelectorAll('[data-toggle-group]');
-        let btnAction = this.dom.querySelectorAll('[data-save],[data-accept-all],[data-deny-all]');
+        let btnToggleCookies = this.#dom.querySelectorAll('[data-toggle-cookies]');
+        let btnToggleGroups = this.#dom.querySelectorAll('[data-toggle-group]');
+        let btnAction = this.#dom.querySelectorAll('[data-save],[data-accept-all],[data-deny-all]');
 
         if (btnAction.length) {
             btnAction.forEach((btn) => {
@@ -503,18 +505,18 @@ class ContaoCookiebar {
     }
 
     #processResourceEvents() {
-        if (!this.resourcesEvents.length) {
+        if (!this.#resourcesEvents.length) {
             return false;
         }
 
-        this.resourcesEvents.forEach((event, index) => {
-            if (this.loadedResources.indexOf(event.src) === -1) {
+        this.#resourcesEvents.forEach((event, index) => {
+            if (this.#loadedResources.indexOf(event.src) === -1) {
                 return false;
             }
 
             event.callback();
 
-            delete this.resourcesEvents[index];
+            delete this.#resourcesEvents[index];
         });
     }
 
@@ -528,15 +530,15 @@ class ContaoCookiebar {
             });
         }
 
-        syncPreferences(this);
+        updateUserInterface(this, this.#dom);
     }
 
     #initFocusTrap() {
-        const focusable = this.dom.querySelectorAll(
+        const focusable = this.#dom.querySelectorAll(
             'a[href]:not([disabled]), button:not([disabled]), input[type="checkbox"]:not([disabled])',
         );
 
-        this.toggleOpener = this.dom.querySelector('[data-ft-opener]');
+        this.toggleOpener = this.#dom.querySelector('[data-ft-opener]');
         this.firstFocus = focusable[0];
         this.lastFocus = focusable[focusable.length - 1];
     }
@@ -572,7 +574,7 @@ class ContaoCookiebar {
 
     #inert(state) {
         if (this.settings.blocking) {
-            this.dom?.parentElement.querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')?.forEach((el) => {
+            this.#dom?.parentElement.querySelectorAll(':scope >:not(script):not(.contao-cookiebar)')?.forEach((el) => {
                 state ? el.setAttribute('inert', '') : el.removeAttribute('inert');
             });
         }
@@ -581,7 +583,7 @@ class ContaoCookiebar {
 
         if (state) {
             document.addEventListener('keydown', this.#focusTrap);
-            this.dom.querySelector('.cc-inner').onanimationend = () => {
+            this.#dom.querySelector('.cc-inner').onanimationend = () => {
                 this.focused = false;
                 this.firstFocus?.classList.add('cc-hide-focus');
                 this.firstFocus?.focus({ preventScroll: true });
@@ -608,7 +610,7 @@ class ContaoCookiebar {
                     });
                 }
             }
-        }).observe(this.dom, {
+        }).observe(this.#dom, {
             childList: true,
             subtree: false,
         });
@@ -616,11 +618,11 @@ class ContaoCookiebar {
 
     #checkVisibility() {
         if (this.visible) {
-            this.dom.classList.remove(this.settings.classes.onSave);
-            this.dom.classList.add(this.settings.classes.onShow);
+            this.#dom.classList.remove(this.settings.classes.onSave);
+            this.#dom.classList.add(this.settings.classes.onShow);
             this.#inert(true);
         } else {
-            this.dom.classList.remove(this.settings.classes.onShow);
+            this.#dom.classList.remove(this.settings.classes.onShow);
             this.#inert(false);
         }
     }
@@ -658,5 +660,3 @@ class ContaoCookiebar {
         element.classList.toggle(this.settings.classes.onGroupToggle);
     }
 }
-
-window.ContaoCookiebar = ContaoCookiebar;
