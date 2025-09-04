@@ -1,17 +1,25 @@
-export function cache(token, type, cookiebar) {
-    // Create new cache bag
-    if (!cookiebar.cache[type]) {
-        cookiebar.cache[type] = [];
+/**
+ * Verifies a cookie and saves the option into the cookiebar cache
+ */
+export default class Cache {
+    constructor() {
+        this.cache = {};
     }
 
-    if (cookiebar.cache[type].indexOf(token) !== -1) {
-        return true;
+    /**
+     * @param {Object} cookie
+     * @param {*} index
+     * @param {string} type
+     */
+    verify(cookie, index, type) {
+        const token = `${cookie.id}${index}`;
+        const list = (this.cache[type] ??= []);
+
+        if (list.includes(token)) {
+            return true;
+        }
+
+        list.push(token);
+        return false;
     }
-
-    cookiebar.cache[type].push(token);
-    return false;
-}
-
-export function getToken(cookie, index) {
-    return cookie.id + '' + index;
 }

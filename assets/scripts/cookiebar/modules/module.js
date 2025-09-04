@@ -1,11 +1,17 @@
-import { updateUserInterface } from '../components/cookiebar';
-import { cookieExists } from '../store/store';
-
-export function add(cookieId, callback, objContent, cookiebar, dom) {
+/**
+ * AddModule method of the Cookiebar
+ *
+ * @param {int} cookieId
+ * @param {addModuleCallback} callback
+ * @param {*} objContent
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ * @returns {boolean}
+ */
+export function add(cookieId, callback, objContent, cookiebar) {
     _registerModule(cookiebar, cookieId, callback);
 
-    if (cookieExists(cookieId, cookiebar)) {
-        call(cookiebar, dom, cookieId);
+    if (this.cookiebar.storage.isset(cookieId)) {
+        call(cookiebar, cookieId);
         return false;
     }
 
@@ -39,7 +45,7 @@ export function add(cookieId, callback, objContent, cookiebar, dom) {
                 btn.addEventListener('click', function () {
                     // ToDo: find a better alternative
                     cookiebar.push(cookieId);
-                    call(cookiebar, dom, cookieId);
+                    call(cookiebar, cookieId);
                 });
 
                 html.append(btn);
@@ -50,7 +56,11 @@ export function add(cookieId, callback, objContent, cookiebar, dom) {
     }
 }
 
-export function call(cookiebar, dom, cookieId) {
+/**
+ * @param {int} cookieId
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ */
+export function call(cookieId, cookiebar) {
     let modules = document.querySelectorAll('.cc-module[data-ccb-id="' + cookieId + '"]');
 
     if (!!modules) {
@@ -65,10 +75,16 @@ export function call(cookiebar, dom, cookieId) {
 
     delete cookiebar.modules['_' + cookieId];
 
-    updateUserInterface(cookiebar, dom);
+    cookiebar.updateUserInterface();
 }
 
-function _registerModule(cookiebar, cookieId, callback) {
+/**
+ * @param {int} cookieId
+ * @param {addModuleCallback} callback
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ * @private
+ */
+function _registerModule(cookieId, callback, cookiebar) {
     if (cookiebar.modules.hasOwnProperty('_' + cookieId)) {
         cookiebar.modules['_' + cookieId].push(callback);
     } else {
