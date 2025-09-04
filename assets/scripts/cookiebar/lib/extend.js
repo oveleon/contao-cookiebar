@@ -1,3 +1,8 @@
+/**
+ * Allows extending deep nested object configurations
+ *
+ * @returns {{}}
+ */
 export function extend() {
     let y = {};
     let dp = 0;

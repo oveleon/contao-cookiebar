@@ -21,6 +21,11 @@
             "name": "Daniele Sciannimanica",
             "homepage": "https://github.com/doishub",
             "role": "Developer"
+        },
+        {
+            "name": "Sebastian Zoglowek",
+            "homepage": "https://github.com/zoglo",
+            "role": "Developer"
         }
     ],
     "require": {

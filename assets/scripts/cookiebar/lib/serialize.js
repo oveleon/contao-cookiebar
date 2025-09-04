@@ -1,4 +1,11 @@
-export function serialize(obj, prefix) {
+/**
+ * Serialize function
+ *
+ * @param {Object} obj
+ * @param {*} prefix
+ * @returns {string} The serialized object
+ */
+export function serialize(obj, prefix = null) {
     let str = [],
         p;
     for (p in obj) {

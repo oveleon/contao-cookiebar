@@ -1,3 +1,7 @@
+/**
+ * @param {HTMLScriptElement} html
+ * @returns {HTMLScriptElement}
+ */
 export function createScript(html) {
     let script = document.createElement('script');
     script.type = 'text/javascript';
@@ -7,15 +11,26 @@ export function createScript(html) {
     return script;
 }
 
+/**
+ * @param {string} url
+ * @returns {*}
+ */
 export function getHostname(url) {
     let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
     return matches && matches[1];
 }
 
+/**
+ * @returns {number}
+ */
 export function getTime() {
     return Math.floor(+new Date() / 1000);
 }
 
+/**
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ * @returns {boolean}
+ */
 export function isPageAllowed(cookiebar) {
     return !(
         cookiebar.settings.currentPageId &&
@@ -24,6 +39,10 @@ export function isPageAllowed(cookiebar) {
     );
 }
 
+/**
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ * @returns {boolean}
+ */
 export function isTrackingAllowed(cookiebar) {
     if (!cookiebar.settings.doNotTrack) {
         return true;
@@ -41,6 +60,11 @@ export function isTrackingAllowed(cookiebar) {
     return true;
 }
 
+/**
+ * @param {number} time
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ * @returns {boolean}
+ */
 export function isExpired(time, cookiebar) {
     let st = parseInt(time);
     let lt = parseInt(cookiebar.settings.lifetime);
@@ -52,10 +76,16 @@ export function isExpired(time, cookiebar) {
     return st + lt < getTime();
 }
 
-export function logger(message) {
+/**
+ * @param {string} message
+ */
+export function consoleLog(message) {
     console.info('%cContao Cookiebar:', 'background: #fff09b; color: #222; padding: 3px', '\n' + message);
 }
 
+/**
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ */
 export function sortCookiesByLoadingOrder(cookiebar) {
     const arrPrioritySorted = Object.entries(cookiebar.settings.cookies ?? {}).sort(
         ([, a], [, b]) => b.priority - a.priority,
@@ -67,14 +97,20 @@ export function sortCookiesByLoadingOrder(cookiebar) {
     );
 }
 
+/**
+ * @param {int|string} cookieId
+ * @param {onResourceLoadedCallback} callback
+ * @param {import('../index.js').ContaoCookiebar} cookiebar
+ * @returns {boolean}
+ */
 export function onResourceLoaded(cookieId, callback, cookiebar) {
     if (!cookiebar.settings.cookies.hasOwnProperty(cookieId)) {
-        logger.warn(`Cookie ID ${cookieId} does not exists.`);
+        console.warn(`Cookie ID ${cookieId} does not exists.`);
         return false;
     }
 
     if (!cookiebar.settings.cookies[cookieId].resources.length) {
-        logger.warn(`The cookie ID ${cookieId} does not contain any resources.`);
+        console.warn(`The cookie ID ${cookieId} does not contain any resources.`);
         return false;
     }
 
@@ -92,6 +128,10 @@ export function onResourceLoaded(cookieId, callback, cookiebar) {
     }
 }
 
+/**
+ * @param {HTMLScriptElement} strContent
+ * @param {int} pos
+ */
 export function insertAtPosition(strContent, pos) {
     switch (pos) {
         case 1:
@@ -109,6 +149,10 @@ export function insertAtPosition(strContent, pos) {
     }
 }
 
+/**
+ * @param {HTMLElement} element
+ * @returns {boolean}
+ */
 export function isFocusable(element) {
     while (element) {
         const style = window.getComputedStyle(element);
