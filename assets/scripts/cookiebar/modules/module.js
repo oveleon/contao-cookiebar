@@ -6,12 +6,15 @@
  * @param {*} objContent
  * @param {import('../index.js').ContaoCookiebar} cookiebar
  * @returns {boolean}
+ *
+ * @deprecated Deprecated since Cookiebar 2.3, to be removed in Version 3.0
+ *             No replacement has been added yet.
  */
 export function add(cookieId, callback, objContent, cookiebar) {
-    _registerModule(cookiebar, cookieId, callback);
+    _registerModule(cookieId, callback, cookiebar);
 
     if (this.cookiebar.storage.isset(cookieId)) {
-        call(cookiebar, cookieId);
+        call(cookieId, cookiebar);
         return false;
     }
 
@@ -43,9 +46,8 @@ export function add(cookieId, callback, objContent, cookiebar) {
                 }
 
                 btn.addEventListener('click', function () {
-                    // ToDo: find a better alternative
                     cookiebar.push(cookieId);
-                    call(cookiebar, cookieId);
+                    call(cookieId, cookiebar);
                 });
 
                 html.append(btn);
