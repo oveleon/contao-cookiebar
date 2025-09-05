@@ -163,6 +163,9 @@ export class ContaoCookiebar {
      * @param {addModuleCallback} callback
      * @param {*} objContent
      * @returns {boolean}
+     *
+     * @deprecated Deprecated since Cookiebar 2.3, to be removed in Version 3.0
+     *             No replacement has been added yet.
      */
     addModule(cookieId, callback, objContent) {
         return addModule(cookieId, callback, objContent, this);
