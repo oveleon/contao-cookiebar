@@ -13,7 +13,7 @@ Encore
         options.keep = (filename) => filename.startsWith('images/');
     })
     .disableSingleRuntimeChunk()
-    .enableBuildNotifications()
+    .enableBuildNotifications(Encore.isProduction())
 
     .addEntry('config', './assets/scripts/config-presets.js')
     .addEntry('cookiebar', './assets/scripts/cookiebar.js')
