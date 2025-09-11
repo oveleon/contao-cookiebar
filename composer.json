@@ -56,7 +56,7 @@
         "psr-4": {
             "Oveleon\\ContaoCookiebar\\": "src/"
         },
-        "classmap": [Warum
+        "classmap": [
             "contao/"
         ],
         "exclude-from-classmap": [
