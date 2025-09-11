@@ -13,7 +13,7 @@
 export function add(cookieId, callback, objContent, cookiebar) {
     _registerModule(cookieId, callback, cookiebar);
 
-    if (this.cookiebar.storage.isset(cookieId)) {
+    if (cookiebar.storage.isset(cookieId)) {
         call(cookieId, cookiebar);
         return false;
     }
