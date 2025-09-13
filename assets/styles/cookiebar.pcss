@@ -204,6 +204,7 @@
 }
 
 .cc-inner {
+    position: relative;
     display: inline-block;
     overflow-y: auto;
     max-height: 100%;
@@ -218,6 +219,20 @@
     background: var(--ccb-bg, #fff);
     box-shadow: var(--ccb-box-shadow, rgb(99 99 99 / 20%)) 0 2px 8px 0;
     animation: var(--ccb-anim, cookiebar-middle-in) var(--ccb-anim-duration) ease-in-out forwards;
+}
+
+.cc-close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    bottom: auto;
+    left: auto;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-weight: 700;
+    height: 24px;
+    width: 24px;
 }
 
 .cc-group {

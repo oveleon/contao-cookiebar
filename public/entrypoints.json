@@ -7,12 +7,12 @@
     },
     "cookiebar": {
       "js": [
-        "/bundles/contaocookiebar/cookiebar.b3121752.js"
+        "/bundles/contaocookiebar/cookiebar.1fde443f.js"
       ]
     },
     "default": {
       "css": [
-        "/bundles/contaocookiebar/default.8d68cbe1.css"
+        "/bundles/contaocookiebar/default.aebd71d6.css"
       ],
       "js": [
         "/bundles/contaocookiebar/default.31d6cfe0.js"
@@ -20,7 +20,7 @@
     },
     "simple": {
       "css": [
-        "/bundles/contaocookiebar/simple.b65e4b20.css"
+        "/bundles/contaocookiebar/simple.2845e583.css"
       ],
       "js": [
         "/bundles/contaocookiebar/simple.31d6cfe0.js"

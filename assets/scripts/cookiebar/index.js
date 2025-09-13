@@ -19,6 +19,7 @@ import ConsentLogger from './modules/consentLogger.js';
 import { add as addModule, call as callModule } from './modules/module';
 import Cache from './store/cache';
 import Storage from './store/local';
+import Session from './store/session';
 
 /**
  * @callback addModuleCallback
@@ -51,10 +52,12 @@ export class ContaoCookiebar {
         this.#dom = document.querySelector(this.settings.selector);
         this.cache = new Cache();
         this.storage = new Storage(this.settings);
+        this.session = new Session();
         const storage = this.storage.get();
 
         // Set visibility
         if (
+            !this.session.isDismissed() &&
             !this.settings.hideOnInit &&
             (parseInt(storage.version) !== parseInt(this.settings.version) ||
                 parseInt(storage.configId) !== parseInt(this.settings.configId) ||
@@ -87,6 +90,7 @@ export class ContaoCookiebar {
         this.#registerEvents(); // Register events
         this.#registerTriggerEvents(); // Register trigger events
         this.focusTrap = this.focusTrap.bind(this);
+        this.#initClose();
 
         if (this.settings.focusTrap) {
             this.#initFocusTrap();
@@ -226,6 +230,29 @@ export class ContaoCookiebar {
             e.preventDefault();
             this.firstFocus?.focus();
         }
+    }
+
+    #initClose() {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = '✕';
+        btn.ariaLabel = 'Close';
+        btn.classList.add('cc-close');
+
+        this.#dom.querySelector('.cc-inner').prepend(btn);
+
+        const close = () => {
+            this.session.setDismissed();
+            this.hide();
+        };
+
+        btn.addEventListener('click', close);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                close();
+            }
+        });
     }
 
     #save(event) {
