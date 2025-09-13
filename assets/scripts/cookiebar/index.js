@@ -239,7 +239,7 @@ export class ContaoCookiebar {
         btn.ariaLabel = 'Close';
         btn.classList.add('cc-close');
 
-        this.#dom.querySelector('.cc-inner').prepend(btn);
+        this.#dom.querySelector('.cc-inner').appendChild(btn);
 
         const close = () => {
             this.session.setDismissed();
