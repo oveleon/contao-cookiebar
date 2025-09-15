@@ -2,11 +2,11 @@
  * Session storage for the Cookiebar
  */
 export default class Session {
-    #key = 'ccb_contao'
+    #key = 'ccb_contao';
     #dismissed = '_dismissed';
 
     setDismissed() {
-        sessionStorage.setItem(this.#key + this.#dismissed, 'true')
+        sessionStorage.setItem(this.#key + this.#dismissed, 'true');
     }
 
     isDismissed() {

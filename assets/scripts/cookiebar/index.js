@@ -39,10 +39,10 @@ export class ContaoCookiebar {
     modules = {};
 
     /** @type {Array<string>} */
-    #loadedResources = [];
+    loadedResources = [];
 
     /** @type {Array<Function>} */
-    #resourcesEvents = [];
+    resourcesEvents = [];
 
     /**
      * @param {Object} settings
@@ -70,7 +70,10 @@ export class ContaoCookiebar {
 
         // Inputs
         this.inputs = [];
-        this.#dom.querySelectorAll('input[name="cookie[]"]').forEach((input) => {
+        /** @type {NodeListOf<HTMLInputElement>} inputs */
+        const inputs = this.#dom.querySelectorAll('input[name="cookie[]"]');
+
+        inputs.forEach((input) => {
             if (!input.disabled) {
                 this.inputs.push(input);
             }
@@ -377,6 +380,7 @@ export class ContaoCookiebar {
             });
         }
 
+        /** @type {NodeListOf<HTMLInputElement>} */
         let arrGroupInputs = this.#dom.querySelectorAll('input[name="group[]"]');
 
         if (!!arrGroupInputs) {
@@ -388,7 +392,8 @@ export class ContaoCookiebar {
                 groupInput.checked = false;
                 groupInput.classList.remove(this.settings.classes.onGroupSplitSelection);
 
-                let inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
+                /** @type {NodeListOf<HTMLInputElement>} */
+                const inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
                 let arrGroup = [];
 
                 if (!!inputs) {
@@ -586,7 +591,7 @@ export class ContaoCookiebar {
         script.src = resource.src;
         script.onload = () => {
             // Mark resource as loaded
-            this.#loadedResources.push(resource.src);
+            this.loadedResources.push(resource.src);
 
             // Process resource events
             this.#processResourceEvents();
@@ -693,18 +698,18 @@ export class ContaoCookiebar {
     }
 
     #processResourceEvents() {
-        if (!this.#resourcesEvents.length) {
+        if (!this.resourcesEvents.length) {
             return false;
         }
 
-        this.#resourcesEvents.forEach((event, index) => {
-            if (this.#loadedResources.indexOf(event.src) === -1) {
+        this.resourcesEvents.forEach((event, index) => {
+            if (this.loadedResources.indexOf(event.src) === -1) {
                 return false;
             }
 
             event.callback();
 
-            delete this.#resourcesEvents[index];
+            delete this.resourcesEvents[index];
         });
     }
 
@@ -716,6 +721,7 @@ export class ContaoCookiebar {
 
         if (iframes.length) {
             iframes.forEach((iframe) => {
+                // Trigger an iFrame reload
                 iframe.src = iframe.src;
                 iframe.removeAttribute('data-ccb-id');
             });
@@ -725,6 +731,7 @@ export class ContaoCookiebar {
     }
 
     #initFocusTrap() {
+        /** @type {NodeListOf<HTMLElement>} */
         const focusable = this.#dom.querySelectorAll(
             'a[href]:not([disabled]), button:not([disabled]), input[type="checkbox"]:not([disabled])',
         );
@@ -767,6 +774,7 @@ export class ContaoCookiebar {
                         if (
                             this.#visible &&
                             node.nodeType === Node.ELEMENT_NODE &&
+                            node instanceof HTMLElement &&
                             !node.classList.contains('.contao-cookiebar') &&
                             !node.hasAttribute('inert')
                         ) {
@@ -796,18 +804,18 @@ export class ContaoCookiebar {
      * @param {UIEvent} event
      */
     #toggleCookies(event) {
-        /** @param {HTMLInputElement} element */
+        /** @type {HTMLInputElement} */
         const element = event.currentTarget;
-        let state = element.checked;
-        let inputs = element.parentElement.querySelectorAll('input[name="cookie[]"]');
+        const state = element.checked;
 
-        if (inputs) {
-            inputs.forEach((input) => {
-                if (!input.disabled) {
-                    input.checked = state;
-                }
-            });
-        }
+        /** @type {NodeListOf<HTMLInputElement>} */
+        const inputs = element.parentElement.querySelectorAll('input[name="cookie[]"]');
+
+        inputs.forEach((input) => {
+            if (!input.disabled) {
+                input.checked = state;
+            }
+        });
 
         element.classList.remove(this.settings.classes.onGroupSplitSelection);
     }
@@ -816,19 +824,18 @@ export class ContaoCookiebar {
      * @param {UIEvent} event
      */
     #toggleGroup(event) {
-        /** @param {HTMLInputElement} element */
+        /** @type {HTMLInputElement} */
         const element = event.currentTarget;
-        let state = !element.classList.contains(this.settings.classes.onGroupToggle);
+        const state = !element.classList.contains(this.settings.classes.onGroupToggle);
 
         element.setAttribute('aria-expanded', state ? 'true' : 'false');
 
-        let groups = element.parentElement.querySelectorAll(':scope > .toggle-group');
+        /** @type {NodeListOf<HTMLElement>} */
+        const groups = element.parentElement.querySelectorAll(':scope > .toggle-group');
 
-        if (groups) {
-            groups.forEach((group) => {
-                group.style.display = state ? 'block' : 'none';
-            });
-        }
+        groups.forEach((group) => {
+            group.style.display = state ? 'block' : 'none';
+        });
 
         element.classList.toggle(this.settings.classes.onGroupToggle);
     }
