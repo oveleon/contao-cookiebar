@@ -22,6 +22,12 @@ import Storage from './store/local';
 import Session from './store/session';
 
 /**
+ * @typedef {Object} ResourceEvent
+ * @property {string} src - The URL or identifier of the resource
+ * @property {() => void} callback - Function to call when the resource is loaded
+ */
+
+/**
  * @callback addModuleCallback
  * @callback onResourceLoadedCallback
  */
@@ -41,7 +47,7 @@ export class ContaoCookiebar {
     /** @type {Array<string>} */
     loadedResources = [];
 
-    /** @type {Array<Function>} */
+    /** @type {ResourceEvent[]} */
     resourcesEvents = [];
 
     /**
@@ -259,8 +265,8 @@ export class ContaoCookiebar {
     }
 
     #save(event) {
-        let arrCookies = [];
-        let btn = event.currentTarget;
+        const arrCookies = [];
+        const btn = event.currentTarget;
         let mode = 0;
 
         if (btn.hasAttribute('data-accept-all')) {
@@ -301,22 +307,20 @@ export class ContaoCookiebar {
         }
 
         // Show iframes and call modules
-        if (arrCookies.length) {
-            arrCookies.forEach((cookieId) => {
-                // Iframes
-                if (
-                    this.settings.cookies.hasOwnProperty('_' + cookieId) &&
-                    this.settings.cookies['_' + cookieId].type === 'iframe'
-                ) {
-                    this.#unblockIframe(cookieId);
-                }
+        arrCookies.forEach((cookieId) => {
+            // Iframes
+            if (
+                this.settings.cookies.hasOwnProperty('_' + cookieId) &&
+                this.settings.cookies['_' + cookieId].type === 'iframe'
+            ) {
+                this.#unblockIframe(cookieId);
+            }
 
-                // Modules
-                if (this.modules.hasOwnProperty('_' + cookieId)) {
-                    callModule(cookieId, this);
-                }
-            });
-        }
+            // Modules
+            if (this.modules.hasOwnProperty('_' + cookieId)) {
+                callModule(cookieId, this);
+            }
+        });
 
         // Add CSS class
         this.#dom.classList.add(this.settings.classes.onSave);
@@ -355,13 +359,13 @@ export class ContaoCookiebar {
             return;
         }
 
-        let storage = this.storage.get();
+        const storage = this.storage.get();
         let cookies = [];
 
         if (storage.cookies && storage.cookies.length) {
             cookies = storage.cookies;
         } else if (storage.version === -1) {
-            for (let cookieId in this.settings.cookies) {
+            for (const cookieId in this.settings.cookies) {
                 const cid = parseInt(cookieId.replace('_', ''));
 
                 if (this.settings.cookies[cookieId].checked) {
@@ -370,47 +374,43 @@ export class ContaoCookiebar {
             }
         }
 
-        if (cookies.length) {
-            cookies.forEach((cookieId) => {
-                let input = this.#dom.querySelector('[id="c' + cookieId + '"]');
+        cookies.forEach((cookieId) => {
+            const input = this.#dom.querySelector('[id="c' + cookieId + '"]');
 
-                if (!!input) {
-                    input.checked = true;
-                }
-            });
-        }
+            if (!!input) {
+                input.checked = true;
+            }
+        });
 
         /** @type {NodeListOf<HTMLInputElement>} */
-        let arrGroupInputs = this.#dom.querySelectorAll('input[name="group[]"]');
+        const arrGroupInputs = this.#dom.querySelectorAll('input[name="group[]"]');
 
-        if (!!arrGroupInputs) {
-            arrGroupInputs.forEach((groupInput) => {
-                if (groupInput.disabled) {
-                    return;
-                }
+        arrGroupInputs.forEach((groupInput) => {
+            if (groupInput.disabled) {
+                return;
+            }
 
-                groupInput.checked = false;
-                groupInput.classList.remove(this.settings.classes.onGroupSplitSelection);
+            groupInput.checked = false;
+            groupInput.classList.remove(this.settings.classes.onGroupSplitSelection);
 
-                /** @type {NodeListOf<HTMLInputElement>} */
-                const inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
-                let arrGroup = [];
+            /** @type {NodeListOf<HTMLInputElement>} */
+            const inputs = groupInput.parentElement.querySelectorAll('input[name="cookie[]"]');
+            const arrGroup = [];
 
-                if (!!inputs) {
-                    inputs.forEach(function (input) {
-                        if (!input.disabled) {
-                            arrGroup.push(!!input.checked);
-                        }
-                    });
-
-                    if (arrGroup.indexOf(false) === -1) {
-                        groupInput.checked = true;
-                    } else if (arrGroup.indexOf(true) !== -1 && arrGroup.indexOf(false) !== -1) {
-                        groupInput.classList.add(this.settings.classes.onGroupSplitSelection);
+            if (!!inputs) {
+                inputs.forEach(function (input) {
+                    if (!input.disabled) {
+                        arrGroup.push(!!input.checked);
                     }
+                });
+
+                if (arrGroup.indexOf(false) === -1) {
+                    groupInput.checked = true;
+                } else if (arrGroup.indexOf(true) !== -1 && arrGroup.indexOf(false) !== -1) {
+                    groupInput.classList.add(this.settings.classes.onGroupSplitSelection);
                 }
-            });
-        }
+            }
+        });
     }
 
     /**
@@ -418,23 +418,22 @@ export class ContaoCookiebar {
      * @param {boolean} deleteCookies
      */
     #validateCookies(arrCookies, deleteCookies = false) {
-        let arrDelete = [];
+        const arrDelete = [];
 
-        for (let cookieId in this.settings.cookies) {
-            const intCookieId = parseInt(cookieId.replace('_', ''));
-
+        for (const cookieId in this.settings.cookies) {
             if (!this.settings.cookies.hasOwnProperty(cookieId)) {
                 continue;
             }
 
-            let previousState = !!this.settings.cookies[cookieId].confirmed;
-            let currentState = arrCookies.includes(intCookieId);
-            let deleteCookie = previousState !== currentState && !currentState;
+            const intCookieId = parseInt(cookieId.replace('_', ''));
+            const previousState = !!this.settings.cookies[cookieId].confirmed;
+            const currentState = arrCookies.includes(intCookieId);
+            const deleteCookie = previousState !== currentState && !currentState;
 
             this.settings.cookies[cookieId].confirmed = currentState;
 
             if (true === deleteCookies && deleteCookie) {
-                let token = this.settings.cookies[cookieId].token;
+                const token = this.settings.cookies[cookieId].token;
 
                 if (null !== token) {
                     token.forEach((token) => {
@@ -445,23 +444,23 @@ export class ContaoCookiebar {
         }
 
         if (true === deleteCookies && arrDelete.length) {
-            let request = new XMLHttpRequest();
+            const request = new XMLHttpRequest();
             request.open('POST', '/cookiebar/delete', true);
             request.send(serialize({ tokens: arrDelete }));
         }
     }
 
     #setConfigurations() {
-        for (let configId in this.settings.configs) {
+        for (const configId in this.settings.configs) {
             if (!this.settings.configs.hasOwnProperty(configId)) {
                 continue;
             }
 
-            let config = this.settings.configs[configId];
+            const config = this.settings.configs[configId];
 
             const prefixed = Object.fromEntries(Object.entries(config.cookies).map(([k, v]) => [`_${k}`, v]));
 
-            let confirmed = this.#checkCookieConfirmation(prefixed);
+            const confirmed = this.#checkCookieConfirmation(prefixed);
 
             if (null !== config.resources) {
                 config.resources.forEach((resource, index) => {
@@ -500,13 +499,12 @@ export class ContaoCookiebar {
     }
 
     #loadScripts() {
-        let cookieId;
-        for (cookieId in this.settings.cookies) {
+        for (const cookieId in this.settings.cookies) {
             if (!this.settings.cookies.hasOwnProperty(cookieId)) {
                 continue;
             }
 
-            let cookie = this.settings.cookies[cookieId];
+            const cookie = this.settings.cookies[cookieId];
 
             if (null !== cookie.resources) {
                 cookie.resources.forEach((resource, index) => {
@@ -575,8 +573,8 @@ export class ContaoCookiebar {
 
         // Skip resources that are already available
         try {
-            let scripts = document.querySelectorAll('script[src]');
-            let host = getHostname(resource.src);
+            const scripts = document.querySelectorAll('script[src]');
+            const host = getHostname(resource.src);
             for (let i = scripts.length; i--; ) {
                 if (scripts[i].src.indexOf(host) !== -1 && host !== window.location.host) {
                     return false;
@@ -585,7 +583,7 @@ export class ContaoCookiebar {
         } catch (e) {}
 
         // Load resource
-        let script = document.createElement('script');
+        const script = document.createElement('script');
         script.type = 'text/javascript';
         script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
         script.src = resource.src;
@@ -616,16 +614,13 @@ export class ContaoCookiebar {
      */
     #checkCookieConfirmation(cookies) {
         let confirmed = false;
-        let cookieId;
 
-        for (cookieId in cookies) {
+        for (const cookieId in cookies) {
             if (!this.settings.cookies.hasOwnProperty(cookieId)) {
                 continue;
             }
 
-            let cookie = this.settings.cookies[cookieId];
-
-            if (cookie.confirmed) {
+            if (this.settings.cookies[cookieId].confirmed) {
                 confirmed = true;
                 break;
             }
@@ -644,7 +639,7 @@ export class ContaoCookiebar {
             for (const mutation of mutationsList) {
                 if (mutation.type === 'childList') {
                     mutation.addedNodes.forEach((element) => {
-                        if (element.matches && element.matches('a.ccb-trigger, strong.ccb-trigger')) {
+                        if (element instanceof HTMLElement && element.matches('a.ccb-trigger, strong.ccb-trigger')) {
                             this.#applyTriggerEvent(element);
                         }
                     });
@@ -668,33 +663,17 @@ export class ContaoCookiebar {
     }
 
     #registerEvents() {
-        let btnToggleCookies = this.#dom.querySelectorAll('[data-toggle-cookies]');
-        let btnToggleGroups = this.#dom.querySelectorAll('[data-toggle-group]');
-        let btnAction = this.#dom.querySelectorAll('[data-save],[data-accept-all],[data-deny-all]');
+        this.#dom.querySelectorAll('[data-save],[data-accept-all],[data-deny-all]').forEach((btn) => {
+            btn.addEventListener('click', (e) => this.#save(e));
+        });
 
-        if (btnAction.length) {
-            btnAction.forEach((btn) => {
-                btn.addEventListener('click', (e) => {
-                    this.#save(e);
-                });
-            });
-        }
+        this.#dom.querySelectorAll('[data-toggle-cookies]').forEach((btn) => {
+            btn.addEventListener('click', (e) => this.#toggleCookies(e));
+        });
 
-        if (btnToggleCookies.length) {
-            btnToggleCookies.forEach((btn) => {
-                btn.addEventListener('click', (e) => {
-                    this.#toggleCookies(e);
-                });
-            });
-        }
-
-        if (btnToggleGroups.length) {
-            btnToggleGroups.forEach((btn) => {
-                btn.addEventListener('click', (e) => {
-                    this.#toggleGroup(e);
-                });
-            });
-        }
+        this.#dom.querySelectorAll('[data-toggle-group]').forEach((btn) => {
+            btn.addEventListener('click', (e) => this.#toggleGroup(e));
+        });
     }
 
     #processResourceEvents() {
@@ -717,15 +696,13 @@ export class ContaoCookiebar {
      * @param {int|string} cookieId
      */
     #unblockIframe(cookieId) {
-        let iframes = document.querySelectorAll('iframe[data-ccb-id="' + cookieId + '"]');
+        const iframes = document.querySelectorAll('iframe[data-ccb-id="' + cookieId + '"]');
 
-        if (iframes.length) {
-            iframes.forEach((iframe) => {
-                // Trigger an iFrame reload
-                iframe.src = iframe.src;
-                iframe.removeAttribute('data-ccb-id');
-            });
-        }
+        iframes.forEach((iframe) => {
+            // Trigger an iFrame reload
+            iframe.src = iframe.src;
+            iframe.removeAttribute('data-ccb-id');
+        });
 
         this.updateUserInterface();
     }
@@ -801,7 +778,7 @@ export class ContaoCookiebar {
     }
 
     /**
-     * @param {UIEvent} event
+     * @param {Event} event
      */
     #toggleCookies(event) {
         /** @type {HTMLInputElement} */
@@ -821,7 +798,7 @@ export class ContaoCookiebar {
     }
 
     /**
-     * @param {UIEvent} event
+     * @param {Event} event
      */
     #toggleGroup(event) {
         /** @type {HTMLInputElement} */

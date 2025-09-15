@@ -3,7 +3,7 @@
  * @returns {HTMLScriptElement}
  */
 export function createScript(html) {
-    let script = document.createElement('script');
+    const script = document.createElement('script');
     script.type = 'text/javascript';
     script.nonce = document.querySelector('script[nonce]')?.nonce ?? null;
     script.innerHTML = html;
@@ -16,7 +16,7 @@ export function createScript(html) {
  * @returns {*}
  */
 export function getHostname(url) {
-    let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+    const matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
     return matches && matches[1];
 }
 
@@ -61,13 +61,13 @@ export function isTrackingAllowed(cookiebar) {
 }
 
 /**
- * @param {number} time
+ * @param {number|string} time
  * @param {import('../index.js').ContaoCookiebar} cookiebar
  * @returns {boolean}
  */
 export function isExpired(time, cookiebar) {
-    let st = parseInt(time);
-    let lt = parseInt(cookiebar.settings.lifetime);
+    const st = parseInt(time);
+    const lt = parseInt(cookiebar.settings.lifetime);
 
     if (isNaN(st) || st === -1 || lt === 0) {
         return false;

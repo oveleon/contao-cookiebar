@@ -283,7 +283,7 @@ class Cookiebar
             $responseTagger->addTags(['oveleon.cookiebar.' . $objConfig->id]);
         }
 
-        return self::renderTwigTemplate($objConfig->template, $data);
+        return self::renderTwigTemplate($objConfig->template ?: 'cookiebar/default', $data);
     }
 
     /**
