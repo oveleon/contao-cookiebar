@@ -1,0 +1,20 @@
+{%- block script %}
+<script>
+// Check if the cookie bar is ready, otherwise respond to document load (#148)
+if (parent.cookiebar) {
+    redirectIfNecessary()
+} else {
+    parent.addEventListener('load', () => {
+        redirectIfNecessary()
+    })
+}
+function redirectIfNecessary() {
+    if (parent.cookiebar.cookieExists({{ cookie.id }})) {
+        const decoder = document.createElement('textarea');
+        decoder.innerHTML = '{{ redirect }}';
+        window.frameElement.src = '{{ redirect }}';
+        window.location.href = decoder.value;
+    }
+}
+</script>
+{%- endblock -%}

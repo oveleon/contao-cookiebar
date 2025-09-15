@@ -1,0 +1,7 @@
+{% trans_default_domain "contao_default" %}
+{% extends "@Contao/cookiebar/default.html.twig" %}
+
+{% block actions %}
+    {{ parent() }}
+    <button class="cc-btn cc-focus deny" data-deny-all>{{ 'tl_cookiebar.denyAllLabel'|trans }}</button>
+{% endblock %}

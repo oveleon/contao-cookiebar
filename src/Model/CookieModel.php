@@ -1,11 +1,15 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar\Model;
@@ -102,10 +106,10 @@ class CookieModel extends Model
     {
         $t = static::$strTable;
 
-        $arrColumns = array(
+        $arrColumns = [
             "$t.pid=?",
             "$t.published='1'"
-        );
+        ];
 
         $arrOptions['order'] = "$t.sorting";
 
@@ -115,14 +119,14 @@ class CookieModel extends Model
     /**
      * Find cookies by their token
      */
-    public static function findByToken(string $strToken, int $intRootPageId, array $arrOptions=[]): ?CookieModel
+    public static function findByToken(string $strToken, int $intRootPageId, array $arrOptions=[]): CookieModel|null
     {
         $t = static::$strTable;
 
         $objConfig = Cookiebar::getConfigByPage($intRootPageId);
         $objGroups = CookieGroupModel::findByPid($objConfig->id);
 
-        if(!$objGroups)
+        if (!$objGroups)
         {
             return null;
         }
@@ -134,10 +138,10 @@ class CookieModel extends Model
             $arrGroupIds[] = $group->id;
         }
 
-        $arrColumns = array(
+        $arrColumns = [
             "$t.token LIKE ?",
             "$t.pid IN (" . implode(",", array_map('intval', $arrGroupIds)) . ")"
-        );
+        ];
 
         return static::findOneBy($arrColumns, '%' . $strToken . '%', $arrOptions);
     }

@@ -1,8 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
-use Contao\Controller;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
+use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
 use Contao\Message;
 use Contao\System;
@@ -11,25 +24,25 @@ use FOS\HttpCacheBundle\CacheManager;
 use Oveleon\ContaoCookiebar\Model\CookieGroupModel;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Contao\CoreBundle\ServiceAnnotation\Callback;
 
-class CookiebarCallbackListener
+readonly class CookiebarCallbackListener
 {
     public function __construct(
-        private readonly Connection          $connection,
-        private readonly TranslatorInterface $translator
-    ){}
+        private Connection $connection,
+        private TranslatorInterface $translator,
+        private FinderFactory $finderFactory,
+    ) {
+    }
 
     /**
      * Create essential group and cookies
-     *
-     * @Callback(table="tl_cookiebar", target="config.onsubmit")
      */
+    #[AsCallback(table: 'tl_cookiebar', target: 'config.onsubmit')]
     public function createEssentialGroupAndCookies(DataContainer $dc)
     {
         $strLang = $dc->activeRecord->essentialCookieLanguage;
 
-        if(!$strLang || $this->hasEssentialGroup($dc))
+        if (!$strLang || $this->hasEssentialGroup($dc))
         {
             return;
         }
@@ -88,19 +101,23 @@ class CookiebarCallbackListener
 
     /**
      * Return all cookiebar templates
-     *
-     * @Callback(table="tl_cookiebar", target="fields.template.options")
      */
+    #[AsCallback(table: 'tl_cookiebar', target: 'fields.template.options')]
     public function getCookiebarTemplates(): array
     {
-        return Controller::getTemplateGroup('cookiebar_');
+        return $this->finderFactory
+            ->create()
+            ->identifier('cookiebar/default')
+            ->extension('html.twig')
+            ->withVariants()
+            ->asTemplateOptions()
+        ;
     }
 
     /**
      * Return all cookiebar templates
-     *
-     * @Callback(table="tl_cookiebar", target="fields.essentialCookieLanguage.options")
      */
+    #[AsCallback(table: 'tl_cookiebar', target: 'fields.essentialCookieLanguage.options')]
     public function loadAvailableLanguages(): array
     {
         $validLanguages = System::getContainer()->get('contao.intl.locales')->getLocales(null, true);
@@ -116,9 +133,8 @@ class CookiebarCallbackListener
 
     /**
      * Set the default language for essential cookies
-     *
-     * @Callback(table="tl_cookiebar", target="fields.essentialCookieLanguage.load")
      */
+    #[AsCallback(table: 'tl_cookiebar', target: 'fields.essentialCookieLanguage.load')]
     public function addDefaultLanguage($value): string
     {
         if ($value)
@@ -138,12 +154,11 @@ class CookiebarCallbackListener
 
     /**
      * Update version
-     *
-     * @Callback(table="tl_cookiebar", target="fields.updateVersion.save")
      */
+    #[AsCallback(table: 'tl_cookiebar', target: 'fields.updateVersion.save')]
     public function updateVersion(string $value, DataContainer $dc): string
     {
-        if($value)
+        if ($value)
         {
             $newVersion = ++$dc->activeRecord->version;
 
@@ -152,7 +167,7 @@ class CookiebarCallbackListener
 
             /** @var CacheManager $cacheManager */
             $cacheManager = System::getContainer()->get('fos_http_cache.cache_manager');
-            $cacheManager->invalidateTags(array('oveleon.cookiebar.' . $dc->activeRecord->id));
+            $cacheManager->invalidateTags(['oveleon.cookiebar.' . $dc->activeRecord->id]);
         }
 
         return '';
@@ -160,9 +175,8 @@ class CookiebarCallbackListener
 
     /**
      * Checks if the consent log is activated / deactivated
-     *
-     * @Callback(table="tl_cookiebar", target="config.onload")
      */
+    #[AsCallback(table: 'tl_cookiebar', target: 'config.onload')]
     public function showConsentLogInformation(): void
     {
         $container = System::getContainer();
@@ -180,12 +194,11 @@ class CookiebarCallbackListener
 
     /**
      * Check if essential groups are allowed to be created
-     *
-     * @Callback(table="tl_cookiebar", target="config.onload")
      */
+    #[AsCallback(table: 'tl_cookiebar', target: 'config.onload')]
     public function checkEssentialGroup(DataContainer $dc)
     {
-        if($this->hasEssentialGroup($dc))
+        if ($this->hasEssentialGroup($dc))
         {
             $GLOBALS['TL_DCA']['tl_cookiebar']['fields']['essentialCookieLanguage']['eval']['disabled'] = true;
         }

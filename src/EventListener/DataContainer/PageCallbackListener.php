@@ -1,37 +1,51 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
-use Contao\Controller;
-use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
+use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
 use Oveleon\ContaoCookiebar\Cookiebar;
 
-class PageCallbackListener
+readonly class PageCallbackListener
 {
     /**
      * Cookiebar opener trigger CSS Class
      */
-    const CLASS_TRIGGER = 'ccb-trigger';
+    const string CLASS_TRIGGER = 'ccb-trigger';
 
     /**
      * Cookiebar prefill settings CSS Class
      */
-    const CLASS_PREFILL = 'ccb-prefill';
+    const string CLASS_PREFILL = 'ccb-prefill';
+
+    public function __construct(private FinderFactory $finderFactory)
+    {}
 
     /**
      * Attach trigger CSS Class
-     *
-     * @Callback(table="tl_page", target="fields.cssClass.save")
      */
-    public function onSaveCssClass(?string $value, DataContainer $dc): string
+    #[AsCallback(table: 'tl_page', target: 'fields.cssClass.save')]
+    public function onSaveCssClass(string|null $value, DataContainer $dc): string
     {
-        if($dc->activeRecord->triggerCookiebar && $dc->activeRecord->type === 'forward')
+        if ($dc->activeRecord->triggerCookiebar && $dc->activeRecord->type === 'forward')
         {
             $value = $this->clearCssClasses($value);
             $value .= ' ' . self::CLASS_TRIGGER;
 
-            if($dc->activeRecord->prefillCookies)
+            if ($dc->activeRecord->prefillCookies)
             {
                 $value .= ' ' . self::CLASS_PREFILL;
             }
@@ -44,14 +58,13 @@ class PageCallbackListener
 
     /**
      * Remove trigger CSS class from value
-     *
-     * @Callback(table="tl_page", target="fields.cssClass.load")
      */
-    public function clearCssClasses(?string $value): string
+    #[AsCallback(table: 'tl_page', target: 'fields.cssClass.load')]
+    public function clearCssClasses(string|null $value): string
     {
-        if(str_contains($value, self::CLASS_TRIGGER) || str_contains($value, self::CLASS_PREFILL))
+        if (str_contains((string) $value, self::CLASS_TRIGGER) || str_contains((string) $value, self::CLASS_PREFILL))
         {
-            return trim(preg_replace('#\s+#', ' ', str_replace([self::CLASS_TRIGGER, self::CLASS_PREFILL], '', $value)));
+            return trim((string) preg_replace('#\s+#', ' ', str_replace([self::CLASS_TRIGGER, self::CLASS_PREFILL], '', $value)));
         }
 
         return $value ?? '';
@@ -59,19 +72,23 @@ class PageCallbackListener
 
     /**
      * Return all cookiebar templates
-     *
-     * @Callback(table="tl_page", target="fields.cookiebarTemplate.options")
      */
+    #[AsCallback(table: 'tl_page', target: 'fields.cookiebarTemplate.options')]
     public function getCookiebarTemplates(): array
     {
-        return Controller::getTemplateGroup('cookiebar_');
+        return $this->finderFactory
+            ->create()
+            ->identifier('cookiebar/default')
+            ->extension('html.twig')
+            ->withVariants()
+            ->asTemplateOptions()
+        ;
     }
 
     /**
-     * Return all cookiebar templates
-     *
-     * @Callback(table="tl_page", target="fields.cookiebarConfig.options")
+     * Return all cookiebar configurations
      */
+    #[AsCallback(table: 'tl_page', target: 'fields.cookiebarConfig.options')]
     public function getCookiebarConfigurations(): array
     {
         return Cookiebar::getConfigurationList();

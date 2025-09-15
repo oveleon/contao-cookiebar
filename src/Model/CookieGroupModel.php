@@ -1,11 +1,15 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCookiebar\Model;
@@ -65,14 +69,14 @@ class CookieGroupModel extends Model
     /**
      * Find published cookie groups by their PID
      */
-    public static function findPublishedByPid(int $intPid, array $arrOptions=array()): Collection|array|CookieGroupModel|null
+    public static function findPublishedByPid(int $intPid, array $arrOptions=[]): Collection|array|CookieGroupModel|null
     {
         $t = static::$strTable;
 
-        $arrColumns = array(
+        $arrColumns = [
             "$t.pid=?",
             "$t.published='1'"
-        );
+        ];
 
         $arrOptions['order'] = "$t.sorting";
 

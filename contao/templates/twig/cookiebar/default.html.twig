@@ -1,0 +1,62 @@
+{% trans_default_domain "contao_default" %}
+{% use "@Contao/component/_stylesheet.html.twig" %}
+{% use "@Contao/cookiebar/block/_groups.html.twig" %}
+
+{%- set wrapper_attributes = attrs()
+    .setIfExists('id', cssID)
+    .addClass(['contao-cookiebar', 'cc-wrap', class])
+    .set('role', 'complementary')
+    .set('aria-describedby', 'cookiebar-desc')
+    .set('data-nosnippet')
+    .mergeWith(wrapper_attributes|default)
+-%}
+
+{%- set inner_attributes = attrs()
+    .addClass('cc-inner')
+    .set('aria-live', 'assertive')
+    .set('role', 'alert')
+    .mergeWith(inner_attributes|default)
+-%}
+
+<!-- indexer::stop -->
+<div{{ wrapper_attributes }}>
+    <div{{ inner_attributes }}>
+        <div id="cookiebar-desc" class="cc-head">
+            {% block header %}
+                {{ description|default|insert_tag_raw|raw }}
+            {% endblock %}
+        </div>
+
+        {% block groups_outer %}
+            <div class="cc-groups">
+                {{ block('groups') }}
+            </div>
+        {% endblock %}
+
+        <div class="cc-footer {{ buttonColorScheme }}">
+            {% block actions %}
+                <button class="cc-btn cc-focus save" data-save>{{ 'tl_cookiebar.saveLabel'|trans }}</button>
+                <button class="cc-btn cc-focus success" data-accept-all>{{ 'tl_cookiebar.acceptAllLabel'|trans }}</button>
+            {% endblock %}
+            {% block footer %}{% endblock %}
+        </div>
+
+        <div class="cc-info">
+            {% block info %}
+                {{ infoDescription|default|insert_tag_raw|raw }}
+                {% for name, link in infoUrls %}
+                    <a class="cc-focus" href="{{ link }}">{{ name }}</a>
+                {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<!-- indexer::continue -->
+
+{% block style %}
+    {% add "contao_cookiebar" to stylesheets %}
+        {% with {file: contao_cookiebar|default(asset('default.css', 'contao_cookiebar' ))} %}
+            {{ block('stylesheet_component') }}
+        {% endwith %}
+    {% endadd %}
+{% endblock %}

@@ -87,10 +87,6 @@
         <source>Technical name</source>
         <target>Tekniskt namn</target>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.changePrivacyLabel">
-        <source>Change privacy settings</source>
-        <target>Ändra sekretessinställningar</target>
-      </trans-unit>
 
       <trans-unit id="tl_cookiebar.title.0">
         <source>Title</source>

@@ -44,13 +44,13 @@ Parameter | Description
 Adds an external resource in the header area (e.g. `<script src="www.vendor.com/script.js" async></script>`)
 ```php
 public function addResource(string $strSrc, array $flags=null, int $mode = self::LOAD_CONFIRMED): void
-    {
-        $this->resources[] = [
-            'src'   => $strSrc,
-            'flags' => $flags,
-            'mode'  => $mode
-        ];
-    }
+{
+    $this->resources[] = [
+        'src'   => $strSrc,
+        'flags' => $flags,
+        'mode'  => $mode
+    ];
+}
 ```
 
 Parameter | Description

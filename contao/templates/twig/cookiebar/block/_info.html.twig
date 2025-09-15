@@ -1,0 +1,7 @@
+{% trans_default_domain "contao_default" %}
+
+{% block cookie_info %}
+    {% if label|default and show %}
+        <div><span>{{ ('tl_cookiebar.' ~ translation_key)|trans }}:</span> {{ label }}</div>
+    {% endif %}
+{% endblock %}

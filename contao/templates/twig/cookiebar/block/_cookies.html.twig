@@ -1,0 +1,29 @@
+{% trans_default_domain "contao_default" %}
+{% use "@Contao/cookiebar/block/_info.html.twig" %}
+
+{% block cookies %}
+    {{ group.description|default|insert_tag_raw|raw }}
+    {% for cookie in group.cookies %}
+        <div class="cc-cookie">
+            <input type="checkbox" name="cookie[]" id="{{ 'c' ~ cookie.id }}" value="{{ cookie.id }}" {% if cookie.isLocked or cookie.isDisbaled %} disabled checked{% endif %}>
+            <label for="{{ 'c' ~ cookie.id }}" class="cookie">{{ cookie.title }}</label>
+            {{ cookie.description|default|insert_tag_raw|raw }}
+            {% apply spaceless %}
+                <div class="cc-cookie-info">
+                    {% with {label: cookie.provider, show: cookie.showProvider, translation_key: 'providerLabel'} %}{{ block('cookie_info') }}{% endwith %}
+                    {% with {label: cookie.expireTime, show: cookie.showExpireTime, translation_key: 'expireLabel'} %}{{ block('cookie_info') }}{% endwith %}
+                    {% with {label: cookie.token, show: cookie.showTokens, translation_key: 'tokenLabel'} %}{{ block('cookie_info') }}{% endwith %}
+                </div>
+            {% endapply %}
+            {% if cookie.detailDescription %}
+                <button class="cc-detail-btn-details cc-focus" data-toggle-group aria-expanded="false" aria-controls="{{ 'cc' ~ group.id }}">
+                    <span>{{ 'tl_cookiebar.showMoreDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ cookie.title}}</span></span>
+                    <span>{{ 'tl_cookiebar.hideMoreDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ cookie.title}}</span></span>
+                </button>
+                <div id="{{ 'cc' ~ cookie.id }}" class="cc-cookie-desc toggle-group" style="display: none">
+                    {{ cookie.detailDescription|default|insert_tag_raw|raw }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}

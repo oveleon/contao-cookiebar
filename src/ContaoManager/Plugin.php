@@ -1,15 +1,16 @@
 <?php
 
-/**
+declare(strict_types=1);
+
+/*
  * This file is part of Oveleon Contao Cookiebar.
  *
  * @package     contao-cookiebar
  * @license     AGPL-3.0
  * @author      Daniele Sciannimanica <https://github.com/doishub>
- * @copyright   Oveleon <https://www.oveleon.de/>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
  */
-
-declare(strict_types=1);
 
 namespace Oveleon\ContaoCookiebar\ContaoManager;
 
@@ -25,9 +26,6 @@ use Symfony\Component\Routing\RouteCollection;
 
 class Plugin implements BundlePluginInterface, RoutingPluginInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getBundles(ParserInterface $parser): array
     {
         return [
@@ -38,7 +36,7 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @throws \Exception
      */
     public function getRouteCollection(LoaderResolverInterface $resolver, KernelInterface $kernel): RouteCollection|null
     {

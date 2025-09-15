@@ -1,0 +1,62 @@
+{%- block styles %}
+<style>
+    html {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100%;
+    }
+
+    .ccb-element-blocker {
+        font-size: 14px;
+        font-family: sans-serif;
+        text-align: center;
+        color: #6f6f6f;
+    }
+
+    .cc-title {
+        font-weight: bold;
+    }
+
+    .cc-btn {
+        display: inline-block;
+        cursor: pointer;
+        padding: 8px 14px;
+        font-size: 15px;
+        outline: 0 none;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        color: #444;
+        background: #f5f5f5;
+
+        &:hover {
+            background: #ececec;
+        }
+    }
+
+    .cc-icon {
+        position: relative;
+        width: 220px;
+        height: 110px;
+        margin: 0 auto 8px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: url("{{ asset('images/default.png', 'contao_cookiebar')}}");
+        }
+    }
+
+    .vimeo::after { background-image: url("{{ asset('images/vimeo.png', 'contao_cookiebar')}}") }
+    .youtube::after { background-image: url("{{ asset('images/youtube.png', 'contao_cookiebar')}}") }
+    .googlemaps::after { background-image: url("{{ asset('images/googlemaps.png', 'contao_cookiebar')}}") }
+    .openstreetmap::after { background-image: url("{{ asset('images/openstreetmap.png', 'contao_cookiebar')}}") }
+</style>
+{%- endblock -%}

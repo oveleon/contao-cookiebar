@@ -1,27 +1,8 @@
 services:
     _defaults:
-        autowire: true
         autoconfigure: true
-        public: true
 
-    Oveleon\ContaoCookiebar\:
-        resource: '../src/'
-        exclude: '../src/{ContaoManager,Model,DependencyInjection,Resources,AbstractCookie.php,ContaoCookiebar.php,Cookiebar.php,GlobalConfig.php,Cookie.php}'
-
-    Oveleon\ContaoCookiebar\EventListener\KernelRequestListener:
+    contao_cookiebar.insert_tag.cookiebar:
+        class: Oveleon\ContaoCookiebar\InsertTag\CookiebarInsertTag
         arguments:
-            - '@contao.translation.translator'
-            - '@contao.security.token_checker'
-            - '@contao.routing.scope_matcher'
-            - '@contao.csp.parser'
-            - '%contao_cookiebar.lifetime%'
-            - '%contao_cookiebar.consent_log%'
-            - '%contao_cookiebar.storage_key%'
-            - '%contao_cookiebar.consider_dnt%'
-            - '%contao_cookiebar.disable_focustrap%'
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
-            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
-            - { name: contao.hook, hook: getFrontendModule, method: onParseLegacyTemplates, priority: 0 }
-            - { name: contao.hook, hook: getContentElement, method: onParseLegacyTemplates, priority: 0 }
-            - { name: contao.hook, hook: generatePage, method: onGeneratePage, priority: 0 }
+            - '@translator'

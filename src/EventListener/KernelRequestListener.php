@@ -2,6 +2,16 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener;
 
 use Contao\ContentModel;
@@ -18,6 +28,7 @@ use Contao\System;
 use Oveleon\ContaoCookiebar\Cookiebar;
 use Oveleon\ContaoCookiebar\Model\CookiebarModel;
 use Oveleon\ContaoCookiebar\Utils\ScriptUtils;
+use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
@@ -25,11 +36,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class KernelRequestListener
 {
-    private ?PageModel $objRootPage = null;
-    private ?PageModel $objPage = null;
-    private ?CookiebarModel $cookiebarModel = null;
-    private ?ScriptUtils $scriptUtils = null;
-    private ?array $types = null;
+    private PageModel|null $objRootPage = null;
+    private PageModel|null $objPage = null;
+    private CookiebarModel|null $cookiebarModel = null;
+    private ScriptUtils|null $scriptUtils = null;
+    private array|null $types = null;
     private array $cookies = [];
 
     public function __construct(
@@ -37,6 +48,7 @@ class KernelRequestListener
         private readonly TokenChecker        $tokenChecker,
         private readonly ScopeMatcher        $scopeMatcher,
         private readonly CspParser           $cspParser,
+        private readonly Packages            $packages,
         private readonly int                 $lifetime,
         private readonly bool                $consentLog,
         private readonly string              $storageKey,
@@ -94,9 +106,11 @@ class KernelRequestListener
         $this->scriptUtils = new ScriptUtils();
 
         // Always add cache busting
-        $javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
+        $javascript = $this->packages->getUrl('cookiebar.js', 'contao_cookiebar');
+
+        /*$javascript = 'bundles/contaocookiebar/scripts/cookiebar.min.js';
         $mtime = (string) filemtime($this->getRealPath($javascript));
-        $javascript .= '?v=' . substr(md5($mtime), 0, 8);
+        $javascript .= '?v=' . substr(md5($mtime), 0, 8);*/
 
         match ($this->cookiebarModel->scriptPosition)
         {
@@ -262,7 +276,7 @@ class KernelRequestListener
         return true;
     }
 
-    private function getScriptNonce(Response $response): ?string
+    private function getScriptNonce(Response $response): string|null
     {
         $cspHeader = $response->headers->get('Content-Security-Policy');
 
@@ -381,7 +395,7 @@ class KernelRequestListener
                 $strBlockUrl = '/cookiebar/block/' . $this->objPage->language . '/' . $cookie['id'] . '?redirect=';
 
                 // Check if the element is delivered with a preview image
-                if (false !== strpos($buffer, 'id="splashImage'))
+                if (str_contains($buffer, 'id="splashImage'))
                 {
                     // Regex: Modify href attribute for splash images
                     $atagRegex = "/id=\"splashImage_([^>]*)href=\"([^>]*)\"/is";
@@ -456,6 +470,7 @@ class KernelRequestListener
     /**
      * Use the generatePage Hook the parse the cookieBarTemplate
      * At this point the Contao globals e.g. global $objPage and the GLOBALS are set
+     *
      * @return void
      */
     public function onGeneratePage(): void

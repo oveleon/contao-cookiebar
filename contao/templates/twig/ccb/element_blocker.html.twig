@@ -1,0 +1,25 @@
+{% use "@Contao/ccb/_script.html.twig" %}
+{% use "@Contao/ccb/_styles.html.twig" %}
+
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+{% block head %}
+    <title>{{ cookie.title }}</title>
+    <meta name="robots" content="noindex,nofollow" />
+    {{ block('script') }}
+    {{ block('styles') }}
+{% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="ccb-element-blocker {{ cookie.type }}">
+        {% block blocker_content %}
+            <div class="cc-icon {{ cookie.iframeType }}"></div>
+            <div class="cc-title">{{ cookie.title }}</div>
+            <div class="cc-description">{{ cookie.blockDescription|default|csp_inline_styles|insert_tag|encode_email|raw }}</div>
+            <button class="cc-btn cc-focus" onclick="parent.cookiebar.unblock(window.frames.frameElement, {{ cookie.id }}, '{{ redirect }}')">{{ 'tl_cookiebar.acceptAndDisplayLabel'|trans({}, 'contao_default', locale) }}</button>
+        {% endblock %}
+    </div>
+{% endblock %}
+</body>

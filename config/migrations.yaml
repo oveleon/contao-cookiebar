@@ -1,12 +1,24 @@
 services:
-  Oveleon\ContaoCookiebar\Migration\ContaoCookiebarConsentModeMigration:
-    arguments:
-      - '@database_connection'
-    tags:
-      - { name: contao.migration, priority: 0 }
+    _defaults:
+        autoconfigure: true
 
-  Oveleon\ContaoCookiebar\Migration\ContaoCookiebarOpenerMigration:
-      arguments:
-          - '@database_connection'
-      tags:
-          - { name: contao.migration, priority: 0 }
+    contao_cookiebar.migration.consent_mode_migration:
+        class: Oveleon\ContaoCookiebar\Migration\ConsentModeMigration
+        arguments:
+            - '@database_connection'
+        tags:
+            - { name: contao.migration, priority: 0 }
+
+    contao_cookiebar.migration.cookiebar_opener_migration:
+        class: Oveleon\ContaoCookiebar\Migration\CookiebarOpenerMigration
+        arguments:
+            - '@database_connection'
+        tags:
+            - { name: contao.migration, priority: 0 }
+
+    contao_cookiebar.migration.cookiebar_twig_templates_migration:
+        class: Oveleon\ContaoCookiebar\Migration\CookiebarTwigTemplatesMigration
+        arguments:
+            - '@database_connection'
+        tags:
+            - { name: contao.migration, priority: 0 }

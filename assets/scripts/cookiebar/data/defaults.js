@@ -1,0 +1,27 @@
+export const DEFAULT_CONFIG = {
+    selector: '.contao-cookiebar',
+    token: 'ccb_contao_token',
+    configId: null,
+    pageId: null,
+    hideOnInit: false,
+    blocking: false,
+    focusTrap: true,
+    version: null,
+    lifetime: 63072000,
+    consentLog: false,
+    cookies: null,
+    configs: null,
+    doNotTrack: false,
+    currentPageId: 0,
+    excludedPageIds: null,
+    disableTracking: false,
+    texts: {
+        acceptAndDisplay: 'Accept',
+    },
+    classes: {
+        onSave: 'cc-saved',
+        onShow: 'cc-active',
+        onGroupToggle: 'cc-active',
+        onGroupSplitSelection: 'cc-group-half',
+    },
+};

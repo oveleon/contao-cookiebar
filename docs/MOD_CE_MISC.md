@@ -22,10 +22,11 @@ In order to be able to open the cookie bar from all pages again and to give visi
 | `Link title`       | The link title is added as `title` attribute in the HTML markup    |
 | `Prefill settings` | Activates the already selected cookies when opening the cookie bar |
 
-### Template
-| Template                   | Description                                                                                           |
-|----------------------------|-------------------------------------------------------------------------------------------------------|
-| `ccb_opener_default.html5` | Returns the template, which is responsible for the output of the cookie bar module / content element. |
+### Templates
+| Template                                     | Description                                                                                  |
+|----------------------------------------------|----------------------------------------------------------------------------------------------|
+| `content_element/cookiebar_opener.html.twig` | Returns the template, which is responsible for the output of the cookie bar content element. |
+| `frontend_module/cookiebar_opener.html.twig` | Returns the template, which is responsible for the output of the cookie bar module.          |
 
 ## Open cookie bar via navigation
 Since version `1.10.0` it is possible to anchor the opening of the cookie bar in any navigation structure. A redirect page (internal redirect) can be set up, in which it is possible to define this page as the opener of the cookie bar. Afterwards, this page can be integrated into Contao and its navigation modules as usual. If JavaScript is not activated, the user will be redirected to the page that has been set up. This could in the best case point to data protection and privacy.
@@ -37,14 +38,14 @@ Since version `1.14.0` it is possible to add open the cookie bar with following 
 
 The following parameters can be added to further customize the text, title and prefill options
 
-| Option             | Example                                                 | Default                                                     |
-|--------------------|---------------------------------------------------------|-------------------------------------------------------------|
-| `Link text`        | `{{cookiebar::show::My link name}}`                     | `$GLOBALS['TL_LANG']['tl_cookiebar']['changePrivacyLabel']` |
-| `Link title`       | `{{cookiebar::show::My link name::This is a title}}`    | empty                                                       |
-| `Prefill settings` | `{{cookiebar::show::My link name::This is a title::0}}` | 1 (true)                                                    | 
+| Option             | Example                                                 | Default                          |
+|--------------------|---------------------------------------------------------|----------------------------------|
+| `Link text`        | `{{cookiebar::show::My link name}}`                     | `cookiebar.change_privacy_label` |
+| `Link title`       | `{{cookiebar::show::My link name::This is a title}}`    | empty                            |
+| `Prefill settings` | `{{cookiebar::show::My link name::This is a title::0}}` | 1 (true)                         |
 
 
-## Create your own links to open the cookie bar 
+## Create your own links to open the cookie bar
 The following script can be used to reopen the cookie bar:
 ```js
 cookiebar.show(true); // true = Activates the already confirmed cookie checkboxes

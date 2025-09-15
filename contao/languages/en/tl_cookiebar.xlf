@@ -75,9 +75,6 @@
       <trans-unit id="tl_cookiebar.tokenLabel">
         <source>Technical name</source>
       </trans-unit>
-      <trans-unit id="tl_cookiebar.changePrivacyLabel">
-        <source>Change privacy settings</source>
-      </trans-unit>
 
       <trans-unit id="tl_cookiebar.title.0">
         <source>Title</source>

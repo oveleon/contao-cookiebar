@@ -1,0 +1,28 @@
+{% trans_default_domain "contao_default" %}
+{% extends "@Contao/cookiebar/default.html.twig" %}
+
+{% block groups_outer %}{% endblock %}
+{% block detail_buttons %}{% endblock %}
+
+{% block actions %}
+    <button class="cc-btn cc-focus success" data-accept-all>{{ 'tl_cookiebar.acceptAllLabel'|trans }}</button>
+    <button class="cc-btn cc-focus deny" data-deny-all>{{ 'tl_cookiebar.denyAllLabel'|trans }}</button>
+    <button class="cc-btn cc-focus info" data-toggle-group aria-expanded="false" data-ft-opener aria-controls="cg">{{ 'tl_cookiebar.infoLabel'|trans }}</button>
+{% endblock %}
+
+{% block cookies_attributes %} class="cc-cookies"{% endblock %}
+
+{% block footer %}
+    <div id="cg" class="cc-groups toggle-group">
+        {% block groups %}{{ parent() }}{% endblock %}
+        <button class="cc-btn cc-focus save" data-save>{{ 'tl_cookiebar.saveLabel'|trans }}</button>
+    </div>
+{% endblock %}
+
+{% block style %}
+    {% add "contao_cookiebar" to stylesheets %}
+        {% with {file: contao_cookiebar|default(asset('simple.css', 'contao_cookiebar'))} %}
+            {{ block('stylesheet_component') }}
+        {% endwith %}
+    {% endadd %}
+{% endblock %}

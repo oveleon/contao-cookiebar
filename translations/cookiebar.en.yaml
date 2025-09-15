@@ -1,0 +1,14 @@
+cookiebar:
+    change_privacy_label: Change privacy settings
+    #save_label:
+    #accept_all_label:
+    #deny_all_label:
+    #info_label:
+    #accept_and_display_label:
+    #show_details_label:
+    #hide_details_label:
+    #show_more_details_label:
+    #hide_more_details_label:
+    #for_infix:
+    #expire_label:
+    #token_label:

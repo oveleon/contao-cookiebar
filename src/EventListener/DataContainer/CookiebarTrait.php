@@ -1,5 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Oveleon Contao Cookiebar.
+ *
+ * @package     contao-cookiebar
+ * @license     AGPL-3.0
+ * @author      Daniele Sciannimanica <https://github.com/doishub>
+ * @author      Sebastian Zoglowek    <https://github.com/zoglo>
+ * @copyright   Oveleon               <https://www.oveleon.de/>
+ */
+
 namespace Oveleon\ContaoCookiebar\EventListener\DataContainer;
 
 use Contao\Backend;
@@ -15,12 +27,12 @@ trait CookiebarTrait
      */
     protected function setHostPrefix(string $varValue): string
     {
-        if(!trim($varValue))
+        if (!trim($varValue))
         {
             return $varValue;
         }
 
-        if(
+        if (
             (str_starts_with($varValue, 'http')) ||
             (str_starts_with($varValue, 'https')) ||
             (str_starts_with($varValue, 'www')) ||
@@ -37,12 +49,12 @@ trait CookiebarTrait
     /**
      * Disable button when identifier is locked
      */
-    protected function disableButtonOnLocked(array $row, ?string $href, string $label, string $title, ?string $icon, string $attributes): string
+    protected function disableButtonOnLocked(array $row, string|null $href, string $label, string $title, string|null $icon, string $attributes): string
     {
         // Disable the button if the element is locked
         if ($row['identifier'] === 'lock')
         {
-            return Image::getHtml(preg_replace('/\.svg$/i', '_.svg', $icon)) . ' ';
+            return Image::getHtml(preg_replace('/\.svg$/i', '_.svg', (string) $icon)) . ' ';
         }
 
         return vsprintf('<a href="%s" title="%s"%s>%s</a> ', [
@@ -62,7 +74,7 @@ trait CookiebarTrait
 
         $field = $dc->activeRecord->type . '_' . $dc->field;
 
-        if([] !== ($tl = $GLOBALS['TL_LANG'][$dc->table][$field] ?? []))
+        if ([] !== ($tl = $GLOBALS['TL_LANG'][$dc->table][$field] ?? []))
         {
             $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['label'] = $tl;
         }
