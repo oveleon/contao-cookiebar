@@ -1,6 +1,6 @@
 .contao-cookiebar {
     --ccb-backdrop: rgb(0 0 0 / 75%);
-    --ccb-anim-duration: .5s;
+    --ccb-anim-duration: 0.5s;
     --ccb-checked-clr: #399d32;
     --ccb-checked-bg: #dcf3db;
     --ccb-unchecked-clr: #9c9b99;
@@ -56,7 +56,7 @@
 
             &::before,
             &::after {
-                content: '';
+                content: "";
                 position: absolute;
                 border-radius: 10px;
             }
@@ -70,7 +70,7 @@
                 box-sizing: content-box;
                 background: var(--ccb-unchecked-bg);
                 border: 1px solid var(--ccb-unchecked-clr);
-                transition: border-color .2s;
+                transition: border-color 0.2s;
             }
 
             &::after {
@@ -80,7 +80,7 @@
                 width: 12px;
                 height: 12px;
                 background: var(--ccb-unchecked-clr);
-                transition: background .2s, margin-left .2s, padding .2s;
+                transition: background 0.2s, margin-left 0.2s, padding 0.2s;
             }
 
             &:active::after {
@@ -89,7 +89,13 @@
         }
 
         &.cc-group-half + label::after {
-            background: linear-gradient(to right, var(--ccb-unchecked-clr) 0%, var(--ccb-unchecked-clr) 50%, var(--ccb-checked-clr) 50%, var(--ccb-checked-clr) 100%);
+            background: linear-gradient(
+                to right,
+                var(--ccb-unchecked-clr) 0%,
+                var(--ccb-unchecked-clr) 50%,
+                var(--ccb-checked-clr) 50%,
+                var(--ccb-checked-clr) 100%
+            );
         }
 
         &:checked + label {
@@ -200,7 +206,7 @@
     padding: 0;
     position: absolute;
     width: 1px;
-    float: left
+    float: left;
 }
 
 .cc-inner {
@@ -223,10 +229,7 @@
 
 .cc-close {
     position: absolute;
-    top: 6px;
-    right: 6px;
-    bottom: auto;
-    left: auto;
+    inset: 6px 6px auto auto;
     cursor: pointer;
     border: none;
     background: none;
@@ -326,7 +329,7 @@
 
         + a::before {
             display: inline-block;
-            content: '·';
+            content: "·";
             margin-right: 5px;
         }
     }
@@ -388,7 +391,6 @@
     }
 }
 
-
 .cc-bottom {
     --ccb-align: flex-end;
 
@@ -399,7 +401,6 @@
     &.cc-saved {
         --ccb-anim: cookiebar-bottom-out;
     }
-
 }
 
 @media (width >= 768px) {
