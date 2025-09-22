@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_cookie_group.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_cookie_group.title_legend">
+        <source>Cookie group</source>
+        <target>Grup de cookie-uri</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.title.0">
+        <source>Group name</source>
+        <target>Gruppenname</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.title.1">
+        <source>Enter a group name here.</source>
+        <target>Geben Sie hier einen Gruppennamen an.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.description.0">
+        <source>Description</source>
+        <target>Descriere</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.description.1">
+        <source>Describe the cookie group and its purpose.</source>
+        <target>Beschreiben Sie hier die Cookie-Gruppe und ihren Zweck.</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.published.0">
+        <source>Publish</source>
+        <target>Veröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.published.1">
+        <source>Define here whether the cookie group may be used.</source>
+        <target>Definieren Sie hier, ob die Cookiegruppe verwendet werden darf.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_cookie_group.new.0">
+        <source>New</source>
+        <target>Neu</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.new.1">
+        <source>Create a new Groupe</source>
+        <target>Eine neue Gruppe erstellen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.0">
+        <source>Show details</source>
+        <target>Afișează detalii</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.show.1">
+        <source>Show the details of group ID %s</source>
+        <target>Details der Gruppe ID %s anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.0">
+        <source>Edit cookies</source>
+        <target>Cookies bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.edit.1">
+        <source>Edit cookies of group ID %s</source>
+        <target>Cookies der Gruppe ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.0">
+        <source>Edit group</source>
+        <target>Editează grup</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.editheader.1">
+        <source>Edit group ID %s</source>
+        <target>Gruppe ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.0">
+        <source>Duplicate group</source>
+        <target>Gruppe ID %s duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.copy.1">
+        <source>Duplicate group ID %s</source>
+        <target>Gruppe ID %s duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.0">
+        <source>Move group</source>
+        <target>Gruppe verschieben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.cut.1">
+        <source>Move group ID %s</source>
+        <target>Gruppe ID %s verschieben</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.0">
+        <source>Delete group</source>
+        <target>Șterge grup</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.delete.1">
+        <source>Delete group ID %s</source>
+        <target>Gruppe ID %s löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.0">
+        <source>Publish/unpublish group</source>
+        <target>Gruppe veröffentlichen/unveröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_cookie_group.toggle.1">
+        <source>Publish/unpublish group ID %s</source>
+        <target>Gruppe ID %s veröffentlichen/unveröffentlichen</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

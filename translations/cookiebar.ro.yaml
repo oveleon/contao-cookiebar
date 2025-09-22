@@ -1,0 +1,14 @@
+cookiebar:
+  change_privacy_label: Schimbă setările de confidențialitate
+  save_label: Salvează selecția
+  accept_all_label: Acceptă tot
+  deny_all_label: Refuză tot
+  info_label: Setări de confidențialitate
+  accept_and_display_label: Acceptă și afișează
+  show_details_label: Afișează detalii
+  hide_details_label: Ascunde detalii
+  show_more_details_label: Afișează mai multe detalii
+  hide_more_details_label: Ascunde mai multe detalii
+  for_infix: pentru
+  expire_label: Perioada de stocare
+  token_label: Nume tehnic
