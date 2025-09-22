@@ -89,13 +89,12 @@ Join us in making a difference, and thank you for your support! - [Oveleon](http
 
 ## Contributing
 
-To build JavaScript and CSS files the following commands can be used:
+If you use an LLM such as ChatGPT, Gemini, Claude etc. to assist you heavily with your code, you must state so in
+your contribution. You are responsible for reviewing the generated content before opening a pull request for it.
+Submitting unreviewed LLM-generated code will result in your pull request being rejected.
 
-```npm
-npm install
-npm run-script buildjs
-npm run-script buildcss
-```
+Please understand that generated content can be difficult or even impossible to review and may cost us significant extra
+time in reviewing.
 
 ---
 
