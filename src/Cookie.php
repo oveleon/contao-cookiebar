@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCookiebar;
 
-use Contao\BackendTemplate;
 use Contao\Environment;
+use Contao\FrontendTemplate;
 use Contao\StringUtil;
 use Contao\System;
 use Oveleon\ContaoCookiebar\Model\CookieModel;
@@ -178,7 +178,7 @@ class Cookie extends AbstractCookie
      */
     private function addCustomTemplate(): void
     {
-        $objTemplate = new BackendTemplate($this->scriptTemplate);
+        $objTemplate = new FrontendTemplate($this->scriptTemplate);
         $strTemplate = $objTemplate->parse();
 
         if (empty($strTemplate)) {
