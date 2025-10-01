@@ -130,7 +130,7 @@ $GLOBALS['TL_DCA']['tl_cookie'] = [
             'sql'                     => ['name' => 'iframeType', 'type' => 'string', 'length' => 64, 'default' => ''],
         ],
         'blockTemplate' => [
-            'default'                 => 'ccb/element_blocker',
+            'default'                 => '',
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'select',
