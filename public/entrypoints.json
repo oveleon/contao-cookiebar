@@ -12,7 +12,7 @@
     },
     "default": {
       "css": [
-        "/bundles/contaocookiebar/default.942a96d5.css"
+        "/bundles/contaocookiebar/default.00b012e7.css"
       ],
       "js": [
         "/bundles/contaocookiebar/default.31d6cfe0.js"
@@ -20,7 +20,7 @@
     },
     "simple": {
       "css": [
-        "/bundles/contaocookiebar/simple.657a65e9.css"
+        "/bundles/contaocookiebar/simple.20b653dc.css"
       ],
       "js": [
         "/bundles/contaocookiebar/simple.31d6cfe0.js"
