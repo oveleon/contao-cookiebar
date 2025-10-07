@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.1">
-  <file datatype="php" original="contao/languages/en/tl_page.php" source-language="en" target-language="de">
+  <file datatype="php" original="contao/languages/en/tl_page.php" source-language="en" target-language="ro">
     <body>
       <trans-unit id="tl_page.cookiebar_legend">
         <source>Cookiebar</source>
@@ -92,7 +92,7 @@
       </trans-unit>
       <trans-unit id="tl_page.cookiebarInfoUrls.1">
         <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
-        <target>Introduceți aici linkuri suplimentare, de exemplu către politica de confidențialitate, mențiuni legale sau alte informații juridice.</target>
+        <target>Introduceți aici linkuri suplimentare, de exemplu către politica de confidențialitate, mențiunile legale sau alte note juridice.</target>
       </trans-unit>
       <trans-unit id="tl_page.cookiebarExcludePages.0">
         <source>Exclude Pages</source>

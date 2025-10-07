@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.1">
-  <file datatype="php" original="contao/languages/en/tl_cookie_group.php" source-language="en" target-language="de">
+  <file datatype="php" original="contao/languages/en/tl_cookie_group.php" source-language="en" target-language="ro">
     <body>
       <trans-unit id="tl_cookie_group.title_legend">
         <source>Cookie group</source>
@@ -8,11 +8,11 @@
       </trans-unit>
       <trans-unit id="tl_cookie_group.title.0">
         <source>Group name</source>
-        <target>Gruppenname</target>
+        <target>Numele grupului</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.title.1">
         <source>Enter a group name here.</source>
-        <target>Geben Sie hier einen Gruppennamen an.</target>
+        <target>Introduceți aici un nume de grup.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.description.0">
         <source>Description</source>
@@ -20,24 +20,24 @@
       </trans-unit>
       <trans-unit id="tl_cookie_group.description.1">
         <source>Describe the cookie group and its purpose.</source>
-        <target>Beschreiben Sie hier die Cookie-Gruppe und ihren Zweck.</target>
+        <target>Descrieți aici grupul de cookie-uri și scopul său.</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.published.0">
         <source>Publish</source>
-        <target>Veröffentlichen</target>
+        <target>Publicați</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.published.1">
         <source>Define here whether the cookie group may be used.</source>
-        <target>Definieren Sie hier, ob die Cookiegruppe verwendet werden darf.</target>
+        <target>Definiți aici dacă grupul de cookie-uri poate fi utilizat.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie_group.new.0">
         <source>New</source>
-        <target>Neu</target>
+        <target>Nou</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.new.1">
-        <source>Create a new Groupe</source>
-        <target>Eine neue Gruppe erstellen</target>
+        <source>Create a new Group</source>
+        <target>Creează un nou grup</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.show.0">
         <source>Show details</source>
@@ -45,39 +45,39 @@
       </trans-unit>
       <trans-unit id="tl_cookie_group.show.1">
         <source>Show the details of group ID %s</source>
-        <target>Details der Gruppe ID %s anzeigen</target>
+        <target>Afișează detaliile grupului cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.edit.0">
         <source>Edit cookies</source>
-        <target>Cookies bearbeiten</target>
+        <target>Editează cookie-urile</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.edit.1">
         <source>Edit cookies of group ID %s</source>
-        <target>Cookies der Gruppe ID %s bearbeiten</target>
+        <target>Editează cookie-urile grupului cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.editheader.0">
         <source>Edit group</source>
-        <target>Editează grup</target>
+        <target>Editați grupul</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.editheader.1">
         <source>Edit group ID %s</source>
-        <target>Gruppe ID %s bearbeiten</target>
+        <target>Editați grupul cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.copy.0">
         <source>Duplicate group</source>
-        <target>Gruppe ID %s duplizieren</target>
+        <target>Duplicare grup</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.copy.1">
         <source>Duplicate group ID %s</source>
-        <target>Gruppe ID %s duplizieren</target>
+        <target>Duplicare grup ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.cut.0">
         <source>Move group</source>
-        <target>Gruppe verschieben</target>
+        <target>Mutare grup</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.cut.1">
         <source>Move group ID %s</source>
-        <target>Gruppe ID %s verschieben</target>
+        <target>Mutare grup ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.delete.0">
         <source>Delete group</source>
@@ -85,15 +85,15 @@
       </trans-unit>
       <trans-unit id="tl_cookie_group.delete.1">
         <source>Delete group ID %s</source>
-        <target>Gruppe ID %s löschen</target>
+        <target>Șterge grup ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.toggle.0">
         <source>Publish/unpublish group</source>
-        <target>Gruppe veröffentlichen/unveröffentlichen</target>
+        <target>Publicați/nepublicați grup</target>
       </trans-unit>
       <trans-unit id="tl_cookie_group.toggle.1">
         <source>Publish/unpublish group ID %s</source>
-        <target>Gruppe ID %s veröffentlichen/unveröffentlichen</target>
+        <target>Publicați/nepublicați grup ID %s</target>
       </trans-unit>
     </body>
   </file>

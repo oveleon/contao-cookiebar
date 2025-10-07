@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.1">
-  <file datatype="php" original="contao/languages/en/tl_cookiebar.php" source-language="en" target-language="de">
+  <file datatype="php" original="contao/languages/en/tl_cookiebar.php" source-language="en" target-language="ro">
     <body>
       <trans-unit id="tl_cookiebar.title_legend">
         <source>Title / Version</source>
@@ -107,7 +107,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.title.1">
         <source>Please enter a unique cookiebar title.</source>
-        <target>Geben Sie hier einen internen Titel für die Cookiebar an.</target>
+        <target>Introduceți un titlu unic pentru Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.0">
         <source>Version</source>
@@ -115,7 +115,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.version.1">
         <source>The current version of the cookiebar configuration is shown here.</source>
-        <target>Hier wird die aktuelle Version der Cookiebar-Konfiguration angezeigt.</target>
+        <target>Aici este afișată versiunea curentă a configurației Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.0">
         <source>Update version</source>
@@ -123,7 +123,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.updateVersion.1">
         <source>Update the current version to force the cookiebar to be displayed again to visitors.</source>
-        <target>Aktualisieren Sie die aktuelle Version, um ein erneutes Anzeigen der Cookiebar für Besucher zu erzwingen.</target>
+        <target>Actualizați versiunea curentă pentru a forța afișarea din nou a Cookiebar pentru vizitatori.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.hideOnInit.0">
         <source>Hide cookiebar</source>
@@ -131,15 +131,15 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.hideOnInit.1">
         <source>Do not display the cookie bar on initial visit. The cookie bar can still be opened via the cookie bar opener.</source>
-        <target>Cookiebar beim Erstaufruf der Seite nicht anzeigen. Die Cookiebar kann über den Cookiebar-Öffner weiterhin geöffnet werden.</target>
+        <target>Nu afișați Cookiebar la prima vizită. Cookiebar poate fi deschisă în continuare prin deschizătorul de cookie-uri.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.0">
         <source>Title &amp; description</source>
-        <target>Titel &amp; Beschreibung</target>
+        <target>Titlu &amp; descriere</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.description.1">
         <source>Describe the purpose of the cookiebar.</source>
-        <target>Beschreiben Sie hier den Zweck der Cookiebar.</target>
+        <target>Descrieți aici scopul Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.0">
         <source>Additional information</source>
@@ -147,15 +147,15 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoDescription.1">
         <source>Here you can add more information, that are displayed below the buttons.</source>
-        <target>Definieren Sie hier weitere Informationen, welche unterhalb der Buttons ausgegeben werden.</target>
+        <target>Definiți aici informații suplimentare, care sunt afișate sub butoane.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.0">
         <source>Info links</source>
-        <target>Linkuri informative</target>
+        <target>Link-uri informative</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.infoUrls.1">
         <source>Please enter further links here, e.g. to the privacy policy, imprint or legal notices.</source>
-        <target>Geben Sie hier weitere Links an, z.B. zur Datenschutzerklärung, Impressum oder rechtlichen Hinweisen.</target>
+      <target>Introduceți aici linkuri suplimentare, de exemplu către politica de confidențialitate, mențiunile legale sau alte note juridice.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.0">
         <source>Exclude pages</source>
@@ -163,15 +163,15 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.excludePages.1">
         <source>Here you can define the pages where the cookiebar should not open automatically.</source>
-        <target>Definieren Sie hier die Seiten, in denen die Cookiebar nicht automatisch geöffnet werden soll.</target>
+        <target>Definiți aici paginile în care Cookiebar nu ar trebui să se deschidă automat.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.0">
         <source>Template</source>
-        <target>Template</target>
+        <target>Șablon</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.template.1">
         <source>Here you can select a template for the cookiebar.</source>
-        <target>Hier können Sie ein Template für die Cookiebar auswählen.</target>
+        <target>Aici puteți selecta un șablon pentru Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.buttonColorScheme.0">
         <source>Button color scheme</source>
@@ -179,39 +179,39 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.buttonColorScheme.1">
         <source>Defines the color scheme of the available buttons.</source>
-        <target>Definiert das Farbschema der verfügbaren Buttons.</target>
+        <target>Definește schema de culori a butoanelor disponibile.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.0">
         <source>Alignment</source>
         <target>Aliniere</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.alignment.1">
-        <source>Here you can define the position &amp; orientation of the cookiebar.</source>
-        <target>Hier können Sie die Position &amp; Ausrichtung der Cookiebar definieren.</target>
+        <source>Here you can define the position &amp; orientation of the Cookiebar.</source>
+        <target>Aici puteți defini poziția și orientarea Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.0">
         <source>Blocking</source>
-        <target>Blocant</target>
+        <target>Blocare</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.blocking.1">
-        <source>Blocks the use of the site until the cookiebar has been used.</source>
-        <target>Blockiert das Bedienen der Seite, bis die Cookiebar bedient wurde.</target>
+        <source>Blocks the use of the site until the Cookiebar has been used.</source>
+        <target>Blochează utilizarea site-ului până când Cookiebar a fost utilizată.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.0">
         <source>Position</source>
         <target>Poziție</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.position.1">
-        <source>Here you can define the position of the cookiebar in the HTML.</source>
-        <target>Definieren Sie hier die Position der Cookiebar im HTML.</target>
+        <source>Here you can define the position of the Cookiebar in the HTML.</source>
+        <target>Definiți aici poziția Cookiebar în HTML.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.0">
         <source>Script position</source>
         <target>Poziția scriptului</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.scriptPosition.1">
-        <source>Here you can define the position of the cookiebar scripts within the HTML.</source>
-        <target>Definieren Sie hier die Position der Cookiebar-Skripte im HTML.</target>
+        <source>Here you can define the position of the Cookiebar scripts within the HTML.</source>
+        <target>Definiți aici poziția scripturilor Cookiebar în HTML.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.0">
         <source>CSS ID/class</source>
@@ -219,7 +219,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.cssID.1">
         <source>Here you can set an ID and one or more classes.</source>
-        <target>Hier können Sie eine ID und beliebig viele Klassen eingeben.</target>
+        <target>Aici puteți seta un ID și una sau mai multe clase.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.cookieLog.0">
         <source>Log</source>
@@ -235,7 +235,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.essentialCookieLanguage.1">
         <source>Specify in which language the descriptions of the essential cookies should be created.</source>
-        <target>Legen Sie fest, in welcher Sprache die Beschreibungen der essenziellen Cookies angelegt werden sollen.</target>
+        <target>Specificați în ce limbă ar trebui create descrierile cookie-urilor esențiale.</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.0">
         <source>Disable tracking when logged in</source>
@@ -243,7 +243,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.disableTrackingWhileLoggedIn.1">
         <source>Disables the execution of scripts when logged in to the backend.</source>
-        <target>Deaktiviert das Ausführen von Skripten im Frontend wenn man im Backend eingeloggt ist.</target>
+        <target>Dezactivează executarea scripturilor când ești autentificat în backend.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookiebar.bodyAboveContent">
@@ -317,7 +317,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.show.1">
         <source>Show the details of configuration ID %s</source>
-        <target>Details der Cookiebar-Konfiguration ID %s anzeigen</target>
+        <target>Afișați detaliile configurației Cookiebar cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.edit.0">
         <source>Edit groups</source>
@@ -325,7 +325,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.edit.1">
         <source>Edit cookiebar groups of configuration ID %s</source>
-        <target>Cookiebar-Gruppen der Konfiguration ID %s bearbeiten</target>
+        <target>Editați grupurile Cookiebar ale configurației cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.editheader.0">
         <source>Edit cookiebar configuration</source>
@@ -333,15 +333,15 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.editheader.1">
         <source>Edit cookiebar configuration ID %s</source>
-        <target>Cookiebar-Konfiguration ID %s bearbeiten</target>
+        <target>Editați configurația Cookiebar cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.copy.0">
         <source>Duplicate cookiebar configuration</source>
         <target>Duplică configurația Cookiebar</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.copy.1">
-        <source>Duplicate cookiebar configuration ID %s</source>
-        <target>Cookiebar-Konfiguration ID %s duplizieren</target>
+        <source>Duplicat cookiebar configuration ID %s</source>
+        <target>Duplicați configurația Cookiebar cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookiebar.delete.0">
         <source>Delete cookiebar configuration</source>
@@ -349,7 +349,7 @@
       </trans-unit>
       <trans-unit id="tl_cookiebar.delete.1">
         <source>Delete cookiebar configuration ID %s</source>
-        <target>Cookiebar-Konfiguration ID %s löschen</target>
+        <target>Șterge configurația Cookiebar cu ID %s</target>
       </trans-unit>
     </body>
   </file>

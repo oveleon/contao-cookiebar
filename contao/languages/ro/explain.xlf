@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.1">
-  <file datatype="php" original="contao/languages/en/explain.php" source-language="en" target-language="de">
+  <file datatype="php" original="contao/languages/en/explain.php" source-language="en" target-language="ro">
     <body>
       <trans-unit id="XPL.cookiebarVersion.0.0">
         <source>Cookiebar versions</source>
@@ -55,19 +55,19 @@
           https://developers.google.com/gtagjs/devguide/consent&lt;br&gt;&lt;br&gt;
           &lt;i&gt;This cookie type also requires a global configuration of the type "Google Tag Manager" with "Google Consent Mode" activated therein.&lt;/i&gt;
         </source>
-        <target>&lt;b&gt;Ersetzt&lt;/b&gt; die Standard-Konfiguration von Google Consent Mode. Sollte keine eigene Konfiguration eingetragen werden, wird folgender Code automatisch erzeugt: &lt;pre&gt;
-
+        <target>&lt;b&gt;Înlocuiți&lt;/b&gt; configurația implicită a Google Consent Mode. Dacă nu introduceți propria configurație, următorul cod va fi generat automat: &lt;pre&gt;
+        
           gtag('consent', 'default', {
-          '&lt;code class="tl_red"&gt;Einwilligungsmodus&lt;/code&gt;': 'granted'
+          '&lt;code class="tl_red"&gt;modul de consimțământ&lt;/code&gt;': 'granted'
           });
           &lt;/pre&gt;
-
-          Sofern eigener Code für die Konfiguration bereitsgestellt wird, muss oben stehender Code selbstständig integriert werden! Dieser kann bei Bedarf abgewandelt werden.
+          
+          Dacă este furnizat un cod propriu pentru configurație, codul de mai sus trebuie integrat manual! Acesta poate fi modificat, dacă este necesar.
           &lt;br&gt;&lt;br&gt;
-          Weitere Informationen:&lt;br&gt;
-          https://developers.google.com/gtagjs/devguide/consent&lt;br&gt;&lt;br&gt;
-          &lt;i&gt;Dieser Cookie-Typ benötigt ausßerdem eine globale Konfiguration vom Typ "Google Tag Manager" mit darin aktivierten "Google Consent Mode".&lt;/i&gt;
-        </target>
+          Informații suplimentare:&lt;br&gt;
+          https://developers.google.com/tag-platform/security/guides/consent&lt;br&gt;&lt;br&gt;
+          &lt;i&gt;Acest tip de cookie necesită, de asemenea, o configurație globală de tip „Google Tag Manager”, cu „Google Consent Mode” activat în cadrul acesteia.&lt;/i&gt;
+          </target>
       </trans-unit>
       <trans-unit id="XPL.cookiebarScriptConfig.2.0">
         <source>Matomo</source>
@@ -114,7 +114,7 @@
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.1.1">
         <source>Enables the integration of the Google Tag Manager. Additionally, a custom script can be entered. Please note that these settings are already implemented without confirmation of the cookiebar in the HEAD of the website.</source>
-        <target>Permite integrarea Google Tag Manager. În plus, poate fi introdus un script personalizat. Rețineți că aceste setări sunt implementate deja în secțiunea de sus a site-ului, fără confirmarea Cookiebar.</target>
+        <target>Permite integrarea Google Tag Manager. În plus, poate fi adăugat un script personalizat. Rețineți că aceste setări sunt implementate deja în secțiunea HEAD a site-ului, fără confirmarea Cookiebar.</target>
       </trans-unit>
       <trans-unit id="XPL.configurationScriptConfig.2.0">
         <source>Tag Manager + Google Consent Mode</source>
@@ -152,7 +152,7 @@
             })(window,document,'script','dataLayer','ID');
           &lt;/pre&gt;
         </source>
-        <target>Sofern keine eigene Konfiguration für den Google Consent Mode hinterlegt wird, werden folgende Einstellungen automatisch gesetzt: &lt;pre&gt;
+        <target>Dacă nu definiți o configurație proprie pentru Google Consent Mode, următoarele setări vor fi aplicate automat: &lt;pre&gt;
 
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -171,8 +171,8 @@
           gtag('config', '&lt;code class="tl_red"&gt;ID&lt;/code&gt;');
           &lt;/pre&gt;
 
-          Bitte beachte, dass dieser Code selber eingegeben werden muss, sofern eine eigene Konfiguration hinterlegt wird.
-          Die Integration des Google Tag Managers erfolgt automatisch über folgenden Code:
+          Rețineți că trebuie să introduceți acest cod manual dacă doriți să creați o configurație proprie.
+          Integrarea Google Tag Manager se realizează automat prin următorul cod:
 
           &lt;pre&gt;
 

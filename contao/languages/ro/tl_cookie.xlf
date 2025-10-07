@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.1">
-  <file datatype="php" original="contao/languages/en/tl_cookie.php" source-language="en" target-language="de">
+  <file datatype="php" original="contao/languages/en/tl_cookie.php" source-language="en" target-language="ro">
     <body>
       <trans-unit id="tl_cookie.msgUnpublished">
         <source>This cookie cannot be deactivated.</source>
@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.google_consent_mode_legend">
         <source>Google Consent Mode</source>
-        <source>Google Consent Mode</source>
+        <target>Google Consent Mode</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_legend">
         <source>Matomo</source>
@@ -48,10 +48,11 @@
       </trans-unit>
       <trans-unit id="tl_cookie.youtube_legend">
         <source>YouTube</source>
+        <target>YouTube</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo_legend">
         <source>Vimeo</source>
-        <source>Vimeo</source>
+        <target>Vimeo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe_legend">
         <source>iFrame</source>
@@ -79,7 +80,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.token.1">
         <source>Enter the unique name(s) (token) in a comma-separated list for the cookie (e.g. _ga, gid, ...). These are mandatory to be able to delete cookies that have already been set.</source>
-        <target>Geben Sie den/die eindeutigen Namen (Token) in einer durch Komma getrennten Liste für das Cookie ein (z.B. _ga, gid, ...). Diese sind zwingend erforderlich, um bereits gesetzte Cookies wieder löschen zu können.</target>
+        <target>Introduceți numele unice (token) într-o listă separată prin virgule pentru cookie (de ex. _ga, gid, ...). Acestea sunt obligatorii pentru a putea șterge cookie-urile care au fost deja setate.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showTokens.0">
         <source>Show Cookie-Token</source>
@@ -87,7 +88,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.showTokens.1">
         <source>Defines if the Cookie-Token should be visible in the info section.</source>
-        <target>Definiert, ob die Cookie-Token im Infobereich angezeigt werden sollen.</target>
+        <target>Definește dacă tokenul cookie trebuie să fie vizibil în secțiunea de informații.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showExpireTime.0">
         <source>Show expire time</source>
@@ -95,7 +96,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.showExpireTime.1">
         <source>Defines whether the expire time should be visible in the info section.</source>
-        <target>Definiert, ob die Speicherdauer im Info-Abschnitt angezeigt werden soll.</target>
+        <target>Definește dacă durata de stocare trebuie să fie vizibilă în secțiunea de informații.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.showProvider.0">
         <source>Show provider</source>
@@ -103,7 +104,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.showProvider.1">
         <source>Defines whether the provider should be visible in the info section.</source>
-        <target>Definiert, ob der Anbieter im Info-Abschnitt angezeigt werden soll.</target>
+        <target>Definește dacă furnizorul trebuie să fie vizibil în secțiunea de informații.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.type.0">
         <source>Cookie-Type</source>
@@ -111,7 +112,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.type.1">
         <source>Select a predefined cookie type.</source>
-        <target>Wählen Sie einen vordefinierten Cookie-Typen.</target>
+        <target>Selectați un tip de cookie predefinit.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframeType.0">
         <source>iFrame-Type</source>
@@ -119,7 +120,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.iframeType.1">
         <source>Select an iframe type.</source>
-        <target>Wählen Sie einen iFrame-Typen.</target>
+        <target>Selectați un tip de iFrame.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockTemplate.0">
         <source>Template (blocked)</source>
@@ -127,7 +128,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.blockTemplate.1">
         <source>Choose a template that will be used when the content is blocked.</source>
-        <target>Wählen Sie ein Template, welches verwendet wird, wenn der Inhalt blockiert wird.</target>
+        <target>Alegeți un șablon care va fi utilizat atunci când conținutul este blocat.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptTemplate.0">
         <source>Script template</source>
@@ -135,7 +136,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.scriptTemplate.1">
         <source>Choose a template where the custom script is located.</source>
-        <target>Wählen Sie ein Template, in der sich das benutzerdefinierte Skript befindet.</target>
+        <target>Alegeți un șablon în care se află scriptul personalizat.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.0">
         <source>Source URL</source>
@@ -143,7 +144,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrl.1">
         <source>The source URL is used to integrate scripts that must be explicitly integrated in the HEAD section of the website to provide an external service.</source>
-        <target>Die Quell-URL dient zur Einbindung von Skripten, welche explizit im HEAD-Bereich der Website integriert werden müssen, um einen externen Service bereitzustellen.</target>
+        <target>URL-ul sursă este utilizat pentru a integra scripturi care trebuie integrate explicit în secțiunea HEAD a site-ului web pentru a oferi un serviciu extern.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.0">
         <source>Source URL loading mode</source>
@@ -151,7 +152,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.sourceLoadingMode.1">
         <source>Here you can define the moment when the source URL is allowed to be embedded.</source>
-        <target>Definieren Sie hier, wann die Quell-URL eingebettet werden darf.</target>
+        <target>Definiți aici momentul în care URL-ul sursă poate fi încorporat.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrlParameter.0">
         <source>Source URL parameter</source>
@@ -159,7 +160,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.sourceUrlParameter.1">
         <source>Define the load parameters of the source URL to be used.</source>
-        <target>Definieren Sie die zu verwendenden Lade-Parameter der Source URL.</target>
+        <target>Definiți parametrii de încărcare ai URL-ului sursă care trebuie utilizați.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.sourceVersioning.0">
         <source>Use versioning</source>
@@ -167,7 +168,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.sourceVersioning.1">
         <source>Adds a cache busting parameter to the script.</source>
-        <target>Fügt dem Skript einen Cache-Busting-Parameter hinzu.</target>
+        <target>Adaugă un parametru de cache busting la script.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.0">
         <source>Script (Confirmed)</source>
@@ -175,7 +176,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfirmed.1">
         <source>Here you can enter the script (without the enclosing script tag) that is output after the cookie has been confirmed.</source>
-        <target>Tragen Sie hier das Skript ein (ohne umschließenden script-Tag), welches nach Bestätigung des Cookies ausgegeben werden soll.</target>
+        <target>Aici puteți introduce scriptul (fără eticheta script de închidere) care este generat după ce cookie-ul a fost confirmat.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptUnconfirmed.0">
         <source>Script (Not confirmed)</source>
@@ -183,7 +184,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.scriptUnconfirmed.1">
         <source>Here you can enter the script (without the enclosing script tag) that should be output if this cookie is not confirmed.</source>
-        <target>Tragen Sie hier das Skript ein (ohne umschließenden script-Tag), welches ausgegeben werden soll, wenn dieser Cookie nicht bestätigt wurde.</target>
+        <target>Aici puteți introduce scriptul (fără eticheta script de închidere) care ar trebui să fie generat dacă acest cookie nu este confirmat.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptPosition.0">
         <source>Script position</source>
@@ -191,7 +192,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.scriptPosition.1">
         <source>Here you can select the position for embedding the script (both confirmed and unconfirmed).</source>
-        <target>Hier können Sie die Position für die Einbettung des Skripts auswählen (sowohl bestätigt als auch unbestätigt).</target>
+        <target>Aici puteți selecta poziția pentru încorporarea scriptului (atât pentru confirmat, cât și pentru neconfirmat).</target>
       </trans-unit>
       <trans-unit id="tl_cookie.expireTime.0">
         <source>Cookie retention period</source>
@@ -199,7 +200,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.expireTime.1">
         <source>Here you can define the duration for how long the cookie is stored; alternatively, you can refer to the provider's description.</source>
-        <target>Hier können Sie die Dauer festlegen, wie lange das Cookie gespeichert wird; alternativ können Sie sich auf die Beschreibung des Anbieters beziehen.</target>
+        <target>Aici puteți defini durata pentru care este stocat cookie-ul; alternativ, vă puteți referi la descrierea furnizorului.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.provider.0">
         <source>Provider</source>
@@ -207,7 +208,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.provider.1">
         <source>Define here the provider information like company name and address, that is responsible for this cookie.</source>
-        <target>Definieren Sie hier die Anbieter-Informationen wie Firmenname und Adresse, welche für dieses Cookie verantwortlich sind.</target>
+        <target>Definiți aici informațiile despre furnizor, cum ar fi numele companiei și adresa, care sunt responsabile pentru acest cookie.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.description.0">
         <source>Description</source>
@@ -215,7 +216,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.description.1">
         <source>Describe the cookie and its purpose.</source>
-        <target>Beschreiben Sie hier den Cookie und dessen Zweck.</target>
+        <target>Descrieți cookie-ul și scopul său.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.0">
         <source>Detailed description</source>
@@ -223,7 +224,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.detailDescription.1">
         <source>Here you can enter a detailed description about the cookie.</source>
-        <target>Hier können Sie eine detaillierte Beschreibung zum Cookie eingeben.</target>
+        <target>Aici puteți introduce o descriere detaliată despre cookie.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.0">
         <source>Description (blocked)</source>
@@ -231,7 +232,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.blockDescription.1">
         <source>This description appears when an iFrame is blocked due to not having consent.</source>
-        <target>Diese Beschreibung erscheint, wenn ein iFrame durch fehlende Einwilligung geblockt wird.</target>
+        <target>Această descriere apare atunci când un iFrame este blocat din cauza lipsei consimțământului.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vendorId.0">
         <source>ID</source>
@@ -239,7 +240,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.vendorId.1">
         <source>Enter your ID here.</source>
-        <target>Geben Sie hier Ihre ID ein.</target>
+        <target>Introduceți aici ID-ul dvs.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.0">
         <source>ID</source>
@@ -247,15 +248,15 @@
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics_vendorId.1">
         <source>Enter your Mess-ID, Container-ID or Google Analytics ID here.</source>
-        <target>Geben Sie hier Ihre Mess-ID, Container-ID oder Google Analytics ID ein.</target>
+        <target>Introduceți aici ID-ul dvs. de măsurare, ID-ul containerului sau ID-ul Google Analytics.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.0">
         <source>Tag ID</source>
-        <target>Tag ID</target>
+        <target>ID etichetă</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_vendorId.1">
         <source>Enter your Tag ID here.</source>
-        <target>Geben Sie hier Ihre Tag ID ein.</target>
+        <target>Introduceți aici ID-ul dvs. de etichetă.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.0">
         <source>Facebook-ID</source>
@@ -263,7 +264,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel_vendorId.1">
         <source>Enter your Facebook ID here.</source>
-        <target>Geben Sie hier Ihre Facebook ID ein.</target>
+        <target>Introduceți aici ID-ul dvs. de Facebook.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorId.0">
         <source>Matomo-ID</source>
@@ -271,7 +272,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorId.1">
         <source>Enter your Matomo ID here.</source>
-        <target>Geben Sie hier Ihre Matomo-ID ein.</target>
+        <target>Introduceți aici ID-ul dvs. Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorUrl.0">
         <source>Matomo server URL</source>
@@ -279,7 +280,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.matomo_vendorUrl.1">
         <source>Enter the Matomo server URL here.</source>
-        <target>Geben Sie hier die Matomo Server-URL ein.</target>
+        <target>Introduceți aici URL-ul serverului Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorId.0">
         <source>Matomo Container-ID</source>
@@ -287,7 +288,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorId.1">
         <source>Enter your Matomo ID here.</source>
-        <target>Geben Sie hier Ihre Matomo-ID ein.</target>
+        <target>Introduceți aici ID-ul dvs. Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.0">
         <source>Matomo server URL</source>
@@ -295,7 +296,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager_vendorUrl.1">
         <source>Enter the Matomo server URL here.</source>
-        <target>Geben Sie hier die Matomo Server-URL ein.</target>
+        <target>Introduceți aici URL-ul serverului Matomo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker_vendorId.0">
         <source>Secure-Code</source>
@@ -303,7 +304,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.etracker_vendorId.1">
         <source>Enter your etracker secure code here.</source>
-        <target>Geben Sie hier Ihren etracker Secure Code ein.</target>
+        <target>Introduceți aici codul dvs. de securitate etracker.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.0">
         <source>Additional configuration</source>
@@ -311,7 +312,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.scriptConfig.1">
         <source>Here you can enter additional parameters that will be considered when loading the script.</source>
-        <target>Tragen Sie hier weitere Parameter ein, welche beim Laden des Skriptes berücksichtigt werden sollen.</target>
+        <target>Introduceți aici parametrii suplimentari care vor fi luați în considerare la încărcarea scriptului.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_scriptConfig.0">
         <source>Overwrite default configuration</source>
@@ -319,7 +320,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode_scriptConfig.1">
         <source>Here you can overwrite the default configuration created by the system. If &lt;em&gt;always load gtag.js&lt;/em&gt; is activated, the &lt;em&gt;gtag.js&lt;/em&gt; script initialisation is not necessary in this configuration.</source>
-        <target>Hier können Sie die vom System erstellte Standardkonfiguration überschreiben. Sofern &lt;em&gt;gtag.js immer laden&lt;/em&gt; aktiviert ist, ist die &lt;em&gt;gtag.js&lt;/em&gt;-Skript-Initialisierung in dieser Konfiguration nicht notwendig.</target>
+        <target>Aici puteți suprascrie configurația standard creată de sistem. Dacă &lt;em&gt;întotdeauna încarcă gtag.js&lt;/em&gt; este activat, inițializarea scriptului &lt;em&gt;gtag.js&lt;/em&gt; nu este necesară în această configurație.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.0">
         <source>Global configuration</source>
@@ -327,7 +328,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.globalConfig.1">
         <source>Depending on the setting, global configurations are executed directly when entering the page and without any confirmation. Useful for Google Consent Mode or similar scripts, that are allowed to run without consent.</source>
-        <target>Globale Konfigurationen werden je nach Einstellung direkt beim betreten der Seite und ohne Bestätigung ausgeführt. Nützlich für Google Consent Mode o. ä. Skripte, welche bereits ohne Zustimmung ausgeführt werden dürfen.</target>
+        <target>Configurările globale sunt executate direct la accesarea paginii și fără nicio confirmare, în funcție de setare. Util pentru Google Consent Mode sau scripturi similare, care sunt permise să ruleze fără consimțământ.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.0">
         <source>Consents</source>
@@ -335,7 +336,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.gcmMode.1">
         <source>Here you can select the consents.</source>
-        <target>Hier können Sie die Einwilligungen auswählen.</target>
+        <target>Aici puteți selecta consimțămintele.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.alwaysLoadTagJS.0">
         <source>Always load gtag.js</source>
@@ -343,11 +344,11 @@
       </trans-unit>
       <trans-unit id="tl_cookie.alwaysLoadTagJS.1">
         <source>Always load the gtag.js without asking for consent. This activates anonymous tracking before consent has been given.</source>
-        <target>Die gtag.js immer laden, ohne dass eine Zustimmung eingeholt wird. Dies aktiviert das anonyme Tracking, bevor eine Zustimmung erteilt wurde.</target>
+        <target>Întotdeauna încarcă gtag.js fără a solicita consimțământul. Acest lucru activează urmărirea anonimă înainte ca consimțământul să fie acordat.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_xlabel">
         <source>Insert default token</source>
-        <target>Introdu token standard</target>
+        <target>Introdu tokenul standard</target>
       </trans-unit>
       <trans-unit id="tl_cookie.tokenConfig_googleAnalytics_error">
         <source>ID needs to be set.</source>
@@ -363,15 +364,15 @@
       </trans-unit>
       <trans-unit id="tl_cookie.disabled.1">
         <source>Define whether this cookie can be deactivated by the visitor.</source>
-        <target>Definieren Sie, ob dieser Cookie durch den Besucher deaktiviert werden kann.</target>
+        <target>Definiți dacă acest cookie poate fi dezactivat de vizitator.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.0">
         <source>Preselect consent</source>
-        <target>Preselectează consimțământul</target>
+        <target>Presetează consimțământul</target>
       </trans-unit>
       <trans-unit id="tl_cookie.checked.1">
-        <source>Activates the checkbox when opening the cookiebar for the first time.</source>
-        <target>Aktiviert die Checkbox beim erstmaligen Öffnen der Cookiebar.</target>
+        <source>Activates the checkbox when opening the Cookiebar for the first time.</source>
+        <target>Activează caseta de selectare la prima deschidere a Cookiebar.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.blockCookies.0">
         <source>Always block cookies</source>
@@ -379,7 +380,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.blockCookies.1">
         <source>This service can be used with and without cookies. Cookies are always blocked via this setting.</source>
-        <target>Dieser Service kann mit und ohne Cookies verwendet werden. Über diese Einstellung werden Cookies immer blockiert.</target>
+        <target>Acest serviciu poate fi utilizat cu sau fără cookie-uri. Cookie-urile sunt întotdeauna blocate prin această setare.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.published.0">
         <source>Publish</source>
@@ -387,7 +388,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.published.1">
         <source>Define here whether the cookie may be set / displayed.</source>
-        <target>Definieren Sie hier ob das Cookie gesetzt / angezeigt werden darf.</target>
+        <target>Definiți aici dacă cookie-ul poate fi setat / afișat.</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.googleAnalytics.0">
@@ -396,7 +397,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.googleAnalytics.1">
         <source>Integrate Google Analytics via Google Tag Manager</source>
-        <target>Google Analytics über den Google Tag Manager einbinden</target>
+        <target>Integrați Google Analytics prin Google Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.0">
         <source>Google Consent Mode</source>
@@ -404,7 +405,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.googleConsentMode.1">
         <source>Integrate Google Consent Mode via Google Tag Manager</source>
-        <target>Google Consent Mode über den Google Tag Manager einbinden</target>
+        <target>Integrați Google Consent Mode prin Google Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.0">
         <source>Facebook Pixel</source>
@@ -412,7 +413,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.facebookPixel.1">
         <source>Integrate Facebook Pixel</source>
-        <target>Facebook Pixel einbinden</target>
+        <target>Integrați Facebook Pixel</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomo.0">
         <source>Matomo</source>
@@ -420,7 +421,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.matomo.1">
         <source>Integrate Matomo</source>
-        <target>Matomo einbinden</target>
+        <target>Integrați Matomo</target>
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager.0">
         <source>Matomo Tag Manager</source>
@@ -428,7 +429,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.matomoTagManager.1">
         <source>Integrate Matomo Tag Manager</source>
-        <target>Matomo Tag Manager einbinden</target>
+        <target>Integrați Matomo Tag Manager</target>
       </trans-unit>
       <trans-unit id="tl_cookie.etracker.0">
         <source>etracker</source>
@@ -436,7 +437,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.etracker.1">
         <source>Integrate etracker</source>
-        <target>etracker einbinden</target>
+        <target>Integrați etracker</target>
       </trans-unit>
       <trans-unit id="tl_cookie.youtube.0">
         <source>YouTube</source>
@@ -444,7 +445,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.youtube.1">
         <source>Integrate YouTube.</source>
-        <target>YouTube einbinden.</target>
+        <target>Integrați YouTube.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.googlemaps.0">
         <source>Google Maps</source>
@@ -452,7 +453,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.googlemaps.1">
         <source>Integrate Google Maps.</source>
-        <target>Google Maps einbinden.</target>
+        <target>Integrați Google Maps.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.0">
         <source>Vimeo</source>
@@ -460,7 +461,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.vimeo.1">
         <source>Integrate Vimeo.</source>
-        <target>Vimeo einbinden.</target>
+        <target>Integrați Vimeo.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.openstreetmap.0">
         <source>OpenStreetMap</source>
@@ -468,7 +469,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.openstreetmap.1">
         <source>Integrate OpenStreetMap.</source>
-        <target>OpenStreetMap einbinden.</target>
+        <target>Integrați OpenStreetMap.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.default.0">
         <source>Info</source>
@@ -476,7 +477,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.default.1">
         <source>Configure a cookie notice</source>
-        <target>Hinweis zu einem Cookie konfigurieren</target>
+        <target>Configurați un aviz de cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.script.0">
         <source>Custom (Script)</source>
@@ -484,7 +485,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.script.1">
         <source>Configure custom script</source>
-        <target>Benutzerdefiniertes Skript konfigurieren</target>
+        <target>Configurați scriptul personalizat</target>
       </trans-unit>
       <trans-unit id="tl_cookie.template.0">
         <source>Custom (Template)</source>
@@ -492,7 +493,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.template.1">
         <source>Include a custom script via a template. Remember that only the script tag inside the template will be used during processing.</source>
-        <target>Ein benutzerdefiniertes Skript über ein Template einbinden. Bitte beachte, dass ausschließlich das sich darin befindliche script-Tag bei der Verarbeitung berücksichtigt wird.</target>
+        <target>Includeți un script personalizat prin intermediul unui șablon. Rețineți că, în timpul procesării, va fi utilizată doar eticheta &lt;script&gt; din interiorul șablonului.</target>
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.0">
         <source>iFrame</source>
@@ -500,7 +501,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.iframe.1">
         <source>Configure iFrame for e.g. YouTube, Vimeo or Google Maps</source>
-        <target>iFrame für bspw. YouTube, Vimeo oder Google Maps</target>
+        <target>Configurați iFrame pentru, de exemplu, YouTube, Vimeo sau Google Maps</target>
       </trans-unit>
 
       <trans-unit id="tl_cookie.confirmed">
@@ -552,23 +553,23 @@
       </trans-unit>
       <trans-unit id="tl_cookie.show.1">
         <source>Show the details of cookie ID %s</source>
-        <target>Details der Cookie ID %s anzeigen</target>
+        <target>Afișați detaliile cookie-ului cu ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.edit.0">
         <source>Edit cookie</source>
-        <target>Editează cookie</target>
+        <target>Editați cookie</target>
       </trans-unit>
       <trans-unit id="tl_cookie.edit.1">
         <source>Edit cookie ID %s</source>
-        <target>Cookie ID %s bearbeiten</target>
+        <target>Editați cookie ID %s</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editheader.0">
         <source>Edit group</source>
-        <target>Editează grup</target>
+        <target>Editați grup</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editheader.1">
         <source>Edit group</source>
-        <target>Editează grup</target>
+        <target>Editați grup</target>
       </trans-unit>
       <trans-unit id="tl_cookie.copy.0">
         <source>Duplicate cookie</source>
@@ -576,7 +577,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.copy.1">
         <source>Duplicate cookie ID %s</source>
-        <target>Cookie ID %s duplizieren</target>
+        <target>Cookie ID %s duplicat</target>
       </trans-unit>
       <trans-unit id="tl_cookie.cut.0">
         <source>Move cookie</source>
@@ -584,7 +585,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.cut.1">
         <source>Move cookie ID %s</source>
-        <target>Cookie ID %s verschieben</target>
+        <target>Cookie ID %s mutat</target>
       </trans-unit>
       <trans-unit id="tl_cookie.delete.0">
         <source>Delete cookie</source>
@@ -592,7 +593,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.delete.1">
         <source>Delete cookie ID %s</source>
-        <target>Cookie ID %s löschen</target>
+        <target>Cookie ID %s șters</target>
       </trans-unit>
       <trans-unit id="tl_cookie.toggle.0">
         <source>Publish/unpublish cookie</source>
@@ -600,7 +601,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.toggle.1">
         <source>Publish/unpublish cookie ID %s</source>
-        <target>Cookie ID %s veröffentlichen/unveröffentlichen</target>
+        <target>Cookie ID %s publicat/nepublicat</target>
       </trans-unit>
       <trans-unit id="tl_cookie.priority.0">
         <source>Priority</source>
@@ -608,7 +609,7 @@
       </trans-unit>
       <trans-unit id="tl_cookie.priority.1">
         <source>Optionally configure the priority to affect the order of scripts. Default: 0</source>
-        <target>Optional kann die Priorität konfiguriert werden, um die Reihenfolge der Skripte zu beeinflussen. Standard: 0</target>
+        <target>Optional, configurați prioritatea pentru a afecta ordinea scripturilor. Implicit: 0</target>
       </trans-unit>
       <trans-unit id="tl_cookie.editGlobalConfig">
         <source>Edit global configuration</source>
@@ -617,7 +618,7 @@
 
       <trans-unit id="tl_cookie.msgGoogleConsentMode">
         <source>Cookies of the type "Google Consent Mode" can be created multiple times depending on the selection of consent modes.</source>
-        <target>Cookies vom Typ "Google Consent Mode" können je nach Auswahl der Zustimmungsmodi mehrfach angelegt werden.</target>
+        <target>Cookie-urile de tip „Google Consent Mode” pot fi create de mai multe ori, în funcție de selecția modurilor de consimțământ.</target>
       </trans-unit>
     </body>
   </file>
