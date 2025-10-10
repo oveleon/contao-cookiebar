@@ -38,12 +38,13 @@ class CookiebarTwigTemplatesMigration extends AbstractMigration
     {
         $schemaManager =  $this->connection->createSchemaManager();
 
-        if (!$schemaManager->tablesExist(['tl_cookiebar', 'tl_cookie']))
+        if (!$schemaManager->tablesExist(['tl_cookiebar', 'tl_cookie', 'tl_page']))
         {
             return false;
         }
 
         $total = $this->connection->fetchOne('SELECT COUNT(*) FROM tl_cookiebar WHERE template=? OR template=? OR template=?', ['cookiebar_default', 'cookiebar_default_deny', 'cookiebar_simple']);
+        $total += $this->connection->fetchOne('SELECT COUNT(*) FROM tl_page WHERE overwriteCookiebarMeta=? AND (cookiebarTemplate=? OR cookiebarTemplate=? OR cookiebarTemplate=?)', [1, 'cookiebar_default', 'cookiebar_default_deny', 'cookiebar_simple']);
         $total += $this->connection->fetchOne('SELECT COUNT(*) FROM tl_cookie WHERE blockTemplate=?', ['ccb_element_blocker']);
 
         return $total > 0;
@@ -55,6 +56,7 @@ class CookiebarTwigTemplatesMigration extends AbstractMigration
     public function run(): MigrationResult
     {
         $cookiebarTemplates = $this->connection->fetchAllAssociative('SELECT id, template FROM tl_cookiebar WHERE template=? OR template=? OR template=?', ['cookiebar_default', 'cookiebar_default_deny', 'cookiebar_simple']);
+        $pageTemplates = $this->connection->fetchAllAssociative('SELECT id, cookiebarTemplate FROM tl_page WHERE overwriteCookiebarMeta=? AND (cookiebarTemplate=? OR cookiebarTemplate=? OR cookiebarTemplate=?)', [1, 'cookiebar_default', 'cookiebar_default_deny', 'cookiebar_simple']);
         $cookieTemplates = $this->connection->fetchAllAssociative('SELECT id, blockTemplate FROM tl_cookie WHERE blockTemplate=?', ['ccb_element_blocker']);
 
         foreach ($cookiebarTemplates as $cookiebar)
@@ -69,6 +71,21 @@ class CookiebarTwigTemplatesMigration extends AbstractMigration
             if ($replacement !== null)
             {
                 $this->connection->update('tl_cookiebar', ['template' => $replacement], ['id' => $cookiebar['id']]);
+            }
+        }
+
+        foreach ($pageTemplates as $page)
+        {
+            $replacement = match ($page['cookiebarTemplate'] ?? null) {
+                'cookiebar_default' => '',
+                'cookiebar_default_deny' => 'cookiebar/default/deny',
+                'cookiebar_simple' => 'cookiebar/default/simple',
+                default => null,
+            };
+
+            if ($replacement !== null)
+            {
+                $this->connection->update('tl_page', ['cookiebarTemplate' => $replacement], ['id' => $page['id']]);
             }
         }
 
