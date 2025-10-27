@@ -25,24 +25,27 @@ trait TwigRenderTrait
 {
     private static function renderTwigTemplate(string $template, array $data): string
     {
+        $container = System::getContainer();
+
         /**
          * @var Environment $twig
          */
-        if (!$twig = System::getContainer()->get('twig', ContainerInterface::NULL_ON_INVALID_REFERENCE))
+        if (!$twig = $container->get('twig', ContainerInterface::NULL_ON_INVALID_REFERENCE))
         {
             return '';
         }
 
         $loader = $twig->getLoader();
+        $contextFactory = $container->get('contao.twig.interop.context_factory');
 
         if ($loader->exists("@Contao/$template.html.twig"))
         {
-            return $twig->render("@Contao/$template.html.twig", $data);
+            return $twig->render("@Contao/$template.html.twig", $contextFactory->fromData($data));
         }
 
         if ($loader->exists("@Contao_ContaoCookiebar/$template.html.twig"))
         {
-            return $twig->render("@Contao_ContaoCookiebar/$template.html.twig", $data);
+            return $twig->render("@Contao_ContaoCookiebar/$template.html.twig", $contextFactory->fromData($data));
         }
 
         return '';

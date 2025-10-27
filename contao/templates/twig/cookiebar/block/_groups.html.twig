@@ -3,16 +3,17 @@
 
 {% block groups %}
     {% for group in groups %}
+        {% set group_title = group.title|insert_tag %}
         <div class="cc-group">
             {% if group.hasCookies %}
                 <input type="checkbox" name="group[]" id="{{ 'g' ~ group.id }}" value="{{ group.id }}" data-toggle-cookies{% if group.isLocked %} disabled checked{% endif %}>
             {% endif %}
-            <label{% if group.hasCookies %} for="{{ 'g' ~ group.id }}"{% endif %} class="group">{{ group.title }}</label>
+            <label{% if group.hasCookies %} for="{{ 'g' ~ group.id }}"{% endif %} class="group">{{ group_title }}</label>
 
             {% block detail_buttons %}
                 <button class="cc-detail-btn cc-focus" data-toggle-group aria-expanded="false" aria-controls="{{ 'cg' ~ group.id }}">
-                    <span>{{ 'tl_cookiebar.showDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ group.title}}</span></span>
-                    <span>{{ 'tl_cookiebar.hideDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ group.title}}</span></span>
+                    <span>{{ 'tl_cookiebar.showDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ group_title}}</span></span>
+                    <span>{{ 'tl_cookiebar.hideDetailsLabel'|trans }}<span class="cc-invisible">{{ 'tl_cookiebar.forInfix'|trans ~ group_title}}</span></span>
                 </button>
             {% endblock %}
 
