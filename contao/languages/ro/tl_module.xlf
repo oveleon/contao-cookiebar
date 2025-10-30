@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_module.php" source-language="en" target-language="ro">
+    <body>
+      <trans-unit id="tl_module.link_legend">
+        <source>Hyperlink settings</source>
+        <target>Setări hyperlink</target>
+      </trans-unit>
+      <trans-unit id="tl_module.linkTitle.0">
+        <source>Link text</source>
+        <target>Text link</target>
+      </trans-unit>
+      <trans-unit id="tl_module.linkTitle.1">
+        <source>The link text will be displayed instead of the target URL.</source>
+        <target>Textul linkului este afișat în locul adresei linkului.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.titleText.0">
+        <source>Link title</source>
+        <target>Titlu link</target>
+      </trans-unit>
+      <trans-unit id="tl_module.titleText.1">
+        <source>The link title is added as &lt;em&gt;title&lt;/em&gt; attribute in the HTML markup.</source>
+        <target>Titlul linkului este introdus ca atribut &lt;em&gt;title&lt;/em&gt; în marcajul HTML.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.prefillCookies.0">
+        <source>Prefill settings</source>
+        <target>Precompletare setări</target>
+      </trans-unit>
+      <trans-unit id="tl_module.prefillCookies.1">
+        <source>Activates the already selected cookies when opening the cookiebar.</source>
+        <target>Activează cookie-urile deja selectate la deschiderea Cookiebar.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
