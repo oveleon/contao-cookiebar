@@ -40,6 +40,8 @@ class KernelRequestListener
     private PageModel|null $objPage = null;
     private CookiebarModel|null $cookiebarModel = null;
     private ScriptUtils|null $scriptUtils = null;
+
+    private bool $cookiebarPrepared = false;
     private array|null $types = null;
     private array $cookies = [];
 
@@ -262,7 +264,7 @@ class KernelRequestListener
 
         if (
             'html' !== $request->getRequestFormat() ||
-            !str_contains((string) $response->headers->get('Content-Type'), 'text/html') ||
+            ($response->headers->has('Content-Type') && !str_contains((string)$response->headers->get('Content-Type'), 'text/html')) ||
             false !== stripos((string) $response->headers->get('Content-Disposition'), 'attachment;')
         ) {
             return false;
@@ -471,9 +473,16 @@ class KernelRequestListener
      * Use the generatePage Hook the parse the cookieBarTemplate
      * At this point the Contao globals e.g. global $objPage and the GLOBALS are set
      *
+     * @deprecated Deprecated since Cookiebar 2.3, to be removed in Version 3.0
+     *
      * @return void
      */
     public function onGeneratePage(): void
+    {
+        $this->onLoadPageDetails();
+    }
+
+    public function onLoadPageDetails(): void
     {
         if (
             !$this->scriptUtils instanceof ScriptUtils ||
@@ -483,6 +492,11 @@ class KernelRequestListener
             return;
         }
 
+        if ($this->cookiebarPrepared) {
+            return;
+        }
+
         $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
+        $this->cookiebarPrepared = true;
     }
 }
