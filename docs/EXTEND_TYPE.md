@@ -79,5 +79,5 @@ Loading-Constants | Description
 # Hooks
 Hook | Parameter | Description
 ---------- | ----------- | -----------
-`compileCookieType` | `string $type`, `Cookie $objCookie` | Enables the integration of your own cookie types. (see Create own Cookie-Types)
+`addCookieType` | `string $type`, `Cookie $objCookie` | Enables the integration of your own cookie types. (see Create own Cookie-Types)
 `parseCookiebarTemplate` | `FrontendTemplate $objTemplate`, `$objConfig` | Is called before parsing the cookiebar template.
