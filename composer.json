@@ -80,8 +80,7 @@
     "config": {
         "allow-plugins": {
             "php-http/discovery": false,
-            "contao/manager-plugin": false,
-            "contao-components/installer": true
+            "contao/manager-plugin": false
         }
     },
     "scripts": {
