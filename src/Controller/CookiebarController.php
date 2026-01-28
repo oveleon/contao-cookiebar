@@ -95,7 +95,7 @@ readonly class CookiebarController
 
                 if ($error = $this->errorMissingParameter($request, ['tokens']))
                 {
-                      return $error;
+                    return $error;
                 }
 
                 Cookiebar::deleteCookieByToken($request['tokens']);
@@ -105,15 +105,11 @@ readonly class CookiebarController
             case 'log':
                 if ($error = $this->errorMissingParameter($request, ['configId']))
                 {
-                      return $error;
+                    return $error;
                 }
 
                 Cookiebar::log((int) $request->get('configId'), $request->get('referrer'), null, $request->get('cookies'));
                 break;
-
-            //
-            default:
-                throw new NotFoundHttpException();
         }
 
         return new JsonResponse(['type' => $module, 'status' => 'OK']);
