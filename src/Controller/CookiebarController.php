@@ -26,6 +26,7 @@ use Oveleon\ContaoCookiebar\Utils\TwigRenderTrait;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -94,7 +95,7 @@ readonly class CookiebarController
 
                 if ($error = $this->errorMissingParameter($request, ['tokens']))
                 {
-                    return $error;
+                    return new JsonResponse(['type' => $module, 'status' => 204]);
                 }
 
                 Cookiebar::deleteCookieByToken($request['tokens']);
@@ -104,11 +105,15 @@ readonly class CookiebarController
             case 'log':
                 if ($error = $this->errorMissingParameter($request, ['configId']))
                 {
-                    return $error;
+                    return new JsonResponse(['type' => $module, 'status' => 204]);
                 }
 
                 Cookiebar::log((int) $request->get('configId'), $request->get('referrer'), null, $request->get('cookies'));
                 break;
+
+            //
+            default:
+                throw new NotFoundHttpException();
         }
 
         return new JsonResponse(['type' => $module, 'status' => 'OK']);
