@@ -6,7 +6,7 @@
     {% for cookie in group.cookies %}
         {% set cookie_title = cookie.title|insert_tag %}
         <div class="cc-cookie">
-            <input type="checkbox" name="cookie[]" id="{{ 'c' ~ cookie.id }}" value="{{ cookie.id }}" {% if cookie.isLocked or cookie.isDisbaled %} disabled checked{% endif %}>
+            <input type="checkbox" name="cookie[]" id="{{ 'c' ~ cookie.id }}" value="{{ cookie.id }}" {% if cookie.isLocked or cookie.isDisabled %} disabled checked{% endif %}>
             <label for="{{ 'c' ~ cookie.id }}" class="cookie">{{ cookie_title }}</label>
             {{ cookie.description|default|csp_inline_styles|insert_tag_raw|encode_email|raw }}
             {% apply spaceless %}
