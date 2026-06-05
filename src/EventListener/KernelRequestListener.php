@@ -40,6 +40,7 @@ class KernelRequestListener
     private PageModel|null $objPage = null;
     private CookiebarModel|null $cookiebarModel = null;
     private ScriptUtils|null $scriptUtils = null;
+    private bool $cookiebarPrepared = false;
     private array|null $types = null;
     private array $cookies = [];
 
@@ -262,7 +263,7 @@ class KernelRequestListener
 
         if (
             'html' !== $request->getRequestFormat() ||
-            !str_contains((string) $response->headers->get('Content-Type'), 'text/html') ||
+            ($response->headers->has('Content-Type') && !str_contains((string) $response->headers->get('Content-Type'), 'text/html')) ||
             false !== stripos((string) $response->headers->get('Content-Disposition'), 'attachment;')
         ) {
             return false;
@@ -475,6 +476,11 @@ class KernelRequestListener
      */
     public function onGeneratePage(): void
     {
+        $this->onLoadPageDetails();
+    }
+
+    public function onLoadPageDetails(): void
+    {
         if (
             !$this->scriptUtils instanceof ScriptUtils ||
             !$this->cookiebarModel instanceof CookiebarModel ||
@@ -483,6 +489,11 @@ class KernelRequestListener
             return;
         }
 
+        if ($this->cookiebarPrepared) {
+            return;
+        }
+
         $this->scriptUtils->setOutputTemplate(Cookiebar::parseCookiebarTemplate($this->cookiebarModel, $this->objRootPage->language));
+        $this->cookiebarPrepared = true;
     }
 }
