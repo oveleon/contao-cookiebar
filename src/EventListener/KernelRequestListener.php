@@ -135,7 +135,7 @@ class KernelRequestListener
             json_encode(Cookiebar::validateCookies($this->cookiebarModel)),
             json_encode(Cookiebar::validateGlobalConfigs($this->cookiebarModel)),
             $this->tokenChecker->hasBackendUser() && !!$this->cookiebarModel->disableTrackingWhileLoggedIn ? 1 : 0,
-            $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_default')
+            $this->translator->trans('tl_cookiebar.acceptAndDisplayLabel', [], 'contao_tl_cookiebar')
         ]);
     }
 
